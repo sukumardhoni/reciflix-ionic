@@ -43,6 +43,11 @@ angular.module('recipesApp', ['ionic', 'ngResource'])
 			templateUrl: "templates/newRecipe.html",
 			controller: "newRecipeCtrl"
 		})
+        .state('showRecipes', {
+			url: "/showRecipes",
+			templateUrl: "templates/showRecipes.html",
+			controller: "showRecipesCtrl"
+		})
 		.state('allRecipes', {
 			url: "/allRecipes/:userId",
 			templateUrl: "templates/allRecipes.html",

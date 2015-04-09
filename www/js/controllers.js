@@ -92,6 +92,11 @@ angular.module('recipesApp')
 	$scope.recipes = Recipes.query();
 })
 
+.controller('showRecipesCtrl', function ($scope, $state, $stateParams, Recipes) {
+	console.log('showRecipesCtrl controller')
+	//$scope.uesrId = $stateParams.userId;
+	$scope.recipes = [{"videoId":"xaeJMJQKxto"}, {"videoId":"9Be9LHPracE"}, {"videoId":"CdT6kmzDDgM"}, {"videoId":"pdSb2Ian-G8"}, {"videoId":"o_0Xy6o8WJ4"}];
+})
 .controller('singleRecipeCtrl', function ($scope, $state, $stateParams, Recipes) {
 	$scope.recipe = Recipes.get({
 		recipeId: $stateParams.recipeId

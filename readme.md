@@ -1,5 +1,5 @@
 Recipe App with ionic
 
-cordova platform android
+$>cordova platform add android
 
 ionic serve --lab

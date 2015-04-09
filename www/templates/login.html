@@ -1,0 +1,41 @@
+<ion-view hide-nav-bar="true">
+	<ion-content>
+		<div class="logo">
+			<center>
+				<img src="img/Chef.png" height="140px" />
+			</center>
+		</div>
+		<div class="apptitle">
+			<center>
+				<p class="titlestyle">ReciFlix</p>
+			</center>
+		</div>
+		<div class=" paddingclass" style="margin-top: 0px;">
+			<label class="item-input inputstyle item-floating-label">
+				<span class="input-label labelClr">Email</span>
+				<input type="text" placeholder="Email" data-ng-model="user.email">
+			</label>
+			<label class="item-input inputstyle item-floating-label">
+				<span class="input-label labelClr">Password</span>
+				<input type="password" placeholder="Password" data-ng-model="user.password">
+			</label>
+			<br>
+			<button class="button button-block curvebutton button-color" ng-click="Login()">
+				Login
+			</button>
+			<button class="button button-block button-positive" ng-click="fbLogin()">
+				Login with Facebook
+			</button>
+			<a href="#/forgotpassword" style="text-decoration:none;color:black">
+				<small class="forgotpswd">Forgot Password
+      </small>
+			</a>
+		</div>
+		<div class="signupbutton" ui-sref="signup">
+			<center>
+				Sign Up
+			</center>
+		</div>
+      
+	</ion-content>
+</ion-view>

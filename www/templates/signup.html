@@ -1,0 +1,59 @@
+<ion-view hide-nav-bar="true">
+	<ion-content>
+		<div class="logo">
+			<center>
+				<img src="img/Chef.png" height="90px" />
+			</center>
+		</div>
+		<div>
+			<center>
+				<p class="titlestyle">ReciFlix</p>
+			</center>
+
+		</div>
+		<div class="paddingclass">
+			<form name="form">
+				<label class="item-input inputstyle item-floating-label">
+					<span class="input-label labelClr">First Name</span>
+					<input type="text" placeholder="First Name" ng-model="user.firstname">
+				</label>
+				<label class="item-input inputstyle item-floating-label">
+					<span class="input-label labelClr">Last Name</span>
+					<input type="text" placeholder="Last Name" ng-model="user.lastname">
+				</label>
+				<label class="item-input inputstyle item-floating-label">
+					<span class="input-label labelClr">Email</span>
+					<input type="text" placeholder="Email" ng-model="user.email">
+				</label>
+<!--				<label class="item-input inputstyle item-floating-label">
+					<span class="input-label labelClr">Username</span>
+					<input type="text" placeholder="username" ng-model="user.username">
+				</label>-->
+				<p>
+					<small ng-show="errMsg" class="errMsg">{{errMsg}}</small>
+				</p>
+				<label class="item-input inputstyle item-floating-label">
+					<span class="input-label labelClr">Password</span>
+					<input type="Password" placeholder="Password" ng-model="user.password">
+				</label>
+
+				<br>
+				<button class="button button-block button-color curvebutton" ng-click="signup()">
+					Sign Up
+				</button>
+				<div>
+					<center>
+						<p style="opacity:0.5">or if you already have account</p>
+					</center>
+				</div>
+				<div>
+					<center>
+						<p style="margin-top:20px;" class="button-color" ui-sref="login">
+							Login
+						</p>
+					</center>
+				</div>
+			</form>
+		</div>
+	</ion-content>
+</ion-view>

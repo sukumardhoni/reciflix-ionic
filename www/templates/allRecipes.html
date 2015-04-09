@@ -1,0 +1,24 @@
+<ion-view hide-back-button="true">
+	<ion-nav-title>
+		<span>All Recipes
+      <!--<button class=" icon button-icon" ng-class="{true: 'ion-alert calm', false: 'ion-alert dark'}[important]">
+</button>
+<button class="icon button-icon" ng-class="{true: 'ion-clock calm', false: 'ion-clock dark'}[urgent]">
+</button>-->
+    </span>
+	</ion-nav-title>
+	<ion-nav-buttons side="secondary">
+		<a class="button button-assertive button-icon ion-plus" ng-click="hidecard()" href="#/newRecipe/{{userId}}">
+		</a>
+		<button class="button button-assertive button-icon ion-android-contact" ng-click="openPopover($event)">
+		</button>
+	</ion-nav-buttons>
+	<ion-content>
+		<ion-list>
+			<ion-item ng-repeat="item in recipes" item="item" class="item-remove-animate item" class="itembg">
+				<span ui-sref="singleRecipe({recipeId:item._id})">{{item.title}}</span>
+
+			</ion-item>
+		</ion-list>
+	</ion-content>
+</ion-view>

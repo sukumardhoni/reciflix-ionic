@@ -43,14 +43,26 @@ angular.module('recipesApp', ['ionic', 'ngResource'])
 			templateUrl: "templates/newRecipe.html",
 			controller: "newRecipeCtrl"
 		})
-        .state('showRecipes', {
+		.state('showRecipes', {
 			url: "/showRecipes",
 			templateUrl: "templates/showRecipes.html",
 			controller: "showRecipesCtrl"
 		})
 		.state('allRecipes', {
-			url: "/allRecipes/:userId",
+			/*	url: "/allRecipes/:userId",*/
+			url: "/allRecipes/552226419f3cb2e4199fffda",
 			templateUrl: "templates/allRecipes.html",
+			controller: "allRecipesCtrl"
+		})
+		.state('allCategories', {
+			/*	url: "/allRecipes/:userId",*/
+			url: "/allCategories/552226419f3cb2e4199fffda",
+			templateUrl: "templates/allCategories.html",
+			controller: "allCategoriesCtrl"
+		})
+		.state('categoriesVideos', {
+			url: "/categoriesVideos/:categorieName",
+			templateUrl: "templates/showRecipes.html",
 			controller: "allRecipesCtrl"
 		})
 		.state('singleRecipe', {
@@ -63,7 +75,7 @@ angular.module('recipesApp', ['ionic', 'ngResource'])
 			templateUrl: "templates/editRecipe.html",
 			controller: "singleRecipeCtrl"
 		})
-	$urlRouterProvider.otherwise('/login');
+	$urlRouterProvider.otherwise('/allCategories/552226419f3cb2e4199fffda');
 	$ionicConfigProvider.backButton.text('').previousTitleText(false);
 	$ionicConfigProvider.navBar.alignTitle('center');
 });

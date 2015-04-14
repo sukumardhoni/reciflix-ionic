@@ -1,0 +1,24 @@
+<ion-view hide-back-button="true">
+	<ion-nav-title>
+		<span>All Categories
+    </span>
+	</ion-nav-title>
+	<ion-nav-buttons side="secondary">
+		<button class="button button-assertive button-icon ion-android-contact" ng-click="openPopover($event)">
+		</button>
+	</ion-nav-buttons>
+	<ion-content>
+		<ion-list>
+			<ion-item ng-repeat="item in categories" class="item-remove-animate">
+				<!--<span ui-sref="singleRecipe({recipeId:item._id})">{{item.tags}}</span>-->
+				<div ui-sref="categoriesVideos({categorieName:item})">
+					<center>
+						<img ng-src="img/recipeImgs/{{item}}.jpg" height="180px" />
+					</center>
+					<center class="catgyName">{{item}}</center>
+				</div>
+			</ion-item>
+		</ion-list>
+		<ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMore()"></ion-infinite-scroll>
+	</ion-content>
+</ion-view>

@@ -8,19 +8,20 @@
     </span>
 	</ion-nav-title>
 	<ion-nav-buttons side="secondary">
-      <a class="button button-assertive button-icon ion-search" ng-click="hidecard()" href="#/showRecipes">
-		</a>
-		<a class="button button-assertive button-icon ion-plus" ng-click="hidecard()" href="#/newRecipe/{{userId}}">
-		</a>
+		<!--<a class="button button-assertive button-icon ion-search" href="#/showRecipes">
+</a>
+<a class="button button-assertive button-icon ion-plus" ng-click="hidecard()" href="#/newRecipe/{{userId}}">
+</a>-->
 		<button class="button button-assertive button-icon ion-android-contact" ng-click="openPopover($event)">
 		</button>
 	</ion-nav-buttons>
-	<ion-content>
+	<ion-content on-infinite-scroll="loadMore()">
 		<ion-list>
 			<ion-item ng-repeat="item in recipes" item="item" class="item-remove-animate item" class="itembg">
-				<span ui-sref="singleRecipe({recipeId:item._id})">{{item.title}}</span>
+				<span ui-sref="singleRecipe({recipeId:item._id})">{{item.tags}}</span>
 
 			</ion-item>
 		</ion-list>
+		<ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMore()"></ion-infinite-scroll>
 	</ion-content>
 </ion-view>

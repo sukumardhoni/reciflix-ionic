@@ -3,9 +3,17 @@
 	</ion-header-bar>
 	<ion-content>
 		<div class="list card">
-			<p>Recipe Title : {{recipe.title}}</p>
-			<p>ID : {{recipe.videoId}}</p>
-			<p>Recipe Notes : {{recipe.recipeNotes}}</p>
+			<!--<p>Recipe Title : {{recipe.title}}</p>
+<p>ID : {{recipe.videoId}}</p>
+<p>Recipe Notes : {{recipe.recipeNotes}}</p>-->
+			<p class="row"><span class="col col-50"><b>Recipe Title :</b></span><span class="col col-50">{{recipe.title}}</span>
+			</p>
+			<p class="row"><span class="col col-50"><b>ID :</b></span><span class="col col-50">{{recipe.videoId}}</span>
+			</p>
+			<p class="row"><span class="col col-50"><b>Recipe Notes :</b></span><span class="col col-50">{{recipe.recipeNotes}}</span>
+			</p>
+
+
 		</div>
 		<div class="button-bar item">
 			<i class="button button-clear button-assertive icon ion-trash-a" ng-click="trashRecipe(recipe._id)"></i>

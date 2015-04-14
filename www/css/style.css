@@ -235,3 +235,9 @@ small.time {
 .labelClr {
 	color: #FF6699;
 }
+.catgyName {
+	font-family: Source Sans Pro !important;
+	font-size: 27px;
+	color: #009688;
+	padding: 10px;
+}

@@ -1,7 +1,8 @@
 angular.module('recipesApp')
 	.factory('Recipes', function ($resource) {
-		return $resource('http://localhost:7000/api/v1/recipes/:recipeId', {
-			recipeId: '@_id'
+		return $resource('http://localhost:7000/api/v1/recipes/:catgyName/:recipeId', {
+			recipeId: '@_id',
+			catgyName: '@catgyName'
 		}, {
 			'update': {
 				method: 'PUT'
@@ -28,7 +29,31 @@ angular.module('recipesApp')
 		});
 	});*/
 
+.factory('Categories', function ($resource) {
+	return $resource('http://localhost:7000/api/v1/recipes/Categories/page/:pageId', {
+		pageId: '@pageId'
+	}, {
+		'query': {
+			method: 'GET',
+			isArray: true
+		}
+	});
+})
 
+
+
+
+
+.factory('RecipesOnScroll', function ($resource) {
+	return $resource('http://localhost:7000/api/v1/recipesOnScroll/page/:pageId/:catgyName', {
+		pageId: '@pageId'
+	}, {
+		'query': {
+			method: 'GET',
+			isArray: true
+		}
+	});
+})
 
 .factory('User', function ($resource) {
 	return {

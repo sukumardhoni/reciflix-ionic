@@ -1,4 +1,4 @@
-<ion-view hide-nav-bar="true" cache-view="false">
+<!--<ion-view hide-nav-bar="true" cache-view="false" class="login-view">
 	<ion-content>
 		<div class="logo">
 			<center>
@@ -37,4 +37,49 @@
 			</center>
 		</div>
 	</ion-content>
-</ion-view>
+</ion-view>-->
+
+
+<!--IonicFullAppLoginTemplate-->
+
+<ion-modal-view class="login-view" hide-nav-bar="true" cache-view="false">
+	<ion-header-bar class="bar bar-assertive">
+		<h1 class="title">Login Screen</h1>
+		<button class="button button-icon ion-close" style="float:right" ng-click="closeModal(1)"></button>
+	</ion-header-bar>
+	<ion-content scroll="false">
+		<div class="row">
+			<div class="col col-center">
+				<div class="card login-container" content-tabs tabsdata='tabsdata'>
+
+					<form name="login_form" class="" novalidate ng-cloak autocomplete="off" cache-view="false">
+						<my-tabs>
+							<my-tab title="Email">
+								<div class="list">
+									<label class="item item-input">
+										<input type="email" placeholder="Email" name="user_email" ng-model="user.email" required>
+									</label>
+									<label class="item item-input" show-hide-container>
+										<input type="password" placeholder="Password" name="user_password" ng-model="user.password" required show-hide-input>
+									</label>
+								</div>
+							</my-tab>
+							<div class="item item-body bottom-content">
+								<button type="submit" class="button button-positive button-block" ng-click="Login()" ng-disabled="(selected_tab=='Email') ? (login_form.user_email.$invalid || login_form.user_password.$invalid) : ((selected_tab=='Phone') ? (login_form.user_phone.$invalid || login_form.user_pin.$invalid) : false)">
+									Log In
+								</button>
+							</div>
+					</form>
+				</div>
+				<div class="alternative-actions">
+					<button class="forgot-password button button-small button-clear button-light" ui-sref="forgot-password">
+						Forgot Password?
+					</button>
+					<button class="sign-up button button-small button-clear button-light" ng-click="oModal2.show() && oModal1.hide()">
+						Sign Up
+					</button>
+				</div>
+			</div>
+		</div>
+	</ion-content>
+</ion-modal-view>

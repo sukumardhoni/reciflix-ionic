@@ -1,5 +1,5 @@
 angular.module('recipesApp')
-	.directive('myYoutube', function ($sce) {
+	.directive('myYoutube', ['$sce', function ($sce) {
 		return {
 			restrict: 'EA',
 			scope: {
@@ -16,7 +16,7 @@ angular.module('recipesApp')
 				});
 			}
 		};
-	})
+	}])
 
 
 
@@ -25,7 +25,7 @@ angular.module('recipesApp')
 		restrict: 'E',
 		transclude: true,
 		scope: {},
-		controller: function ($scope) {
+		controller: ['$scope', function ($scope) {
 			var tabs = $scope.tabs = [];
 
 			$scope.select = function (tab) {
@@ -42,7 +42,7 @@ angular.module('recipesApp')
 				}
 				tabs.push(tab);
 			};
-		},
+		}],
 		templateUrl: 'templates/partials/my-tabs.html'
 	};
 })
@@ -62,7 +62,7 @@ angular.module('recipesApp')
 	};
 })
 
-.directive('validPin', function ($http) {
+.directive('validPin', ['$http', function ($http) {
 	return {
 		require: 'ngModel',
 		link: function (scope, ele, attrs, c) {
@@ -84,7 +84,7 @@ angular.module('recipesApp')
 			});
 		}
 	};
-})
+}])
 
 
 .directive('showHideContainer', function () {
@@ -92,7 +92,7 @@ angular.module('recipesApp')
 		scope: {
 
 		},
-		controller: function ($scope, $element, $attrs) {
+		controller: ['$scope', '$element', '$attrs', function ($scope, $element, $attrs) {
 			$scope.show = false;
 
 			$scope.toggleType = function ($event) {
@@ -104,7 +104,7 @@ angular.module('recipesApp')
 				// Emit event
 				$scope.$broadcast("toggle-type", $scope.show);
 			};
-		},
+		}],
 		templateUrl: 'templates/partials/show-hide-password.html',
 		restrict: 'A',
 		replace: false,
@@ -141,7 +141,7 @@ angular.module('recipesApp')
 })
 
 
-.directive('biggerText', function ($ionicGesture) {
+.directive('biggerText', ['$ionicGesture', function ($ionicGesture) {
 	return {
 		restrict: 'A',
 		link: function (scope, element, attrs) {
@@ -161,9 +161,9 @@ angular.module('recipesApp')
 			}, element);
 		}
 	};
-})
+}])
 
-.directive('smallerText', function ($ionicGesture) {
+.directive('smallerText', ['$ionicGesture', function ($ionicGesture) {
 	return {
 		restrict: 'A',
 		link: function (scope, element, attrs) {
@@ -183,7 +183,7 @@ angular.module('recipesApp')
 			}, element);
 		}
 	};
-})
+}])
 
 
 

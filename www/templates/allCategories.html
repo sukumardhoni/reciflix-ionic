@@ -1,4 +1,4 @@
-<ion-view hide-back-button="true">
+<ion-view>
 	<ion-nav-title>
 		<span>All Categories
     </span>
@@ -11,7 +11,8 @@
 		<ion-list>
 			<ion-item ng-repeat="item in categories" class="item-remove-animate">
 				<!--<span ui-sref="singleRecipe({recipeId:item._id})">{{item.tags}}</span>-->
-				<div ui-sref="categoriesVideos({categorieName:item})">
+				<!--<div ui-sref="app.categoriesVideos({categorieName:item})">-->
+				<div ui-sref="app.categoriesVideos({categorieName:item})">
 					<center>
 						<img ng-src="img/recipeImgs/{{item}}.jpg" height="180px" />
 					</center>

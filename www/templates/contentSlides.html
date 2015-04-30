@@ -1,0 +1,90 @@
+<ion-view>
+	<ion-nav-title>
+		<span>Recipes Info
+    </span>
+	</ion-nav-title>
+
+
+	<ion-content has-header="true">
+		<div class="card">
+
+			<div class="card" ui-sref="app.showRecipes">
+				<div class="item item-divider" style="text-align:center">
+					Recipe Title Goes Here.......
+				</div>
+				<center>
+					<img ng-src="img/recipeImgs/{{item}}.jpg" height="180px" />
+				</center>
+
+				<div class="row">
+					<div class="col"><i class="ion ion-thumbsup" style="color:green;font-size:30px"></i>
+						<br>9,270</div>
+					<div class="col"><i class="ion ion-thumbsdown" style="color:red;font-size:30px"></i>
+						<br>270</div>
+					<div class="col"><i class="ion ion-eye" style="color:grey;font-size:30px"></i>
+						<br>9,543,672</div>
+					<div class="col"><i class="ion ion-heart" style="color:PeachPuff;font-size:30px"></i>
+					</div>
+					<div class="col"><i class="ion ion-android-share-alt" style="color:Coral;font-size:30px"></i>
+					</div>
+					<div class="col"><i class="ion ion-play" style="color:#00CCA3;font-size:30px"></i>
+					</div>
+				</div>
+
+				<!--	<span>
+					<i class="ion ion-thumbsup" style="color:green"></i>
+					Likes
+					<i class="ion ion-thumbsdown" style="color:red"></i>
+					UnLikes
+					<i class="ion ion-eye" style="color:grey"></i>
+					Views
+				</span>-->
+
+			</div>
+
+
+			<ion-slide-box scroll="true" show-pager="true" auto-play="2000" does-continue="true">
+				<!--<ion-slide ng-repeat="item in items">
+			<div>
+				<h1>{{item.title}}</h1>
+				<ion-scroll class="padding hhappsSerif marginReading" direction="y" style="background:silver; width:600px; height:300px" ng-bind-html="item.body">
+				</ion-scroll>
+			</div>
+		</ion-slide>-->
+				<ion-slide>
+					<div class="card" style="height:200px">
+						<div class="item item-divider bar bar-calm">
+							Card Header
+						</div>
+						<div class="item item-text-wrap">
+							Calm.
+
+						</div>
+					</div>
+				</ion-slide>
+
+				<ion-slide>
+					<div class="card" style="height:200px">
+						<div class="item item-divider bar bar-royal">
+							Card Header
+						</div>
+						<div class="item item-text-wrap">
+							Royal
+						</div>
+					</div>
+				</ion-slide>
+				<ion-slide>
+					<div class="card" style="height:200px">
+						<div class="item item-divider bar bar-balanced">
+							Card Header
+						</div>
+						<div class="item item-text-wrap">
+							Balanced
+						</div>
+					</div>
+				</ion-slide>
+
+			</ion-slide-box>
+		</div>
+	</ion-content>
+</ion-view>

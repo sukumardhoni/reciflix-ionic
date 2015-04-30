@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 angular.module('recipesApp', ['ionic', 'ngResource'])
 
-.run(function ($ionicPlatform) {
+.run(['$ionicPlatform', function ($ionicPlatform) {
 	$ionicPlatform.ready(function () {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
 		// for form inputs)
@@ -16,9 +16,9 @@ angular.module('recipesApp', ['ionic', 'ngResource'])
 			StatusBar.styleDefault();
 		}
 	});
-})
+}])
 
-.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+.config(['$stateProvider', '$urlRouterProvider', '$ionicConfigProvider', function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
 	openFB.init({
 		appId: 1577978382487078
 	});
@@ -136,4 +136,4 @@ angular.module('recipesApp', ['ionic', 'ngResource'])
 	//$ionicConfigProvider.backButton.text('').previousTitleText(false);
 	$ionicConfigProvider.navBar.alignTitle('center');
 	$ionicConfigProvider.platform.android.backButton.previousTitleText('').icon('ion-android-arrow-back');
-});
+}]);

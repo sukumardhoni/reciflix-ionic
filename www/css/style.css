@@ -1,5 +1,14 @@
 /* Empty. Add your own CSS if you like */
 
+.loading {
+	background-color: #52CCCC !important;
+}
+
+.spinner.light svg {
+	stroke: #fff !important;
+	fill: #fff !important;
+}
+
 .inputstyle {
 	border-bottom: 1px solid #EAECED !important;
 }
@@ -235,6 +244,7 @@ small.time {
 .labelClr {
 	color: #FF6699;
 }
+
 .catgyName {
 	font-family: Source Sans Pro !important;
 	font-size: 27px;

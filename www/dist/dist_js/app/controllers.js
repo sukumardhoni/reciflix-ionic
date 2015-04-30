@@ -1,7 +1,7 @@
 angular.module('recipesApp')
 
 
-.controller('walkthroughCtrl', function ($scope, $state, User, $ionicModal, $ionicLoading, $rootScope) {
+.controller('walkthroughCtrl', ['$scope', '$state', 'User', '$ionicModal', '$ionicLoading', '$rootScope', function ($scope, $state, User, $ionicModal, $ionicLoading, $rootScope) {
 
 
 	$scope.skip = function () {
@@ -79,9 +79,9 @@ angular.module('recipesApp')
 
 
 
-})
+}])
 
-.controller('loginCtrl', function ($scope, $state, User, $ionicLoading) {
+.controller('loginCtrl', ['$scope', '$state', 'User', '$ionicLoading', function ($scope, $state, User, $ionicLoading) {
 
 	// We need this for the form validation
 	$scope.selected_tab = "";
@@ -158,9 +158,9 @@ angular.module('recipesApp')
 
 
 
-})
+}])
 
-.controller('signupCtrl', function ($scope, $state, User) {
+.controller('signupCtrl', ['$scope', '$state', 'User', function ($scope, $state, User) {
 		console.log('signupCtrl controller')
 
 		$scope.signup = function () {
@@ -180,19 +180,19 @@ angular.module('recipesApp')
 		};
 
 
-	})
-	.controller('ContentCtrl', function ($scope, $stateParams) {
+	}])
+	.controller('ContentCtrl', ['$scope', '$stateParams', function ($scope, $stateParams) {
 		console.log('ContentCtrl controller');
 		console.log('ContentCtrl categorieName : ' + $stateParams.categorieName);
 
 		$scope.item = $stateParams.categorieName;
 
 
-	})
+	}])
 
 
 
-.controller('allRecipesCtrl', function ($scope, $state, $stateParams, Recipes, $ionicPopover, $timeout, RecipesOnScroll, $ionicLoading) {
+.controller('allRecipesCtrl', ['$scope', '$state', '$stateParams', 'Recipes', '$ionicPopover', '$timeout', 'RecipesOnScroll', '$ionicLoading', function ($scope, $state, $stateParams, Recipes, $ionicPopover, $timeout, RecipesOnScroll, $ionicLoading) {
 	console.log('allRecipesCtrl controller')
 
 	/*$ionicLoading.show({
@@ -266,13 +266,13 @@ angular.module('recipesApp')
 		window.plugins.socialsharing.share('Check this post here: ', null, null, null);
 	};
 
-})
+}])
 
-.controller('AppCtrl', function ($scope) {
+.controller('AppCtrl', ['$scope', function ($scope) {
 
-})
+}])
 
-.controller('allCategoriesCtrl', function ($scope, $state, $stateParams, Categories, $ionicPopover, $timeout, $rootScope) {
+.controller('allCategoriesCtrl', ['$scope', '$state', '$stateParams', 'Categories', '$ionicPopover', '$timeout', '$rootScope', function ($scope, $state, $stateParams, Categories, $ionicPopover, $timeout, $rootScope) {
 	$scope.oModal1 = $rootScope.modal;
 	$scope.oModal1.hide();
 
@@ -333,9 +333,9 @@ angular.module('recipesApp')
 		}, 1000);
 	}
 
-})
+}])
 
-.controller('showRecipesCtrl', function ($scope, $state, $stateParams, Recipes, $ionicPopover) {
+.controller('showRecipesCtrl', ['$scope', '$state', '$stateParams', 'Recipes', '$ionicPopover', function ($scope, $state, $stateParams, Recipes, $ionicPopover) {
 		console.log('showRecipesCtrl controller')
 			//$scope.uesrId = $stateParams.userId;
 		$scope.recipes = [{
@@ -352,8 +352,8 @@ angular.module('recipesApp')
 			$scope.popover.show($event);
 		};
 
-	})
-	.controller('singleRecipeCtrl', function ($scope, $state, $stateParams, Recipes) {
+	}])
+	.controller('singleRecipeCtrl', ['$scope', '$state', '$stateParams', 'Recipes', function ($scope, $state, $stateParams, Recipes) {
 
 		Recipes.get({
 			recipeId: $stateParams.recipeId
@@ -421,9 +421,9 @@ angular.module('recipesApp')
 
 
 
-	})
+	}])
 
-.controller('newRecipeCtrl', function ($scope, $state, $stateParams, Recipes) {
+.controller('newRecipeCtrl', ['$scope', '$state', '$stateParams', 'Recipes', function ($scope, $state, $stateParams, Recipes) {
 	$scope.create = function () {
 
 		var recipe = new Recipes({
@@ -441,4 +441,4 @@ angular.module('recipesApp')
 
 	};
 
-})
+}])

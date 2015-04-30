@@ -1,6 +1,8 @@
 {
     "jscodehints.detectedExclusions": [
         "G:/Git/Ionic/recipesApp/www/js/controllers.js",
-        "G:/Git/Ionic/Apps/reciflix-ionic/www/js/controllers.js"
+        "G:/Git/Ionic/Apps/reciflix-ionic/www/js/controllers.js",
+        "G:/Git/Ionic/Apps/reciflix-ionic/www/js/services.js",
+        "G:/Git/Ionic/Apps/reciflix-ionic/gulpfile.js"
     ]
 }

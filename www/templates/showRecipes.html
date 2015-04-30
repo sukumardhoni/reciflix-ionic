@@ -1,6 +1,6 @@
 <ion-view>
 	<ion-nav-title>
-		<span>List of Recipes </span>
+		<span>Recipe Video </span>
 	</ion-nav-title>
 	<ion-nav-buttons side="secondary">
 		<button class="button button-assertive button-icon ion-android-contact" ng-click="openPopover($event)">
@@ -11,8 +11,18 @@
 		<ion-list>
 			<ion-item ng-repeat="item in recipes" item="item">
 				<div my-youtube code=item.videoId></div>
+
+				<div class="item tabs tabs-secondary tabs-icon-left">
+					<a class="tab-item" ng-click="sendMail()">
+						<i class="icon ion-email"></i> Email
+					</a>
+					<a class="tab-item" ng-click="sharePost()">
+						<i class="icon ion-share"></i> Share
+					</a>
+				</div>
+
 			</ion-item>
 		</ion-list>
-		<ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMore()"></ion-infinite-scroll>
+		<!--<ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMore()"></ion-infinite-scroll>-->
 	</ion-content>
 </ion-view>

@@ -20,6 +20,72 @@ angular.module('recipesApp')
 
 
 
+.directive('myFavoriteIcon', function ($sce, Authentication, UserFavorites) {
+	return {
+		restrict: 'A',
+		scope: {
+			favorite: '='
+		},
+		replace: true,
+
+		template: '<i ng-class=" emptyIcon ? \'icon ion-ios-heart-outline\' : \'icon ion-ios-heart\'" style="color:PeachPuff;font-size:30px">{{fullIcon}}</i>',
+		link: function (scope, elem, attrs) {
+			elem.on('click', function () {
+				if (Authentication.user) {
+
+					if (scope.favorite) {
+						scope.emptyIcon = false;
+						Authentication.user.favorites.push(scope.favorite);
+						var userDetails = Authentication.user;
+						userDetails.favorites = scope.favorite;
+						UserFavorites.update({
+							userId: userDetails._id
+						}, userDetails, function (res) {
+							console.log('Details fav is cb : ');
+						}, function (err) {
+							scope.emptyIcon = true;
+						});
+					} else {
+						console.log('It is off!');
+						scope.emptyIcon = true;
+					}
+				} else console.log('User is not logged in please login')
+			});
+			/*scope.$watch('favorite', function (newVal) {
+				if (newVal) {
+				 var user = Authentication.user;
+					if (user.favorites.indexOf(newVal) == -1) {
+						scope.emptyIcon = true;
+					} else {
+						scope.emptyIcon = false;
+					}
+				}
+			});*/
+
+			if (scope.favorite) {
+				if (Authentication.user) {
+					var user = Authentication.user;
+					if (user.favorites.indexOf(scope.favorite) == -1) {
+						scope.emptyIcon = true;
+					} else {
+						scope.emptyIcon = false;
+					}
+				} else scope.emptyIcon = true;
+			}
+
+
+		}
+	};
+})
+
+
+
+
+
+
+
+
+
 .directive('myTabs', function () {
 	return {
 		restrict: 'E',
@@ -183,8 +249,4 @@ angular.module('recipesApp')
 			}, element);
 		}
 	};
-})
-
-
-
-;
+});

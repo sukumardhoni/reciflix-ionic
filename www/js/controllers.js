@@ -1,9 +1,9 @@
 angular.module('recipesApp')
 
 
-.controller('walkthroughCtrl', function ($scope, $state, User, $ionicModal, $ionicLoading, $rootScope) {
+.controller('walkthroughCtrl', function ($scope, $state, User, $ionicModal, $ionicLoading, $rootScope, Authentication) {
 
-
+	$scope.authentication = Authentication;
 	$scope.skip = function () {
 		console.log('skip function in walkthroughCtrl controller')
 		var Id = '1111';
@@ -13,30 +13,26 @@ angular.module('recipesApp')
 	};
 
 	$ionicModal.fromTemplateUrl('templates/login.html', {
-		id: '1', // We need to use and ID to identify the modal that is firing the event!
+		id: '1',
 		scope: $scope,
 		backdropClickToClose: false,
 		animation: 'slide-in-up'
 	}).then(function (modal) {
 		$scope.oModal1 = modal;
-		$rootScope.modal = modal;
-
+		$rootScope.modal1 = modal;
 		$scope.user = {};
-
 		$scope.user.email = "t1@t1.com";
 		//$scope.user.pin = "12345";
-
 		$scope.Login = function () {
 			console.log('Login function');
 			$ionicLoading.show({
 				templateUrl: "templates/loading.html",
 			});
 			User.Signin.create(this.user, function (res) {
-				console.log("Success callback from the user login");
-
 				if (res.type === false) {
 					$scope.errMsg = res.data;
 				} else {
+					$scope.authentication.user = res;
 					$ionicLoading.hide();
 					$state.go('app.allCategories', {
 						userId: res._id
@@ -46,41 +42,57 @@ angular.module('recipesApp')
 				}
 			})
 		};
-
-		$ionicModal.fromTemplateUrl('templates/signup.html', {
-			id: '1', // We need to use and ID to identify the modal that is firing the event!
-			scope: $scope,
-			backdropClickToClose: false,
-			animation: 'slide-in-up'
-		}).then(function (modal) {
-			$scope.oModal2 = modal;
-		});
-
 	});
-
-
 	$scope.closeModal = function (index) {
-		if (index == 1) $scope.oModal1.hide();
-		else $scope.oModal2.hide();
+		console.log('Close modal ' + index);
+		if (index == 2) $scope.oModal2.hide();
+		else if (index == 1) $scope.oModal1.hide();
 	};
-
-
 	$scope.login = function () {
-		console.log('login function in walkthroughCtrl controller')
+		console.log('login function in walkthroughCtrl controller');
 		$scope.oModal1.show();
 		$scope.oModal2.hide();
 	};
 
+	$ionicModal.fromTemplateUrl('templates/signup.html', {
+		id: '1',
+		scope: $scope,
+		backdropClickToClose: false,
+		animation: 'slide-in-up'
+	}).then(function (modal) {
+		$scope.oModal2 = modal;
+		$rootScope.modal2 = modal;
+		$scope.doSignUp = function () {
+			console.log('doSignUp function');
+			$ionicLoading.show({
+				templateUrl: "templates/loading.html",
+			});
+			console.log('SignUp User details : ' + JSON.stringify(this.user))
+			User.Signup.create(this.user, function (res) {
+				if (res.type === false) {
+					$scope.errMsg = res.data;
+				} else {
+					$scope.authentication.user = res;
+					$ionicLoading.hide();
+					$state.go('app.allCategories', {
+						userId: res._id
+					});
+					console.log('Successfully created user');
+					console.log('Result after created user : ' + JSON.stringify(res));
+				}
+			})
+		};
+	});
 
-
-
-
-
-
-
+	$scope.signup = function () {
+		console.log('signup function in walkthroughCtrl controller');
+		$scope.oModal2.show();
+		$scope.oModal1.hide();
+	};
 
 })
 
+/*
 .controller('loginCtrl', function ($scope, $state, User, $ionicLoading) {
 
 	// We need this for the form validation
@@ -159,58 +171,85 @@ angular.module('recipesApp')
 
 
 })
+*/
 
-.controller('signupCtrl', function ($scope, $state, User) {
-		console.log('signupCtrl controller')
+/*.controller('signupCtrl', function ($scope, $state, User) {
+	console.log('signupCtrl controller')
 
-		$scope.signup = function () {
-			console.log('User details from form is : ' + JSON.stringify(this.user));
-			User.Signup.create(this.user, function (res) {
-				if (res.type === false) {
-					$scope.errMsg = res.data;
-				} else {
-					$state.go('app.allCategories', {
-						userId: res._id
-					});
-					console.log('Successfully created user');
-					console.log('Result after created user : ' + JSON.stringify(res));
-				}
-			})
+	$scope.signup = function () {
+		console.log('User details from form is : ' + JSON.stringify(this.user));
+		User.Signup.create(this.user, function (res) {
+			if (res.type === false) {
+				$scope.errMsg = res.data;
+			} else {
+				$state.go('app.allCategories', {
+					userId: res._id
+				});
+				console.log('Successfully created user');
+				console.log('Result after created user : ' + JSON.stringify(res));
+			}
+		})
 
-		};
-
-
-	})
-	.controller('ContentCtrl', function ($scope, $stateParams) {
-		console.log('ContentCtrl controller');
-		console.log('ContentCtrl categorieName : ' + $stateParams.categorieName);
-
-		$scope.item = $stateParams.categorieName;
+	};
 
 
-	})
+})*/
+.controller('ContentCtrl', function ($scope, $stateParams, SingleRecipe) {
+	console.log('ContentCtrl controller');
+	console.log('ContentCtrl categorieName : ' + $stateParams.recipeId);
+
+	SingleRecipe.get({
+		recipeId: $stateParams.recipeId
+	}, function (res) {
+		$scope.recipe = res;
+		console.log('Single Recipe is : ' + JSON.stringify(res));
+	});
+
+
+})
 
 
 
-.controller('allRecipesCtrl', function ($scope, $state, $stateParams, Recipes, $ionicPopover, $timeout, RecipesOnScroll, $ionicLoading) {
+.controller('allRecipesCtrl', function ($scope, $state, $stateParams, $ionicPopover, $timeout, $ionicLoading, RecipesByCategory, SingleRecipe, UserFavorites, Authentication) {
 	console.log('allRecipesCtrl controller')
+	if ($stateParams.recipeId) {
+		SingleRecipe.get({
+			recipeId: $stateParams.recipeId
+		}, function (res) {
+			$ionicLoading.hide();
+			$scope.recipe = res;
+			console.log('Single Recipe is : ' + JSON.stringify(res));
+		});
+	}
 
-	/*$ionicLoading.show({
-	templateUrl: "templates/loading.html",
-});*/
+	$scope.changeClass = function (recipe) {
+		console.log('allRecipesCtrl controller')
+		if ($scope.selectedIndex === recipe._id) {
+			$scope.selectedIndex = true;
+		} else {
+			$scope.selectedIndex = recipe._id;
+		}
+	};
+
+	$ionicLoading.show({
+		templateUrl: "templates/loading.html",
+	});
 
 	$scope.uesrId = $stateParams.userId;
 	$scope.CatName = $stateParams.categorieName;
 	var pageId = 0;
 
-	/*Recipes.query({
-		catgyName: $stateParams.videoCategorie
-	}, function (res) {
-		$scope.recipes = res;
-		$ionicLoading.hide();
-		pageId++;
-	});*/
-
+	$scope.initialQueryRecipes = function () {
+		RecipesByCategory.query({
+			pageId: pageId,
+			CategoryName: $stateParams.categorieName
+		}, function (res) {
+			console.log('Success cb on RecipesByCategory');
+			$scope.recipes = res;
+			$ionicLoading.hide();
+			pageId++;
+		});
+	};
 	$ionicPopover.fromTemplateUrl('templates/dropdownmenu.html', {
 		scope: $scope,
 	}).then(function (popover) {
@@ -221,28 +260,28 @@ angular.module('recipesApp')
 		$scope.popover.show($event);
 	};
 
-	/*$scope.loadMore = function () {
+	$scope.loadMore = function () {
 
-	$timeout(function () {
-		var onScroll = {};
-		RecipesOnScroll.query({
-			pageId: pageId,
-			catgyName: $stateParams.categorieName
-		}, function (res) {
-			onScroll = res;
-			pageId++;
-			if (res.length == 0) {
-				$scope.noMoreItemsAvailable = true;
-			}
-			var oldRecipes = $scope.recipes;
-			$scope.recipes = oldRecipes.concat(onScroll);
-			console.log('On Scroll Content recipes : ' + JSON.stringify(onScroll));
-		});
-		$scope.$broadcast('scroll.infiniteScrollComplete');
-		$scope.$broadcast('scroll.resize');
-		$scope.$broadcast('scroll.resize')
-	}, 1000);
-}*/
+		$timeout(function () {
+			var onScroll = {};
+			RecipesByCategory.query({
+				pageId: pageId,
+				CategoryName: $stateParams.categorieName
+			}, function (res) {
+				onScroll = res;
+				pageId++;
+				if (res.length == 0) {
+					$scope.noMoreItemsAvailable = true;
+				}
+				var oldRecipes = $scope.recipes;
+				$scope.recipes = oldRecipes.concat(onScroll);
+				console.log('On Scroll Content recipes : ' + JSON.stringify(onScroll));
+			});
+			$scope.$broadcast('scroll.infiniteScrollComplete');
+			$scope.$broadcast('scroll.resize');
+			$scope.$broadcast('scroll.resize')
+		}, 1000);
+	}
 	$scope.sendMail = function () {
 		console.log('sendMail is called');
 		cordova.plugins.email.isAvailable(
@@ -266,23 +305,139 @@ angular.module('recipesApp')
 		window.plugins.socialsharing.share('Check this post here: ', null, null, null);
 	};
 
+
+
+	/*UpdateFav function is trimmed*/
+
+
+
+
+
 })
 
-.controller('AppCtrl', function ($scope) {
+.controller('AppCtrl', function ($scope, SearchedRecipes, $stateParams, $ionicLoading, $timeout, Authentication, $state) {
+
+	$scope.authentication = Authentication.user;
+
+	$scope.signout = function () {
+		console.log('signout');
+		$scope.authentication = '';
+		$state.go('walkthrough');
+	}
+
+	//console.log('Search recipe model value is: ' + JSON.stringify(this.search));
+	if ($stateParams.searchQuery) {
+		$ionicLoading.show({
+			templateUrl: "templates/loading.html",
+		});
+
+		var pageId = 0;
+		SearchedRecipes.query({
+			pageId: pageId,
+			searchQuery: $stateParams.searchQuery
+		}, function (res) {
+			$ionicLoading.hide();
+			console.log('Callback response on searched successfuuly');
+			console.log('Callback response on searched successfuuly' + JSON.stringify(res));
+			$scope.recipes = res;
+			pageId++;
+			//console.log('Callback response on searched Count is: ' + res.length);
+		})
+	}
+
+	$scope.loadMore = function () {
+
+		$timeout(function () {
+			var onScroll = {};
+			SearchedRecipes.query({
+				pageId: pageId,
+				searchQuery: $stateParams.searchQuery
+			}, function (res) {
+				onScroll = res;
+				pageId++;
+				if (res.length == 0) {
+					$scope.noMoreItemsAvailable = true;
+				}
+				var oldRecipes = $scope.recipes;
+				$scope.recipes = oldRecipes.concat(onScroll).unique();
+				console.log('On Scroll Content recipes : ' + JSON.stringify(onScroll));
+			});
+			$scope.$broadcast('scroll.infiniteScrollComplete');
+			$scope.$broadcast('scroll.resize');
+			$scope.$broadcast('scroll.resize')
+		}, 1000);
+	}
+})
+
+.controller('myFavoritesCtrl', function ($scope, $stateParams, Authentication, MyFavRecipes, $timeout) {
+	if (Authentication.user) {
+		$scope.authentication = Authentication;
+		var pageId = 0;
+		MyFavRecipes.query({
+			pageId: pageId,
+			videoIds: Authentication.user.favorites
+		}, function (res) {
+			console.log('Callback response on myfav successfuuly');
+			console.log('Callback response on myfav successfuuly' + JSON.stringify(res));
+			$scope.recipes = res;
+			pageId++;
+		})
+
+	} else {
+		console.log('User is not logged in please create an account or login');
+		$scope.notLoggedIn = 'User is not logged in please create an account or login';
+	}
+
+	$scope.loadMore = function () {
+		if (Authentication.user) {
+			$scope.noMoreItemsAvailable = false;
+			var onScroll = {};
+			MyFavRecipes.query({
+				pageId: pageId,
+				videoIds: Authentication.user.favorites
+			}, function (res) {
+				onScroll = res;
+				pageId++;
+				if (res.length == 0) {
+					$scope.noMoreItemsAvailable = true;
+				}
+				var oldRecipes = $scope.recipes;
+				$scope.recipes = oldRecipes.concat(onScroll).unique();
+				console.log('On Scroll Content recipes : ' + JSON.stringify(onScroll));
+			});
+			$scope.$broadcast('scroll.infiniteScrollComplete');
+			/*$scope.$broadcast('scroll.resize');
+$scope.$broadcast('scroll.resize')*/
+
+		}
+	}
+
+
 
 })
 
-.controller('allCategoriesCtrl', function ($scope, $state, $stateParams, Categories, $ionicPopover, $timeout, $rootScope) {
-	$scope.oModal1 = $rootScope.modal;
+.controller('allCategoriesCtrl', function ($scope, $state, $stateParams, Categories, $ionicPopover, $timeout, $rootScope, Authentication, $ionicLoading) {
+
+	$scope.userDetails = Authentication;
+	console.log('User details from window service is : ' + JSON.stringify($scope.userDetails));
+	$scope.oModal1 = $rootScope.modal1;
+	$scope.oModal2 = $rootScope.modal2;
 	$scope.oModal1.hide();
+	$scope.oModal2.hide();
 
 	$scope.uesrId = $stateParams.userId;
 	var pageId = 0;
+
+
+	$ionicLoading.show({
+		templateUrl: "templates/loading.html",
+	});
 
 	Categories.query({
 		pageId: pageId
 	}, function (res) {
 		$scope.categories = res;
+		$ionicLoading.hide();
 		pageId++;
 		//$scope.loadMore();
 	});
@@ -312,7 +467,6 @@ angular.module('recipesApp')
 	}
 
 	$scope.loadMore = function () {
-
 		$timeout(function () {
 			var onScroll = {};
 			Categories.query({
@@ -335,93 +489,80 @@ angular.module('recipesApp')
 
 })
 
-.controller('showRecipesCtrl', function ($scope, $state, $stateParams, Recipes, $ionicPopover) {
-		console.log('showRecipesCtrl controller')
-			//$scope.uesrId = $stateParams.userId;
-		$scope.recipes = [{
-			"videoId": "xaeJMJQKxto"
-		}];
+.controller('showRecipesCtrl', function ($scope, $stateParams) {
+	console.log('showRecipesCtrl controller')
+	$scope.videoId = $stateParams.videoId;
+})
 
-		$ionicPopover.fromTemplateUrl('templates/dropdownmenu.html', {
-			scope: $scope,
-		}).then(function (popover) {
-			$scope.popover = popover;
-		});
+.controller('singleRecipeCtrl', function ($scope, $state, $stateParams, Recipes) {
 
-		$scope.openPopover = function ($event) {
-			$scope.popover.show($event);
-		};
+	Recipes.get({
+		recipeId: $stateParams.recipeId
+	}, function (res) {
+		$scope.recipe = res;
+		console.log('Single Recipe is : ' + JSON.stringify(res));
+	});
 
-	})
-	.controller('singleRecipeCtrl', function ($scope, $state, $stateParams, Recipes) {
-
-		Recipes.get({
+	$scope.editRecipe = function (recipe) {
+		console.log('Edit Single Recipe Details : ' + JSON.stringify(recipe));
+		$state.go('editRecipe', {
 			recipeId: $stateParams.recipeId
-		}, function (res) {
-			$scope.recipe = res;
-			console.log('Single Recipe is : ' + JSON.stringify(res));
 		});
+	};
 
-		$scope.editRecipe = function (recipe) {
-			console.log('Edit Single Recipe Details : ' + JSON.stringify(recipe));
-			$state.go('editRecipe', {
-				recipeId: $stateParams.recipeId
+	$scope.updateRecipe = function (recipe) {
+		console.log('Update Recipe Details : ' + JSON.stringify(recipe));
+
+		recipe.$update(function (response) {
+			console.log('Successfully updated the recipe');
+			$state.go('allRecipes', {
+				userId: $stateParams.userId
 			});
-		};
+		}, function (err) {
+			console.log('Error While updating the recipe');
+		})
 
-		$scope.updateRecipe = function (recipe) {
-			console.log('Update Recipe Details : ' + JSON.stringify(recipe));
+	};
 
-			recipe.$update(function (response) {
-				console.log('Successfully updated the recipe');
-				$state.go('allRecipes', {
-					userId: $stateParams.userId
-				});
-			}, function (err) {
-				console.log('Error While updating the recipe');
-			})
-
-		};
-
-		$scope.trashRecipe = function (recipeId) {
-			console.log('Delete Single Recipe Details : ' + recipeId);
-			var recipeDelete = $scope.recipe;
-			recipeDelete.$remove(function () {
-				console.log('Successfully Deleted');
-				$state.go('allRecipes', {
-					userId: $stateParams.userId
-				});
-			}, function (errorResponse) {
-				$scope.error = errorResponse.data.message;
-				console.log('Error while deleting' + $scope.error);
-			})
-		};
-
-		$scope.share = function (event) {
-			console.log('Event coming to share function : ' + event)
-			console.log('$scope.session.subject coming to share function : ' + $scope.session.subject)
-			console.log('$scope.session.category coming to share function : ' + $scope.session.category)
-			openFB.api({
-				method: 'POST',
-				path: '/me/feed',
-				params: {
-					message: $scope.recipe.title + "', Here is the video :  " +
-						$scope.recipe.videoId
-				},
-				success: function () {
-					//alert('The session was shared on Facebook');
-				},
-				error: function () {
-					alert('An error occurred while sharing this session on Facebook');
-				}
+	$scope.trashRecipe = function (recipeId) {
+		console.log('Delete Single Recipe Details : ' + recipeId);
+		var recipeDelete = $scope.recipe;
+		recipeDelete.$remove(function () {
+			console.log('Successfully Deleted');
+			$state.go('allRecipes', {
+				userId: $stateParams.userId
 			});
-		};
+		}, function (errorResponse) {
+			$scope.error = errorResponse.data.message;
+			console.log('Error while deleting' + $scope.error);
+		})
+	};
+
+	$scope.share = function (event) {
+		console.log('Event coming to share function : ' + event)
+		console.log('$scope.session.subject coming to share function : ' + $scope.session.subject)
+		console.log('$scope.session.category coming to share function : ' + $scope.session.category)
+		openFB.api({
+			method: 'POST',
+			path: '/me/feed',
+			params: {
+				message: $scope.recipe.title + "', Here is the video :  " +
+					$scope.recipe.videoId
+			},
+			success: function () {
+				//alert('The session was shared on Facebook');
+			},
+			error: function () {
+				alert('An error occurred while sharing this session on Facebook');
+			}
+		});
+	};
 
 
 
 
 
-	})
+})
 
 .controller('newRecipeCtrl', function ($scope, $state, $stateParams, Recipes) {
 	$scope.create = function () {

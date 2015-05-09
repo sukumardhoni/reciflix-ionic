@@ -74,20 +74,38 @@ angular.module('recipesApp', ['ionic', 'ngResource'])
 		})
 
 	.state('app.slides', {
-			url: "/slides/:categorieName",
+			url: "/slides/:recipeId",
 			views: {
 				'menuContent': {
 					templateUrl: "templates/contentSlides.html",
-					controller: "ContentCtrl"
+					controller: "allRecipesCtrl"
 				}
 			}
 		})
 		.state('app.showRecipes', {
-			url: "/showRecipes",
+			url: "/showRecipes/:videoId",
 			views: {
 				'menuContent': {
 					templateUrl: "templates/showRecipes.html",
 					controller: "showRecipesCtrl"
+				}
+			}
+		})
+		.state('app.myFav', {
+			url: "/myFavorites",
+			views: {
+				'menuContent': {
+					templateUrl: "templates/myFavorites.html",
+					controller: "myFavoritesCtrl"
+				}
+			}
+		})
+		.state('app.searchedRecipes', {
+			url: "/searchedRecipes/:searchQuery",
+			views: {
+				'menuContent': {
+					templateUrl: "templates/searchedRecipes.html",
+					controller: "AppCtrl"
 				}
 			}
 		})

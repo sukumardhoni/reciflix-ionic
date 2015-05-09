@@ -70,6 +70,12 @@
 					<form name="signup_form" class="" novalidate>
 						<div class="item item-body">
 							<label class="item item-input">
+								<input type="text" placeholder="First Name" name="user_fname" ng-model="user.fname" required>
+							</label>
+							<label class="item item-input">
+								<input type="text" placeholder="Last Name" name="user_lname" ng-model="user.lname" required>
+							</label>
+							<label class="item item-input">
 								<input type="email" placeholder="Email" name="user_email" ng-model="user.email" required>
 							</label>
 							<label class="item item-input" show-hide-container>
@@ -84,7 +90,7 @@
 					</form>
 				</div>
 				<div class="alternative-actions">
-					<button class="log-in button button-small button-clear button-light" ng-click="login()">
+					<button class="log-in button button-small button-clear button-light" ng-click="oModal1.show() && oModal2.hide()">
 						Log In
 					</button>
 				</div>

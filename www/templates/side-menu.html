@@ -1,4 +1,4 @@
-<ion-side-menus enable-menu-with-back-views="false">
+<ion-side-menus enable-menu-with-back-views="false" cache-view="false">
 	<ion-side-menu-content class="post-size-14px">
 		<!--
 		<div class="bar bar-header bar-assertive">
@@ -11,7 +11,7 @@
 			<ion-nav-back-button>
 			</ion-nav-back-button>
 			<ion-nav-buttons side="left">
-				<button class="button button-icon button-clear ion-navicon" menu-toggle="left">
+				<button class="button button-icon button-clear ion-android-contact" menu-toggle="left">
 				</button>
 			</ion-nav-buttons>
 		</ion-nav-bar>
@@ -53,6 +53,14 @@
 				<ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.settings">
 					<i class="icon ion-gear-a"></i>
 					<h2 class="menu-text">Settings</h2>
+				</ion-item>
+				<ion-item class="item-icon-left" nav-clear menu-close>
+					<div ng-show="authentication" ng-click="signout()"><i class="icon ion-log-out"></i>
+						<h2 class="menu-text">SignOut</h2>
+					</div>
+					<div ng-hide="authentication" ui-sref="walkthrough"><i class="icon ion-log-in"></i>
+						<h2 class="menu-text">Login or Create Account</h2>
+					</div>
 				</ion-item>
 
 			</ion-list>

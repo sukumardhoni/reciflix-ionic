@@ -1,16 +1,14 @@
 <ion-view>
 	<ion-nav-title>
-		<span>Recipe Video </span>
+		<span style="color:white">Recipe Video </span>
 	</ion-nav-title>
 	<ion-nav-buttons side="secondary">
-		<button class="button button-assertive button-icon ion-android-contact" ng-click="openPopover($event)">
-		</button>
 	</ion-nav-buttons>
 	<ion-content>
 		<span>List of Recipes</span>
 		<ion-list>
-			<ion-item ng-repeat="item in recipes" item="item">
-				<div my-youtube code=item.videoId></div>
+			<ion-item item="item">
+				<div my-youtube code=videoId></div>
 
 				<div class="item tabs tabs-secondary tabs-icon-left">
 					<a class="tab-item" ng-click="sendMail()">
@@ -23,6 +21,5 @@
 
 			</ion-item>
 		</ion-list>
-		<!--<ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMore()"></ion-infinite-scroll>-->
 	</ion-content>
 </ion-view>

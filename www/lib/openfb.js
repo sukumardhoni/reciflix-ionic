@@ -91,6 +91,8 @@ var openFB = (function () {
 	 */
 	function login(callback, options) {
 
+		console.log('Console at openFb.js login function');
+
 		var loginWindow,
 			startTime,
 			scope = '';
@@ -147,11 +149,32 @@ var openFB = (function () {
 			oauthRedirectURL = 'https://www.facebook.com/connect/login_success.html'
 		}
 
+
+
+		console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  opening the login window  BEFORE: loginWindow ');
+
+
 		loginWindow = window.open(FB_LOGIN_URL + '?client_id=' + fbAppId + '&redirect_uri=' + oauthRedirectURL +
 			'&response_type=token&scope=' + scope, '_blank', 'location=no');
 
+
+
+		console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  opening the login window  AFTER: loginWindow');
+
+
+
+
 		// If the app is running in Cordova, listen to URL changes in the InAppBrowser until we get a URL with an access_token or an error
 		if (runningInCordova) {
+
+
+			console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  opening the login window  INSIDE: runningInCordova');
+
+
+
+
+
+
 			loginWindow.addEventListener('loadstart', loginWindow_loadStartHandler);
 			loginWindow.addEventListener('exit', loginWindow_exitHandler);
 		}
@@ -180,7 +203,8 @@ var openFB = (function () {
 				status: 'connected',
 				authResponse: {
 					token: obj['access_token']
-				}
+				},
+				object: obj
 			});
 		} else if (url.indexOf("error=") > 0) {
 			queryString = url.substring(url.indexOf('?') + 1, url.indexOf('#'));
@@ -202,8 +226,10 @@ var openFB = (function () {
 	 *
 	 */
 	function logout(callback) {
-		var logoutWindow,
-			token = tokenStore['fbtoken'];
+		var logoutWindow;
+		var token = tokenStore['fbtoken'];
+
+		console.log('in side logout function: currently stored token is : ' + token);
 
 		/* Remove token. Will fail silently if does not exist */
 		tokenStore.removeItem('fbtoken');
@@ -213,6 +239,7 @@ var openFB = (function () {
 			if (runningInCordova) {
 				setTimeout(function () {
 					logoutWindow.close();
+					console.log('after logout function: currently stored token is : ' + tokenStore['fbtoken']);
 				}, 700);
 			}
 		}

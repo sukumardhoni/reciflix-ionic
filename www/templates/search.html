@@ -1,0 +1,16 @@
+<ion-view>
+	<ion-nav-title>
+		<span style="color:white">Search Recipes
+    </span>
+	</ion-nav-title>
+
+	<ion-content>
+		<div class="row" style="margin-top:20px">
+			<div class="col col-90">
+				<input type="text" placeholder="Search Ur Recipes Here" ng-model="search">
+			</div>
+			<div class="col"><i class="icon  ion-search" style="font-size:30px;padding-left:5px" ui-sref="app.searchedRecipes({searchQuery:search})"></i>
+			</div>
+		</div>
+	</ion-content>
+</ion-view>

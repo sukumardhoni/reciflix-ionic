@@ -31,6 +31,6 @@
 		</div>
 		<div ng-hide="authentication">{{notLoggedIn}}</div>
 
-		<ion-infinite-scroll ng-if="!noMoreItemsAvailable" distance="10%" on-infinite="loadMore()"></ion-infinite-scroll>
+		<ion-infinite-scroll ng-if="!noMoreItemsAvailable" distance="10%" on-infinite="loadMore()" ng-show="authentication"></ion-infinite-scroll>
 	</ion-content>
 </ion-view>

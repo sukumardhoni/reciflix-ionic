@@ -22,12 +22,12 @@
 						<br>{{item.views}}</div>
 					<!--<div class="col"><i class="ion ion-heart" style="color:PeachPuff;font-size:30px"></i>
 					</div>-->
-					<div class="col" ng-click="updateFav(item)">
+					<div class="col">
 						<!--<i ng-class="item._id === selectedRecipe ? 'icon ion-ios-heart' : 'icon ion-ios-heart-outline'" style="color:PeachPuff;font-size:30px"></i>-->
 						<span my-favorite-icon favorite=item.videoId></span>
 					</div>
 
-					<div class="col"><i class="ion ion-android-share-alt" style="color:Coral;font-size:30px"></i>
+					<div class="col" ng-click="sharePost()"><i class="ion ion-android-share-alt" style="color:Coral;font-size:30px"></i>
 					</div>
 					<div class="col"><a style="font-size:20px;text-decoration:none" ui-sref="app.slides({recipeId:item._id})">More </a>
 					</div>

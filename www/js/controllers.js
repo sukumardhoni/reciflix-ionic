@@ -42,6 +42,97 @@ angular.module('recipesApp')
 				}
 			})
 		};
+
+
+		$scope.fbLogin = function () {
+			console.log('Facebook login');
+			console.log('Token is : ' + window.sessionStorage['fbtoken']);
+			openFB.login(
+				function (response) {
+					if (response.status === 'connected') {
+						console.log('Facebook login succeeded');
+						console.log('Connection details..... : ' + JSON.stringify(response));
+						console.log('Making a call for FB profile API to get id,name,email,first_name,last_name');
+						//$state.go('app.sessions');
+						//$scope.closeLogin();
+						openFB.api({
+							path: '/me',
+							params: {
+								fields: 'id,name,email,first_name,last_name'
+							},
+							success: function (user) {
+								console.log('in Success of Profile from FACEBOOK : user returned is  ' + JSON.stringify(user));
+								if (user.email) {
+									var fbUser = {
+										firstName: user.first_name,
+										lastName: user.last_name,
+										email: user.email
+									};
+									console.log('constructed a local user from FACEBOOK User details created as : ' + JSON.stringify(fbUser));
+									User.Signup.create(fbUser, function (res) {
+										//$ionicLoading.hide();
+										if (res.type === 'error') {
+											console.log('Error happened: ' + res.data);
+											$state.go('walkthrough');
+										} else if (res.type === 'exists') {
+											//$scope.errMsg = res.data;
+											console.log('User already exists, message is  : ' + res.data);
+											console.log('User details from SERVER is : ' + JSON.stringify(res.user));
+											if (res.user) {
+												$scope.authentication.user = res.user;
+												$state.go('app.allCategories', {
+													userId: res.user._id
+												});
+											}
+											//$scope.authentication.user = res.user;
+										} else {
+											console.log('Successfully created user');
+											console.log('Result after created user : ' + JSON.stringify(res));
+											$scope.authentication.user = res;
+
+											$state.go('app.allCategories', {
+												userId: res._id
+											});
+
+										}
+									})
+								} else {
+
+									openFB.logout(
+										function (response) {
+											console.log('Email didnt come for now sending the user back to login');
+											console.log('Successfully logout fb user');
+											$state.go('walkthrough');
+										})
+
+								}
+								/*	$scope.$apply(function () {
+		$scope.user = user;
+	});*/
+							},
+							error: function (error) {
+								alert('Facebook error: ' + error.error_description);
+							}
+						});
+
+					} else {
+						alert('Facebook login failed');
+					}
+					//console.log('FB login profile email address is: ' + scope.email)
+				}, {
+					scope: 'email,publish_actions'
+						//					console.log('FB login profile email address is: ' + scope.email)
+				});
+		}
+
+
+
+
+
+
+
+
+
 	});
 	$scope.closeModal = function (index) {
 		console.log('Close modal ' + index);
@@ -92,123 +183,14 @@ angular.module('recipesApp')
 
 })
 
-/*
-.controller('loginCtrl', function ($scope, $state, User, $ionicLoading) {
-
-	// We need this for the form validation
-	$scope.selected_tab = "";
-
-	$scope.$on('my-tabs-changed', function (event, data) {
-		$scope.selected_tab = data.title;
-	});
-
-
-	$scope.user = {};
-
-	$scope.user.email = "t1@t1.com";
-	//$scope.user.pin = "12345";
-
-	$scope.Login = function () {
-		console.log('Login function');
-		$ionicLoading.show({
-			templateUrl: "templates/loading.html",
-		});
-		User.Signin.create(this.user, function (res) {
-			console.log("Success callback from the user login");
-			$ionicLoading.hide();
-			if (res.type === false) {
-				$scope.errMsg = res.data;
-			} else {
-				$state.go('app.allCategories', {
-					userId: res._id
-				});
-				console.log('Successfully created user');
-				console.log('Result after created user : ' + JSON.stringify(res));
-			}
-		})
-	};
-
-	$scope.fbLogin = function () {
-		console.log('Facebook login ');
-		openFB.login(
-			function (response) {
-				if (response.status === 'connected') {
-					console.log('Facebook login succeeded');
-					openFB.api({
-						path: '/me',
-						params: {
-							fields: 'id,name,email'
-						},
-						success: function (user) {
-							console.log('Profile from FACEBOOK : ' + JSON.stringify(user));
-							User.Signup.create(user, function (res) {
-								if (res.type === false) {
-									$scope.errMsg = res.data;
-								} else {
-									$state.go('allRecipes', {
-										userId: res._id
-									});
-									console.log('Successfully created user');
-									console.log('Result after created user : ' + JSON.stringify(res));
-								}
-							})
-							$scope.$apply(function () {
-								$scope.user = user;
-							});
-						},
-						error: function (error) {
-							alert('Facebook error: ' + error.error_description);
-						}
-					});
-				} else {
-					alert('Facebook login failed');
-				}
-			}, {
-				scope: 'email,publish_actions'
-			});
-	}
-
-
-
-})
-*/
-
-/*.controller('signupCtrl', function ($scope, $state, User) {
-	console.log('signupCtrl controller')
-
-	$scope.signup = function () {
-		console.log('User details from form is : ' + JSON.stringify(this.user));
-		User.Signup.create(this.user, function (res) {
-			if (res.type === false) {
-				$scope.errMsg = res.data;
-			} else {
-				$state.go('app.allCategories', {
-					userId: res._id
-				});
-				console.log('Successfully created user');
-				console.log('Result after created user : ' + JSON.stringify(res));
-			}
-		})
-
-	};
-
-
-})*/
 .controller('ContentCtrl', function ($scope, $stateParams, SingleRecipe) {
-	console.log('ContentCtrl controller');
-	console.log('ContentCtrl categorieName : ' + $stateParams.recipeId);
-
 	SingleRecipe.get({
 		recipeId: $stateParams.recipeId
 	}, function (res) {
 		$scope.recipe = res;
 		console.log('Single Recipe is : ' + JSON.stringify(res));
 	});
-
-
 })
-
-
 
 .controller('allRecipesCtrl', function ($scope, $state, $stateParams, $ionicPopover, $timeout, $ionicLoading, RecipesByCategory, SingleRecipe, UserFavorites, Authentication) {
 	console.log('allRecipesCtrl controller')
@@ -304,15 +286,6 @@ angular.module('recipesApp')
 
 		window.plugins.socialsharing.share('Check this post here: ', null, null, null);
 	};
-
-
-
-	/*UpdateFav function is trimmed*/
-
-
-
-
-
 })
 
 .controller('AppCtrl', function ($scope, SearchedRecipes, $stateParams, $ionicLoading, $timeout, Authentication, $state) {
@@ -322,16 +295,20 @@ angular.module('recipesApp')
 	$scope.signout = function () {
 		console.log('signout');
 		$scope.authentication = '';
-		$state.go('walkthrough');
+		openFB.logout(
+				function (response) {
+					console.log('Successfully logout fb user');
+					$state.go('walkthrough');
+				})
+			//	$state.go('walkthrough');
 	}
 
-	//console.log('Search recipe model value is: ' + JSON.stringify(this.search));
 	if ($stateParams.searchQuery) {
 		$ionicLoading.show({
 			templateUrl: "templates/loading.html",
 		});
-
 		var pageId = 0;
+
 		SearchedRecipes.query({
 			pageId: pageId,
 			searchQuery: $stateParams.searchQuery
@@ -341,7 +318,6 @@ angular.module('recipesApp')
 			console.log('Callback response on searched successfuuly' + JSON.stringify(res));
 			$scope.recipes = res;
 			pageId++;
-			//console.log('Callback response on searched Count is: ' + res.length);
 		})
 	}
 
@@ -367,6 +343,42 @@ angular.module('recipesApp')
 			$scope.$broadcast('scroll.resize')
 		}, 1000);
 	}
+
+
+
+	$scope.sendMail = function () {
+		console.log('sendMail is called');
+		cordova.plugins.email.isAvailable(
+			function (isAvailable) {
+				// alert('Service is not available') unless isAvailable;
+				cordova.plugins.email.open({
+					to: 'vinodhko@globaltechminds.com',
+					cc: '',
+					// bcc:     ['john@doe.com', 'jane@doe.com'],
+					subject: 'ReciFlixApp Testing',
+					body: 'How are you? Nice greetings from ReciFlixApp'
+				});
+			}
+		);
+	};
+
+
+	$scope.sharePost = function () {
+		console.log('Share Post is called');
+
+		window.plugins.socialsharing.share('Check this post here: ', null, null, null);
+		//window.plugins.socialsharing.share('Message and image', null, 'https://www.google.nl/images/srpr/logo4w.png', null);
+		/*Message,Subject,Image,Link these are the four arguments in share*/
+	};
+
+
+
+
+
+
+
+
+
 })
 
 .controller('myFavoritesCtrl', function ($scope, $stateParams, Authentication, MyFavRecipes, $timeout) {
@@ -375,7 +387,7 @@ angular.module('recipesApp')
 		var pageId = 0;
 		MyFavRecipes.query({
 			pageId: pageId,
-			videoIds: Authentication.user.favorites
+			userId: Authentication.user._id
 		}, function (res) {
 			console.log('Callback response on myfav successfuuly');
 			console.log('Callback response on myfav successfuuly' + JSON.stringify(res));
@@ -394,7 +406,7 @@ angular.module('recipesApp')
 			var onScroll = {};
 			MyFavRecipes.query({
 				pageId: pageId,
-				videoIds: Authentication.user.favorites
+				userId: Authentication.user._id
 			}, function (res) {
 				onScroll = res;
 				pageId++;

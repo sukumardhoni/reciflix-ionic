@@ -100,6 +100,15 @@ angular.module('recipesApp', ['ionic', 'ngResource'])
 				}
 			}
 		})
+		.state('app.search', {
+			url: "/search",
+			views: {
+				'menuContent': {
+					templateUrl: "templates/search.html",
+					controller: "AppCtrl"
+				}
+			}
+		})
 		.state('app.searchedRecipes', {
 			url: "/searchedRecipes/:searchQuery",
 			views: {

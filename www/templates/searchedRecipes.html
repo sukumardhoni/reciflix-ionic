@@ -21,17 +21,26 @@
 							<br>{{item.dislikes}}</div>
 						<div class="col"><i class="ion ion-eye" style="color:grey;font-size:30px"></i>
 							<br>{{item.views}}</div>
-						<div class="col"><i class="ion ion-heart" style="color:PeachPuff;font-size:30px"></i>
+						<!--<div class="col"><i class="ion ion-heart" style="color:PeachPuff;font-size:30px"></i>
+					</div>-->
+						<div class="col" ng-click="updateFav(item)">
+							<!--<i ng-class="item._id === selectedRecipe ? 'icon ion-ios-heart' : 'icon ion-ios-heart-outline'" style="color:PeachPuff;font-size:30px"></i>-->
+							<span my-favorite-icon favorite=item.videoId></span>
 						</div>
-						<div class="col"><i class="ion ion-android-share-alt" style="color:Coral;font-size:30px"></i>
+
+						<div class="col" ng-click="sharePost()"><i class="ion ion-android-share-alt" style="color:Coral;font-size:30px"></i>
 						</div>
 						<div class="col"><a style="font-size:20px;text-decoration:none" ui-sref="app.slides({recipeId:item._id})">More </a>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-
-		<ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMore()"></ion-infinite-scroll>
+			<ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMore()"></ion-infinite-scroll>
 	</ion-content>
+
+	<ion-footer-bar align-title="left" class="bar-assertive">
+		<a class="title" ui-sref="app.myFav">
+			<i class="icon ion-ios-briefcase" style="color:white;font-size:30px"></i>
+		</a>
+	</ion-footer-bar>
 </ion-view>

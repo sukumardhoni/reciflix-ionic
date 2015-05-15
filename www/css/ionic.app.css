@@ -7694,12 +7694,12 @@ ion-side-menu .heading-item .message {
     filter: blur(1px); }
 
 .walkthrough-view .top-content {
-  height: 75%;
+  height: 50%;
   text-align: center; }
   .walkthrough-view .top-content h1 {
     color: #fff; }
 .walkthrough-view .bottom-content {
-  height: 25%;
+  height: 50%;
   padding-top: 5px;
   margin-top: 0px; }
   .walkthrough-view .bottom-content .button {

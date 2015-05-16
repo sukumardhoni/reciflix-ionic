@@ -53,8 +53,6 @@ angular.module('recipesApp')
 						console.log('Facebook login succeeded');
 						console.log('Connection details..... : ' + JSON.stringify(response));
 						console.log('Making a call for FB profile API to get id,name,email,first_name,last_name');
-						//$state.go('app.sessions');
-						//$scope.closeLogin();
 						openFB.api({
 							path: '/me',
 							params: {
@@ -84,7 +82,6 @@ angular.module('recipesApp')
 													userId: res.user._id
 												});
 											}
-											//$scope.authentication.user = res.user;
 										} else {
 											console.log('Successfully created user');
 											console.log('Result after created user : ' + JSON.stringify(res));
@@ -93,18 +90,15 @@ angular.module('recipesApp')
 											$state.go('app.allCategories', {
 												userId: res._id
 											});
-
 										}
 									})
 								} else {
-
 									openFB.logout(
 										function (response) {
 											console.log('Email didnt come for now sending the user back to login');
 											console.log('Successfully logout fb user');
 											$state.go('walkthrough');
 										})
-
 								}
 								/*	$scope.$apply(function () {
 		$scope.user = user;
@@ -124,21 +118,14 @@ angular.module('recipesApp')
 						//					console.log('FB login profile email address is: ' + scope.email)
 				});
 		}
-
-
-
-
-
-
-
-
-
 	});
+
 	$scope.closeModal = function (index) {
 		console.log('Close modal ' + index);
 		if (index == 2) $scope.oModal2.hide();
 		else if (index == 1) $scope.oModal1.hide();
 	};
+
 	$scope.login = function () {
 		console.log('login function in walkthroughCtrl controller');
 		$scope.oModal1.show();
@@ -194,7 +181,7 @@ angular.module('recipesApp')
 
 .controller('allRecipesCtrl', function ($scope, $state, $stateParams, $ionicPopover, $timeout, $ionicLoading, RecipesByCategory, SingleRecipe, UserFavorites, Authentication) {
 	console.log('allRecipesCtrl controller')
-	if ($stateParams.recipeId) {
+	$scope.singleRecipe = function () {
 		SingleRecipe.get({
 			recipeId: $stateParams.recipeId
 		}, function (res) {
@@ -232,15 +219,15 @@ angular.module('recipesApp')
 			pageId++;
 		});
 	};
-	$ionicPopover.fromTemplateUrl('templates/dropdownmenu.html', {
-		scope: $scope,
-	}).then(function (popover) {
-		$scope.popover = popover;
-	});
+	/*	$ionicPopover.fromTemplateUrl('templates/dropdownmenu.html', {
+			scope: $scope,
+		}).then(function (popover) {
+			$scope.popover = popover;
+		});
 
-	$scope.openPopover = function ($event) {
-		$scope.popover.show($event);
-	};
+		$scope.openPopover = function ($event) {
+			$scope.popover.show($event);
+		};*/
 
 	$scope.loadMore = function () {
 
@@ -264,28 +251,6 @@ angular.module('recipesApp')
 			$scope.$broadcast('scroll.resize')
 		}, 1000);
 	}
-	$scope.sendMail = function () {
-		console.log('sendMail is called');
-		cordova.plugins.email.isAvailable(
-			function (isAvailable) {
-				// alert('Service is not available') unless isAvailable;
-				cordova.plugins.email.open({
-					to: 'vinodhko@globaltechminds.com',
-					cc: '',
-					// bcc:     ['john@doe.com', 'jane@doe.com'],
-					subject: 'ReciFlixApp Testing',
-					body: 'How are you? Nice greetings from ReciFlixApp'
-				});
-			}
-		);
-	};
-
-
-	$scope.sharePost = function () {
-		console.log('Share Post is called');
-
-		window.plugins.socialsharing.share('Check this post here: ', null, null, null);
-	};
 })
 
 .controller('AppCtrl', function ($scope, SearchedRecipes, $stateParams, $ionicLoading, $timeout, Authentication, $state) {
@@ -342,15 +307,12 @@ angular.module('recipesApp')
 			$scope.$broadcast('scroll.resize');
 			$scope.$broadcast('scroll.resize')
 		}, 1000);
-	}
-
-
+	};
 
 	$scope.sendMail = function () {
 		console.log('sendMail is called');
 		cordova.plugins.email.isAvailable(
 			function (isAvailable) {
-				// alert('Service is not available') unless isAvailable;
 				cordova.plugins.email.open({
 					to: 'vinodhko@globaltechminds.com',
 					cc: '',
@@ -365,20 +327,10 @@ angular.module('recipesApp')
 
 	$scope.sharePost = function () {
 		console.log('Share Post is called');
-
 		window.plugins.socialsharing.share('Check this post here: ', null, null, null);
 		//window.plugins.socialsharing.share('Message and image', null, 'https://www.google.nl/images/srpr/logo4w.png', null);
 		/*Message,Subject,Image,Link these are the four arguments in share*/
 	};
-
-
-
-
-
-
-
-
-
 })
 
 .controller('myFavoritesCtrl', function ($scope, $stateParams, Authentication, MyFavRecipes, $timeout) {
@@ -418,14 +370,8 @@ angular.module('recipesApp')
 				console.log('On Scroll Content recipes : ' + JSON.stringify(onScroll));
 			});
 			$scope.$broadcast('scroll.infiniteScrollComplete');
-			/*$scope.$broadcast('scroll.resize');
-$scope.$broadcast('scroll.resize')*/
-
 		}
-	}
-
-
-
+	};
 })
 
 .controller('allCategoriesCtrl', function ($scope, $state, $stateParams, Categories, $ionicPopover, $timeout, $rootScope, Authentication, $ionicLoading) {
@@ -500,6 +446,37 @@ $scope.$broadcast('scroll.resize')*/
 	}
 
 })
+
+/*SHARE Function on FB*/
+/*	$scope.share = function (event) {
+			console.log('Event coming to share function : ' + event)
+			console.log('$scope.session.subject coming to share function : ' + $scope.session.subject)
+			console.log('$scope.session.category coming to share function : ' + $scope.session.category)
+			openFB.api({
+				method: 'POST',
+				path: '/me/feed',
+				params: {
+					message: $scope.recipe.title + "', Here is the video :  " +
+						$scope.recipe.videoId
+				},
+				success: function () {
+					//alert('The session was shared on Facebook');
+				},
+				error: function () {
+					alert('An error occurred while sharing this session on Facebook');
+				}
+			});
+		};*/
+
+
+
+
+
+
+
+
+
+/*
 
 .controller('showRecipesCtrl', function ($scope, $stateParams) {
 	console.log('showRecipesCtrl controller')
@@ -594,4 +571,4 @@ $scope.$broadcast('scroll.resize')*/
 
 	};
 
-})
+})*/

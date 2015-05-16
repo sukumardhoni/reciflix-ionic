@@ -1,4 +1,4 @@
-<ion-view>
+<ion-view ng-init="singleRecipe()">
 	<ion-nav-title>
 		<span style="color:white">Recipe Info
     </span>
@@ -9,7 +9,7 @@
 
 		<div class="card">
 			<div class="item item-divider" style="text-align:center">
-				{{recipe.title}}
+				RECIPE: {{recipe.title}}
 			</div>
 			<center>
 				<img ng-src="{{recipe.images.mq}}" height="180px" />
@@ -22,10 +22,9 @@
 					<br>{{recipe.dislikes}}</div>
 				<div class="col"><i class="ion ion-eye" style="color:grey;font-size:30px"></i>
 					<br>{{recipe.views}}</div>
-				<div class="col" ng-click="updateFav(recipe)"><i ng-class="{'icon ion-ios-heart': userFavCb, 'icon ion-ios-heart-outline': !userFavCb}" style="color:PeachPuff;font-size:30px"></i>
+				<div class="col">
+					<span my-favorite-icon favorite=recipe.videoId>{{recipe.videoId}}</span>
 				</div>
-				<!--<div class="col"><i class="ion ion-heart" style="color:PeachPuff;font-size:30px"></i>
-				</div>-->
 				<div class="col"><i class="ion ion-android-share-alt" style="color:Coral;font-size:30px"></i>
 				</div>
 				<div class="col"><i class="ion ion-play" style="color:#00CCA3;font-size:30px" ui-sref="app.showRecipes({videoId:recipe.videoId})"></i>

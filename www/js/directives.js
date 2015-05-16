@@ -32,12 +32,13 @@ angular.module('recipesApp')
 		link: function (scope, elem, attrs) {
 			elem.on('click', function () {
 				if (Authentication.user) {
-
 					if (scope.favorite) {
 						scope.emptyIcon = false;
+						console.log('Update favorite video id is: ' + scope.favorite)
 						Authentication.user.favorites.push(scope.favorite);
 						var userDetails = Authentication.user;
 						userDetails.favorites = scope.favorite;
+						console.log('Update favorite video id is: ' + scope.favorite)
 						UserFavorites.update({
 							userId: userDetails._id
 						}, userDetails, function (res) {
@@ -51,29 +52,28 @@ angular.module('recipesApp')
 					}
 				} else console.log('User is not logged in please login')
 			});
-			/*scope.$watch('favorite', function (newVal) {
+			scope.$watch('favorite', function (newVal) {
 				if (newVal) {
-				 var user = Authentication.user;
+					var user = Authentication.user;
 					if (user.favorites.indexOf(newVal) == -1) {
 						scope.emptyIcon = true;
 					} else {
 						scope.emptyIcon = false;
 					}
 				}
-			});*/
+			});
 
-			if (scope.favorite) {
-				if (Authentication.user) {
-					var user = Authentication.user;
-					if (user.favorites.indexOf(scope.favorite) == -1) {
-						scope.emptyIcon = true;
-					} else {
-						scope.emptyIcon = false;
-					}
-				} else scope.emptyIcon = true;
-			}
-
-
+			/*			if (scope.favorite) {
+							console.log('Video id on directive is : ' + scope.favorite);
+							if (Authentication.user) {
+								var user = Authentication.user;
+								if (user.favorites.indexOf(scope.favorite) == -1) {
+									scope.emptyIcon = true;
+								} else {
+									scope.emptyIcon = false;
+								}
+							} else scope.emptyIcon = true;
+						}*/
 		}
 	};
 })

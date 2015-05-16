@@ -29,24 +29,6 @@ angular.module('recipesApp', ['ionic', 'ngResource'])
 			templateUrl: "templates/walkthrough.html",
 			controller: 'walkthroughCtrl'
 		})
-		.state('login', {
-			url: "/login",
-			templateUrl: "templates/login.html",
-			controller: 'loginCtrl'
-		})
-		.state('signup', {
-			url: "/signup",
-			templateUrl: "templates/signup.html",
-			controller: 'signupCtrl'
-		})
-		.state('about', {
-			url: "/about",
-			templateUrl: "templates/about.html",
-		})
-		.state('forgot-password', {
-			url: "/forgot-password",
-			templateUrl: "templates/forgot-password.html",
-		})
 		.state('app', {
 			url: "/app",
 			abstract: true,
@@ -118,49 +100,7 @@ angular.module('recipesApp', ['ionic', 'ngResource'])
 				}
 			}
 		})
-
-
-	.state('newRecipe', {
-			url: "/newRecipe/:userId",
-			templateUrl: "templates/newRecipe.html",
-			controller: "newRecipeCtrl"
-		})
-		.state('showRecipes', {
-			url: "/showRecipes",
-			templateUrl: "templates/showRecipes.html",
-			controller: "showRecipesCtrl"
-		})
-		.state('allRecipes', {
-			/*	url: "/allRecipes/:userId",*/
-			url: "/allRecipes/552226419f3cb2e4199fffda",
-			templateUrl: "templates/allRecipes.html",
-			controller: "allRecipesCtrl"
-		})
-		.state('allCategories', {
-			url: "/allRecipes/:userId",
-			//url: "/allCategories/552226419f3cb2e4199fffda",
-			templateUrl: "templates/allCategories.html",
-			controller: "allCategoriesCtrl"
-		})
-		.state('categoriesVideos', {
-			url: "/categoriesVideos/:categorieName",
-			templateUrl: "templates/showRecipes.html",
-			controller: "allRecipesCtrl"
-		})
-		.state('singleRecipe', {
-			url: "/singleRecipe/:recipeId",
-			templateUrl: "templates/singleRecipe.html",
-			controller: "singleRecipeCtrl"
-		})
-		.state('editRecipe', {
-			url: "/editRecipe/:recipeId",
-			templateUrl: "templates/editRecipe.html",
-			controller: "singleRecipeCtrl"
-		})
-
-	//$urlRouterProvider.otherwise('/app/allCategories/552226419f3cb2e4199fffda');
 	$urlRouterProvider.otherwise('/');
-	//$ionicConfigProvider.backButton.text('').previousTitleText(false);
 	$ionicConfigProvider.navBar.alignTitle('center');
 	$ionicConfigProvider.platform.android.backButton.previousTitleText('').icon('ion-android-arrow-back');
 });

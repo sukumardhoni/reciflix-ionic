@@ -18,8 +18,7 @@ angular.module('recipesApp')
 	})
 
 .factory('Categories', function ($resource) {
-	return $resource('http://reciflix-rest.herokuapp.com/api/v1/vRecipesAllCategories/:pageId', {
-		//return $resource('http://localhost:7000/api/v1/vRecipesAllCategories/:pageId', {
+	return $resource('http://reciflix-rest.herokuapp.com/api/v1/category/:pageId', {
 		pageId: '@pageId'
 	}, {
 		'query': {
@@ -29,9 +28,10 @@ angular.module('recipesApp')
 	});
 })
 
+
+
 .factory('RecipesByCategory', function ($resource) {
 	return $resource('http://reciflix-rest.herokuapp.com/api/v1/VRecipesByCategories/:CategoryName/:pageId', {
-		//return $resource('http://localhost:7000/api/v1/VRecipesByCategories/:CategoryName/:pageId', {
 		CategoryName: '@CategoryName',
 		pageId: '@pageId'
 	}, {
@@ -45,7 +45,6 @@ angular.module('recipesApp')
 
 .factory('SingleRecipe', function ($resource) {
 	return $resource('http://reciflix-rest.herokuapp.com/api/v1/vRecipes/:recipeId', {
-		//return $resource('http://localhost:7000/api/v1/vRecipes/:recipeId', {
 		recipeId: '@_id',
 	}, {
 		'update': {
@@ -113,6 +112,16 @@ angular.module('recipesApp')
 		'query': {
 			method: 'GET',
 			isArray: true
+		}
+	});
+})
+
+.factory('RecipesFavCount', function ($resource) {
+	return $resource('http://reciflix-rest.herokuapp.com/api/v1/recipesFavCount/:recipeId', {
+		recipeId: '@_id'
+	}, {
+		'update': {
+			method: 'PUT'
 		}
 	});
 })

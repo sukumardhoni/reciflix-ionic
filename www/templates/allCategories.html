@@ -17,11 +17,11 @@
 			<ion-item ng-repeat="item in categories" class="item-remove-animate">
 				<!--<span ui-sref="singleRecipe({recipeId:item._id})">{{item.tags}}</span>-->
 				<!--<div ui-sref="app.categoriesVideos({categorieName:item})">-->
-				<div ui-sref="app.categoriesVideos({categorieName:item})">
+				<div ui-sref="app.categoriesVideos({categorieName:item.catId})">
 					<center>
-						<img ng-src="img/recipeImgs/{{item}}.jpg" height="180px" />
+						<img ng-src="img/recipeImgs/{{item.imageName}}" height="180px" />
 					</center>
-					<center class="catgyName">{{item}}</center>
+					<center class="catgyName">{{item.displayName}}</center>
 				</div>
 			</ion-item>
 		</ion-list>

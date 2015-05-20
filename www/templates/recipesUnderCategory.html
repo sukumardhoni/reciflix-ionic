@@ -15,7 +15,7 @@
 				<i ng-class="item._id === selectedIndex ? 'ion ion-chevron-up' : 'ion ion-chevron-down'" style="color:Grey;font-size:30px;float:right" ng-click="changeClass(item)"></i>
 				<div class="row">
 					<div class="col"><i class="ion ion-thumbsup" style="color:green;font-size:30px"></i>
-						<br>{{item.likes}}</div>
+						<br>{{item.ytlikes}}</div>
 					<div class="col"><i class="ion ion-thumbsdown" style="color:red;font-size:30px"></i>
 						<br>{{item.dislikes}}</div>
 					<div class="col"><i class="ion ion-eye" style="color:grey;font-size:30px"></i>
@@ -24,7 +24,7 @@
 					</div>-->
 					<div class="col">
 						<!--<i ng-class="item._id === selectedRecipe ? 'icon ion-ios-heart' : 'icon ion-ios-heart-outline'" style="color:PeachPuff;font-size:30px"></i>-->
-						<span my-favorite-icon favorite=item.videoId></span>
+						<span my-favorite-icon favorite=item></span>
 					</div>
 
 					<div class="col" ng-click="sharePost()"><i class="ion ion-android-share-alt" style="color:Coral;font-size:30px"></i>

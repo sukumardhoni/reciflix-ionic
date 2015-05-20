@@ -20,7 +20,7 @@ angular.module('recipesApp')
 
 
 
-.directive('myFavoriteIcon', function ($sce, Authentication, UserFavorites) {
+.directive('myFavoriteIcon', function ($sce, Authentication, UserFavorites, RecipesFavCount) {
 	return {
 		restrict: 'A',
 		scope: {
@@ -34,11 +34,11 @@ angular.module('recipesApp')
 				if (Authentication.user) {
 					if (scope.favorite) {
 						scope.emptyIcon = false;
-						console.log('Update favorite video id is: ' + scope.favorite)
+						console.log('Update favorite video id is: ' + scope.favorite.videoId)
 						Authentication.user.favorites.push(scope.favorite);
 						var userDetails = Authentication.user;
-						userDetails.favorites = scope.favorite;
-						console.log('Update favorite video id is: ' + scope.favorite)
+						userDetails.favorites = scope.favorite.videoId;
+						console.log('Update favorite recipe id is: ' + scope.favorite._id)
 						UserFavorites.update({
 							userId: userDetails._id
 						}, userDetails, function (res) {
@@ -46,6 +46,18 @@ angular.module('recipesApp')
 						}, function (err) {
 							scope.emptyIcon = true;
 						});
+						var favRecipe = scope.favorite;
+						favRecipe.favoritesCount = scope.favorite.favoritesCount + 1;
+						console.log('Fav count is: ' + favRecipe.favoritesCount);
+						RecipesFavCount.update({
+							recipeId: favRecipe._id
+						}, favRecipe, function (res) {
+							console.log('Details Recipesss fav is cb : ');
+						}, function (err) {
+							scope.emptyIcon = true;
+						});
+
+
 					} else {
 						console.log('It is off!');
 						scope.emptyIcon = true;

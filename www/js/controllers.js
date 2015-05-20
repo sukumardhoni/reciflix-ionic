@@ -180,6 +180,13 @@ angular.module('recipesApp')
 })
 
 .controller('allRecipesCtrl', function ($scope, $state, $stateParams, $ionicPopover, $timeout, $ionicLoading, RecipesByCategory, SingleRecipe, UserFavorites, Authentication) {
+
+
+
+
+
+
+	//$scope.currentDate = d.getFullYear();
 	console.log('allRecipesCtrl controller')
 	$scope.singleRecipe = function () {
 		SingleRecipe.get({
@@ -187,6 +194,20 @@ angular.module('recipesApp')
 		}, function (res) {
 			$ionicLoading.hide();
 			$scope.recipe = res;
+			/*			var date = new Date(),
+							dd = date.getDate(),
+							mm = date.getMonth(),
+							yy = date.getFullYear(),
+
+							publishedDate = new Date(res.published),
+
+							pmm = publishedDate.getMonth(),
+							pyy = publishedDate.getFullYear();
+
+
+						//totalmonths = ((yy - pyy) * 12 + (mm - pmm));
+						$scope.currentDate = ((yy - pyy) * 12 + (mm - pmm));*/
+
 			console.log('Single Recipe is : ' + JSON.stringify(res));
 		});
 	}
@@ -395,6 +416,7 @@ angular.module('recipesApp')
 		pageId: pageId
 	}, function (res) {
 		$scope.categories = res;
+		console.log('Categories collection is:' + JSON.stringify(res))
 		$ionicLoading.hide();
 		pageId++;
 		//$scope.loadMore();

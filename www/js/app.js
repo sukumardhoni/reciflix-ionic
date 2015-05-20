@@ -46,7 +46,7 @@ angular.module('recipesApp', ['ionic', 'ngResource'])
 			}
 		})
 		.state('app.categoriesVideos', {
-			url: "/categoriesVideos/:categorieName",
+			url: "/categoriesVideos/:categorieName/:catName",
 			views: {
 				'menuContent': {
 					templateUrl: "templates/recipesUnderCategory.html",

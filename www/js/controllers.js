@@ -31,6 +31,7 @@ angular.module('recipesApp')
 			User.Signin.create(this.user, function (res) {
 				if (res.type === false) {
 					$scope.errMsg = res.data;
+					$ionicLoading.hide();
 				} else {
 					$scope.authentication.user = res;
 					$ionicLoading.hide();
@@ -181,8 +182,8 @@ angular.module('recipesApp')
 
 .controller('allRecipesCtrl', function ($scope, $state, $stateParams, $ionicPopover, $timeout, $ionicLoading, RecipesByCategory, SingleRecipe, UserFavorites, Authentication) {
 
-
-
+	var item = $stateParams.categorieName;
+	//console.log('Catgory obj : ' + JSON.stringify(item))
 
 
 
@@ -226,7 +227,7 @@ angular.module('recipesApp')
 	});
 
 	$scope.uesrId = $stateParams.userId;
-	$scope.CatName = $stateParams.categorieName;
+	$scope.CatName = $stateParams.catName;
 	var pageId = 0;
 
 	$scope.initialQueryRecipes = function () {

@@ -17,9 +17,9 @@
 			<ion-item ng-repeat="item in categories" class="item-remove-animate">
 				<!--<span ui-sref="singleRecipe({recipeId:item._id})">{{item.tags}}</span>-->
 				<!--<div ui-sref="app.categoriesVideos({categorieName:item})">-->
-				<div ui-sref="app.categoriesVideos({categorieName:item.catId})">
+				<div ui-sref="app.categoriesVideos({categorieName:item.catId,catName:item.displayName})">
 					<center>
-						<img ng-src="img/recipeImgs/{{item.imageName}}" height="180px" />
+						<img ng-src="img/recipeImgs/{{item.imageName}}" height="180px" width="100%" />
 					</center>
 					<center class="catgyName">{{item.displayName}}</center>
 				</div>

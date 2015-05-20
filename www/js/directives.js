@@ -35,13 +35,13 @@ angular.module('recipesApp')
 					if (scope.favorite) {
 						scope.emptyIcon = false;
 						console.log('Update favorite video id is: ' + scope.favorite.videoId)
-						Authentication.user.favorites.push(scope.favorite);
-						var userDetails = Authentication.user;
-						userDetails.favorites = scope.favorite.videoId;
-						console.log('Update favorite recipe id is: ' + scope.favorite._id)
+						Authentication.user.favorites.push(scope.favorite.videoId);
+						var user = {
+							favorites: scope.favorite.videoId
+						}
 						UserFavorites.update({
-							userId: userDetails._id
-						}, userDetails, function (res) {
+							userId: Authentication.user._id
+						}, user, function (res) {
 							console.log('Details fav is cb : ');
 						}, function (err) {
 							scope.emptyIcon = true;
@@ -56,8 +56,6 @@ angular.module('recipesApp')
 						}, function (err) {
 							scope.emptyIcon = true;
 						});
-
-
 					} else {
 						console.log('It is off!');
 						scope.emptyIcon = true;
@@ -65,9 +63,10 @@ angular.module('recipesApp')
 				} else console.log('User is not logged in please login')
 			});
 			scope.$watch('favorite', function (newVal) {
-				if (newVal) {
+				console.log('Fav directive is called')
+				if (newVal.videoId) {
 					var user = Authentication.user;
-					if (user.favorites.indexOf(newVal) == -1) {
+					if (user.favorites.indexOf(newVal.videoId) == -1) {
 						scope.emptyIcon = true;
 					} else {
 						scope.emptyIcon = false;
@@ -75,17 +74,17 @@ angular.module('recipesApp')
 				}
 			});
 
-			/*			if (scope.favorite) {
-							console.log('Video id on directive is : ' + scope.favorite);
-							if (Authentication.user) {
-								var user = Authentication.user;
-								if (user.favorites.indexOf(scope.favorite) == -1) {
-									scope.emptyIcon = true;
-								} else {
-									scope.emptyIcon = false;
-								}
-							} else scope.emptyIcon = true;
-						}*/
+			/*	if (scope.favorite) {
+		console.log('Video id on directive is : ' + scope.favorite);
+		if (Authentication.user) {
+			var user = Authentication.user;
+			if (user.favorites.indexOf(scope.favorite) == -1) {
+				scope.emptyIcon = true;
+			} else {
+				scope.emptyIcon = false;
+			}
+		} else scope.emptyIcon = true;
+	}*/
 		}
 	};
 })

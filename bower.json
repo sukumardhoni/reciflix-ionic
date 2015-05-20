@@ -2,6 +2,8 @@
   "name": "recipesApp",
   "private": "true",
   "devDependencies": {
-    "ionic": "driftyco/ionic-bower#1.0.0-rc.2"
+    "ionic": "driftyco/ionic-bower#1.0.0-rc.2",
+    "angular-resource":"latest",
+    "ngCordova":"latest"
   }
 }

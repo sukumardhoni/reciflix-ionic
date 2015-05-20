@@ -20,7 +20,7 @@ angular.module('recipesApp')
 
 
 
-.directive('myFavoriteIcon', function ($sce, Authentication, UserFavorites, RecipesFavCount) {
+.directive('myFavoriteIcon', function ($sce, Authentication, UserFavorites, RecipesFavCount,$cordovaToast) {
 	return {
 		restrict: 'A',
 		scope: {
@@ -31,7 +31,20 @@ angular.module('recipesApp')
 		template: '<i ng-class=" emptyIcon ? \'icon ion-ios-heart-outline\' : \'icon ion-ios-heart\'" style="color:PeachPuff;font-size:30px">{{fullIcon}}</i>',
 		link: function (scope, elem, attrs) {
 			elem.on('click', function () {
-				if (Authentication.user) {
+
+
+
+              $cordovaToast
+    .show('Here is a message', 'long', 'center')
+    .then(function(success) {
+      // success
+    }, function (error) {
+      // error
+    })
+
+
+
+if (Authentication.user) {
 					if (scope.favorite) {
 						scope.emptyIcon = false;
 						console.log('Update favorite video id is: ' + scope.favorite.videoId)

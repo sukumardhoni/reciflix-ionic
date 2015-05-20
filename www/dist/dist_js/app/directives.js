@@ -20,7 +20,7 @@ angular.module('recipesApp')
 
 
 
-.directive('myFavoriteIcon', ['$sce', 'Authentication', 'UserFavorites', function ($sce, Authentication, UserFavorites) {
+.directive('myFavoriteIcon', ['$sce', 'Authentication', 'UserFavorites', 'RecipesFavCount', '$cordovaToast', function ($sce, Authentication, UserFavorites, RecipesFavCount,$cordovaToast) {
 	return {
 		restrict: 'A',
 		scope: {
@@ -31,17 +31,41 @@ angular.module('recipesApp')
 		template: '<i ng-class=" emptyIcon ? \'icon ion-ios-heart-outline\' : \'icon ion-ios-heart\'" style="color:PeachPuff;font-size:30px">{{fullIcon}}</i>',
 		link: function (scope, elem, attrs) {
 			elem.on('click', function () {
-				if (Authentication.user) {
 
+
+
+              $cordovaToast
+    .show('Here is a message', 'long', 'center')
+    .then(function(success) {
+      // success
+    }, function (error) {
+      // error
+    })
+
+
+
+if (Authentication.user) {
 					if (scope.favorite) {
 						scope.emptyIcon = false;
-						Authentication.user.favorites.push(scope.favorite);
-						var userDetails = Authentication.user;
-						userDetails.favorites = scope.favorite;
+						console.log('Update favorite video id is: ' + scope.favorite.videoId)
+						Authentication.user.favorites.push(scope.favorite.videoId);
+						var user = {
+							favorites: scope.favorite.videoId
+						}
 						UserFavorites.update({
-							userId: userDetails._id
-						}, userDetails, function (res) {
+							userId: Authentication.user._id
+						}, user, function (res) {
 							console.log('Details fav is cb : ');
+						}, function (err) {
+							scope.emptyIcon = true;
+						});
+						var favRecipe = scope.favorite;
+						favRecipe.favoritesCount = scope.favorite.favoritesCount + 1;
+						console.log('Fav count is: ' + favRecipe.favoritesCount);
+						RecipesFavCount.update({
+							recipeId: favRecipe._id
+						}, favRecipe, function (res) {
+							console.log('Details Recipesss fav is cb : ');
 						}, function (err) {
 							scope.emptyIcon = true;
 						});
@@ -51,29 +75,29 @@ angular.module('recipesApp')
 					}
 				} else console.log('User is not logged in please login')
 			});
-			/*scope.$watch('favorite', function (newVal) {
-				if (newVal) {
-				 var user = Authentication.user;
-					if (user.favorites.indexOf(newVal) == -1) {
+			scope.$watch('favorite', function (newVal) {
+				console.log('Fav directive is called')
+				if (newVal.videoId) {
+					var user = Authentication.user;
+					if (user.favorites.indexOf(newVal.videoId) == -1) {
 						scope.emptyIcon = true;
 					} else {
 						scope.emptyIcon = false;
 					}
 				}
-			});*/
+			});
 
-			if (scope.favorite) {
-				if (Authentication.user) {
-					var user = Authentication.user;
-					if (user.favorites.indexOf(scope.favorite) == -1) {
-						scope.emptyIcon = true;
-					} else {
-						scope.emptyIcon = false;
-					}
-				} else scope.emptyIcon = true;
+			/*	if (scope.favorite) {
+		console.log('Video id on directive is : ' + scope.favorite);
+		if (Authentication.user) {
+			var user = Authentication.user;
+			if (user.favorites.indexOf(scope.favorite) == -1) {
+				scope.emptyIcon = true;
+			} else {
+				scope.emptyIcon = false;
 			}
-
-
+		} else scope.emptyIcon = true;
+	}*/
 		}
 	};
 }])

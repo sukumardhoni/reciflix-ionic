@@ -19,7 +19,6 @@ angular.module('recipesApp')
 	})
 
 
-
 .directive('myFavoriteIcon', function ($sce, Authentication, UserFavorites, RecipesFavCount, $cordovaToast) {
 	return {
 		restrict: 'A',
@@ -31,13 +30,15 @@ angular.module('recipesApp')
 		template: '<i ng-class=" emptyIcon ? \'icon ion-ios-heart-outline\' : \'icon ion-ios-heart animated bounceIn\'" style="font-size:30px"></i>',
 		link: function (scope, elem, attrs) {
 			elem.on('click', function () {
-				if (Authentication.user) {
-					/*$cordovaToast.show('Moved To Favorites', 'long', 'bottom').then(function (success) {
+				/*$cordovaToast.show('Moved To Favorites', 'long', 'bottom').then(function (success) {
 	console.log("The toast was shown");
 }, function (error) {
 	console.log("The toast was not shown due to " + error);
 });*/
 
+
+
+				if (Authentication.user) {
 					if (scope.favorite) {
 						if (scope.emptyIcon) {
 							scope.emptyIcon = false;

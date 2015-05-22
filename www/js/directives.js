@@ -20,7 +20,7 @@ angular.module('recipesApp')
 
 
 
-.directive('myFavoriteIcon', function ($sce, Authentication, UserFavorites, RecipesFavCount) {
+.directive('myFavoriteIcon', function ($sce, Authentication, UserFavorites, RecipesFavCount, $cordovaToast) {
 	return {
 		restrict: 'A',
 		scope: {
@@ -28,14 +28,44 @@ angular.module('recipesApp')
 		},
 		replace: true,
 
-		template: '<i ng-class=" emptyIcon ? \'icon ion-ios-heart-outline\' : \'icon ion-ios-heart\'" style="color:PeachPuff;font-size:30px">{{fullIcon}}</i>',
+		template: '<i ng-class=" emptyIcon ? \'icon ion-ios-heart-outline\' : \'icon ion-ios-heart animated bounceIn\'" style="font-size:30px"></i>',
 		link: function (scope, elem, attrs) {
 			elem.on('click', function () {
 				if (Authentication.user) {
+					/*$cordovaToast.show('Moved To Favorites', 'long', 'bottom').then(function (success) {
+	console.log("The toast was shown");
+}, function (error) {
+	console.log("The toast was not shown due to " + error);
+});*/
+
 					if (scope.favorite) {
-						scope.emptyIcon = false;
-						console.log('Update favorite video id is: ' + scope.favorite.videoId)
-						Authentication.user.favorites.push(scope.favorite.videoId);
+						if (scope.emptyIcon) {
+							scope.emptyIcon = false;
+							Authentication.user.favorites.push(scope.favorite.videoId);
+							var favRecipe = scope.favorite;
+							favRecipe.favoritesCount = scope.favorite.favoritesCount + 1;
+							console.log('Fav count is: ' + favRecipe.favoritesCount);
+							RecipesFavCount.update({
+								recipeId: favRecipe._id
+							}, favRecipe, function (res) {
+								console.log('Details Recipesss fav is cb : ');
+							}, function (err) {
+								scope.emptyIcon = true;
+							});
+						} else {
+							scope.emptyIcon = true;
+							var favRecipe = scope.favorite;
+							Authentication.user.favorites.splice(Authentication.user.favorites.indexOf(scope.favorite.videoId), 1);
+							favRecipe.favoritesCount = scope.favorite.favoritesCount - 1;
+							console.log('Fav count is: ' + favRecipe.favoritesCount);
+							RecipesFavCount.update({
+								recipeId: favRecipe._id
+							}, favRecipe, function (res) {
+								console.log('Details Recipesss fav is cb : ');
+							}, function (err) {
+								scope.emptyIcon = false;
+							});
+						}
 						var user = {
 							favorites: scope.favorite.videoId
 						}
@@ -44,27 +74,17 @@ angular.module('recipesApp')
 						}, user, function (res) {
 							console.log('Details fav is cb : ');
 						}, function (err) {
-							scope.emptyIcon = true;
-						});
-						var favRecipe = scope.favorite;
-						favRecipe.favoritesCount = scope.favorite.favoritesCount + 1;
-						console.log('Fav count is: ' + favRecipe.favoritesCount);
-						RecipesFavCount.update({
-							recipeId: favRecipe._id
-						}, favRecipe, function (res) {
-							console.log('Details Recipesss fav is cb : ');
-						}, function (err) {
-							scope.emptyIcon = true;
+							//scope.emptyIcon = true;
 						});
 					} else {
 						console.log('It is off!');
-						scope.emptyIcon = true;
+						//scope.emptyIcon = true;
 					}
 				} else console.log('User is not logged in please login')
 			});
 			scope.$watch('favorite', function (newVal) {
-				console.log('Fav directive is called')
-				if (newVal.videoId) {
+				//console.log('Fav directive is called')
+				if (newVal) {
 					var user = Authentication.user;
 					if (user.favorites.indexOf(newVal.videoId) == -1) {
 						scope.emptyIcon = true;
@@ -73,18 +93,73 @@ angular.module('recipesApp')
 					}
 				}
 			});
+		}
+	};
+})
 
-			/*	if (scope.favorite) {
-		console.log('Video id on directive is : ' + scope.favorite);
-		if (Authentication.user) {
-			var user = Authentication.user;
-			if (user.favorites.indexOf(scope.favorite) == -1) {
-				scope.emptyIcon = true;
-			} else {
-				scope.emptyIcon = false;
-			}
-		} else scope.emptyIcon = true;
-	}*/
+
+
+
+
+
+.directive('myLikeIcon', function ($sce, Authentication, RecipesFavCount, $cordovaToast) {
+	return {
+		restrict: 'A',
+		scope: {
+			favorite: '='
+		},
+		replace: true,
+
+		template: '<i ng-class=" emptyIcon ? \'ion ion-thumbsup\' : \'ion ion-thumbsup animated bounceIn\'" style="font-size:30px"></i>',
+		link: function (scope, elem, attrs) {
+			elem.on('click', function () {
+				if (Authentication.user) {
+					/*	$cordovaToast.show('Liked this Recipe', 'long', 'bottom').then(function (success) {
+		console.log("The toast was shown");
+	}, function (error) {
+		console.log("The toast was not shown due to " + error);
+	});*/
+					if (scope.favorite) {
+						if (scope.emptyIcon) {
+							scope.emptyIcon = false;
+							var favRecipe = scope.favorite;
+							favRecipe.applikes = scope.favorite.applikes + 1;
+							console.log('Applikes count is: ' + favRecipe.applikes);
+							RecipesFavCount.update({
+								recipeId: favRecipe._id
+							}, favRecipe, function (res) {
+								console.log('Details Recipesss fav is cb : ');
+							}, function (err) {
+								scope.emptyIcon = true;
+							});
+						} else {
+							scope.emptyIcon = true;
+							var favRecipe = scope.favorite;
+							favRecipe.applikes = scope.favorite.applikes - 1;
+							console.log('Applikes count is: ' + favRecipe.applikes);
+							RecipesFavCount.update({
+								recipeId: favRecipe._id
+							}, favRecipe, function (res) {
+								console.log('Details Recipesss fav is cb : ');
+							}, function (err) {
+								scope.emptyIcon = false;
+							});
+						}
+					} else {
+						console.log('It is off!');
+						//scope.emptyIcon = true;
+					}
+				} else console.log('User is not logged in please login')
+			});
+
+			scope.$watch('favorite', function (newVal) {
+
+				if (newVal) {
+					console.log('Fav directive is called')
+					scope.emptyIcon = true;
+
+				}
+			});
 		}
 	};
 })

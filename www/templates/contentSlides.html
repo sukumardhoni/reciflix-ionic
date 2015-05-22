@@ -1,4 +1,4 @@
-<ion-view ng-init="singleRecipe()">
+<ion-view ng-init="singleRecipe()" cache-view="false">
 	<ion-nav-title>
 		<span style="color:white">Recipe Info
     </span>
@@ -16,16 +16,12 @@
 			</center>
 
 			<div class="row">
-				<div class="col"><i class="ion ion-thumbsup" style="color:green;font-size:30px"></i>
-					<br>{{recipe.ytlikes}}</div>
-				<div class="col"><i class="ion ion-thumbsdown" style="color:red;font-size:30px"></i>
-					<br>{{recipe.dislikes}}</div>
+				<div class="col"><span my-like-icon favorite=recipe></span>
+					<br>{{recipe.ytlikes + recipe.applikes | numeral}}</div>
 				<div class="col"><i class="ion ion-eye" style="color:grey;font-size:30px"></i>
-					<br>{{recipe.views}}</div>
+					<br>{{recipe.views | numeral}}</div>
 				<div class="col">
-					<span my-favorite-icon favorite=recipe.videoId>{{recipe.videoId}}</span>
-				</div>
-				<div class="col"><i class="ion ion-android-share-alt" style="color:Coral;font-size:30px"></i>
+					<span my-favorite-icon favorite=recipe></span>
 				</div>
 				<div class="col"><i class="ion ion-play" style="color:#00CCA3;font-size:30px" ui-sref="app.showRecipes({videoId:recipe.videoId})"></i>
 				</div>

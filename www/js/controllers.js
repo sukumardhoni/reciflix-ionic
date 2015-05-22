@@ -195,20 +195,6 @@ angular.module('recipesApp')
 		}, function (res) {
 			$ionicLoading.hide();
 			$scope.recipe = res;
-			/*			var date = new Date(),
-							dd = date.getDate(),
-							mm = date.getMonth(),
-							yy = date.getFullYear(),
-
-							publishedDate = new Date(res.published),
-
-							pmm = publishedDate.getMonth(),
-							pyy = publishedDate.getFullYear();
-
-
-						//totalmonths = ((yy - pyy) * 12 + (mm - pmm));
-						$scope.currentDate = ((yy - pyy) * 12 + (mm - pmm));*/
-
 			console.log('Single Recipe is : ' + JSON.stringify(res));
 		});
 	}
@@ -235,7 +221,7 @@ angular.module('recipesApp')
 			pageId: pageId,
 			CategoryName: $stateParams.categorieName
 		}, function (res) {
-			console.log('Success cb on RecipesByCategory');
+			//console.log('Success cb on RecipesByCategory');
 			$scope.recipes = res;
 			$ionicLoading.hide();
 			pageId++;
@@ -266,7 +252,7 @@ angular.module('recipesApp')
 				}
 				var oldRecipes = $scope.recipes;
 				$scope.recipes = oldRecipes.concat(onScroll);
-				console.log('On Scroll Content recipes : ' + JSON.stringify(onScroll));
+				//console.log('On Scroll Content recipes : ' + JSON.stringify(onScroll));
 			});
 			$scope.$broadcast('scroll.infiniteScrollComplete');
 			$scope.$broadcast('scroll.resize');
@@ -301,8 +287,6 @@ angular.module('recipesApp')
 			searchQuery: $stateParams.searchQuery
 		}, function (res) {
 			$ionicLoading.hide();
-			console.log('Callback response on searched successfuuly');
-			console.log('Callback response on searched successfuuly' + JSON.stringify(res));
 			$scope.recipes = res;
 			pageId++;
 		})
@@ -323,7 +307,7 @@ angular.module('recipesApp')
 				}
 				var oldRecipes = $scope.recipes;
 				$scope.recipes = oldRecipes.concat(onScroll).unique();
-				console.log('On Scroll Content recipes : ' + JSON.stringify(onScroll));
+				//console.log('On Scroll Content recipes : ' + JSON.stringify(onScroll));
 			});
 			$scope.$broadcast('scroll.infiniteScrollComplete');
 			$scope.$broadcast('scroll.resize');
@@ -355,24 +339,43 @@ angular.module('recipesApp')
 	};
 })
 
-.controller('myFavoritesCtrl', function ($scope, $stateParams, Authentication, MyFavRecipes, $timeout) {
+.controller('myFavoritesCtrl', function ($scope, $stateParams, Authentication, MyFavRecipes, $ionicLoading) {
 	if (Authentication.user) {
+		console.log('User fav ids : ' + Authentication.user.favorites)
 		$scope.authentication = Authentication;
 		var pageId = 0;
+		$ionicLoading.show({
+			templateUrl: "templates/loading.html",
+		});
 		MyFavRecipes.query({
 			pageId: pageId,
 			userId: Authentication.user._id
 		}, function (res) {
+			$ionicLoading.hide();
 			console.log('Callback response on myfav successfuuly');
 			console.log('Callback response on myfav successfuuly' + JSON.stringify(res));
 			$scope.recipes = res;
 			pageId++;
+
 		})
 
 	} else {
 		console.log('User is not logged in please create an account or login');
 		$scope.notLoggedIn = 'User is not logged in please create an account or login';
 	}
+
+	Array.prototype.unique = function () {
+		console.log('Console at unique')
+		var a = this.concat();
+		for (var i = 0; i < a.length; ++i) {
+			for (var j = i + 1; j < a.length; ++j) {
+				if (a[i]._id === a[j]._id)
+					a.splice(j--, 1);
+			}
+		}
+		return a;
+	}
+
 
 	$scope.loadMore = function () {
 		if (Authentication.user) {
@@ -387,6 +390,7 @@ angular.module('recipesApp')
 				if (res.length == 0) {
 					$scope.noMoreItemsAvailable = true;
 				}
+				console.log('Previous recipes on scrool is : ' + $scope.recipes.length);
 				var oldRecipes = $scope.recipes;
 				$scope.recipes = oldRecipes.concat(onScroll).unique();
 				console.log('On Scroll Content recipes : ' + JSON.stringify(onScroll));

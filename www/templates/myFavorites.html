@@ -1,4 +1,4 @@
-<ion-view>
+<ion-view cache-view="false">
 	<ion-nav-title>
 		<span style="color:white">My Fav.Recipes
     </span>
@@ -15,7 +15,7 @@
 				<i ng-class="item._id === selectedIndex ? 'ion ion-chevron-up' : 'ion ion-chevron-down'" style="color:Grey;font-size:30px;float:right" ng-click="changeClass(item)"></i>
 				<div class="row">
 					<div class="col"><i class="ion ion-thumbsup" style="color:green;font-size:30px"></i>
-						<br>{{item.likes}}</div>
+						<br>{{item.ytlikes}}</div>
 					<div class="col"><i class="ion ion-thumbsdown" style="color:red;font-size:30px"></i>
 						<br>{{item.dislikes}}</div>
 					<div class="col"><i class="ion ion-eye" style="color:grey;font-size:30px"></i>
@@ -31,6 +31,6 @@
 		</div>
 		<div ng-hide="authentication">{{notLoggedIn}}</div>
 
-		<ion-infinite-scroll ng-if="!noMoreItemsAvailable" distance="10%" on-infinite="loadMore()" ng-show="authentication"></ion-infinite-scroll>
+		<ion-infinite-scroll immediate-check="false" ng-if="!noMoreItemsAvailable" distance="1%" on-infinite="loadMore()" ng-show="authentication"></ion-infinite-scroll>
 	</ion-content>
 </ion-view>

@@ -1,4 +1,4 @@
-<ion-view>
+<ion-view cache-view="false">
 	<ion-nav-title>
 		<span style="color:white">Searched Recipes
     </span>
@@ -35,7 +35,7 @@
 					</div>
 				</div>
 			</div>
-			<ion-infinite-scroll ng-if="!noMoreItemsAvailable" on-infinite="loadMore()"></ion-infinite-scroll>
+			<ion-infinite-scroll immediate-check="false" ng-if="!noMoreItemsAvailable" distance="1%" on-infinite="loadMore()"></ion-infinite-scroll>
 	</ion-content>
 
 	<ion-footer-bar align-title="left" class="bar-assertive">

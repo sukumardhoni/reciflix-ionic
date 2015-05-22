@@ -94,6 +94,7 @@ angular.module('recipesApp')
 
 .factory('MyFavRecipes', function ($resource) {
 	return $resource('http://reciflix-rest.herokuapp.com/api/v1/myFavorites/:userId/:pageId', {
+		//return $resource('http://localhost:7000/api/v1/myFavorites/:userId/:pageId', {
 		userId: '@userId',
 		pageId: '@pageId'
 	}, {

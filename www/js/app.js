@@ -3,9 +3,10 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('recipesApp', ['ionic', 'ngResource'])
+angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova'])
 
-.run(function ($ionicPlatform) {
+.run(function ($ionicPlatform, $state, $rootScope, $ionicPopup) {
+	$rootScope.$state = $state;
 	$ionicPlatform.ready(function () {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
 		// for form inputs)
@@ -16,6 +17,24 @@ angular.module('recipesApp', ['ionic', 'ngResource'])
 			StatusBar.styleDefault();
 		}
 	});
+	$ionicPlatform.registerBackButtonAction(function (e) {
+		if ($state.includes('app.allCategories')) {
+			console.log('Back button is triggred in IF')
+			e.preventDefault();
+			$ionicPopup.confirm({
+				title: 'System warning',
+				template: 'are you sure you want to exit?'
+			}).then(function (res) {
+				if (res) {
+					navigator.app.exitApp();
+				}
+			})
+		} else {
+			console.log('Back button is triggred')
+		}
+	}, 100);
+
+
 })
 
 .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
@@ -103,4 +122,5 @@ angular.module('recipesApp', ['ionic', 'ngResource'])
 	$urlRouterProvider.otherwise('/');
 	$ionicConfigProvider.navBar.alignTitle('center');
 	$ionicConfigProvider.platform.android.backButton.previousTitleText('').icon('ion-android-arrow-back');
+
 });

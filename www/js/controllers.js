@@ -474,6 +474,12 @@ angular.module('recipesApp')
 
 })
 
+.controller('showRecipesCtrl', function ($scope, $stateParams) {
+	console.log('showRecipesCtrl controller')
+	$scope.videoId = $stateParams.videoId;
+})
+
+
 /*SHARE Function on FB*/
 /*	$scope.share = function (event) {
 			console.log('Event coming to share function : ' + event)
@@ -497,19 +503,7 @@ angular.module('recipesApp')
 
 
 
-
-
-
-
-
-
 /*
-
-.controller('showRecipesCtrl', function ($scope, $stateParams) {
-	console.log('showRecipesCtrl controller')
-	$scope.videoId = $stateParams.videoId;
-})
-
 .controller('singleRecipeCtrl', function ($scope, $state, $stateParams, Recipes) {
 
 	Recipes.get({

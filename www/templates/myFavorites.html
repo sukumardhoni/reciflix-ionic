@@ -14,15 +14,11 @@
 				</div>
 				<i ng-class="item._id === selectedIndex ? 'ion ion-chevron-up' : 'ion ion-chevron-down'" style="color:Grey;font-size:30px;float:right" ng-click="changeClass(item)"></i>
 				<div class="row">
-					<div class="col"><i class="ion ion-thumbsup" style="color:green;font-size:30px"></i>
-						<br>{{item.ytlikes}}</div>
-					<div class="col"><i class="ion ion-thumbsdown" style="color:red;font-size:30px"></i>
-						<br>{{item.dislikes}}</div>
+					<div class="col"><i class="ion ion-thumbsup" style="color:#FF6666;font-size:30px"></i>
+						<br>{{item.ytlikes + item.applikes | numeral}}</div>
 					<div class="col"><i class="ion ion-eye" style="color:grey;font-size:30px"></i>
 						<br>{{item.views}}</div>
-					<div class="col"><i class="ion ion-heart" style="color:PeachPuff;font-size:30px"></i>
-					</div>
-					<div class="col"><i class="ion ion-android-share-alt" style="color:Coral;font-size:30px"></i>
+					<div class="col"><i class="ion ion-heart" style="color:#FF6666;font-size:30px"></i>
 					</div>
 					<div class="col"><a style="font-size:20px;text-decoration:none" ui-sref="app.slides({recipeId:item._id})">More </a>
 					</div>

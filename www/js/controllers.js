@@ -21,7 +21,7 @@ angular.module('recipesApp')
 		$scope.oModal1 = modal;
 		$rootScope.modal1 = modal;
 		$scope.user = {};
-		$scope.user.email = "t1@t1.com";
+		$scope.user.email = "t3@t3.com";
 		//$scope.user.pin = "12345";
 		$scope.Login = function () {
 			console.log('Login function');

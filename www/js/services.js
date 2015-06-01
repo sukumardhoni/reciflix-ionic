@@ -1,7 +1,7 @@
 angular.module('recipesApp')
 
 .constant('API_HOST', 'http://localhost:3000')
-	//.constant('API_HOST', 'http://reciflix-rest.herokuapp.com/api/v1')
+//.constant('API_HOST', 'http://reciflix-rest.herokuapp.com/api/v1')
 	/*
 
 	.factory('Recipes', function ($resource) {

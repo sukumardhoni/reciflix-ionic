@@ -21,50 +21,86 @@ enable-menu-with-back-views="false"
 
 	<ion-side-menu side="left" class="main-menu" expose-aside-when="large">
 		<ion-content>
-			<ion-list>
+			<ion-list ng-show="authentication">
 				<ion-item class="heading-item item item-avatar" nav-clear menu-close ui-sref="app.profile">
 					<img ng-src="https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg">
-					<h2 class="greeting">Hi Brynn</h2>
+					<h2 class="greeting">Hi {{authentication.firstName}}</h2>
 					<p class="message">Welcome back</p>
 				</ion-item>
-				<ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.myFavourites">
+				<ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.myFav">
 					<i class="icon ion-heart"></i>
 					<h2 class="menu-text">My Favourites</h2>
 				</ion-item>
-				<ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.recipesNotes">
+                <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.featuredRecipes">
+					<i class="icon ion-fork"></i>
+					<h2 class="menu-text">Featured Recipes</h2>
+				</ion-item>
+<!--				<ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.recipesNotes">
 					<i class="icon ion-clipboard"></i>
 					<h2 class="menu-text">Recipes Notes</h2>
-				</ion-item>
+				</ion-item>-->
 				<ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.groceryList">
 					<i class="icon ion-document-text"></i>
 					<h2 class="menu-text">Grocery List</h2>
 				</ion-item>
 				<ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.myCalendarPlan">
 					<i class="icon ion-calendar"></i>
-					<h2 class="menu-text">My Calendar Plan</h2>
+					<h2 class="menu-text">My Meal Plan</h2>
 				</ion-item>
+  				<ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.settings">
+					<i class="icon ion-gear-a"></i>
+					<h2 class="menu-text">Preferences</h2>
+				</ion-item>
+
+<!--
 				<ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.addPreferences">
 					<i class="icon ion-compose"></i>
-					<h2 class="menu-text">Add Preferences</h2>
+					<h2 class="menu-text">Preferences</h2>
 				</ion-item>
-				<ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.featuredRecipes">
-					<i class="icon ion-fork"></i>
-					<h2 class="menu-text">Featured Recipes</h2>
-				</ion-item>
+-->
+
+<!--
 				<ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.settings">
 					<i class="icon ion-gear-a"></i>
-					<h2 class="menu-text">Settings</h2>
+					<h2 class="menu-text">Preferences</h2>
 				</ion-item>
+-->
 				<ion-item class="item-icon-left" nav-clear menu-close>
 					<div ng-show="authentication" ng-click="signout()"><i class="icon ion-log-out"></i>
-						<h2 class="menu-text">SignOut</h2>
+						<h2 class="menu-text" style="color:grey">SignOut</h2>
 					</div>
-					<div ng-hide="authentication" ui-sref="walkthrough"><i class="icon ion-log-in"></i>
-						<h2 class="menu-text">Login or Create Account</h2>
-					</div>
+					<!--<div ng-hide="authentication" ui-sref="walkthrough"><i class="icon ion-log-in"></i>
+						<h2 class="menu-text" style="color:green">Login or Create Account</h2>
+					</div>-->
 				</ion-item>
 
 			</ion-list>
+          <ion-list ng-hide="authentication">
+
+            <ion-item class="heading-item item item-avatar" nav-clear menu-close ui-sref="app.profile">
+			  <img ng-src="https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg">
+		      <p class="message">Welcome back</p>
+
+
+              <p class="message">Hi There, you can add Favourites, set up Preferences and create Grocery lists etc.. and many more after signup or connecting with your facebook or gmail</p>
+
+              <h2 class="greeting">Hi There, you can add Favourites, set up Preferences and create Grocery lists etc.. and many more after signup or connecting with your facebook or gmail</h2>
+
+			</ion-item>
+
+
+            <ion-item class="item-icon-left" nav-clear menu-close>
+
+          <div  ui-sref="walkthrough"><i class="icon ion-log-in"></i>
+						<h2 class="menu-text" style="color:green">Login or Create Account</h2>
+		  </div>
+
+
+            </ion-item>
+            </ion-list>
+
+
+
 		</ion-content>
 	</ion-side-menu>
 </ion-side-menus>

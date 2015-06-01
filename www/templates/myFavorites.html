@@ -1,11 +1,19 @@
-<ion-view cache-view="false">
+<ion-view cache-view="true">
 	<ion-nav-title>
-		<span style="color:white">My Fav.Recipes
-    </span>
+		<span style="color:white">Favourite Recipes</span>
 	</ion-nav-title>
 
 	<ion-content>
-		<div ng-repeat="item in recipes" ng-show="authentication">
+
+
+      <div class="card" ng-show="authentication && recipes.length == 0">
+  <div class="item item-text-wrap">
+    Howdy.... You dont seem to have any Favourite Recipes,
+    tap on  <i class="icon ion-ios-heart-outline" style="font-size:30px;padding:5px 5px"></i>  of a recipe to add it to Favourites <i class="icon ion-ios-heart animated"  style="font-size:30px;padding:5px 5px"></i>
+  </div>
+</div>
+
+      <div ng-repeat="item in recipes" ng-show="authentication">
 			<div class="card">
 				<div class="item item-divider" style="text-align:center">
 					{{item.title}}
@@ -25,8 +33,27 @@
 				</div>
 			</div>
 		</div>
+
 		<div ng-hide="authentication">{{notLoggedIn}}</div>
 
 		<ion-infinite-scroll immediate-check="false" ng-if="!noMoreItemsAvailable" distance="1%" on-infinite="loadMore()" ng-show="authentication"></ion-infinite-scroll>
 	</ion-content>
+
+
+   <ion-footer-bar align-title="left" class="bar-assertive">
+<!--		<div class="buttons button-clear" style="padding-left:20px" ui-sref="app.allCategories">
+			<i class="icon ion-laptop" style="color:white;font-size:30px"></i>
+		</div>-->
+		<!--<div class="buttons" ng-click="doSomething()" style="position: absolute;bottom: 0;left: 0;">
+	<button class="button">Right Button</button>
+</div>-->
+		<!--<div class="icon ion-search" style="padding-left:90px"></div>-->
+		<div class="buttons button-clear" ui-sref="app.search" style="padding-left:110px">
+			<i class="icon ion-search" style="color:white;font-size:30px"></i>
+		</div>
+		<div class="buttons button-clear" ui-sref="app.myFav" style="padding-left:110px">
+			<i class="icon ion-ios-briefcase" style="color:white;font-size:30px"></i>
+		</div>
+	</ion-footer-bar>
+
 </ion-view>

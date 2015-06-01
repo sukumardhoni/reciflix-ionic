@@ -4,9 +4,9 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 
-angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova'])
+angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage'])
 
-.run(function ($ionicPlatform, $state, $rootScope, $ionicPopup) {
+.run(function ($ionicPlatform, $state, $rootScope, $ionicPopup, $http, $localStorage) {
 	$rootScope.$state = $state;
 	$ionicPlatform.ready(function () {
 		// Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -17,6 +17,7 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova'])
 		if (window.StatusBar) {
 			StatusBar.styleDefault();
 		}
+		$http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
 	});
 	$ionicPlatform.registerBackButtonAction(function (e) {
 		if ($state.includes('app.allCategories')) {

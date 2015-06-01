@@ -1,12 +1,12 @@
 angular.module('recipesApp')
-.controller('ContentCtrl', function ($scope, $stateParams, SingleRecipe) {
-	SingleRecipe.get({
-		recipeId: $stateParams.recipeId
-	}, function (res) {
-		$scope.recipe = res;
-		console.log('Single Recipe is : ' + JSON.stringify(res));
-	});
-})
+/*	.controller('ContentCtrl', function ($scope, $stateParams, SingleRecipe) {
+		SingleRecipe.get({
+			recipeId: $stateParams.recipeId
+		}, function (res) {
+			$scope.recipe = res;
+			console.log('Single Recipe is : ' + JSON.stringify(res));
+		});
+	})*/
 
 
 .controller('showRecipesCtrl', function ($scope, $stateParams) {

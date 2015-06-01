@@ -1,7 +1,7 @@
 angular.module('recipesApp')
 
 
-.controller('walkthroughCtrl', function ($scope, $state, User, $ionicModal, $ionicLoading, $rootScope, Authentication) {
+.controller('walkthroughCtrl', function ($scope, $state, User, $ionicModal, $ionicLoading, $rootScope, Authentication, $localStorage) {
 
 	$scope.authentication = Authentication;
 	$scope.skip = function () {
@@ -21,7 +21,7 @@ angular.module('recipesApp')
 		$scope.oModal1 = modal;
 		$rootScope.modal1 = modal;
 		$scope.user = {};
-		$scope.user.email = "t4@test.com";
+		$scope.user.email = "t3@t3.com";
 		//$scope.user.pin = "12345";
 		$scope.Login = function () {
 			console.log('Login function');
@@ -34,6 +34,7 @@ angular.module('recipesApp')
 					$ionicLoading.hide();
 				} else {
 					$scope.authentication.user = res;
+					$localStorage.token = res.token;
 					$ionicLoading.hide();
 					$state.go('app.allCategories', {
 						userId: res._id
@@ -79,6 +80,7 @@ angular.module('recipesApp')
 											console.log('User details from SERVER is : ' + JSON.stringify(res.user));
 											if (res.user) {
 												$scope.authentication.user = res.user;
+												$localStorage.token = res.token;
 												$state.go('app.allCategories', {
 													userId: res.user._id
 												});
@@ -152,6 +154,7 @@ angular.module('recipesApp')
 					$scope.errMsg = res.data;
 				} else {
 					$scope.authentication.user = res;
+					$localStorage.token = res.token;
 					$ionicLoading.hide();
 					$state.go('app.allCategories', {
 						userId: res._id

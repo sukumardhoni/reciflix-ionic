@@ -1,0 +1,26 @@
+
+
+
+
+
+<div class="card">
+  <div class="item item-divider">
+  {{item.title}}
+  <i ng-class="item._id === selectedIndex ? 'ion ion-chevron-up' : 'ion ion-chevron-down'" style="color:Grey;font-size:30px;float:right" ng-click="changeClass(item)"></i>
+  </div>
+  <div class="item item-text-wrap">
+    <div ng-class="item._id === selectedIndex ? 'fullHeight' : 'dftHeight'">{{item.description}}</div>
+  </div>
+  <div class="item item-divider">
+    <div class="row">
+					<div class="col"><i class="ion ion-thumbsup" style="color:#FF6666;font-size:30px"></i>
+						<br>{{item.ytlikes + item.applikes | numeral}}</div>
+					<div class="col"><i class="ion ion-eye" style="color:grey;font-size:30px"></i>
+						<br>{{item.views}}</div>
+					<div class="col"><i class="ion ion-ios-heart" style="color:#FF6666;font-size:30px"></i>
+					</div>
+					<div class="col"><a style="font-size:20px;text-decoration:none" ui-sref="app.slides({recipeId:item._id})">More </a>
+					</div>
+				</div>
+  </div>
+</div>

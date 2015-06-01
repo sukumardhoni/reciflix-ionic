@@ -57,4 +57,13 @@ angular.module('recipesApp')
 			$scope.$broadcast('scroll.infiniteScrollComplete');
 		}
 	};
+
+  	$scope.changeClass = function (recipe) {
+	//	console.log('allRecipesCtrl controller')
+		if ($scope.selectedIndex === recipe._id) {
+			$scope.selectedIndex = true;
+		} else {
+			$scope.selectedIndex = recipe._id;
+		}
+	};
 })

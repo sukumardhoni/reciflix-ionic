@@ -1,313 +1,322 @@
 /* Empty. Add your own CSS if you like */
 
 .dftHeight {
-	height: 100px;
-	overflow: hidden;
+  height: 100px;
+  overflow: hidden;
 }
 
 .fullHeight {
-	height: 100%;
+  height: 100%;
 }
 
 .loading {
-	background-color: #FF6666 !important;
+  background-color: #FF6666 !important;
 }
 
 .spinner.light svg {
-	stroke: #fff !important;
-	fill: #fff !important;
+  stroke: #fff !important;
+  fill: #fff !important;
 }
 
 .inputstyle {
-	border-bottom: 1px solid #EAECED !important;
+  border-bottom: 1px solid #EAECED !important;
 }
 
 .item-input {
-	padding-left: 1px !important;
-	padding-top: 10px !important;
-	width: 100%;
+  padding-left: 1px !important;
+  padding-top: 10px !important;
+  width: 100%;
 }
 
 .logo {
-	padding-top: 20px;
+  padding-top: 20px;
 }
 
 .apptitle {
-	margin-top: 20px;
+  margin-top: 20px;
 }
 
 .curvebutton {
-	border-radius: 5px !important;
+  border-radius: 5px !important;
 }
 
 .signupbutton {
-	margin-top: 10px;
-	color: #FF6699;
+  margin-top: 10px;
+  color: #FF6699;
 }
 
 .forgotpswd {
-	margin-top: 10px;
-	margin-left: 60%;
-	opacity: 0.5;
+  margin-top: 10px;
+  margin-left: 60%;
+  opacity: 0.5;
+}
+
+.login-view .alternative-actions .button {
+  opacity: 0.6 !important;
+  color: #e42012 !important;
+}
+
+.login-view:hover .alternative-actions:hover .button:hover {
+  opacity: 1.0 !important;
 }
 
 .titlestyle {
-	font-family: Source Sans Pro !important;
-	font-size: 54px;
-	color: #FFD1E0;
-	padding: 10px;
+  font-family: Source Sans Pro !important;
+  font-size: 54px;
+  color: #FFD1E0;
+  padding: 10px;
 }
 
 .paddingclass {
-	padding-left: 30px;
-	padding-right: 30px;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 .titlesignup {
-	font-family: Source Sans Pro !important;
-	font-size: 50px;
-	margin-top: 20px;
-	color: #2891F7;
+  font-family: Source Sans Pro !important;
+  font-size: 50px;
+  margin-top: 20px;
+  color: #2891F7;
 }
 
 .impandurgenticons {
-	float: right;
-	margin-top: 30px;
-	margin-right: 30px;
+  float: right;
+  margin-top: 30px;
+  margin-right: 30px;
 }
 
 .button-color {
-	color: #FF6699;
-	background-color: white;
-	border-color: #FF6699 !important;
+  color: #FF6699;
+  background-color: white;
+  border-color: #FF6699 !important;
 }
 
 input[type="text"] {
-	font-size: 20px;
+  font-size: 20px;
 }
 
 input[type="password"] {
-	font-size: 20px;
+  font-size: 20px;
 }
 
 input[type="email"] {
-	font-size: 20px;
+  font-size: 20px;
 }
 
 tick {
-	list-style: none
+  list-style: none
 }
 
 tick:before {
-	display: inline-block;
-	vertical-align: top;
-	line-height: 1em;
-	width: 1em;
-	height: 1em;
-	margin-right: 0.3em;
-	text-align: center;
-	content: '✔';
-	color: #999;
+  display: inline-block;
+  vertical-align: top;
+  line-height: 1em;
+  width: 1em;
+  height: 1em;
+  margin-right: 0.3em;
+  text-align: center;
+  content: '✔';
+  color: #999;
 }
 
 body {
-	cursor: url('http://ionicframework.com/img/finger.png'), auto;
-	font-family: "AvenirNextLTPro-UltLt", "HelveticaNeue-Light", Helvetica, Arial, sans-serif;
-	font-size: 18px;
+  cursor: url('http://ionicframework.com/img/finger.png'), auto;
+  font-family: "AvenirNextLTPro-UltLt", "HelveticaNeue-Light", Helvetica, Arial, sans-serif;
+  font-size: 18px;
 }
 
 .button {
-	font-size: 20px;
+  font-size: 20px;
 }
 
 .button.activated {
-	background-color: none !important;
+  background-color: none !important;
 }
 
 .curvebutton.activated {
-	background-color: white !important;
+  background-color: white !important;
 }
 
 .title {
-	font-size: 20px !important;
+  font-size: 20px !important;
 }
 
 .button:hover {
-	color: #33CC33 !important;
+  color: #33CC33 !important;
 }
 
 p.ex1 {
-	margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .bar-positive {
-	background: #257AEA !important;
+  background: #257AEA !important;
 }
 
 .title {
-	color: white !important;
-	font-family: "Times New Roman", Times, serif !important;
-	font-size: 25px !important;
-	font-style: normal;
-	font-variant: normal;
-	font-weight: 400;
-	line-height: 20px;
+  color: white !important;
+  font-family: "Times New Roman", Times, serif !important;
+  font-size: 25px !important;
+  font-style: normal;
+  font-variant: normal;
+  font-weight: 400;
+  line-height: 20px;
 }
 
 .toptask {
-	font-family: Arial !important;
-	font-size: 25px;
-	font-style: normal;
-	font-variant: normal;
-	color: #717171 !important;
+  font-family: Arial !important;
+  font-size: 25px;
+  font-style: normal;
+  font-variant: normal;
+  color: #717171 !important;
 }
 
 .toptask {
-	margin-top: 100px !important;
+  margin-top: 100px !important;
 }
 
 ion-item:nth-child(odd) {
-	background: #f9f9f9;
+  background: #f9f9f9;
 }
 
 ion-item:nth-child(even) {
-	background: #f2f2f2;
+  background: #f2f2f2;
 }
 
 .float-button {
-	-webkit-border-radius: 50%;
-	-moz-border-radius: 50%;
-	border-radius: 50%;
-	width: 30px;
-	padding: 30px;
-	font-size: 40px;
-	background: $warning;
-	position: fixed;
-	bottom: 20px;
-	right: 20px;
-	z-index: 9999;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  width: 30px;
+  padding: 30px;
+  font-size: 40px;
+  background: $warning;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 9999;
 }
 
 .float-button .height_fix {
-	margin-top: 100%;
+  margin-top: 100%;
 }
 
 .popover-items {
-	height: 230px;
+  height: 230px;
 }
 
 .round-button {
-	display: block;
-	width: 50px;
-	height: 50px;
-	line-height: 50px;
-	border-radius: 50%;
-	color: #f5f5f5;
-	text-align: center;
-	text-decoration: none;
-	background: #33cd5f;
-	box-shadow: 0 0 3px gray;
-	font-size: 20px;
-	font-weight: bold;
+  display: block;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  border-radius: 50%;
+  color: #f5f5f5;
+  text-align: center;
+  text-decoration: none;
+  background: #33cd5f;
+  box-shadow: 0 0 3px gray;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .as-sortable-item {
-	width: 100%;
-	margin: 2px;
-	border: 1px solid #eaeaea;
-	border-radius: 5px;
-	list-style: none;
+  width: 100%;
+  margin: 2px;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  list-style: none;
 }
 
 .p1 {
-	width: 130px;
-	height: 50px;
-	margin-left: -70px;
-	-ms-transform: rotate(270deg);
-	-moz-transform: rotate(270deg);
-	-webkit-transform: rotate(270deg);
-	-o-transform: rotate(270deg);
+  width: 130px;
+  height: 50px;
+  margin-left: -70px;
+  -ms-transform: rotate(270deg);
+  -moz-transform: rotate(270deg);
+  -webkit-transform: rotate(270deg);
+  -o-transform: rotate(270deg);
 }
 
 small.time {
-	font-size: 100%;
-	position: absolute;
-	right: 50px;
-	top: 4px;
-	color: black;
+  font-size: 100%;
+  position: absolute;
+  right: 50px;
+  top: 4px;
+  color: black;
 }
 
 .box {
-	border-radius: 100%;
-	border: 1px solid #E3E3E3;
-	padding: 50px;
-	background-color: #2891F7;
-	color: white;
-	font-size: 20px;
+  border-radius: 100%;
+  border: 1px solid #E3E3E3;
+  padding: 50px;
+  background-color: #2891F7;
+  color: white;
+  font-size: 20px;
 }
 
 .aboutlogo {
-	margin-top: 50px;
+  margin-top: 50px;
 }
 
 .labelClr {
-	color: #FF6699;
+  color: #FF6699;
 }
 
 .catgyName {
-	font-family: Source Sans Pro !important;
-	font-size: 27px;
-	color: #009688;
-	padding: 10px;
+  font-family: Source Sans Pro !important;
+  font-size: 27px;
+  color: #009688;
+  padding: 10px;
 }
 /*Bounce animations for heart icon*/
 
 .animated {
-	-webkit-color: #FF6666;
-	color: #FF6666;
-	-webkit-animation-duration: 2s;
-	animation-duration: 2s;
-	-webkit-animation-fill-mode: both;
-	animation-fill-mode: both;
-	-webkit-animation-timing-function: ease-in-out;
-	animation-timing-function: ease-in-out;
+  -webkit-color: #FF6666;
+  color: #FF6666;
+  -webkit-animation-duration: 2s;
+  animation-duration: 2s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
 }
 
 @-webkit-keyframes bounceIn {
-	0% {
-		opacity: 0;
-		-webkit-transform: scale(1);
-	}
-	50% {
-		opacity: 1;
-		-webkit-transform: scale(1.4);
-	}
-	75% {
-		-webkit-transform: scale(1.2);
-	}
-	100% {
-		-webkit-transform: scale(1);
-	}
+  0% {
+    opacity: 0;
+    -webkit-transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    -webkit-transform: scale(1.4);
+  }
+  75% {
+    -webkit-transform: scale(1.2);
+  }
+  100% {
+    -webkit-transform: scale(1);
+  }
 }
 
 @keyframes bounceIn {
-	0% {
-		opacity: 0;
-		transform: scale(1);
-	}
-	50% {
-		opacity: 1;
-		transform: scale(1.4);
-	}
-	75% {
-		transform: scale(1.2);
-	}
-	100% {
-		transform: scale(1);
-	}
+  0% {
+    opacity: 0;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.4);
+  }
+  75% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 .bounceIn {
-	-webkit-animation-name: bounceIn;
-	animation-name: bounceIn;
+  -webkit-animation-name: bounceIn;
+  animation-name: bounceIn;
 }

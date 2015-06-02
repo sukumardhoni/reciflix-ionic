@@ -1,34 +1,34 @@
 <ion-view cache-view="true">
-	<ion-nav-title>
-		<!--<div class="bar bar-header item-input-inset">
+  <ion-nav-title>
+    <!--<div class="bar bar-header item-input-inset">
 			<label class="item-input-wrapper">
 				<input type="search" placeholder="Search" ng-model="search">
 			</label>
 			<i class="icon  ion-search" style="color:white;font-size:30px;padding-left:3px" ui-sref="app.searchedRecipes({searchQuery:search})"></i>
 		</div>-->
 
-		<span style="color:white">All Categories
+    <span style="color:white">All Categories
     </span>
 
-	</ion-nav-title>
+  </ion-nav-title>
 
-	<ion-content>
-		<ion-list>
-			<ion-item ng-repeat="item in categories" class="item-remove-animate">
-				<!--<span ui-sref="singleRecipe({recipeId:item._id})">{{item.tags}}</span>-->
-				<!--<div ui-sref="app.categoriesVideos({categorieName:item})">-->
-				<div ui-sref="app.categoriesVideos({categorieName:item.catId,catName:item.displayName})">
-					<center>
-						<img ng-src="img/recipeImgs/{{item.imageName}}" height="180px" width="100%" />
-					</center>
-					<center class="catgyName">{{item.displayName}}</center>
-				</div>
-			</ion-item>
-		</ion-list>
-		<ion-infinite-scroll immediate-check="false" ng-if="!noMoreItemsAvailable" distance="5%" on-infinite="loadMore()"></ion-infinite-scroll>
-	</ion-content>
+  <ion-content>
+    <ion-list>
+      <ion-item ng-repeat="item in categories" class="item-remove-animate">
+        <!--<span ui-sref="singleRecipe({recipeId:item._id})">{{item.tags}}</span>-->
+        <!--<div ui-sref="app.categoriesVideos({categorieName:item})">-->
+        <div ui-sref="app.categoriesVideos({categorieName:item.catId,catName:item.displayName})">
+          <center>
+            <img ng-src="img/recipeImgs/{{item.imageName}}" height="180px" width="100%" />
+          </center>
+          <center class="catgyName">{{item.displayName}}</center>
+        </div>
+      </ion-item>
+    </ion-list>
+    <ion-infinite-scroll immediate-check="false" ng-if="!noMoreItemsAvailable" distance="5%" on-infinite="loadMore()"></ion-infinite-scroll>
+  </ion-content>
 
-	<!--
+  <!--
 	<ion-footer-bar align-title="left" class="bar-assertive">
 <a class="button button-clear" href="">
 			<i class="icon ion-laptop" style="color:white;font-size:30px"></i>
@@ -42,23 +42,10 @@
 </ion-footer-bar>
 -->
 
+<rf-footer-display></rf-footer-display>
 
-	<ion-footer-bar align-title="left" class="bar-assertive">
-<!--		<div class="buttons button-clear" style="padding-left:20px">
-			<i class="icon ion-laptop" style="color:white;font-size:30px"></i>
-		</div>-->
-		<!--<div class="buttons" ng-click="doSomething()" style="position: absolute;bottom: 0;left: 0;">
-	<button class="button">Right Button</button>
-</div>-->
-		<!--<div class="icon ion-search" style="padding-left:90px"></div>-->
-		<div class="buttons button-clear" ui-sref="app.search" style="padding-left:110px">
-			<i class="icon ion-search" style="color:white;font-size:30px"></i>
-		</div>
-		<div class="buttons button-clear" ui-sref="app.myFav" style="padding-left:110px">
-			<i class="icon ion-ios-briefcase" style="color:white;font-size:30px"></i>
-		</div>
-	</ion-footer-bar>
-	<!--
+
+  <!--
 	<ion-tabs class="tabs-assertive tabs-icon-only">
 
 		<ion-tab title="Web" icon-on="ion-ios-laptop" icon-off="ion-ios-laptop-outline">

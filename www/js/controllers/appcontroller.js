@@ -31,6 +31,18 @@ angular.module('recipesApp')
       })
     }
 
+    $scope.userliked = function (aVideoId) {
+      var user = Authentication.user;
+      if (user.likes.indexOf(aVideoId) == -1) {
+        return false;
+      } else {
+        return true;
+      }
+      return false;
+    };
+
+
+
     $scope.loadMore = function () {
       $timeout(function () {
         var onScroll = {};

@@ -51,13 +51,19 @@
   opacity: 0.5;
 }
 
-.login-view .alternative-actions .button {
+.alternative-actions .button {
   opacity: 0.6 !important;
   color: #e42012 !important;
 }
 
-.login-view:hover .alternative-actions:hover .button:hover {
+.alternative-actions:hover .button:hover {
   opacity: 1.0 !important;
+  color: #e42012 !important;
+}
+
+.thumbsup-selected {
+  color: #FF6666;
+  font-size: 30px;
 }
 
 .titlestyle {

@@ -1,46 +1,18 @@
 <ion-view cache-view="false">
-	<ion-nav-title>
-		<span style="color:white">Searched Recipes
+  <ion-nav-title>
+    <span style="color:white">Searched Recipes
     </span>
-	</ion-nav-title>
+  </ion-nav-title>
 
-	<ion-content has-header="true">
-		<div ng-repeat="items in recipes">
-			<div ng-repeat="item in items">
-				<div class="card">
-					<div class="item item-divider" style="text-align:center">
-						{{item.title}}
-					</div>
-					<div ng-class="item._id === selectedIndex ? 'fullHeight' : 'dftHeight'">{{item.description}}
-					</div>
-					<i ng-class="item._id === selectedIndex ? 'ion ion-chevron-up' : 'ion ion-chevron-down'" style="color:Grey;font-size:30px;float:right" ng-click="changeClass(item)"></i>
-					<div class="row">
-						<div class="col"><i class="ion ion-thumbsup" style="color:green;font-size:30px"></i>
-							<br>{{item.likes}}</div>
-						<div class="col"><i class="ion ion-thumbsdown" style="color:red;font-size:30px"></i>
-							<br>{{item.dislikes}}</div>
-						<div class="col"><i class="ion ion-eye" style="color:grey;font-size:30px"></i>
-							<br>{{item.views}}</div>
-						<!--<div class="col"><i class="ion ion-heart" style="color:PeachPuff;font-size:30px"></i>
-					</div>-->
-						<div class="col" ng-click="updateFav(item)">
-							<!--<i ng-class="item._id === selectedRecipe ? 'icon ion-ios-heart' : 'icon ion-ios-heart-outline'" style="color:PeachPuff;font-size:30px"></i>-->
-							<span my-favorite-icon favorite=item.videoId></span>
-						</div>
+  <ion-content>
+    <div ng-repeat="items in recipes">
+      <div ng-repeat="item in items">
+        <rf-recipe-display></rf-recipe-display>
+      </div>
+    </div>
+    <ion-infinite-scroll immediate-check="false" ng-if="!noMoreItemsAvailable" distance="1%" on-infinite="loadMore()"></ion-infinite-scroll>
+  </ion-content>
 
-						<div class="col" ng-click="sharePost()"><i class="ion ion-android-share-alt" style="color:Coral;font-size:30px"></i>
-						</div>
-						<div class="col"><a style="font-size:20px;text-decoration:none" ui-sref="app.slides({recipeId:item._id})">More </a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<ion-infinite-scroll immediate-check="false" ng-if="!noMoreItemsAvailable" distance="1%" on-infinite="loadMore()"></ion-infinite-scroll>
-	</ion-content>
+  <rf-footer-display></rf-footer-display>
 
-	<ion-footer-bar align-title="left" class="bar-assertive">
-		<a class="title" ui-sref="app.myFav">
-			<i class="icon ion-ios-briefcase" style="color:white;font-size:30px"></i>
-		</a>
-	</ion-footer-bar>
 </ion-view>

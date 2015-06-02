@@ -24,6 +24,7 @@ angular.module('recipesApp')
       //	$scope.notLoggedIn = 'User is not logged in please create an account or login';
     }
 
+
     Array.prototype.unique = function () {
       console.log('Console at unique')
       var a = this.concat();

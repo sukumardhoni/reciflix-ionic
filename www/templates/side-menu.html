@@ -1,13 +1,5 @@
 <ion-side-menus cache-view="false">
   <ion-side-menu-content class="post-size-14px">
-    <!--
-enable-menu-with-back-views="false"
-		<div class="bar bar-header bar-assertive">
-			<span class="title">Header111</span>
-		</div>
- bar-footer
--->
-
     <ion-nav-bar class="bar bar-assertive">
       <ion-nav-back-button>
       </ion-nav-back-button>
@@ -31,19 +23,19 @@ enable-menu-with-back-views="false"
           <i class="icon ion-heart"></i>
           <h2 class="menu-text">My Favourites</h2>
         </ion-item>
-        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.featuredRecipes">
+        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.featuredRecipes({name:'Featured Recipes'})">
           <i class="icon ion-fork"></i>
           <h2 class="menu-text">Featured Recipes</h2>
         </ion-item>
-        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.groceryList">
+        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.groceryList({name:'Grocery List'})">
           <i class="icon ion-document-text"></i>
           <h2 class="menu-text">Grocery List</h2>
         </ion-item>
-        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.myCalendarPlan">
+        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.myCalendarPlan({name:'My Meal Plan'})">
           <i class="icon ion-calendar"></i>
           <h2 class="menu-text">My Meal Plan</h2>
         </ion-item>
-        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.settings">
+        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.settings({name:'Preferences'})">
           <i class="icon ion-gear-a"></i>
           <h2 class="menu-text">Preferences</h2>
         </ion-item>

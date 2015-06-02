@@ -3,6 +3,9 @@ angular.module('recipesApp')
 
     $scope.authentication = Authentication.user;
 
+    //console.log('Current State Name is : ' + $state.current.name);
+    $scope.currentStateName = $stateParams.name;
+
     $scope.signout = function () {
       console.log('signout');
       $scope.authentication = '';
@@ -41,9 +44,20 @@ angular.module('recipesApp')
       return false;
     };
 
+    Array.prototype.unique = function () {
+      console.log('Console at unique')
+      var a = this.concat();
+      for (var i = 0; i < a.length; ++i) {
+        for (var j = i + 1; j < a.length; ++j) {
+          if (a[i] === a[j])
+            a.splice(j--, 1);
+        }
+      }
+      return a;
+    }
 
-
-    $scope.loadMore = function () {
+    $scope.searchQueryLoadMore = function () {
+      console.log('loadMore Search query is called');
       $timeout(function () {
         var onScroll = {};
         SearchedRecipes.query({
@@ -57,12 +71,10 @@ angular.module('recipesApp')
           }
           var oldRecipes = $scope.recipes;
           $scope.recipes = oldRecipes.concat(onScroll).unique();
-          //console.log('On Scroll Content recipes : ' + JSON.stringify(onScroll));
+          console.log('On Scroll Content recipes length : ' + onScroll.length);
         });
         $scope.$broadcast('scroll.infiniteScrollComplete');
-        $scope.$broadcast('scroll.resize');
-        $scope.$broadcast('scroll.resize')
-      }, 1000);
+      }, 100);
     };
 
     $scope.sendMail = function () {

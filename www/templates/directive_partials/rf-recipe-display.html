@@ -12,7 +12,10 @@
         <br>{{item.ytlikes + item.applikes | numeral}}</div>
       <div class="col"><i class="ion ion-eye" style="color:grey;font-size:30px"></i>
         <br>{{item.views}}</div>
-      <div class="col"><i class="ion ion-ios-heart" style="color:#FF6666;font-size:30px"></i>
+      <!--<div class="col"><i class="ion ion-ios-heart" style="color:#FF6666;font-size:30px"></i>
+      </div>-->
+      <div class="col">
+        <span my-favorite-icon favorite=item></span>
       </div>
       <div class="col"><a style="font-size:20px;text-decoration:none" ui-sref="app.slides({recipeId:item._id})">More </a>
       </div>

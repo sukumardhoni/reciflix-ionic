@@ -10,7 +10,7 @@
         <rf-recipe-display></rf-recipe-display>
       </div>
     </div>
-    <ion-infinite-scroll immediate-check="false" ng-if="!noMoreItemsAvailable" distance="1%" on-infinite="loadMore()"></ion-infinite-scroll>
+    <ion-infinite-scroll immediate-check="false" ng-if="!noMoreItemsAvailable" distance="5%" on-infinite="searchQueryLoadMore()"></ion-infinite-scroll>
   </ion-content>
 
   <rf-footer-display></rf-footer-display>

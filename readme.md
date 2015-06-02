@@ -14,24 +14,24 @@ Developer Notes
 
 Bugs
 ----------
-IOS back text not hiding after configuring the 
-$ionicConfigProvider.platform.ios.backButton.previousTitleText('').icon('ion-ios-arrow-thin-left');
+X : IOS back text not hiding after configuring the 
+      $ionicConfigProvider.platform.ios.backButton.previousTitleText('').icon('ion-ios-arrow-thin-left');
 
-when clicked on home always show the User settings
+X : when clicked on home always show the User settings
+
+X : 5.1) prepare empty pages informing not supported yet
+
+X : 7. how to differentiate fbuser from regular user ( use provider in the USer model)
+
+X : Searched Recipes seems have bugs
+
+ 
+
+dist is not being ignored in git
 
 
-Searched Recipes seems have bugs
 
-
-
-
-5.1) prepare empty pages informing not supported yet
-
-7. how to differentiate fbuser from regular user ( use provider in the USer model)
-
-
-
-1.1) Directives to be developed for reuse
+1.1) Directives to be developed for re-use
 recipe_display
 
 1.2) User notifications

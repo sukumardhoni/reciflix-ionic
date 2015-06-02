@@ -1,10 +1,10 @@
 angular.module('recipesApp')
   .controller('allCategoriesCtrl', function ($scope, $state, $stateParams, Categories, $ionicPopover, $timeout, $rootScope, Authentication, $ionicLoading, $http, $localStorage, $ionicHistory) {
 
-    $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
+    //$http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
 
     $scope.userDetails = Authentication;
-    console.log('User details from window service is : ' + JSON.stringify($scope.userDetails));
+    //console.log('User details from window service is : ' + JSON.stringify($scope.userDetails));
     $scope.oModal1 = $rootScope.modal1;
     $scope.oModal2 = $rootScope.modal2;
     $scope.oModal1.hide();
@@ -30,9 +30,10 @@ angular.module('recipesApp')
 
     //make sure the history is reset for Backbutton
 
-    $ionicHistory.clearHistory();
-
-
+    $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+      viewData.enableBack = false;
+      $ionicHistory.clearHistory();
+    });
 
     $ionicPopover.fromTemplateUrl('templates/dropdownmenu.html', {
       scope: $scope,
@@ -43,20 +44,6 @@ angular.module('recipesApp')
     $scope.openPopover = function ($event) {
       $scope.popover.show($event);
     };
-
-
-
-    Array.prototype.unique = function () {
-      console.log('Console at unique')
-      var a = this.concat();
-      for (var i = 0; i < a.length; ++i) {
-        for (var j = i + 1; j < a.length; ++j) {
-          if (a[i] === a[j])
-            a.splice(j--, 1);
-        }
-      }
-      return a;
-    }
 
     $scope.loadMore = function () {
       $timeout(function () {

@@ -108,7 +108,7 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage'])
       views: {
         'menuContent': {
           templateUrl: "templates/search.html",
-          controller: "AppCtrl"
+          //controller: "AppCtrl"
         }
       }
     })
@@ -121,10 +121,46 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage'])
         }
       }
     })
+    .state('app.featuredRecipes', {
+      url: "/featuredRecipes/:name",
+      views: {
+        'menuContent': {
+          templateUrl: "templates/newPage.html",
+          controller: "AppCtrl"
+        }
+      }
+    })
+    .state('app.groceryList', {
+      url: "/groceryList/:name",
+      views: {
+        'menuContent': {
+          templateUrl: "templates/newPage.html",
+          controller: "AppCtrl"
+        }
+      }
+    })
+    .state('app.myCalendarPlan', {
+      url: "/myCalendarPlan/:name",
+      views: {
+        'menuContent': {
+          templateUrl: "templates/newPage.html",
+          controller: "AppCtrl"
+        }
+      }
+    })
+    .state('app.settings', {
+      url: "/settings/:name",
+      views: {
+        'menuContent': {
+          templateUrl: "templates/newPage.html",
+          controller: "AppCtrl"
+        }
+      }
+    })
   $urlRouterProvider.otherwise('/');
   $ionicConfigProvider.navBar.alignTitle('center');
   $ionicConfigProvider.platform.android.backButton.previousTitleText('').icon('ion-android-arrow-back');
-  $ionicConfigProvider.platform.ios.backButton.previousTitleText('hhhhhllllll').icon('ion-ios-arrow-thin-left');
+  $ionicConfigProvider.platform.ios.backButton.text('&nbsp;').icon('ion-arrow-left-a');
   $ionicConfigProvider.platform.ios.views.transition('ios');
   $ionicConfigProvider.platform.android.views.transition('android');
 

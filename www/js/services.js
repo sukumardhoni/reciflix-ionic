@@ -1,7 +1,7 @@
 angular.module('recipesApp')
 
-.constant('API_HOST', 'http://localhost:3000')
-  //.constant('API_HOST', 'http://mean-reciflix-rest.herokuapp.com')
+//.constant('API_HOST', 'http://localhost:3000')
+.constant('API_HOST', 'http://mean-reciflix-rest.herokuapp.com')
   /*
 
 	.factory('Recipes', function ($resource) {
@@ -24,7 +24,7 @@ angular.module('recipesApp')
 	*/
 
 .factory('Categories', function ($resource, API_HOST) {
-  return $resource(API_HOST + '/categories/:pageId', {
+  return $resource(API_HOST + '/categories/page/:pageId', {
     pageId: '@pageId'
   }, {
     'query': {

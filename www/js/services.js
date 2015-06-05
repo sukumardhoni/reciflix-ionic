@@ -1,8 +1,10 @@
 angular.module('recipesApp')
 
 //.constant('API_HOST', 'http://localhost:3000')
-.constant('API_HOST', 'http://mean-reciflix-rest.herokuapp.com')
-  /*
+//.constant('API_HOST', 'http://mean-reciflix-rest.herokuapp.com')
+.constant('API_HOST', 'http://qa.api.reciflix.com')
+
+/*
 
 	.factory('Recipes', function ($resource) {
 		return $resource('http://reciflix-rest.herokuapp.com/api/v1/recipes/:catgyName/:recipeId', {

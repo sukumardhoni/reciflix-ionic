@@ -160,7 +160,7 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage'])
   $urlRouterProvider.otherwise('/');
   $ionicConfigProvider.navBar.alignTitle('center');
   $ionicConfigProvider.platform.android.backButton.previousTitleText('').icon('ion-android-arrow-back');
-  $ionicConfigProvider.platform.ios.backButton.text('&nbsp;').icon('ion-arrow-left-a');
+  $ionicConfigProvider.platform.ios.backButton.text('&nbsp;').icon('ion-android-arrow-back');
   $ionicConfigProvider.platform.ios.views.transition('ios');
   $ionicConfigProvider.platform.android.views.transition('android');
 

@@ -9,75 +9,50 @@ USE Brackets Editor Spaces : 2 option
 Developer Notes
 -------------------------------
 
+Create in mean-reciflix-rest project reciflix landing page as homepage  (Mahesh)
 
-1. create a home page on the  point reciflix.com to the blog
+Functionality for taking the subscribers email for notification  (Vinodh, Mahesh)
+1000 people subscribed for notification
+/notifyme {name: , email: email@address.com}
+.post
+.get
 
+prospectiveEmails  collection  for storing prospective users emails
 
+Provide the latest writeup for reciflix  (Venkat)
 
-X 4. keep the meanreciflix rest alive 
-5. enable ssl for api server
-3. think about strategy for taking the notification list
-2. provide the latest writeup for reciflix
+1.1) Directives to be developed for re-use (Venkat)
+recipe_display
+recipe display directive common for recipelist, search display, favourite display  
 
-http://qa.api.reciflix.com/isAlive
-
-6. conditionally get API from servers, check if alive then do the calling
-or call based on the time of the day
-
-
+category and recipe editing features for administartor  (Vinodh, Mahesh)
 
 
 on the App
 --------------
 
-create an app.profile route to show User profile ( image , firstname, lastname, email)
+create an app.profile route to show User profile ( image , firstname, lastname, email)  (Mahesh)
 
-On the header bar back button to be replaced with ios light back button(see if we can show it in font color white)
+On the header bar back button to be replaced with ios light back button(see if we can show it in font color white)  (Vinodh)
 
-Home button to be bringing the categories transition from left side
+Home button to be bringing the categories transition from left side (Vinodh)
 
-icon editor to create a Home icon with food theme or use a readymade food theme icon (like dinner plate etc)
+icon editor to create a Home icon with food theme or use a readymade food theme icon (like dinner plate etc) (Mahesh)
 
-
+https (ssl enbling) for API server (. enable ssl for api server)  (Vinodh)
 
 Bugs
 ----------
-X : IOS back text not hiding after configuring the 
-      $ionicConfigProvider.platform.ios.backButton.previousTitleText('').icon('ion-ios-arrow-thin-left');
 
-X : when clicked on home always show the User settings
-
-X : 5.1) prepare empty pages informing not supported yet
-
-X : 7. how to differentiate fbuser from regular user ( use provider in the USer model)
-
-X : Searched Recipes seems have bugs
-
- 
-
+dist folder and generated files need to investigate to see why they need in ionic project  (Venkat)
 dist is not being ignored in git
-
-
-
-1.1) Directives to be developed for re-use
-recipe_display
-
-1.2) User notifications
-
-1.3) https setup for rest server
-
-2. Landing website page (www.reciflix.com) details and strategy
 
 
 4. Gather more videos, select some relevant yt sources and load
 
 
-6. Explore how to set Featured recipes
+6. Explore how to set Featured recipes (Venkat)
 
-7. Identify the offline access for some recipes,
-provide user preferences to select offline access of available recipes
-
-offline content for 10 high ranked recipes in each category
 
 
 6. UnAuthenticated User 
@@ -85,48 +60,33 @@ offline content for 10 high ranked recipes in each category
 -- explore to use localstorage to add favourites etc when not authenticated also
 
 
-9.optimize the images using gimp etc..
+9.optimize the images using gimp etc.. (Venkat)
 
 
 10. offline access of the application
 -- localstore images of category
 -- add a api call for latest updated date for each category
 -- store category info and image in localstorage, only if the server data is latest bring it from the server and refresh the localstorage
+Identify the offline access for some recipes,
+offline access for recipes  (Venkat)
+offline content for 10 high ranked recipes in each category
+provide user preferences to select offline access of available recipes
 
-
-
+Next Version
+-------------
 allow videos be submitted by the user
 
-allow users to be able to submit the directions, ingradients
-
-
---
-
-
-
-
-
-
-https://www.youtube.com/watch?v=9j5CvMaKu2s
-
-
-
-
-
-
-
+allow users to be able to submit the procedure and ingradients
 
 Email updates when a new recipe added by category or tag
 
 
+--
+
+https://www.youtube.com/watch?v=9j5CvMaKu2s
 
 NYT cooking RecipeBox
 http://pttrns.com/applications/408?y=2015
-
-
-
-
-
 
 
 http://forum.ionicframework.com/t/ionic-beta14-how-to-clean-the-cache-for-a-specific-view/14277/11
@@ -168,14 +128,3 @@ So the fade bar isn't even there on anything device that isn't an iOS7 device. T
 So the issue seems to be that when you tap the header, it thinks you're tapping the fade bar and no the header it self.
 
 
-
-
-
-
-X 1. the infinite scroll is hitting twice the API call  
-- done cleared after cleaning up the code
-
-X 8. logout is not completely logging out user
-
-X 5. User settings section
--- clean and keep only required options 

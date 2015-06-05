@@ -10,6 +10,34 @@ Developer Notes
 -------------------------------
 
 
+1. create a home page on the  point reciflix.com to the blog
+
+
+
+X 4. keep the meanreciflix rest alive 
+5. enable ssl for api server
+3. think about strategy for taking the notification list
+2. provide the latest writeup for reciflix
+
+http://qa.api.reciflix.com/isAlive
+
+6. conditionally get API from servers, check if alive then do the calling
+or call based on the time of the day
+
+
+
+
+on the App
+--------------
+
+create an app.profile route to show User profile ( image , firstname, lastname, email)
+
+On the header bar back button to be replaced with ios light back button(see if we can show it in font color white)
+
+Home button to be bringing the categories transition from left side
+
+icon editor to create a Home icon with food theme or use a readymade food theme icon (like dinner plate etc)
+
 
 
 Bugs

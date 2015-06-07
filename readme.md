@@ -75,6 +75,15 @@ https (ssl enbling) for API server (. enable ssl for api server)  (Vinodh)
 
 Login and signup forms should be in a native application look and feel.
 
+Understand config.xml features
+
+
+PlayStore Assets Preparation:
+-----------------------------
+
+1: Good Quality Images for PlayStore.
+
+2: Description about app.
 
 
 Bugs

@@ -11,13 +11,13 @@ Developer Notes
 
 X : Create in mean-reciflix-rest project reciflix landing page as homepage  (Mahesh)
 
-Functionality for taking the subscribers email for notification  (Vinodh, Mahesh)
+X : Functionality for taking the subscribers email for notification  (Vinodh, Mahesh)
 1000 people subscribed for notification
 /notifyme {type:'ios/android' , email: email@address.com}
 .post
 .get
 
-prospectiveEmails  collection  for storing prospective users emails
+X : prospectiveEmails  collection  for storing prospective users emails
 
 
 More clarification on notify functionality.
@@ -49,22 +49,17 @@ then Show user that, thanks for subscribing to notification, you will hear from 
 
 
 
-
-
-
-
-
-
-
 Provide the latest writeup for reciflix  (Venkat)
 
 1.1) Directives to be developed for re-use (Venkat)
 recipe_display
 recipe display directive common for recipelist, search display, favourite display  
 
-
-
 create an app.profile route to show User profile ( image , firstname, lastname, email)  (Mahesh)
+
+-- if user is from fb, get the image url from fb and store it in to the User model
+-- if local empty image use a blank user 
+
 
 icon editor to create a Home icon with food theme or use a readymade food theme icon (like dinner plate etc) (Mahesh)
 

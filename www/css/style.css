@@ -272,7 +272,7 @@ small.time {
 .catgyName {
   font-family: Source Sans Pro !important;
   font-size: 27px;
-  color: #009688;
+  color: #009988;
   padding: 10px;
 }
 /*Bounce animations for heart icon*/
@@ -343,17 +343,22 @@ small.time {
 
 .rf-recipe-display .small-info {
   color: green;
-  font-size: 12px;
+  font-size: 13px;
+}
+
+.rf-recipe-display .ion-info {
+  color: #444;
+  font-size: 15px;
 }
 
 .rf-title {
-  color: #444444;
-  font-size: 15px;
+  color: #009988;
+  font-size: 16px;
   padding-left: 4px;
 }
 
 .rf-description {
   color: #444444;
-  font-size: 14px;
+  font-size: 15px;
   padding-left: 4px;
 }

@@ -46,6 +46,21 @@ This email already existsts in our notification list, if you want to give a diff
 then Show user that, thanks for subscribing to notification, you will hear from us as soon as the ReciFlix app is released to store.
 
 
+1. diaply stye change for recipe card
+2. go all the way to generating apk for playstore, we will signup forthe android developer program in the morning
+Login and signup forms should be in a native application look and feel.
+font name can we use good font on ionic( like google font apis)
+
+
+
+
+3. landing page display in mobile device ( model it after instagram behaviour or as you suggested)
+4. help Mahesh push the code mean-reciflix-rest 
+5. Mahesh to look into image optimization and icon creation
+6. create an app.profile route to show User profile ( image , firstname, lastname, email)  (Mahesh)
+
+
+
 
 
 
@@ -55,7 +70,7 @@ Provide the latest writeup for reciflix  (Venkat)
 recipe_display
 recipe display directive common for recipelist, search display, favourite display  
 
-create an app.profile route to show User profile ( image , firstname, lastname, email)  (Mahesh)
+
 
 -- if user is from fb, get the image url from fb and store it in to the User model
 -- if local empty image use a blank user 
@@ -71,9 +86,9 @@ X : Home button to be bringing the categories transition from left side (Vinodh)
 
 
 
-https (ssl enbling) for API server (. enable ssl for api server)  (Vinodh)
 
-Login and signup forms should be in a native application look and feel.
+
+
 
 Understand config.xml features
 
@@ -147,7 +162,7 @@ allow users to be able to submit the procedure and ingradients
 
 Email updates when a new recipe added by category or tag
 
-
+https (ssl enbling) for API server (. enable ssl for api server)  (Vinodh)
 --
 
 https://www.youtube.com/watch?v=9j5CvMaKu2s

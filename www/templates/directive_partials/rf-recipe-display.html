@@ -10,9 +10,32 @@
         <img ng-src="{{item.images.dft}}" alt="Making Image">
       </div>
       <div class="col">
-        <i class="ion ion-eye small-info" style="color:grey">&nbsp;</i><span class="small-info">311.5k</span>
-        <i class="ion ion-ios-clock-outline small-info">&nbsp;</i><span class="small-info">4m:38s</span>
+        <i class="ion ion-eye ion-info">&nbsp;</i><span class="small-info">{{item.views | numeral}}</span>
+        <i class="ion ion-ios-clock-outline ion-info">&nbsp;</i><span class="small-info">{{item.duration | durationFltr}}</span>
+
+
+        <div class="row">
+          <div class="col">
+
+            <i class="ion ion-thumbsup" style="color:grey;font-size:30px" ng-class="{'thumbsup-selected': userliked(item.videoId)==true}"></i>{{item.ytlikes + item.applikes | numeral}}
+
+          </div>
+
+          <div class="col">
+            <span my-favorite-icon favorite=item></span>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col">
+
+            <i class="ion ion-play" style="color:green;font-size:30px" ui-sref="app.showRecipes({videoId:item.videoId})"></i>
+          </div>
+          <div class="col">
+            MORE
+          </div>
+        </div>
       </div>
+
     </div>
     <div class="row">
 

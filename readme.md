@@ -50,7 +50,7 @@ then Show user that, thanks for subscribing to notification, you will hear from 
 2. go all the way to generating apk for playstore, we will signup forthe android developer program in the morning
 Login and signup forms should be in a native application look and feel.
 font name can we use good font on ionic( like google font apis)
-
+http://forum.ionicframework.com/t/google-fonts/1206
 
 
 

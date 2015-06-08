@@ -4,56 +4,48 @@
     <i ng-class="item._id === selectedIndex ? 'ion ion-chevron-up' : 'ion ion-chevron-down'" style="color:Grey;font-size:30px;float:right" ng-click="changeClass(item)"></i>
   </div>
   <div class="item item-body item-text-wrap rf-recipe-display" style="overflow: visible;">
-
     <div class="row">
-      <div class="col-30">
-        <img ng-src="{{item.images.dft}}" alt="Making Image">
+      <div class="col-40" id="container">
+        <img ng-src="{{item.images.dft}}" alt="Making Image" class="rf-image">
+        <div class="rf-play" ui-sref="app.showRecipes({videoId:item.videoId})"><i class="ion ion-play ion-info" style="color:#FF6666;font-size:40px">&nbsp;</i>
+        </div>
       </div>
-      <div class="col">
-        <i class="ion ion-eye ion-info">&nbsp;</i><span class="small-info">{{item.views | numeral}}</span>
-        <i class="ion ion-ios-clock-outline ion-info">&nbsp;</i><span class="small-info">{{item.duration | durationFltr}}</span>
-
-
-        <div class="row">
-          <div class="col">
-
-            <i class="ion ion-thumbsup" style="color:grey;font-size:30px" ng-class="{'thumbsup-selected': userliked(item.videoId)==true}"></i>{{item.ytlikes + item.applikes | numeral}}
-
+      <div class="col-60">
+        <div class="row" style="padding-left:15px">
+          <i class="ion ion-eye ion-info">&nbsp;</i><span class="small-info">{{item.views | numeral}}</span>&nbsp;&nbsp;&nbsp;
+          <i class="ion ion-ios-clock-outline ion-info">&nbsp;</i><span class="small-info">{{item.duration | durationFltr}}</span>
+        </div>
+        &nbsp;
+        <div class="row" style="padding-left:15px">
+          <div class="col-30">
+            <span my-like-icon favorite=item></span>
+            <br>{{item.ytlikes + item.applikes | numeral}}&nbsp;&nbsp;&nbsp;
           </div>
-
-          <div class="col">
+          <div class="col-30">
             <span my-favorite-icon favorite=item></span>
           </div>
-        </div>
-        <div class="row">
-          <div class="col">
-
-            <i class="ion ion-play" style="color:green;font-size:30px" ui-sref="app.showRecipes({videoId:item.videoId})"></i>
-          </div>
-          <div class="col">
-            MORE
+          <div class="col-30">
+            <a style="font-size:20px;text-decoration:none" ui-sref="app.slides({recipeId:item._id})">&nbsp;&nbsp;&nbsp;More </a>
           </div>
         </div>
       </div>
-
     </div>
-    <div class="row">
-
+    <div class="row rf-description">
       <div ng-class="item._id === selectedIndex ? 'fullHeight' : 'dftHeight'">
         {{item.description}}
       </div>
     </div>
   </div>
-  <div class="item item-divider">
-    <div class="row">
-      <div class="col"><i class="ion ion-thumbsup" style="color:grey;font-size:30px" ng-class="{'thumbsup-selected': userliked(item.videoId)==true}"></i>{{item.ytlikes + item.applikes | numeral}}</div>
-      <div class="col">
-        <span my-favorite-icon favorite=item></span>
-      </div>
-      <div class="col"><i class="ion ion-play" style="color:green;font-size:30px" ui-sref="app.showRecipes({videoId:item.videoId})"></i>
-      </div>
-      <div class="col"><a style="font-size:20px;text-decoration:none" ui-sref="app.slides({recipeId:item._id})">More </a>
-      </div>
+  <!--<div class="item item-divider">
+  <div class="row">
+    <div class="col"><i class="ion ion-thumbsup" style="color:grey;font-size:30px" ng-class="{'thumbsup-selected': userliked(item.videoId)==true}"></i>{{item.ytlikes + item.applikes | numeral}}</div>
+    <div class="col">
+      <span my-favorite-icon favorite=item></span>
+    </div>
+    <div class="col"><i class="ion ion-play" style="color:green;font-size:30px" ui-sref="app.showRecipes({videoId:item.videoId})"></i>
+    </div>
+    <div class="col"><a style="font-size:20px;text-decoration:none" ui-sref="app.slides({recipeId:item._id})">More </a>
     </div>
   </div>
+</div>-->
 </div>

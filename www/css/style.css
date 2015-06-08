@@ -1,7 +1,7 @@
 /* Empty. Add your own CSS if you like */
 
 .dftHeight {
-  height: 125px;
+  height: 120px;
   overflow: hidden;
 }
 
@@ -337,7 +337,7 @@ small.time {
 .rf-recipe-display .row,
 .rf-recipe-display .col {
   padding-top: 0px;
-  padding-bottom: 0px;
+  padding-bottom: 4px;
   border: 0px solid black;
 }
 
@@ -353,12 +353,34 @@ small.time {
 
 .rf-title {
   color: #009988;
-  font-size: 16px;
+  font-family: CNN, "Helvetica Neue", Helvetica, Arial, Utkal, sans-serif;
+  font-size: 1.1em;
   padding-left: 4px;
+  line-height: 1.13;
+  -webkit-font-smoothing: antialiased;
+  font-weight: 700;
 }
 
 .rf-description {
-  color: #444444;
-  font-size: 15px;
+  color: #666666;
+  font-family: CNN, "Helvetica Neue", Helvetica, Arial, Utkal, sans-serif;
+  font-size: 1.125rem;
   padding-left: 4px;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.33;
+}
+/*Play button on image*/
+
+.rf-play {
+  #background: url("../img/Play_red_32.png") center center no-repeat;
+  color: #009988 !important;
+  margin: -65px 0 0 45px;
+  #height: 90px;
+  position: relative;
+  z-index: 10;
+}
+
+.rf-image {
+  opacity: 0.6;
 }

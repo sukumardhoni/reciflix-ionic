@@ -46,7 +46,7 @@ This email already existsts in our notification list, if you want to give a diff
 then Show user that, thanks for subscribing to notification, you will hear from us as soon as the ReciFlix app is released to store.
 
 
-1. diaply stye change for recipe card
+1. X : display style change for recipe card
 2. go all the way to generating apk for playstore, we will signup forthe android developer program in the morning
 Login and signup forms should be in a native application look and feel.
 font name can we use good font on ionic( like google font apis)
@@ -54,10 +54,14 @@ font name can we use good font on ionic( like google font apis)
 
 
 
-3. landing page display in mobile device ( model it after instagram behaviour or as you suggested)
-4. help Mahesh push the code mean-reciflix-rest 
+3. X : landing page display in mobile device ( model it after instagram behaviour or as you suggested)
+4. X : help Mahesh push the code mean-reciflix-rest 
 5. Mahesh to look into image optimization and icon creation
 6. create an app.profile route to show User profile ( image , firstname, lastname, email)  (Mahesh)
+7. Documentation for creating custom icons (Mahesh)
+   Create a custom favorite brief-case icon with heart icon also.
+   Protractor tests should be re-visited.(Mahesh)
+   Logo images should maintain the fixed size.
 
 
 

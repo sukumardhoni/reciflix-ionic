@@ -1,24 +1,25 @@
 <div class="card">
-  <div class="item item-divider item-text-wrap">
+  <div class="item item-divider item-text-wrap rf-title">
     {{item.title}}
     <i ng-class="item._id === selectedIndex ? 'ion ion-chevron-up' : 'ion ion-chevron-down'" style="color:Grey;font-size:30px;float:right" ng-click="changeClass(item)"></i>
   </div>
-  <div class="item item-body item-text-wrap" style="overflow: visible;">
+  <div class="item item-body item-text-wrap rf-recipe-display" style="overflow: visible;">
+
     <div class="row">
-      <div class="col"><img ng-src="{{item.images.dft}}" alt="Making Image">
+      <div class="col-30">
+        <img ng-src="{{item.images.dft}}" alt="Making Image">
       </div>
-      <div class="col col-50"><span style="float:right;padding-right:10px">
-        <div class="row">
-        <div class="col"><p><i class="ion ion-eye" style="color:grey" >&nbsp;</i>{{item.views | numeral}}</p></div>
-        <div class="col"><p><i class="ion ion-ios-clock-outline" style="color:grey;" >&nbsp;</i>{{item.duration | durationFltr}} </p></div>
-        </div>
-
-
-    </span>
+      <div class="col">
+        <i class="ion ion-eye small-info" style="color:grey">&nbsp;</i><span class="small-info">311.5k</span>
+        <i class="ion ion-ios-clock-outline small-info">&nbsp;</i><span class="small-info">4m:38s</span>
       </div>
-
     </div>
-    <div ng-class="item._id === selectedIndex ? 'fullHeight' : 'dftHeight'">{{item.description}}</div>
+    <div class="row">
+
+      <div ng-class="item._id === selectedIndex ? 'fullHeight' : 'dftHeight'">
+        {{item.description}}
+      </div>
+    </div>
   </div>
   <div class="item item-divider">
     <div class="row">
@@ -26,7 +27,6 @@
       <div class="col">
         <span my-favorite-icon favorite=item></span>
       </div>
-
       <div class="col"><i class="ion ion-play" style="color:green;font-size:30px" ui-sref="app.showRecipes({videoId:item.videoId})"></i>
       </div>
       <div class="col"><a style="font-size:20px;text-decoration:none" ui-sref="app.slides({recipeId:item._id})">More </a>

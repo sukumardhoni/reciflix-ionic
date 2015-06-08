@@ -1,7 +1,7 @@
 /* Empty. Add your own CSS if you like */
 
 .dftHeight {
-  height: 100px;
+  height: 125px;
   overflow: hidden;
 }
 
@@ -325,4 +325,35 @@ small.time {
 .bounceIn {
   -webkit-animation-name: bounceIn;
   animation-name: bounceIn;
+}
+
+.rf-recipe-display {
+  padding-left: 2px;
+  padding-right: 2px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+.rf-recipe-display .row,
+.rf-recipe-display .col {
+  padding-top: 0px;
+  padding-bottom: 0px;
+  border: 0px solid black;
+}
+
+.rf-recipe-display .small-info {
+  color: green;
+  font-size: 12px;
+}
+
+.rf-title {
+  color: #444444;
+  font-size: 15px;
+  padding-left: 4px;
+}
+
+.rf-description {
+  color: #444444;
+  font-size: 14px;
+  padding-left: 4px;
 }

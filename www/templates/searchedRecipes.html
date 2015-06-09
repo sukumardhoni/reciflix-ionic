@@ -3,7 +3,6 @@
     <span style="color:white">Searched Recipes
     </span>
   </ion-nav-title>
-
   <ion-content>
     <div ng-repeat="items in recipes">
       <div ng-repeat="item in items">
@@ -12,7 +11,5 @@
     </div>
     <ion-infinite-scroll immediate-check="false" ng-if="!noMoreItemsAvailable" distance="5%" on-infinite="searchQueryLoadMore()"></ion-infinite-scroll>
   </ion-content>
-
   <rf-footer-display></rf-footer-display>
-
 </ion-view>

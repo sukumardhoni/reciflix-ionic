@@ -1,16 +1,8 @@
-// Ionic Starter App
-
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-
 angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage'])
 
 .run(function ($ionicPlatform, $state, $rootScope, $ionicPopup, $http, $localStorage) {
   $rootScope.$state = $state;
   $ionicPlatform.ready(function () {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
@@ -21,7 +13,6 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage'])
   });
   $ionicPlatform.registerBackButtonAction(function (e) {
     if ($state.includes('app.allCategories')) {
-      console.log('Back button is triggred in IF')
       e.preventDefault();
       $ionicPopup.confirm({
         title: 'System warning',
@@ -35,15 +26,12 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage'])
       console.log('Back button is triggred')
     }
   }, 100);
-
-
 })
 
 .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
   openFB.init({
     appId: 1577978382487078
   });
-
   $stateProvider
     .state('walkthrough', {
       url: "/",
@@ -57,7 +45,6 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage'])
       controller: 'AppCtrl'
     })
     .state('app.allCategories', {
-      //url: "/allCategories/552226419f3cb2e4199fffda",
       url: "/allRecipes/:userId",
       views: {
         'menuContent': {
@@ -75,8 +62,7 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage'])
         }
       }
     })
-
-  .state('app.slides', {
+    .state('app.slides', {
       url: "/slides/:recipeId",
       views: {
         'menuContent': {
@@ -171,5 +157,4 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage'])
   $ionicConfigProvider.platform.ios.backButton.text('&nbsp;').icon('ion-android-arrow-back');
   $ionicConfigProvider.platform.ios.views.transition('ios');
   $ionicConfigProvider.platform.android.views.transition('android');
-
 });

@@ -3,15 +3,11 @@
     <span style="color:white">{{CatName}}
     </span>
   </ion-nav-title>
-
   <ion-content has-header="true" ng-init="initialQueryRecipes()">
     <div ng-repeat="item in recipes">
       <rf-recipe-display></rf-recipe-display>
     </div>
     <ion-infinite-scroll immediate-check="false" ng-if="!noMoreItemsAvailable" on-infinite="loadMore()" distance="5%"></ion-infinite-scroll>
   </ion-content>
-
   <rf-footer-display></rf-footer-display>
-
-
 </ion-view>

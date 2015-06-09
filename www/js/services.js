@@ -1,29 +1,7 @@
 angular.module('recipesApp')
 
 //.constant('API_HOST', 'http://localhost:3000')
-//.constant('API_HOST', 'http://mean-reciflix-rest.herokuapp.com')
 .constant('API_HOST', 'http://qa.api.reciflix.com')
-
-/*
-
-	.factory('Recipes', function ($resource) {
-		return $resource('http://reciflix-rest.herokuapp.com/api/v1/recipes/:catgyName/:recipeId', {
-			recipeId: '@_id',
-			catgyName: '@catgyName'
-		}, {
-			'update': {
-				method: 'PUT'
-			},
-			'query': {
-				method: 'GET',
-				isArray: true
-			},
-			'remove': {
-				method: 'DELETE'
-			}
-		});
-	})
-	*/
 
 .factory('Categories', function ($resource, API_HOST) {
   return $resource(API_HOST + '/categories/page/:pageId', {
@@ -35,8 +13,6 @@ angular.module('recipesApp')
     }
   });
 })
-
-
 
 .factory('RecipesByCategory', function ($resource, API_HOST) {
   return $resource(API_HOST + '/VRecipesByCategories/:CategoryName/:pageId', {
@@ -50,7 +26,6 @@ angular.module('recipesApp')
   });
 })
 
-
 .factory('SingleRecipe', function ($resource, API_HOST) {
   return $resource(API_HOST + '/vRecipes/:recipeId', {
     recipeId: '@_id',
@@ -63,19 +38,6 @@ angular.module('recipesApp')
     }
   });
 })
-
-/*
-.factory('RecipesOnScroll', function ($resource) {
-	return $resource('http://reciflix-rest.herokuapp.com/api/v1/recipesOnScroll/page/:pageId/:catgyName', {
-		pageId: '@pageId'
-	}, {
-		'query': {
-			method: 'GET',
-			isArray: true
-		}
-	});
-})
-*/
 
 .factory('User', function ($resource, API_HOST) {
   return {
@@ -136,16 +98,12 @@ angular.module('recipesApp')
   });
 })
 
-
 .factory('Authentication', [
-
  function () {
     var _this = this;
-
     _this._data = {
       user: window.user
     };
-
     return _this._data;
  }
-])
+]);

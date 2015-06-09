@@ -4,4 +4,4 @@ angular.module('recipesApp')
       restrict: 'E',
       templateUrl: 'templates/directive_partials/rf-footer-display.html'
     };
-  })
+  });

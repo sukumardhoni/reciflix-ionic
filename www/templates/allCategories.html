@@ -2,14 +2,10 @@
   <ion-nav-title>
     <span style="color:white">All Categories
     </span>
-
   </ion-nav-title>
-
   <ion-content>
     <ion-list>
       <ion-item ng-repeat="item in categories" class="item-remove-animate">
-        <!--<span ui-sref="singleRecipe({recipeId:item._id})">{{item.tags}}</span>-->
-        <!--<div ui-sref="app.categoriesVideos({categorieName:item})">-->
         <div ui-sref="app.categoriesVideos({categorieName:item.catId,catName:item.displayName})">
           <center>
             <img ng-src="img/recipeImgs/{{item.imageName}}" height="180px" />
@@ -20,37 +16,5 @@
     </ion-list>
     <ion-infinite-scroll immediate-check="false" ng-if="!noMoreItemsAvailable" distance="5%" on-infinite="loadMore()"></ion-infinite-scroll>
   </ion-content>
-
-  <!--
-	<ion-footer-bar align-title="left" class="bar-assertive">
-<a class="button button-clear" href="">
-			<i class="icon ion-laptop" style="color:white;font-size:30px"></i>
-		</a>
-		<h1 class="button button-clear" ui-sref="app.myFav">
-			<i class="icon ion-search" style="color:white;font-size:30px"></i>
-		</h1>
-		<a class="button button-clear" ui-sref="app.myFav">
-			<i class="icon ion-ios-briefcase" style="color:white;font-size:30px"></i>
-		</a>
-</ion-footer-bar>
--->
-
   <rf-footer-display></rf-footer-display>
-
-
-  <!--
-	<ion-tabs class="tabs-assertive tabs-icon-only">
-
-		<ion-tab title="Web" icon-on="ion-ios-laptop" icon-off="ion-ios-laptop-outline">
-		</ion-tab>
-
-		<ion-tab title="Search" icon-on="ion-ios-search" icon-off="ion-ios-search-outline">
-		</ion-tab>
-
-		<ion-tab title="Favorites" icon-on="ion-ios-briefcase" icon-off="ion-ios-briefcase-outline">
-		</ion-tab>
-
-	</ion-tabs>
--->
-
 </ion-view>

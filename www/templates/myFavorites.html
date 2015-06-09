@@ -8,31 +8,21 @@
         Howdy.... You dont seem to have any Favourite Recipes, tap on <i class="icon ion-ios-heart-outline" style="font-size:30px;padding:5px 5px"></i> of a recipe to add it to Favourites <i class="icon ion-ios-heart animated" style="font-size:30px;padding:5px 5px"></i>
       </div>
     </div>
-
     <div ng-repeat="item in recipes" ng-show="authentication">
-
       <rf-recipe-display></rf-recipe-display>
-
     </div>
-
     <div ng-hide="authentication" class="card">
       <div class="item item-text-wrap">
-
         User is not logged in, Please login or create account to use Favourites, Preferences and several other account specific features.
         <br/>
         <br/>
-
         <div ui-sref="walkthrough" align="middle">
           <i class="icon ion-log-in"></i>
           <span class="menu-text" style="color:green">Login or Create Account</span>
         </div>
-
       </div>
     </div>
-
     <ion-infinite-scroll immediate-check="false" ng-if="!noMoreItemsAvailable" distance="1%" on-infinite="loadMore()" ng-show="authentication"></ion-infinite-scroll>
   </ion-content>
-
   <rf-footer-display></rf-footer-display>
-
 </ion-view>

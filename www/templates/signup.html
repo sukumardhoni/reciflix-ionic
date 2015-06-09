@@ -1,100 +1,40 @@
-<!--<ion-view hide-nav-bar="true" class="signup-view">
-	<ion-content>
-		<div class="logo">
-			<center>
-				<img src="img/Chef.png" height="90px" />
-			</center>
-		</div>
-		<div>
-			<center>
-				<p class="titlestyle">ReciFlix</p>
-			</center>
-
-		</div>
-		<div class="paddingclass">
-			<form name="form">
-				<label class="item-input inputstyle item-floating-label">
-					<span class="input-label labelClr">First Name</span>
-					<input type="text" placeholder="First Name" ng-model="user.firstname">
-				</label>
-				<label class="item-input inputstyle item-floating-label">
-					<span class="input-label labelClr">Last Name</span>
-					<input type="text" placeholder="Last Name" ng-model="user.lastname">
-				</label>
-				<label class="item-input inputstyle item-floating-label">
-					<span class="input-label labelClr">Email</span>
-					<input type="text" placeholder="Email" ng-model="user.email">
-				</label>
-				<p>
-					<small ng-show="errMsg" class="errMsg">{{errMsg}}</small>
-				</p>
-				<label class="item-input inputstyle item-floating-label">
-					<span class="input-label labelClr">Password</span>
-					<input type="Password" placeholder="Password" ng-model="user.password">
-				</label>
-
-				<br>
-				<button class="button button-block button-color curvebutton" ng-click="signup()">
-					Sign Up
-				</button>
-				<div>
-					<center>
-						<p style="opacity:0.5">or if you already have account</p>
-					</center>
-				</div>
-				<div>
-					<center>
-						<p style="margin-top:20px;" class="button-color" ui-sref="login">
-							Login
-						</p>
-					</center>
-				</div>
-			</form>
-		</div>
-	</ion-content>
-</ion-view>-->
-
-
-<!--IonicFullAppSignUpTemplate-->
-
 <ion-modal-view class="signup-view" hide-nav-bar="true" cache-view="false">
-	<ion-header-bar class="bar bar-assertive">
-		<h1 class="title">Create Account</h1>
-		<button class="button button-icon ion-close" style="float:right" ng-click="closeModal(2)"></button>
-	</ion-header-bar>
-	<ion-content scroll="false">
-		<div class="row">
-			<div class="col col-center">
-				<div class="card sign-up-container">
-
-					<form name="signup_form" class="" novalidate>
-						<div class="item item-body">
-							<label class="item item-input">
-								<input type="text" placeholder="First Name" name="user_fname" ng-model="user.firstName" required>
-							</label>
-							<label class="item item-input">
-								<input type="text" placeholder="Last Name" name="user_lname" ng-model="user.lastName" required>
-							</label>
-							<label class="item item-input">
-								<input type="email" placeholder="Email" name="user_email" ng-model="user.email" required>
-							</label>
-							<label class="item item-input" show-hide-container>
-								<input type="password" placeholder="Password" name="user_password" ng-model="user.password" required show-hide-input>
-							</label>
-						</div>
-						<div class="item item-body bottom-content">
-							<button type="submit" class="button button-positive button-block" ng-click="doSignUp()" ng-disabled="signup_form.$invalid">
-								Sign Up
-							</button>
-						</div>
-					</form>
-				</div>
-				<div class="alternative-actions">
-					<button class="log-in button button-small button-clear button-light" ng-click="oModal1.show() && oModal2.hide()">
-						Log In
-					</button>
-				</div>
-			</div>
-		</div>
-	</ion-content>
+  <ion-header-bar class="bar bar-assertive">
+    <h1 class="title">Create Account</h1>
+    <button class="button button-icon ion-close" style="float:right" ng-click="closeModal(2)"></button>
+  </ion-header-bar>
+  <ion-content scroll="false">
+    <div class="row">
+      <div class="col col-center">
+        <div class="card sign-up-container">
+          <form name="signup_form" class="" novalidate>
+            <div class="item item-body">
+              <label class="item item-input">
+                <input type="text" placeholder="First Name" name="user_fname" ng-model="user.firstName" required>
+              </label>
+              <label class="item item-input">
+                <input type="text" placeholder="Last Name" name="user_lname" ng-model="user.lastName" required>
+              </label>
+              <label class="item item-input">
+                <input type="email" placeholder="Email" name="user_email" ng-model="user.email" required>
+              </label>
+              <label class="item item-input" show-hide-container>
+                <input type="password" placeholder="Password" name="user_password" ng-model="user.password" required show-hide-input>
+              </label>
+            </div>
+            <div class="item item-body bottom-content">
+              <button type="submit" class="button button-positive button-block" ng-click="doSignUp()" ng-disabled="signup_form.$invalid">
+                Sign Up
+              </button>
+            </div>
+          </form>
+        </div>
+        <div class="alternative-actions">
+          <button class="log-in button button-small button-clear button-light" ng-click="oModal1.show() && oModal2.hide()">
+            Log In
+          </button>
+        </div>
+      </div>
+    </div>
+  </ion-content>
 </ion-modal-view>

@@ -18,7 +18,7 @@ angular.module('recipesApp')
     $scope.oModal1 = modal;
     $rootScope.modal1 = modal;
     $scope.user = {};
-    //$scope.user.email = "t3@t3.com";
+    $scope.user.email = "t3@t3.com";
     $scope.Login = function () {
       $ionicLoading.show({
         templateUrl: "templates/loading.html",

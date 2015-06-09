@@ -106,4 +106,18 @@ angular.module('recipesApp')
     };
     return _this._data;
  }
-]);
+])
+
+.factory('EnvDetails', function () {
+
+  var runningInCordova1;
+  document.addEventListener("deviceready", function () {
+    console.log('############ initializing the Env details, runningInCordova ');
+    runningInCordova1 = true;
+  }, function (err) {
+    console.log('############ initializing the Env details, runningInCordovaErrror happened:  ' + err);
+    runningInCordova1 = false;
+  });
+  return runningInCordova1;
+
+})

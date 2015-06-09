@@ -372,6 +372,7 @@ small.time {
   padding-right: 2px;
   padding-top: 4px;
   padding-bottom: 4px;
+  background-color: #efefef;
 }
 
 .rf-recipe-display .row,
@@ -379,6 +380,11 @@ small.time {
   padding-top: 0px;
   padding-bottom: 4px;
   border: 0px solid black;
+}
+
+.rf-recipe-display .row {
+  padding-left: 1px;
+  padding-right: 1px;
 }
 
 .rf-recipe-display .small-info {
@@ -430,4 +436,11 @@ small.time {
   top: 32px;
   width: 32px;
   z-index: 1000;
+}
+
+.rf-card {
+  margin-bottom: 5px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 5px;
 }

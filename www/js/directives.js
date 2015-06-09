@@ -27,9 +27,13 @@ angular.module('recipesApp')
     template: '<i ng-class=" emptyIcon ? \'icon ion-ios-heart-outline\' : \'icon ion-ios-heart animated bounceIn\'" style="font-size:30px"></i>',
     link: function (scope, elem, attrs) {
       elem.on('click', function () {
+
+/*
         $cordovaToast.show('Moved this Recipe To Favorites', 'long', 'bottom').then(function (success) {}, function (error) {
           console.log("The toast was not shown due to " + error);
-        });
+        });*/
+
+
         if (Authentication.user) {
           if (scope.favorite) {
             if (scope.emptyIcon) {
@@ -108,9 +112,9 @@ angular.module('recipesApp')
     link: function (scope, elem, attrs) {
       elem.on('click', function () {
         if (Authentication.user) {
-          $cordovaToast.show('Liked this Recipe', 'long', 'bottom').then(function (success) {}, function (error) {
+/*          $cordovaToast.show('Liked this Recipe', 'long', 'bottom').then(function (success) {}, function (error) {
             console.log("The toast was not shown due to " + error);
-          });
+          });*/
           if (scope.favorite) {
             if (scope.emptyIcon) {
               scope.emptyIcon = false;

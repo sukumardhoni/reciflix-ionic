@@ -6,25 +6,6 @@
 
   <ion-content has-header="true" ng-init="initialQueryRecipes()">
     <div ng-repeat="item in recipes">
-      <!-- <div class="card">
-        <div class="item item-divider" style="text-align:center">
-          {{item.title}}
-        </div>
-        <div ng-class="item._id === selectedIndex ? 'fullHeight' : 'dftHeight'">{{item.description}}
-        </div>
-        <i ng-class="item._id === selectedIndex ? 'ion ion-chevron-up' : 'ion ion-chevron-down'" style="color:Grey;font-size:30px;float:right" ng-click="changeClass(item)"></i>
-        <div class="row">
-          <div class="col"><span my-like-icon favorite=item></span>
-            <br>{{item.ytlikes + item.applikes | numeral}}</div>
-          <div class="col"><i class="ion ion-eye" style="color:grey;font-size:30px"></i>
-            <br>{{item.views | numeral}}</div>
-          <div class="col">
-            <span my-favorite-icon favorite=item></span>
-          </div>
-          <div class="col"><a style="font-size:20px;text-decoration:none" ui-sref="app.slides({recipeId:item._id})">More </a>
-          </div>
-        </div>
-      </div>-->
       <rf-recipe-display></rf-recipe-display>
     </div>
     <ion-infinite-scroll immediate-check="false" ng-if="!noMoreItemsAvailable" on-infinite="loadMore()" distance="5%"></ion-infinite-scroll>

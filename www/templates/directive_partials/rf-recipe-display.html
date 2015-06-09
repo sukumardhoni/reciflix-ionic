@@ -5,26 +5,28 @@
   </div>
   <div class="item item-body item-text-wrap rf-recipe-display" style="overflow: visible;">
     <div class="row">
-      <div class="col-40" id="container">
+      <div class="col-30">
         <img ng-src="{{item.images.dft}}" alt="Making Image" class="rf-image">
         <div class="rf-play-icon" ui-sref="app.showRecipes({videoId:item.videoId})"></div>
       </div>
-      <div class="col-60">
-        <div class="row" style="padding-left:15px">
+      <div class="col col-70" style="padding-left:2px;">
+        <div class="row" style="padding-bottom:10px">
+          <i class="ion ion-ios-person-outline ion-info"><span class="small-info">&nbsp;&nbsp;{{item.author}}</span></i>
+        </div>
+        <div class="row" style="padding-bottom:5px">
           <i class="ion ion-eye ion-info">&nbsp;</i><span class="small-info">{{item.views | numeral}}</span>&nbsp;&nbsp;&nbsp;
           <i class="ion ion-ios-clock-outline ion-info">&nbsp;</i><span class="small-info">{{item.duration | durationFltr}}</span>
         </div>
-        &nbsp;
-        <div class="row" style="padding-left:15px">
-          <div class="col-30">
+        <div class="row" style="padding-left:0px">
+          <div class="col col-33">
             <span my-like-icon favorite=item></span>
-            <br>{{item.ytlikes + item.applikes | numeral}}&nbsp;&nbsp;&nbsp;
+            <br>{{item.ytlikes + item.applikes | numeral}}
           </div>
-          <div class="col-30">
+          <div class="col col-33">
             <span my-favorite-icon favorite=item></span>
           </div>
-          <div class="col-30">
-            <a style="font-size:20px;text-decoration:none" ui-sref="app.slides({recipeId:item._id})">&nbsp;&nbsp;&nbsp;More </a>
+          <div class="col col-33" style="padding-top: 5px;font-size:20px;text-decoration:none;border: 1px solid grey;">
+            <a style="text-decoration:none;" ui-sref="app.slides({recipeId:item._id})" href="#/app/slides/553b6343939820f40da7237e">Learn More</a>
           </div>
         </div>
       </div>

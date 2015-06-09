@@ -19,7 +19,7 @@ angular.module('recipesApp')
   })
 
 
-.directive('myFavoriteIcon', function ($sce, Authentication, UserFavorites, RecipesFavCount, $cordovaToast) {
+.directive('myFavoriteIcon', function ($sce, Authentication, UserFavorites, RecipesFavCount, $cordovaToast, $state) {
   return {
     restrict: 'A',
     scope: {
@@ -80,18 +80,24 @@ angular.module('recipesApp')
             console.log('It is off!');
             //scope.emptyIcon = true;
           }
-        } else console.log('User is not logged in please login')
+        } else {
+          console.log('User is not logged in please login');
+          $state.go('app.userNotLoggedIn');
+        }
       });
       scope.$watch('favorite', function (newVal) {
         //console.log('Fav directive is called')
         if (newVal) {
           var user = Authentication.user;
-          if (user)
+          if (user) {
             if (user.favorites.indexOf(newVal.videoId) == -1) {
               scope.emptyIcon = true;
             } else {
               scope.emptyIcon = false;
             }
+          } else {
+            scope.emptyIcon = true;
+          }
         }
       });
     }
@@ -103,7 +109,7 @@ angular.module('recipesApp')
 
 
 
-.directive('myLikeIcon', function ($sce, Authentication, RecipesFavCount, $cordovaToast, UserFavorites) {
+.directive('myLikeIcon', function ($sce, Authentication, RecipesFavCount, $cordovaToast, UserFavorites, $state) {
   return {
     restrict: 'A',
     scope: {
@@ -154,19 +160,26 @@ angular.module('recipesApp')
             console.log('It is off!');
             //scope.emptyIcon = true;
           }
-        } else console.log('User is not logged in please login')
+        } else {
+          console.log('User is not logged in please login');
+          $state.go('app.userNotLoggedIn');
+
+        }
       });
 
       scope.$watch('favorite', function (newVal) {
 
         if (newVal) {
           var user = Authentication.user;
-          if (user)
-            if (user.likes.indexOf(newVal.videoId) == -1) {
+          if (user) {
+            if (user.favorites.indexOf(newVal.videoId) == -1) {
               scope.emptyIcon = true;
             } else {
               scope.emptyIcon = false;
             }
+          } else {
+            scope.emptyIcon = true;
+          }
         }
       });
     }

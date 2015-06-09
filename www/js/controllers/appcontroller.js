@@ -2,20 +2,16 @@ angular.module('recipesApp')
   .controller('AppCtrl', function ($scope, SearchedRecipes, $stateParams, $ionicLoading, $timeout, Authentication, $state) {
 
     $scope.authentication = Authentication.user;
-
-    //console.log('Current State Name is : ' + $state.current.name);
     $scope.currentStateName = $stateParams.name;
 
     $scope.signout = function () {
-      console.log('signout');
       $scope.authentication = '';
       Authentication.user = '';
       openFB.logout(
-          function (response) {
-            console.log('Successfully logout fb user');
-            $state.go('walkthrough');
-          })
-        //	$state.go('walkthrough');
+        function (response) {
+          console.log('Successfully logout fb user');
+          $state.go('walkthrough');
+        })
     }
 
     if ($stateParams.searchQuery) {
@@ -34,14 +30,12 @@ angular.module('recipesApp')
       })
     }
 
-    $scope.userliked = function (aVideoId) {
-      var user = Authentication.user;
-      if (user.likes.indexOf(aVideoId) == -1) {
-        return false;
+    $scope.changeClass = function (recipe) {
+      if ($scope.selectedIndex === recipe._id) {
+        $scope.selectedIndex = true;
       } else {
-        return true;
+        $scope.selectedIndex = recipe._id;
       }
-      return false;
     };
 
     Array.prototype.unique = function () {
@@ -57,7 +51,6 @@ angular.module('recipesApp')
     }
 
     $scope.searchQueryLoadMore = function () {
-      console.log('loadMore Search query is called');
       $timeout(function () {
         var onScroll = {};
         SearchedRecipes.query({
@@ -71,14 +64,12 @@ angular.module('recipesApp')
           }
           var oldRecipes = $scope.recipes;
           $scope.recipes = oldRecipes.concat(onScroll).unique();
-          console.log('On Scroll Content recipes length : ' + onScroll.length);
         });
         $scope.$broadcast('scroll.infiniteScrollComplete');
       }, 100);
     };
 
     $scope.sendMail = function () {
-      console.log('sendMail is called');
       cordova.plugins.email.isAvailable(
         function (isAvailable) {
           cordova.plugins.email.open({
@@ -94,7 +85,6 @@ angular.module('recipesApp')
 
 
     $scope.sharePost = function () {
-      console.log('Share Post is called');
       window.plugins.socialsharing.share('Check this post here: ', null, null, null);
       //window.plugins.socialsharing.share('Message and image', null, 'https://www.google.nl/images/srpr/logo4w.png', null);
       //Message,Subject,Image,Link these are the four arguments in share

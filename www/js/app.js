@@ -157,6 +157,14 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage'])
         }
       }
     })
+    .state('app.userNotLoggedIn', {
+      url: "/userNotLoggedIn",
+      views: {
+        'menuContent': {
+          templateUrl: "templates/userNotLoggedIn.html"
+        }
+      }
+    })
   $urlRouterProvider.otherwise('/');
   $ionicConfigProvider.navBar.alignTitle('center');
   $ionicConfigProvider.platform.android.backButton.previousTitleText('').icon('ion-android-arrow-back');

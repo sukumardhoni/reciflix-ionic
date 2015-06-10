@@ -188,7 +188,7 @@ body {
 }
 
 .button:hover {
-  color: #33CC33 !important;
+  #color: #33CC33 !important;
 }
 
 p.ex1 {
@@ -443,4 +443,14 @@ small.time {
   margin-left: 5px;
   margin-right: 5px;
   margin-top: 5px;
+}
+
+.popup-container .popup {
+  width: 100%;
+  height: 100%;
+}
+
+.rf-video-container {
+  width: 100%;
+  height: 465px;
 }

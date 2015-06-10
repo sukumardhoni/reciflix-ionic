@@ -1,6 +1,6 @@
 angular.module('recipesApp')
 
-.controller('AppCtrl', function ($scope, SearchedRecipes, $stateParams, $ionicLoading, $timeout, Authentication, $state) {
+.controller('AppCtrl', function ($scope, SearchedRecipes, $stateParams, $ionicLoading, $timeout, Authentication, $state, $ionicPopup) {
   $scope.authentication = Authentication.user;
   $scope.currentStateName = $stateParams.name;
   $scope.signout = function () {
@@ -79,4 +79,16 @@ angular.module('recipesApp')
     //window.plugins.socialsharing.share('Message and image', null, 'https://www.google.nl/images/srpr/logo4w.png', null);
     //Message,Subject,Image,Link these are the four arguments in share
   };
+
+  // A popup dialog
+  $scope.showOnPopup = function (videoItem) {
+    var alertPopup = $ionicPopup.alert({
+      title: videoItem.title,
+      template: '<div class="rf-video-container"><iframe src="https://www.youtube.com/embed/' + videoItem.videoId + '" frameborder="0" height="400px" width="100%"></iframe></div>'
+    });
+    alertPopup.then(function (res) {
+      console.log('Vidoe display popup window is now closed: ' + videoItem.videoId);
+    });
+  };
+
 });

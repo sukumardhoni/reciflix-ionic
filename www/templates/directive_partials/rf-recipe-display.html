@@ -7,7 +7,10 @@
     <div class="row">
       <div class="col-30">
         <img ng-src="{{item.images.dft}}" alt="Making Image" class="rf-image">
-        <div class="rf-play-icon" ui-sref="app.showRecipes({videoId:item.videoId})"></div>
+        <!--<div class="rf-play-icon" ui-sref="app.showRecipes({videoId:item.videoId})"></div>-->
+
+        <div class="rf-play-icon" ng-click="showOnPopup(item)"></div>
+
       </div>
       <div class="col col-70" style="padding-left:2px;">
         <div class="row" style="padding-bottom:10px">
@@ -25,12 +28,21 @@
           <div class="col col-33">
             <span my-favorite-icon favorite=item></span>
           </div>
-          <div class="col col-33" style="padding-top: 5px;font-size:20px;text-decoration:none;border: 1px solid grey;">
-            <a style="text-decoration:none;" ui-sref="app.slides({recipeId:item._id})" href="#/app/slides/553b6343939820f40da7237e">Learn More</a>
+          <div class="col col-33" style="padding-top: 5px;font-size:20px;">
+
+            <button class="button button-stable" ui-sref="app.slides({recipeId:item._id})" href="#/app/slides/553b6343939820f40da7237e">More</button>
+
           </div>
         </div>
       </div>
     </div>
+    <!--
+<div class="row">
+  <button class="button button-stable" ng-click="showOnPopup(item)">
+    OPEN A POPUP
+  </button>
+</div>-->
+
     <div class="row rf-description">
       <div ng-class="item._id === selectedIndex ? 'fullHeight' : 'dftHeight'">
         {{item.description}}

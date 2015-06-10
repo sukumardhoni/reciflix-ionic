@@ -81,14 +81,19 @@ angular.module('recipesApp')
   };
 
   // A popup dialog
-  $scope.showOnPopup = function (videoItem) {
-    var alertPopup = $ionicPopup.alert({
-      title: videoItem.title,
-      template: '<div class="rf-video-container"><iframe src="https://www.youtube.com/embed/' + videoItem.videoId + '" frameborder="0" height="400px" width="100%"></iframe></div>'
-    });
-    alertPopup.then(function (res) {
-      console.log('Vidoe display popup window is now closed: ' + videoItem.videoId);
-    });
+  $scope.playRecipeVideo = function (videoItem) {
+    if (window.cordova) {
+      YoutubeVideoPlayer.openVideo(videoItem.videoId);
+    } else {
+      console.log('Cordova not present suppose to play videoId : ' + videoItem.videoId);
+      /*var alertPopup = $ionicPopup.alert({
+        title: videoItem.title,
+        template: '<div class="rf-video-container"><iframe src="https://www.youtube.com/embed/' + videoItem.videoId + '" frameborder="0" height="400px" width="100%"></iframe></div>'
+      });
+      alertPopup.then(function (res) {
+        console.log('Vidoe display popup window is now closed: ' + videoItem.videoId);
+      });*/
+    }
   };
 
 });

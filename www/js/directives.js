@@ -27,13 +27,10 @@ angular.module('recipesApp')
     template: '<i ng-class=" emptyIcon ? \'icon ion-ios-heart-outline\' : \'icon ion-ios-heart animated bounceIn\'" style="font-size:30px"></i>',
     link: function (scope, elem, attrs) {
       elem.on('click', function () {
-
-/*
-        $cordovaToast.show('Moved this Recipe To Favorites', 'long', 'bottom').then(function (success) {}, function (error) {
-          console.log("The toast was not shown due to " + error);
-        });*/
-
-
+        /*
+                $cordovaToast.show('Moved this Recipe To Favorites', 'long', 'bottom').then(function (success) {}, function (error) {
+                  console.log("The toast was not shown due to " + error);
+                });*/
         if (Authentication.user) {
           if (scope.favorite) {
             if (scope.emptyIcon) {
@@ -45,7 +42,7 @@ angular.module('recipesApp')
               RecipesFavCount.update({
                 recipeId: favRecipe._id
               }, favRecipe, function (res) {
-                console.log('Details Recipesss fav is cb : ');
+                console.log('Recipe favorite cb');
               }, function (err) {
                 scope.emptyIcon = true;
               });
@@ -58,7 +55,7 @@ angular.module('recipesApp')
               RecipesFavCount.update({
                 recipeId: favRecipe._id
               }, favRecipe, function (res) {
-                console.log('Details Recipesss fav is cb : ');
+                console.log('Recipe Unfavorite cb');
               }, function (err) {
                 scope.emptyIcon = false;
               });
@@ -71,7 +68,7 @@ angular.module('recipesApp')
             UserFavorites.update({
               userId: Authentication.user._id
             }, user, function (res) {
-              console.log('Details fav is cb : ');
+              console.log('Details User Update fav  Service cb ');
             }, function (err) {
               //scope.emptyIcon = true;
             });
@@ -105,46 +102,54 @@ angular.module('recipesApp')
   return {
     restrict: 'A',
     scope: {
-      favorite: '='
+      likes: '='
     },
     replace: true,
     template: '<i ng-class=" emptyIcon ? \'ion ion-thumbsup\' : \'ion ion-thumbsup animated bounceIn\'" style="font-size:30px"></i>',
     link: function (scope, elem, attrs) {
       elem.on('click', function () {
         if (Authentication.user) {
-/*          $cordovaToast.show('Liked this Recipe', 'long', 'bottom').then(function (success) {}, function (error) {
-            console.log("The toast was not shown due to " + error);
-          });*/
-          if (scope.favorite) {
+          /*          $cordovaToast.show('Liked this Recipe', 'long', 'bottom').then(function (success) {}, function (error) {
+                      console.log("The toast was not shown due to " + error);
+                    });*/
+          if (scope.likes) {
             if (scope.emptyIcon) {
               scope.emptyIcon = false;
-              console.log('Before the like pushed into User is : ' + JSON.stringify(Authentication.user))
-              console.log('Video Id is came to push into user is: ' + scope.favorite.videoId)
-              Authentication.user.likes.push(scope.favorite.videoId);
-              console.log('After the like pushed into User is : ' + JSON.stringify(Authentication.user))
-              var favRecipe = scope.favorite;
-              favRecipe.applikes = scope.favorite.applikes + 1;
-              console.log('Applikes count is: ' + favRecipe.applikes);
+              Authentication.user.likes.push(scope.likes.videoId);
+              var favRecipe = scope.likes;
+              favRecipe.applikes = scope.likes.applikes + 1;
               RecipesFavCount.update({
                 recipeId: favRecipe._id
               }, favRecipe, function (res) {
-                console.log('Details Recipesss fav is cb : ');
+                console.log('Recipe Liked cb ');
               }, function (err) {
                 scope.emptyIcon = true;
               });
-              var user = {
-                firstName: Authentication.user.firstName,
-                lastName: Authentication.user.lastName,
-                likes: scope.favorite.videoId
-              }
-              UserFavorites.update({
-                userId: Authentication.user._id
-              }, user, function (res) {
-                console.log('Details fav is cb : ');
+            } else {
+              scope.emptyIcon = true;
+              var favRecipe = scope.likes;
+              Authentication.user.likes.splice(Authentication.user.likes.indexOf(scope.likes.videoId), 1);
+              favRecipe.applikes = scope.likes.applikes - 1;
+              RecipesFavCount.update({
+                recipeId: favRecipe._id
+              }, favRecipe, function (res) {
+                console.log('Recipe UnLike cb');
               }, function (err) {
-                //scope.emptyIcon = true;
+                scope.emptyIcon = false;
               });
             }
+            var user = {
+              firstName: Authentication.user.firstName,
+              lastName: Authentication.user.lastName,
+              likes: scope.likes.videoId
+            }
+            UserFavorites.update({
+              userId: Authentication.user._id
+            }, user, function (res) {
+              console.log('Details User Update Likes Service cb ');
+            }, function (err) {
+              //scope.emptyIcon = true;
+            });
           } else {
             console.log('It is off!');
           }
@@ -154,7 +159,7 @@ angular.module('recipesApp')
         }
       });
 
-      scope.$watch('favorite', function (newVal) {
+      scope.$watch('likes', function (newVal) {
         if (newVal) {
           var user = Authentication.user;
           if (user) {

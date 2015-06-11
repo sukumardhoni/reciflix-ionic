@@ -84,15 +84,24 @@ angular.module('recipesApp')
   $scope.playRecipeVideo = function (videoItem) {
     if (window.cordova) {
       YoutubeVideoPlayer.openVideo(videoItem.videoId);
+
+      if (ionic.Platform.isAndroid()) {
+        console.log('Android PLatform Mobile');
+      } else if (ionic.Platform.isIos()) {
+        console.log('Ios PLatform Mobile');
+      }
+      var version = ionic.Platform.version();
+      console.log('PLatform of the current Version is : ' + version);
+
     } else {
       console.log('Cordova not present suppose to play videoId : ' + videoItem.videoId);
-      /*var alertPopup = $ionicPopup.alert({
+      var alertPopup = $ionicPopup.alert({
         title: videoItem.title,
         template: '<div class="rf-video-container"><iframe src="https://www.youtube.com/embed/' + videoItem.videoId + '" frameborder="0" height="400px" width="100%"></iframe></div>'
       });
       alertPopup.then(function (res) {
         console.log('Vidoe display popup window is now closed: ' + videoItem.videoId);
-      });*/
+      });
     }
   };
 

@@ -12,17 +12,17 @@
         <img ng-src="{{recipe.images.mq}}" height="180px" />
       </center>
       <div class="row">
-        <div class="col"><span my-like-icon favorite=recipe></span>
+        <div class="col"><span my-like-icon likes=recipe></span>
           <br>{{recipe.ytlikes + recipe.applikes | numeral}}</div>
         <div class="col"><i class="ion ion-eye" style="color:grey;font-size:30px"></i>
           <br>{{recipe.views | numeral}}</div>
         <div class="col">
-          <span my-favorite-icon favorite=recipe></span>
+          <span style="padding-left:2px" my-favorite-icon favorite=recipe></span>
         </div>
         <!--<div class="col"><i class="ion ion-play" style="color:#00CCA3;font-size:30px" ui-sref="app.showRecipes({videoId:recipe.videoId})"></i>
         </div>-->
 
-        <div class="col"><i class="ion ion-play" style="color:#00CCA3;font-size:30px" ng-click="playRecipeVideo(recipe)"></i>
+        <div class="col"><i class="ion ion-play" style="color:#00CCA3;font-size:30px;padding-left:3px" ng-click="playRecipeVideo(recipe)"></i>
         </div>
 
 

@@ -22,6 +22,9 @@ X : prospectiveEmails  collection  for storing prospective users emails
 
 More clarification on notify functionality.
 -------------------------------------------
+
+Think and evolve strategy for enrolling alpha and beta testers from website (using alpha.reciflix.com etc)
+
 1. user comes to reciflix.com
 we show landing page with image of the app on mobile  and links to appstore
 
@@ -47,7 +50,7 @@ then Show user that, thanks for subscribing to notification, you will hear from 
 
 
 1. X : display style change for recipe card
-2. go all the way to generating apk for playstore, we will signup forthe android developer program in the morning
+2. X : go all the way to generating apk for playstore, we will signup forthe android developer program in the morning
 Login and signup forms should be in a native application look and feel.
 font name can we use good font on ionic( like google font apis)
 http://forum.ionicframework.com/t/google-fonts/1206
@@ -56,33 +59,39 @@ http://forum.ionicframework.com/t/google-fonts/1206
 
 3. X : landing page display in mobile device ( model it after instagram behaviour or as you suggested)
 4. X : help Mahesh push the code mean-reciflix-rest 
-5. Mahesh to look into image optimization and icon creation
+5. X : Mahesh to look into image optimization and icon creation
 6. create an app.profile route to show User profile ( image , firstname, lastname, email)  (Mahesh)
-7. Documentation for creating custom icons (Mahesh)
-   Create a custom favorite brief-case icon with heart icon also.
-   Protractor tests should be re-visited.(Mahesh)
+7. X : Documentation for creating custom icons (Mahesh)
+   X : Create a custom favorite brief-case icon with heart icon also.
+   D : Protractor tests should be re-visited.(Mahesh)
    Logo images should maintain the fixed size.
-
-
-
-
-
-
+   try to get the image sizes in a tabular format and we can get the assets from professional help  (Venkat)
+   create doc for release time changes
+   -- how to increase the version info
+   -- prepare changelog like whats is new
+   
+Make the production website point and work correctly  (Venkat)
+-- thinnk about a new mongo instance for prod  (and how to dynamically point to api server)
 Provide the latest writeup for reciflix  (Venkat)
 
 1.1) Directives to be developed for re-use (Venkat)
 recipe_display
 recipe display directive common for recipelist, search display, favourite display  
+category and recipe editing features for administartor  (Vinodh, Mahesh)
 
 
+
+share the App link and functionality
+Profile image integration from fb or from the upload from camera/phone gallery
+-- this image needs to be updated to mongodb into user model as base64
 
 -- if user is from fb, get the image url from fb and store it in to the User model
 -- if local empty image use a blank user 
 
 
-icon editor to create a Home icon with food theme or use a readymade food theme icon (like dinner plate etc) (Mahesh)
+X : icon editor to create a Home icon with food theme or use a readymade food theme icon (like dinner plate etc) (Mahesh)
 
-category and recipe editing features for administartor  (Vinodh, Mahesh)
+
 
 X : On the header bar back button to be replaced with ios light back button(see if we can show it in font color white)  (Vinodh)
 
@@ -123,7 +132,7 @@ dist is not being ignored in git
 -- explore to use localstorage to add favourites etc when not authenticated also
 
 
-9.optimize the images using gimp etc.. (Venkat)
+9. X: optimize the images using gimp etc.. 
 
 
 10. offline access of the application (Venkat)

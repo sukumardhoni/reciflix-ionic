@@ -169,6 +169,10 @@ provide user preferences to select offline access of available recipes
 
 Next Version
 -------------
+
+try ionic push for sending push notifications to users when the app is not in active state
+try ionic deploy for pushing updates to app directly
+
 allow videos be submitted by the user
 
 allow users to be able to submit the procedure and ingradients

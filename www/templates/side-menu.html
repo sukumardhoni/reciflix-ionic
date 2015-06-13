@@ -15,8 +15,9 @@
     <ion-content>
       <ion-list ng-show="authentication">
         <ion-item class="heading-item item item-avatar" nav-clear menu-close ui-sref="app.profile">
-          <img ng-src="https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg">
-          <h2 class="greeting">Hi {{authentication.firstName}}</h2>
+          <!--<img ng-src="https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg">-->
+          <img ng-src="http://graph.facebook.com/{{authentication.fb_id}}/picture?width=270&height=270">
+          <h2 class="greeting" ng-hide="fbUser">Hi {{authentication.user.firstName}}</h2>
           <p class="message">Welcome back</p>
         </ion-item>
         <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.allCategories">

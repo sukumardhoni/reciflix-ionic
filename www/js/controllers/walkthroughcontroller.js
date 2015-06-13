@@ -37,7 +37,17 @@ angular.module('recipesApp')
         }
       })
     };
+
+
+    /*
+        $scope.fbUserProfileImageUrl= function(){
+          console.log('deriving the fbuser profile image url...');
+          return "http://graph.facebook.com/"+$scope.bUser.id+"/picture?width=270&height=270";
+        }
+    */
+
     $scope.fbLogin = function () {
+      console.log('FB login starting');
       openFB.login(
         function (response) {
           if (response.status === 'connected') {
@@ -47,19 +57,25 @@ angular.module('recipesApp')
                 fields: 'id,name,email,first_name,last_name'
               },
               success: function (user) {
+                //console.log('After successfully login user details is : ' + JSON.stringify(user));
                 if (user.email) {
-                  var fbUser = {
+                  $scope.fbUser = {
                     firstName: user.first_name,
                     lastName: user.last_name,
                     email: user.email,
-                    provider: 'fb'
+                    provider: 'fb',
+                    fb_id: user.id
                   };
-                  User.Signup.create(fbUser, function (res) {
+                  $scope.fbUserProfileImageUrl = "http://graph.facebook.com/" + user.id + "/picture?width=270&height=270";
+                  console.log('URL for fb user profile : ' + $scope.fbUserProfileImageUrl);
+                  console.log('USer details : ' + $scope.fbUser);
+                  User.Signup.create($scope.fbUser, function (res) {
                     if (res.type === 'error') {
                       $state.go('walkthrough');
                     } else if (res.type === 'exists') {
                       if (res.user) {
                         $scope.authentication.user = res.user;
+                        $scope.authentication.user.fb_id = user.id;
                         $localStorage.token = res.token;
                         $state.go('app.allCategories', {
                           userId: res.user._id
@@ -67,17 +83,23 @@ angular.module('recipesApp')
                       }
                     } else {
                       $scope.authentication.user = res;
+                      $scope.authentication.user.fb_id = user.id;
                       $state.go('app.allCategories', {
                         userId: res._id
                       });
                     }
+
+                    console.log('Window User is : ' + JSON.stringify($scope.authentication.user));
+
                   })
                 } else {
+                  $scope.errMsg = 'This seems to be Facebook login error. We willl look into it and let you know';
                   openFB.logout(
                     function (response) {
                       $state.go('walkthrough');
                     })
                 }
+
               },
               error: function (error) {
                 alert('Facebook error: ' + error.error_description);

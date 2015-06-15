@@ -4,11 +4,11 @@
 
 3. mongodb instance for production use  (Venkat)
 4. logic to switch the apilocation based on the enviroment (Venkat)
-5. add "Share ReciFlix" menu item to be added in the Sidemenu
+X : 5. add "Share ReciFlix" menu item to be added in the Sidemenu
 -upon click user is taken to a page where the choice of fb,email,or whats app is selected by user and appropriate sharing action is taken
 
-7. fb user complete functionality check
-8. Non fb user functionality use a blank user image from
+X :7. fb user complete functionality check
+X :8. Non fb user functionality use a blank user image from
 http://www.iconarchive.com/show/pretty-office-8-icons-by-custom-icon-design/User-yellow-icon.html
 9. hardware back button to be enabled except for the home page
 2. Facebook ids for prod use (Venkat and Vinodh)

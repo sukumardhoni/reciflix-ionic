@@ -1,7 +1,8 @@
 angular.module('recipesApp')
 
 
-.controller('walkthroughCtrl', function ($scope, $state, User, $ionicModal, $ionicLoading, $rootScope, Authentication, $localStorage) {
+.controller('walkthroughCtrl', function ($scope, $state, User, $ionicModal, $ionicLoading, $rootScope, Authentication, $localStorage, HardwareBackButtonManager) {
+  HardwareBackButtonManager.disable();
   $scope.authentication = Authentication;
   $scope.skip = function () {
     var Id = '1111';
@@ -68,14 +69,14 @@ angular.module('recipesApp')
                   };
                   $scope.fbUserProfileImageUrl = "http://graph.facebook.com/" + user.id + "/picture?width=270&height=270";
                   console.log('URL for fb user profile : ' + $scope.fbUserProfileImageUrl);
-                  console.log('USer details : ' + $scope.fbUser);
                   User.Signup.create($scope.fbUser, function (res) {
                     if (res.type === 'error') {
                       $state.go('walkthrough');
-                    } else if (res.type === 'exists') {
+                    } else if (res.type === false) {
                       if (res.user) {
+                        console.log(' User is Already exists : ' + JSON.stringify(res.user));
                         $scope.authentication.user = res.user;
-                        $scope.authentication.user.fb_id = user.id;
+                        //$scope.authentication.fb_id = user.id;
                         $localStorage.token = res.token;
                         $state.go('app.allCategories', {
                           userId: res.user._id
@@ -83,7 +84,7 @@ angular.module('recipesApp')
                       }
                     } else {
                       $scope.authentication.user = res;
-                      $scope.authentication.user.fb_id = user.id;
+                      //$scope.authentication.fb_id = user.id;
                       $state.go('app.allCategories', {
                         userId: res._id
                       });

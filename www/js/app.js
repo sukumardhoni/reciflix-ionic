@@ -11,20 +11,22 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage'])
     }
     $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
   });
-  $ionicPlatform.registerBackButtonAction(function (e) {
-    if ($state.includes('app.allCategories')) {
-      e.preventDefault();
-      $ionicPopup.confirm({
-        title: 'System warning',
-        template: 'are you sure you want to exit?'
-      }).then(function (res) {
-        if (res) {
-          navigator.app.exitApp();
-        }
-      })
-    } else {
-      console.log('Back button is triggred')
-    }
+
+  $ionicPlatform.onHardwareBackButton(function () {
+
+    /* $ionicPlatform.onHardwareBackButton(function (e) {
+       if ($state.includes('app.allCategories')) {
+         $ionicPopup.confirm({
+           title: 'System warning',
+           template: 'Are you sure you want to exit ReciFlix?'
+         }).then(function (res) {
+           if (res) {
+             navigator.app.exitApp();
+           }
+         })
+       } else {
+         console.log('Back button is triggred')
+       }*/
   }, 100);
 })
 
@@ -139,6 +141,15 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage'])
       views: {
         'menuContent': {
           templateUrl: "templates/newPage.html",
+          controller: "AppCtrl"
+        }
+      }
+    })
+    .state('app.shareApp', {
+      url: "/shareApp",
+      views: {
+        'menuContent': {
+          templateUrl: "templates/shareApp.html",
           controller: "AppCtrl"
         }
       }

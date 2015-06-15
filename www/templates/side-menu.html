@@ -15,10 +15,12 @@
     <ion-content>
       <ion-list ng-show="authentication">
         <ion-item class="heading-item item item-avatar" nav-clear menu-close ui-sref="app.profile">
-          <!--<img ng-src="https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg">-->
-          <img ng-src="http://graph.facebook.com/{{authentication.fb_id}}/picture?width=270&height=270">
-          <h2 class="greeting" ng-hide="fbUser">Hi {{authentication.user.firstName}}</h2>
+          <!--
+<img ng-src="https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg" ng-show="authentication.provider === 'local'">-->
+          <img ng-src={{fbUserProfileImageUrl}}>
+          <h2 class="greeting">Hi {{authentication.firstName}}</h2>
           <p class="message">Welcome back</p>
+          <p class="message" ng-hide="authentication.provider === 'local'">fb_id : {{authentication.fb_id}}</p>
         </ion-item>
         <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.allCategories">
           <i class="icon icon-chef_cap"></i>
@@ -44,8 +46,12 @@
           <i class="icon ion-gear-a"></i>
           <h2 class="menu-text">Preferences</h2>
         </ion-item>
-        <ion-item class="item-icon-left" nav-clear menu-close>
-          <div ng-show="authentication" ng-click="signout()"><i class="icon ion-log-out"></i>
+        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.shareApp">
+          <i class="icon ion-share"></i>
+          <h2 class="menu-text">Share ReciFlix</h2>
+        </ion-item>
+        <ion-item class="item-icon-left" nav-clear menu-close ng-click="signout()">
+          <div ng-show="authentication"><i class="icon ion-log-out"></i>
             <h2 class="menu-text" style="color:grey">SignOut</h2>
           </div>
         </ion-item>

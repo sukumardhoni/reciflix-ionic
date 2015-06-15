@@ -2,6 +2,15 @@ angular.module('recipesApp')
 
 .controller('AppCtrl', function ($scope, SearchedRecipes, $stateParams, $ionicLoading, $timeout, Authentication, $state, $ionicPopup) {
   $scope.authentication = Authentication.user;
+  if ($scope.authentication.provider === 'fb') {
+    $scope.fbUserProfileImageUrl = "http://graph.facebook.com/" + $scope.authentication.fb_id + "/picture?width=270&height=270";
+  } else {
+    //$scope.fbUserProfileImageUrl = "http://jeanbaptiste.bayle.free.fr/AVATAR/blue_avatar-default.png";
+    //$scope.fbUserProfileImageUrl = "http://pixabay.com/get/c571b321609fe73fdc07/1434366952/avatar-294479_1280.png?direct";
+    $scope.fbUserProfileImageUrl = "https://cdn0.iconfinder.com/data/icons/PRACTIKA/256/user.png";
+    //$scope.fbUserProfileImageUrl = "http://en.community.dell.com/cfs-file/__key/communityserver-blogs-components-weblogfiles/00-00-00-48-53/Win8_5F00_account_5F00_green.png";
+  }
+
   $scope.currentStateName = $stateParams.name;
   $scope.signout = function () {
     $scope.authentication = '';
@@ -104,5 +113,31 @@ angular.module('recipesApp')
       });
     }
   };
+
+
+  $scope.shareFb = function () {
+    console.log('Share ReciFlix on Fb');
+    window.plugins.socialsharing.shareViaFacebook('Message via Facebook', null /* img */ , 'http://www.qa.reciflix.com' /* url */ , 'ReciFlix is a quick, convenient and easy way to search a recipe online and watch it with a click of a button and add it to your favourites to be able to access the same recipe anytime from any device conveniently.', function () {
+      console.log('share ok')
+    }, function (errormsg) {
+      alert(errormsg)
+    });
+  }
+  $scope.shareWhatsApp = function () {
+    console.log('Share ReciFlix on WhatsApp');
+    window.plugins.socialsharing.shareViaWhatsApp('ReciFlix is a quick, convenient and easy way to search a recipe online and watch it with a click of a button and add it to your favourites to be able to access the same recipe anytime from any device conveniently.', null /* img */ , 'http://www.qa.reciflix.com');
+  }
+  $scope.shareGPlus = function () {
+    console.log('Share ReciFlix on Google+');
+    window.plugins.socialsharing.share('ReciFlix is a quick, convenient and easy way to search a recipe online and watch it with a click of a button and add it to your favourites to be able to access the same recipe anytime from any device conveniently.', null, 'http://www.qa.reciflix.com');
+  }
+  $scope.shareTw = function () {
+    console.log('Share ReciFlix on Twitter');
+    window.plugins.socialsharing.shareViaTwitter('ReciFlix is a quick, convenient and easy way to search a recipe online and watch it with a click of a button and add it to your favourites to be able to access the same recipe anytime from any device conveniently.', null /* img */ , 'http://www.qa.reciflix.com');
+  }
+  $scope.shareEmail = function () {
+    console.log('Share ReciFlix on Email');
+    window.plugins.socialsharing.shareViaEmail('ReciFlix is a quick, convenient and easy way to search a recipe online and watch it with a click of a button and add it to your favourites to be able to access the same recipe anytime from any device conveniently.', 'Browse and watch the best recipes online from any device', null, null, null, null);
+  }
 
 });

@@ -1,8 +1,8 @@
 angular.module('recipesApp')
 
 
-.controller('walkthroughCtrl', function ($scope, $state, User, $ionicModal, $ionicLoading, $rootScope, Authentication, $localStorage, HardwareBackButtonManager) {
-  HardwareBackButtonManager.disable();
+.controller('walkthroughCtrl', function ($scope, $state, User, $ionicModal, $ionicLoading, $rootScope, Authentication, $localStorage) {
+  //HardwareBackButtonManager.disable();
   $scope.authentication = Authentication;
   $scope.skip = function () {
     var Id = '1111';

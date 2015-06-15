@@ -1,7 +1,7 @@
 angular.module('recipesApp')
 
-.controller('allRecipesCtrl', function ($scope, $state, $stateParams, $ionicPopover, $timeout, $ionicLoading, RecipesByCategory, SingleRecipe, UserFavorites, Authentication, HardwareBackButtonManager) {
-  HardwareBackButtonManager.enable();
+.controller('allRecipesCtrl', function ($scope, $state, $stateParams, $ionicPopover, $timeout, $ionicLoading, RecipesByCategory, SingleRecipe, UserFavorites, Authentication) {
+  //HardwareBackButtonManager.enable();
   var item = $stateParams.categorieName;
   $scope.singleRecipe = function () {
     SingleRecipe.get({

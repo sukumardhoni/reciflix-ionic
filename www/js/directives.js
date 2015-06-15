@@ -63,8 +63,10 @@ angular.module('recipesApp')
             var user = {
               firstName: Authentication.user.firstName,
               lastName: Authentication.user.lastName,
-              favorites: scope.favorite.videoId
+              favorites: scope.favorite.videoId,
+              provider: Authentication.user.provider
             }
+            console.log('Details of updating User is :  ' + JSON.stringify(user));
             UserFavorites.update({
               userId: Authentication.user._id
             }, user, function (res) {
@@ -141,8 +143,10 @@ angular.module('recipesApp')
             var user = {
               firstName: Authentication.user.firstName,
               lastName: Authentication.user.lastName,
-              likes: scope.likes.videoId
+              likes: scope.likes.videoId,
+              provider: Authentication.user.provider
             }
+            console.log('Details of updating User is :  ' + JSON.stringify(user));
             UserFavorites.update({
               userId: Authentication.user._id
             }, user, function (res) {

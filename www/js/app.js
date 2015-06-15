@@ -12,21 +12,23 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage'])
     $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
   });
 
-  $ionicPlatform.onHardwareBackButton(function () {
+  $ionicPlatform.registerBackButtonAction(function () {
 
-    /* $ionicPlatform.onHardwareBackButton(function (e) {
-       if ($state.includes('app.allCategories')) {
-         $ionicPopup.confirm({
-           title: 'System warning',
-           template: 'Are you sure you want to exit ReciFlix?'
-         }).then(function (res) {
-           if (res) {
-             navigator.app.exitApp();
-           }
-         })
-       } else {
-         console.log('Back button is triggred')
-       }*/
+    if ($state.includes('app.allCategories')) {
+      $ionicPopup.confirm({
+        title: 'ReciFlix Warning',
+        template: 'Are you sure you want to exit ReciFlix?'
+      }).then(function (res) {
+        if (res) {
+          navigator.app.exitApp();
+        } else {
+          console.log('You are not sure');
+        }
+      })
+    } else {
+      console.log('Back button is triggred');
+      navigator.app.backHistory();
+    }
   }, 100);
 })
 

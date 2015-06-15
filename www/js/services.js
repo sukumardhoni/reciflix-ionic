@@ -121,38 +121,3 @@ angular.module('recipesApp')
   return runningInCordova1;
 
 })
-
-
-.service('HardwareBackButtonManager', function ($ionicPlatform, $state, $ionicPopup) {
-  this.deregister = undefined;
-
-  this.disable = function () {
-    console.log('registerBackButtonAction is disable');
-    this.deregister = $ionicPlatform.registerBackButtonAction(function (e) {
-      //e.preventDefault();
-      if ($state.includes('app.allCategories')) {
-        console.log('Console at HardwareBackButtonManager service is disable is trigger');
-        $ionicPopup.confirm({
-          title: 'System warning',
-          template: 'Are you sure you want to exit ReciFlix?'
-        }).then(function (res) {
-          if (res) {
-            navigator.app.exitApp();
-          }
-        })
-      } else {
-        console.log('Back button is triggred')
-      }
-      return false;
-    }, 101);
-  }
-
-  this.enable = function () {
-    console.log('registerBackButtonAction is enable');
-    if (this.deregister !== undefined) {
-      this.deregister();
-      this.deregister = undefined;
-    }
-  }
-  return this;
-})

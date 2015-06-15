@@ -10,12 +10,12 @@ X : 5. add "Share ReciFlix" menu item to be added in the Sidemenu
 X :7. fb user complete functionality check
 X :8. Non fb user functionality use a blank user image from
 http://www.iconarchive.com/show/pretty-office-8-icons-by-custom-icon-design/User-yellow-icon.html
-9. hardware back button to be enabled except for the home page
+X :9. hardware back button to be enabled except for the home page
 2. Facebook ids for prod use (Venkat and Vinodh)
 
 bugs
-1. The error scenario when fb user k.venkat logs in and clicks on the favourites
-2. when there is no result for search the infinite scroll is triggered, need to take care of the condition
+X : 1. The error scenario when fb user k.venkat logs in and clicks on the favourites
+X : 2. when there is no result for search the infinite scroll is triggered, need to take care of the condition
 
 Recipe App with ionic
 
@@ -60,10 +60,6 @@ Profile image integration from fb or from the upload from camera/phone gallery
 -- if local empty image use a blank user 
 
 
-
-
-
-
 Understand config.xml features
 
 
@@ -101,22 +97,6 @@ Identify the offline access for some recipes,
 offline access for recipes  
 offline content for 10 high ranked recipes in each category
 provide user preferences to select offline access of available recipes
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

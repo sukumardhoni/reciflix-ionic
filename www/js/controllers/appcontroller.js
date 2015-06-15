@@ -5,10 +5,7 @@ angular.module('recipesApp')
   if ($scope.authentication.provider === 'fb') {
     $scope.fbUserProfileImageUrl = "http://graph.facebook.com/" + $scope.authentication.fb_id + "/picture?width=270&height=270";
   } else {
-    //$scope.fbUserProfileImageUrl = "http://jeanbaptiste.bayle.free.fr/AVATAR/blue_avatar-default.png";
-    //$scope.fbUserProfileImageUrl = "http://pixabay.com/get/c571b321609fe73fdc07/1434366952/avatar-294479_1280.png?direct";
     $scope.fbUserProfileImageUrl = "https://cdn0.iconfinder.com/data/icons/PRACTIKA/256/user.png";
-    //$scope.fbUserProfileImageUrl = "http://en.community.dell.com/cfs-file/__key/communityserver-blogs-components-weblogfiles/00-00-00-48-53/Win8_5F00_account_5F00_green.png";
   }
 
   $scope.currentStateName = $stateParams.name;
@@ -32,6 +29,7 @@ angular.module('recipesApp')
     }, function (res) {
       $ionicLoading.hide();
       $scope.recipes = res;
+      console.log('Recipes found on search query is : ' + JSON.stringify(res));
       pageId++;
     })
   }

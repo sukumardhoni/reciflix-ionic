@@ -4,12 +4,22 @@
     </span>
   </ion-nav-title>
   <ion-content>
-    <div ng-repeat="items in recipes">
-      <div ng-repeat="item in items">
-        <rf-recipe-display></rf-recipe-display>
+    <div ng-hide="recipes.length == 0">
+      <div ng-repeat="items in recipes">
+        <div ng-repeat="item in items">
+          <rf-recipe-display></rf-recipe-display>
+        </div>
+      </div>
+      <ion-infinite-scroll immediate-check="false" ng-if="!noMoreItemsAvailable" distance="5%" on-infinite="searchQueryLoadMore()"></ion-infinite-scroll>
+    </div>
+    <div ng-show="recipes.length == 0">
+      <div class="item item-text-wrap">
+        Looks like we don't have anything matching to your criteria, Please try with a different search string.
+        <div ui-sref="app.search" align="middle">
+          <i class="icon ion-search" style="font-size:30px;padding-left:5px"></i>
+        </div>
       </div>
     </div>
-    <ion-infinite-scroll immediate-check="false" ng-if="!noMoreItemsAvailable" distance="5%" on-infinite="searchQueryLoadMore()"></ion-infinite-scroll>
   </ion-content>
   <rf-footer-display></rf-footer-display>
 </ion-view>

@@ -1,78 +1,49 @@
+1. Change the id to com.reciflix.recipeapp
+--add version to 0.0.3
+-remove the userdi t3@t3.com
+
+3. mongodb instance for production use  (Venkat)
+4. logic to switch the apilocation based on the enviroment (Venkat)
+5. add "Share ReciFlix" menu item to be added in the Sidemenu
+-upon click user is taken to a page where the choice of fb,email,or whats app is selected by user and appropriate sharing action is taken
+
+7. fb user complete functionality check
+8. Non fb user functionality use a blank user image from
+http://www.iconarchive.com/show/pretty-office-8-icons-by-custom-icon-design/User-yellow-icon.html
+9. hardware back button to be enabled except for the home page
+2. Facebook ids for prod use (Venkat and Vinodh)
+
+bugs
+1. The error scenario when fb user k.venkat logs in and clicks on the favourites
+2. when there is no result for search the infinite scroll is triggered, need to take care of the condition
+
 Recipe App with ionic
 
 $>cordova platform add android
 
 ionic serve --lab
 
-USE Brackets Editor Spaces : 2 option
+cordova camera plugin to be able to use for profile picture and uploading the images of dishes prepared using the recipe
 
 Developer Notes
 -------------------------------
-
-X : Create in mean-reciflix-rest project reciflix landing page as homepage  (Mahesh)
-
-X : Functionality for taking the subscribers email for notification  (Vinodh, Mahesh)
-1000 people subscribed for notification
-/notifyme {type:'ios/android' , email: email@address.com}
-.post
-.get
-
-X : prospectiveEmails  collection  for storing prospective users emails
-
 
 More clarification on notify functionality.
 -------------------------------------------
 
 Think and evolve strategy for enrolling alpha and beta testers from website (using alpha.reciflix.com etc)
 
-1. user comes to reciflix.com
-we show landing page with image of the app on mobile  and links to appstore
-
-2. upon click on the one of the store 
-
--- make an API call to /prospectiveuser (get)    :   {'ios': 1005, 'android': 20345}
-
-Currently 20345 USers are subscribed for our app release.
-
-User is given the form to enter email to subscribe and above the form display a message saying, We are almost there in the APPStore/PlayStore, you can give your email address so that we will notify you when the app is in the store.
-
-Email: -----------------------------   NotifyMe
-
--- what if user doesnot enter anything but click on Notify Me (  enable Notify button only after user enter something in the email field)
--- if user give wrong formatted email ( server api validates email so display error message to user
--- if user enters a existing email address: (server api validates and send Email already exists)
-
-This email already existsts in our notification list, if you want to give a different email address you can givenow, otherwise we will notify at your  existing email address
-
--- valid new email
-
-then Show user that, thanks for subscribing to notification, you will hear from us as soon as the ReciFlix app is released to store.
-
-
-1. X : display style change for recipe card
-2. X : go all the way to generating apk for playstore, we will signup forthe android developer program in the morning
 Login and signup forms should be in a native application look and feel.
 font name can we use good font on ionic( like google font apis)
 http://forum.ionicframework.com/t/google-fonts/1206
 
 
 
-3. X : landing page display in mobile device ( model it after instagram behaviour or as you suggested)
-4. X : help Mahesh push the code mean-reciflix-rest 
-5. X : Mahesh to look into image optimization and icon creation
 6. create an app.profile route to show User profile ( image , firstname, lastname, email)  (Mahesh)
-7. X : Documentation for creating custom icons (Mahesh)
-   X : Create a custom favorite brief-case icon with heart icon also.
-   D : Protractor tests should be re-visited.(Mahesh)
    Logo images should maintain the fixed size.
-   try to get the image sizes in a tabular format and we can get the assets from professional help  (Venkat)
-   create doc for release time changes
-   -- how to increase the version info
-   -- prepare changelog like whats is new
    
 Make the production website point and work correctly  (Venkat)
 -- thinnk about a new mongo instance for prod  (and how to dynamically point to api server)
-Provide the latest writeup for reciflix  (Venkat)
 
 1.1) Directives to be developed for re-use (Venkat)
 recipe_display
@@ -89,16 +60,6 @@ Profile image integration from fb or from the upload from camera/phone gallery
 -- if local empty image use a blank user 
 
 
-X : icon editor to create a Home icon with food theme or use a readymade food theme icon (like dinner plate etc) (Mahesh)
-
-
-
-X : On the header bar back button to be replaced with ios light back button(see if we can show it in font color white)  (Vinodh)
-
-X : Home button to be bringing the categories transition from left side (Vinodh)
-
-
-
 
 
 
@@ -111,8 +72,6 @@ PlayStore Assets Preparation:
 
 1: Good Quality Images for PlayStore.
 
-2: Description about app.
-
 
 Bugs
 ----------
@@ -120,19 +79,18 @@ Bugs
 dist folder and generated files need to investigate to see why they need in ionic project  (Venkat)
 dist is not being ignored in git
 
-
 4. Gather more videos, select some relevant yt sources and load
+
 
 
 6. Explore how to set Featured recipes (Venkat)
 
 
 6. UnAuthenticated User (Venkat)
--- suggest to Login/Signup when tried to add favourites or when visiting User Settings section
+
 -- explore to use localstorage to add favourites etc when not authenticated also
 
 
-9. X: optimize the images using gimp etc.. 
 
 
 10. offline access of the application (Venkat)
@@ -182,6 +140,18 @@ Email updates when a new recipe added by category or tag
 https (ssl enbling) for API server (. enable ssl for api server)  (Vinodh)
 --
 
+Windows Store app submission
+------------------------------
+https://msdn.microsoft.com/en-us/library/windows/apps/jj657967.aspx
+
+https://dev.windows.com/en-us/publish
+
+
+
+
+
+
+
 https://www.youtube.com/watch?v=9j5CvMaKu2s
 
 NYT cooking RecipeBox
@@ -227,3 +197,69 @@ So the fade bar isn't even there on anything device that isn't an iOS7 device. T
 So the issue seems to be that when you tap the header, it thinks you're tapping the fade bar and no the header it self.
 
 
+
+
+X : Create in mean-reciflix-rest project reciflix landing page as homepage  (Mahesh)
+
+X : Functionality for taking the subscribers email for notification  (Vinodh, Mahesh)
+1000 people subscribed for notification
+/notifyme {type:'ios/android' , email: email@address.com}
+.post
+.get
+
+X : prospectiveEmails  collection  for storing prospective users emails
+
+
+X 1. user comes to reciflix.com
+we show landing page with image of the app on mobile  and links to appstore
+
+X 2. upon click on the one of the store 
+
+-- make an API call to /prospectiveuser (get)    :   {'ios': 1005, 'android': 20345}
+
+Currently 20345 USers are subscribed for our app release.
+
+User is given the form to enter email to subscribe and above the form display a message saying, We are almost there in the APPStore/PlayStore, you can give your email address so that we will notify you when the app is in the store.
+
+Email: -----------------------------   NotifyMe
+
+-- what if user doesnot enter anything but click on Notify Me (  enable Notify button only after user enter something in the email field)
+-- if user give wrong formatted email ( server api validates email so display error message to user
+-- if user enters a existing email address: (server api validates and send Email already exists)
+
+This email already existsts in our notification list, if you want to give a different email address you can givenow, otherwise we will notify at your  existing email address
+
+-- valid new email
+
+then Show user that, thanks for subscribing to notification, you will hear from us as soon as the ReciFlix app is released to store.
+
+
+1. X : display style change for recipe card
+2. X : go all the way to generating apk for playstore, we will signup forthe android developer program in the morning
+3. X : landing page display in mobile device ( model it after instagram behaviour or as you suggested)
+4. X : help Mahesh push the code mean-reciflix-rest 
+5. X : Mahesh to look into image optimization and icon creation
+7. X : Documentation for creating custom icons (Mahesh)
+   X : Create a custom favorite brief-case icon with heart icon also.
+   D : Protractor tests should be re-visited.(Mahesh)
+
+
+X : icon editor to create a Home icon with food theme or use a readymade food theme icon (like dinner plate etc) (Mahesh)
+
+
+
+X : On the header bar back button to be replaced with ios light back button(see if we can show it in font color white)  (Vinodh)
+
+X : Home button to be bringing the categories transition from left side (Vinodh)
+
+
+
+9. X: optimize the images using gimp etc.. 
+X : USE Brackets Editor Spaces : 2 option
+X: Provide the latest writeup for reciflix  (Venkat)
+   X: try to get the image sizes in a tabular format and we can get the assets from professional help  (Venkat)
+   create doc for release time changes
+  X: -- how to increase the version info
+  X:  -- prepare changelog like whats is new
+
+X: -- suggest to Login/Signup when tried to add favourites or when visiting User Settings section

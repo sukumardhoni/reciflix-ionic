@@ -367,6 +367,12 @@ small.time {
   animation-name: bounceIn;
 }
 
+
+.rf-category-display {
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
 .rf-recipe-display {
   padding-left: 2px;
   padding-right: 2px;

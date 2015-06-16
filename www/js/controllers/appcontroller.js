@@ -2,7 +2,8 @@ angular.module('recipesApp')
 
 .controller('AppCtrl', function ($scope, SearchedRecipes, $stateParams, $ionicLoading, $timeout, Authentication, $state, $ionicPopup) {
   $scope.authentication = Authentication.user;
-  if ($scope.authentication.provider === 'fb') {
+
+  if ($scope.authentication && ($scope.authentication.provider === 'fb')) {
     $scope.fbUserProfileImageUrl = "http://graph.facebook.com/" + $scope.authentication.fb_id + "/picture?width=270&height=270";
   } else {
     $scope.fbUserProfileImageUrl = "https://cdn0.iconfinder.com/data/icons/PRACTIKA/256/user.png";

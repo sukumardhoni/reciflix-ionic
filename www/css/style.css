@@ -94,6 +94,7 @@
 .alternative-actions .button {
   opacity: 0.6 !important;
   color: #e42012 !important;
+  font-weight: bold;
 }
 
 .alternative-actions:hover .button:hover {
@@ -366,7 +367,6 @@ small.time {
   -webkit-animation-name: bounceIn;
   animation-name: bounceIn;
 }
-
 
 .rf-category-display {
   padding-left: 2px;

@@ -4,10 +4,15 @@
     </span>
   </ion-nav-title>
   <ion-content has-header="true" ng-init="initialQueryRecipes()">
-    <div ng-repeat="item in recipes">
-      <rf-recipe-display></rf-recipe-display>
+    <div ng-hide="recipes.length === 0">
+      <div ng-repeat="item in recipes">
+        <rf-recipe-display></rf-recipe-display>
+      </div>
+      <ion-infinite-scroll immediate-check="false" ng-if="!noMoreItemsAvailable" on-infinite="loadMore()" distance="5%"></ion-infinite-scroll>
     </div>
-    <ion-infinite-scroll immediate-check="false" ng-if="!noMoreItemsAvailable" on-infinite="loadMore()" distance="5%"></ion-infinite-scroll>
+    <div ng-show="recipes.length === 0" class="item item-text-wrap">
+      <p>Currently we don't seem to have recipes in {{CatName}} Category, Please check back soon, we constantly add to the list.</p>
+    </div>
   </ion-content>
   <rf-footer-display></rf-footer-display>
 </ion-view>

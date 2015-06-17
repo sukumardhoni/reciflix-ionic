@@ -14,7 +14,7 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage'])
 
   $ionicPlatform.registerBackButtonAction(function () {
 
-    if ($state.includes('app.allCategories')) {
+    if ($state.includes('app.allCategories') || $state.includes('walkthrough')) {
       $ionicPopup.confirm({
         title: 'ReciFlix Warning',
         template: 'Are you sure you want to exit ReciFlix?'

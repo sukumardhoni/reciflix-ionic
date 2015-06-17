@@ -23,7 +23,7 @@
           <p class="message" ng-hide="authentication.provider === 'local'">fb_id : {{authentication.fb_id}}</p>
         </ion-item>
         <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.allCategories">
-          <i class="icon icon-chef_cap"></i>
+          <i class="icon icon-reciflix_icon"></i>
           <h2 class="menu-text">All Categories</h2>
         </ion-item>
         <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.myFav">
@@ -59,7 +59,7 @@
       </ion-list>
       <ion-list ng-hide="authentication">
         <ion-item nav-clear menu-close class="item" style="background-color:#606060">
-          <div align="middle"><img ng-src="../img/reciflix_icon.png" width="40%" /> </div>
+          <div align="middle"><img src="img/recipeImgs/reciflix_icon.png" width="40%" /> </div>
         </ion-item>
 
         <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.myCalendarPlan">
@@ -73,10 +73,10 @@
         <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.myCalendarPlan">
           <h2 class="menu-text">Why Signup or Login ?</h2>
         </ion-item>
-        <ion-item class="item-icon-left" nav-clear menu-close>
-          <div ui-sref="walkthrough">
+        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="walkthrough">
+          <div>
             <i class="icon ion-log-in"></i>
-            <h2 class="menu-text" style="color:green">Login or Create Account</h2>
+            <h2 class="menu-text">Login or Create Account</h2>
           </div>
         </ion-item>
       </ion-list>

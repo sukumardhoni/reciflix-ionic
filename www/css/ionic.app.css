@@ -11975,11 +11975,11 @@ ion-side-menu .heading-item .message {
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
-  -webkit-filter: blur(1px);
-  -moz-filter: blur(1px);
-  -o-filter: blur(1px);
-  -ms-filter: blur(1px);
-  filter: blur(1px);
+  #-webkit-filter: blur(1px);
+  #-moz-filter: blur(1px);
+  #-o-filter: blur(1px);
+  #-ms-filter: blur(1px);
+  #filter: blur(1px);
 }
 
 .walkthrough-view .top-content {
@@ -12064,6 +12064,7 @@ ion-side-menu .heading-item .message {
 
 .login-view .login-container {
   margin-bottom: 0px;
+  opacity: 0.8;
 }
 
 .login-view .login-container .card-heding {
@@ -12116,6 +12117,7 @@ ion-side-menu .heading-item .message {
 
 .signup-view .sign-up-container {
   margin-bottom: 0px;
+  opacity: 0.8;
 }
 
 .signup-view .bottom-content {

@@ -20,7 +20,6 @@
           <img ng-src={{fbUserProfileImageUrl}}>
           <h2 class="greeting">Hi {{authentication.firstName}}</h2>
           <p class="message">Welcome back</p>
-          <p class="message" ng-hide="authentication.provider === 'local'">fb_id : {{authentication.fb_id}}</p>
         </ion-item>
         <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.allCategories">
           <i class="icon icon-reciflix_icon"></i>
@@ -66,7 +65,7 @@
           <h2 class="menu-text">About ReciFlix</h2>
         </ion-item>
 
-       <!-- <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.myCalendarPlan({name:'Rate this App'})">
+        <!-- <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.myCalendarPlan({name:'Rate this App'})">
           <h2 class="menu-text">Rate this App</h2>
         </ion-item>-->
 

@@ -34,7 +34,7 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage'])
 
 .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
   openFB.init({
-    appId: 1577978382487078
+    appId: 1607966326154856
   });
   $stateProvider
     .state('walkthrough', {

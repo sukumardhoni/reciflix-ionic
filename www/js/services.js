@@ -76,6 +76,35 @@ angular.module('recipesApp')
   });
 })
 
+.factory('Grocery', function ($resource, API_HOST) {
+  return $resource(API_HOST + '/groceries', {}, {
+    'query': {
+      method: 'GET',
+      isArray: true
+    },
+    'save': {
+          method: 'POST'
+        }
+  });
+})
+
+.factory('singleGrocery', function ($resource, API_HOST) {
+  return $resource(API_HOST + '/groceries/:groceryId', {
+  groceryId: '@groceryId'
+  }, {
+    'query': {
+      method: 'GET'
+
+    },
+     'delete': {
+		method: 'DELETE'
+    },
+      'update':{
+        method:'PUT'
+      }
+  });
+})
+
 .factory('SearchedRecipes', function ($resource, API_HOST) {
   return $resource(API_HOST + '/searchedVRecipes/:searchQuery/:pageId', {
     searchQuery: '@searchQuery',

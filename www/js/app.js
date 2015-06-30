@@ -1,4 +1,4 @@
-angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage'])
+angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage', 'xeditable'])
 
 .run(function ($ionicPlatform, $state, $rootScope, $ionicPopup, $http, $localStorage) {
   $rootScope.$state = $state;
@@ -93,7 +93,28 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage'])
         }
       }
     })
-    .state('app.search', {
+
+  .state('app.grocery', {
+    url: "/grocerys",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/grocery.html",
+        controller: "grocerysCtrl"
+      }
+    }
+  })
+
+  .state('app.singlegrocery', {
+    url: "/:groceryId",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/singlegrocery.html",
+        controller: "grocerysCtrl"
+      }
+    }
+  })
+
+  .state('app.search', {
       url: "/search",
       views: {
         'menuContent': {

@@ -1,0 +1,27 @@
+<ion-view ng-init="getsinglegrocery()" cache-view="false">
+  <ion-nav-title>
+    <span style="color:white"> {{singlegrocerys.name}}</span>
+  </ion-nav-title>
+  <ion-content ng-hide="singlegrocerys.items.length === 0">
+    <div class="list card" ng-repeat="item in singlegrocerys.items">
+      <a class="item" editable-text="item" onaftersave="updateItem($index,item)">
+     {{item}}
+  </a>
+    </div>
+  </ion-content>
+
+  <ion-content ng-show="singlegrocerys.items.length === 0">
+    <div class="list card">
+      There is no Items in this Grocery.Now you can create your Items in this Groceries here.
+    </div>
+  </ion-content>
+
+  <div class="float-button corner">
+    <a class="round-button " ng-click="addgroceryitem()"><i class="ion-plus-round"> </i></a>
+  </div>
+
+  <rf-footer-display></rf-footer-display>
+
+
+
+</ion-view>

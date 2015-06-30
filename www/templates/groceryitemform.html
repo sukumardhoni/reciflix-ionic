@@ -1,17 +1,16 @@
 <style>
-.grocery-view
-  {
-   height:90% !important;
-    width:90% !important;
-    top:25% !important;
-    bottom:5% !important;
-    left:5% !important;
-    right:5% !important;
-    background: rgba(0,0,0,0);
+  .grocery-view {
+    height: 90% !important;
+    width: 90% !important;
+    top: 25% !important;
+    bottom: 5% !important;
+    left: 5% !important;
+    right: 5% !important;
+    background: rgba(0, 0, 0, 0);
   }
-  .grocery_form
-  {
-   background-color:#E6E6E6 !important;
+
+  .grocery_form {
+    background-color: #E6E6E6 !important;
   }
 </style>
 
@@ -21,11 +20,11 @@
     <h1 class="title">Create Items</h1>
     <button class="button button-icon ion-close" style="float:right" ng-click="closeModal(1)"></button>
   </ion-header-bar>
-  <ion-content scroll="false" >
+  <ion-content scroll="false">
     <div class="row grocery_form">
       <div class="col col-center">
         <div class="card sign-up-container">
-          <form name="grocery_form"  novalidate>
+          <form name="grocery_form" novalidate>
             <div class="item item-body">
               <label class="item item-input">
                 <input type="text" placeholder="Item Name" ng-model="item" required>
@@ -33,7 +32,7 @@
 
             </div>
             <div class="item item-body bottom-content">
-              <button type="submit" class="button button-positive button-block" ng-click="updateGroceryItems()" ng-disabled="grocery_form.$invalid">
+              <button type="submit" class="button button-positive button-block" ng-click="createItems()" ng-disabled="grocery_form.$invalid">
                 Create Grocery item
               </button>
             </div>

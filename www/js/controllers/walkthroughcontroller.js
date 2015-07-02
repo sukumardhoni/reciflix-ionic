@@ -14,7 +14,8 @@ angular.module('recipesApp')
     id: '1',
     scope: $scope,
     backdropClickToClose: false,
-    animation: 'slide-in-up'
+    focusFirstInput: true,
+    animation: 'mh-slide'
   }).then(function (modal) {
     $scope.oModal1 = modal;
     $rootScope.modal1 = modal;
@@ -128,7 +129,8 @@ angular.module('recipesApp')
     id: '1',
     scope: $scope,
     backdropClickToClose: false,
-    animation: 'slide-in-up'
+    focusFirstInput: true,
+    animation: 'mh-slide'
   }).then(function (modal) {
     $scope.oModal2 = modal;
     $rootScope.modal2 = modal;

@@ -2,11 +2,15 @@ angular.module('recipesApp')
 
 .controller('grocerysCtrl', function ($scope, Grocery, $stateParams, $ionicLoading, $timeout, Authentication, $state, $ionicPopup, singleGrocery, $localStorage, $http, $ionicHistory, $ionicModal, $rootScope, $ionicListDelegate) {
   $scope.authentication = Authentication;
+
+  $scope.copyGName = {};
+
   $ionicModal.fromTemplateUrl('templates/groceryitemform.html', {
     id: '1',
     scope: $scope,
     backdropClickToClose: false,
-    animation: 'slide-in-up'
+    focusFirstInput: true,
+    animation: 'mh-slide'
   }).then(function (modal) {
     $scope.oModal1 = modal;
   });
@@ -15,37 +19,35 @@ angular.module('recipesApp')
     id: '1',
     scope: $scope,
     backdropClickToClose: false,
-    animation: 'slide-in-up'
+    focusFirstInput: true,
+    animation: 'mh-slide'
   }).then(function (modal) {
     $scope.oModal2 = modal;
-
-    $scope.addgrocerylist = function () {
-      $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
-      var grocerylist = {
-        'name': this.grocery.name,
-        'submitted': {
-          'by': 't3@user'
-        },
-        'items': []
-      };
-      Grocery.save(grocerylist, function (result) {
-        $scope.grocerylists.push(result);
-        this.grocery = '';
-        $scope.oModal2.hide();
-      });
-    };
   });
+
+  $scope.addgrocerylist = function () {
+    $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
+    var grocerylist = {
+      'name': this.grocery.name,
+      'submitted': {
+        'by': 't3@user'
+      },
+      'items': []
+    };
+    Grocery.save(grocerylist, function (result) {
+      $scope.grocerylists.push(result);
+      $scope.oModal2.hide();
+    });
+  };
 
   $scope.closeModal = function (index) {
     if (index == 2) $scope.oModal2.hide();
     else if (index == 1) $scope.oModal1.hide();
-    else if (index == 3) $scope.oModal3.hide();
-    $scope.grocery = '';
   };
 
   $scope.addgrocery = function () {
     $scope.grocery = '';
-    $ionicHistory.clearCache();
+    $scope.formName = 'Create Grocery';
     $scope.oModal2.show();
   };
   $scope.addgroceryitem = function () {
@@ -103,19 +105,29 @@ angular.module('recipesApp')
     }, singlegrocerys, function (result) {});
   };
 
+
+
   $scope.editgrocery = function (grocery) {
     $ionicListDelegate.closeOptionButtons();
-    $ionicModal.fromTemplateUrl('templates/groceryupdate.html', {
+    $scope.formName = 'Update Grocery';
+    $scope.copyGName = angular.copy(grocery);
+    $ionicModal.fromTemplateUrl('templates/groceryform.html', {
       id: '1',
       scope: $scope,
       backdropClickToClose: false,
-      animation: 'slide-in-up'
+      focusFirstInput: true,
+      animation: 'mh-slide'
     }).then(function (modal) {
-      $scope.oModal3 = modal;
+      $scope.oModal2 = modal;
       $scope.grocery = grocery;
-      $scope.oModal3.show();
+      $scope.oModal2.show();
     });
   };
+
+  $scope.$on('modal.hidden', function () {
+    console.log('Modal hidden function is triggred');
+    angular.copy($scope.copyGName, $scope.grocery);
+  });
 
   $scope.updateGrocery = function (grocery) {
     var singlegrocerys = {
@@ -125,8 +137,7 @@ angular.module('recipesApp')
     singleGrocery.update({
       groceryId: grocery._id
     }, singlegrocerys, function (result) {
-      $scope.grocery = '';
-      $scope.oModal3.hide();
+      $scope.oModal2.hide();
     });
   }
 });

@@ -17,7 +17,7 @@
 
 <ion-modal-view class="grocery-view" hide-nav-bar="true" cache-view="false">
   <ion-header-bar class="bar bar-assertive">
-    <h1 class="title">Create Grocery</h1>
+    <h1 class="title">{{formName}}</h1>
     <button class="button button-icon ion-close" style="float:right" ng-click="closeModal(2)"></button>
   </ion-header-bar>
   <ion-content scroll="false">
@@ -27,13 +27,16 @@
           <form name="grocery_form" ng-cloak novalidate autocomplete="off" cache-view="false">
             <div class="item item-body">
               <label class="item item-input">
-                <input type="text" placeholder="Grocery Name" ng-model="grocery.name" required>
+                <input type="text" placeholder="Grocery Name" ng-model="grocery.name" required autofocus>
               </label>
 
             </div>
             <div class="item item-body bottom-content">
-              <button type="submit" class="button button-positive button-block" ng-click="addgrocerylist()" ng-disabled="grocery_form.$invalid">
+              <button type="submit" class="button button-positive button-block" ng-click="addgrocerylist()" ng-disabled="grocery_form.$invalid" ng-show="formName === 'Create Grocery'">
                 Create Grocery
+              </button>
+              <button type="submit" class="button button-positive button-block" ng-click="updateGrocery(grocery)" ng-disabled="grocery_form.$invalid" ng-show="formName === 'Update Grocery'">
+                Update Grocery
               </button>
             </div>
           </form>

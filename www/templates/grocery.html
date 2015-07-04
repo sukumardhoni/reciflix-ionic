@@ -1,15 +1,21 @@
-<style>
-  .corner {
-    padding-right: 60px !important;
-  }
-</style>
 <ion-view ng-init="getgrocerylists()" cache-view="false">
   <ion-nav-title>
-    <span style="color:white">Grocery</span>
+    <span style="color:white">Grocery Lists</span>
   </ion-nav-title>
-  <ion-content ng-hide="grocerylists.length === 0">
-    <ion-list show-delete="triggerOn" scroll="true">
-      <ion-item ng-repeat="grocery in grocerylists" class="item-remove-animate item-icon-right scroll-content" ui-sref="app.singlegrocery({groceryId:grocery._id})">
+  <ion-content>
+    <div class="">
+      <img ng-src="img/grocery.jpg" height="180px" width="100%" />
+    </div>
+    <div class="list card" ng-show="grocerylists.length === 0">
+      Currently you have not created any Grocery Lists, Why don't you start create
+      <br>
+      <br>
+      <center>
+        <a class="round-button " ng-click="addgrocery()"><i class="ion-plus-round" style="color:white"> </i></a>
+      </center>
+    </div>
+    <ion-list ng-hide="grocerylists.length === 0" show-delete="triggerOn" scroll="true">
+      <ion-item ng-repeat="grocery in grocerylists" class="item-remove-animate item-icon-right scroll-content itemBG" ui-sref="app.singlegrocery({groceryId:grocery._id})">
         <div class="row responsive">
           <div class="col"> <span> {{grocery.name}} </span>
           </div>
@@ -23,13 +29,8 @@
       </ion-item>
     </ion-list>
   </ion-content>
-  <ion-content ng-show="grocerylists.length === 0">
-    <div class="list card">
-      There is no Groceries you have created before. Now you can create your Groceries here.
-    </div>
-  </ion-content>
-  <div class="float-button corner">
-    <a class="round-button " ng-click="addgrocery()"><i class="ion-plus-round"> </i></a>
+  <div class="float-button corner" ng-hide="grocerylists.length === 0">
+    <a class="round-button " ng-click="addgrocery()"><i class="ion-plus-round" style="color:white"> </i></a>
   </div>
   <rf-footer-display></rf-footer-display>
 </ion-view>

@@ -1,7 +1,13 @@
 <div class="card rf-card">
-  <div class="item item-divider item-text-wrap rf-title">
-    {{item.title}}
-    <i ng-class="item._id === selectedIndex ? 'ion ion-chevron-up' : 'ion ion-chevron-down'" style="color:Grey;font-size:30px;float:right" ng-click="changeClass(item)"></i>
+  <div class="item item-divider item-text-wrap rf-title row">
+    <!-- {{item.title}}
+    <i ng-class="item._id === selectedIndex ? 'ion ion-chevron-up' : 'ion ion-chevron-down'" style="color:Grey;font-size:30px;float:right" ng-click="changeClass(item)"></i>-->
+    <div class="col col-90 col-top ">
+      <span style="color:#FFF">{{item.title}}</span>
+    </div>
+    <div class="col col-10 col-bottom">
+      <i ng-class="item._id === selectedIndex ? 'ion ion-chevron-up' : 'ion ion-chevron-down'" style="color:Grey;font-size:30px;float:right" ng-click="changeClass(item)"></i>
+    </div>
   </div>
   <div class="item item-body item-text-wrap rf-recipe-display" style="overflow: visible;">
     <div class="row">

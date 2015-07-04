@@ -1,8 +1,9 @@
 angular.module('recipesApp')
 
-.controller('myFavoritesCtrl', function ($scope, $stateParams, Authentication, MyFavRecipes, $ionicLoading) {
+.controller('myFavoritesCtrl', function ($scope, $stateParams, Authentication, MyFavRecipes, $ionicLoading, $http, $localStorage) {
   var pageId = 0;
   //HardwareBackButtonManager.enable();
+  $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
   $scope.favoriteFunc = function () {
     if (Authentication.user) {
       $scope.authentication = Authentication;

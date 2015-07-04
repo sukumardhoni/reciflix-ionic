@@ -25,17 +25,14 @@ angular.module('recipesApp')
     $scope.oModal2 = modal;
   });
 
-  $scope.addgrocerylist = function () {
+  $scope.addgrocerylist = function (grocery) {
     $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
     var grocerylist = {
-      'name': this.grocery.name,
-      'submitted': {
-        'by': 't3@user'
-      },
-      'items': []
+      'name': this.grocery.name
     };
+    this.grocery.name = '';
     Grocery.save(grocerylist, function (result) {
-      $scope.grocerylists.push(result);
+      $scope.grocerylists.unshift(result);
       $scope.oModal2.hide();
     });
   };
@@ -46,8 +43,10 @@ angular.module('recipesApp')
   };
 
   $scope.addgrocery = function () {
-    $scope.grocery = '';
-    $scope.formName = 'Create Grocery';
+    console.log('Add grocery is triggred : ' + JSON.stringify($scope.grocery));
+    $ionicHistory.clearCache();
+    this.grocery = '';
+    $scope.formName = 'Create Grocery List';
     $scope.oModal2.show();
   };
   $scope.addgroceryitem = function () {
@@ -109,7 +108,7 @@ angular.module('recipesApp')
 
   $scope.editgrocery = function (grocery) {
     $ionicListDelegate.closeOptionButtons();
-    $scope.formName = 'Update Grocery';
+    $scope.formName = 'Update Grocery List';
     $scope.copyGName = angular.copy(grocery);
     $ionicModal.fromTemplateUrl('templates/groceryform.html', {
       id: '1',
@@ -129,7 +128,7 @@ angular.module('recipesApp')
     angular.copy($scope.copyGName, $scope.grocery);
   });
 
-  $scope.updateGrocery = function (grocery) {
+  $scope.updateGrocery = function (grocery, index) {
     var singlegrocerys = {
       'name': grocery.name,
       'items': grocery.items
@@ -137,6 +136,8 @@ angular.module('recipesApp')
     singleGrocery.update({
       groceryId: grocery._id
     }, singlegrocerys, function (result) {
+      $scope.grocerylists.splice(index, 1);
+      $scope.grocerylists.splice(index, 0, result);
       $scope.oModal2.hide();
     });
   }

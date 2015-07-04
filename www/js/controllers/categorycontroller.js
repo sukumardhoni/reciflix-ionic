@@ -2,6 +2,7 @@ angular.module('recipesApp')
 
 .controller('allCategoriesCtrl', function ($scope, $state, $stateParams, Categories, $ionicPopover, $timeout, $rootScope, Authentication, $ionicLoading, $http, $localStorage, $ionicHistory) {
   //HardwareBackButtonManager.disable();
+  $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
   $scope.userDetails = Authentication;
   $scope.oModal1 = $rootScope.modal1;
   $scope.oModal2 = $rootScope.modal2;

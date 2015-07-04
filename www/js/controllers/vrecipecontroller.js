@@ -1,7 +1,8 @@
 angular.module('recipesApp')
 
-.controller('allRecipesCtrl', function ($scope, $state, $stateParams, $ionicPopover, $timeout, $ionicLoading, RecipesByCategory, SingleRecipe, UserFavorites, Authentication) {
+.controller('allRecipesCtrl', function ($scope, $state, $stateParams, $ionicPopover, $timeout, $ionicLoading, RecipesByCategory, SingleRecipe, UserFavorites, Authentication, $http, $localStorage) {
   //HardwareBackButtonManager.enable();
+  $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
   var item = $stateParams.categorieName;
   $scope.singleRecipe = function () {
     SingleRecipe.get({

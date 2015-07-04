@@ -1,14 +1,18 @@
 angular.module('recipesApp')
 
 
-.controller('walkthroughCtrl', function ($scope, $state, User, $ionicModal, $ionicLoading, $rootScope, Authentication, $localStorage) {
+.controller('walkthroughCtrl', function ($scope, $state, User, $ionicModal, $ionicLoading, $rootScope, Authentication, $localStorage, $http) {
   //HardwareBackButtonManager.disable();
   $scope.authentication = Authentication;
+  $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
   $scope.skip = function () {
-    var Id = '1111';
-    $state.go('app.allCategories', {
+    console.log('Skip func. is called');
+    $scope.authentication = "";
+    //var Id = '1111';
+    /*$state.go('app.allCategories', {
       userId: Id
-    });
+    });*/
+    $state.go('app.allCategories')
   };
   $ionicModal.fromTemplateUrl('templates/login.html', {
     id: '1',

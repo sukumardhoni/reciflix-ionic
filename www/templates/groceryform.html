@@ -1,20 +1,3 @@
-<style>
-  .grocery-view {
-    height: 90% !important;
-    width: 90% !important;
-    top: 25% !important;
-    bottom: 5% !important;
-    left: 5% !important;
-    right: 5% !important;
-    background: rgba(0, 0, 0, 0);
-  }
-
-  .grocery_form {
-    background-color: #E6E6E6 !important;
-  }
-</style>
-
-
 <ion-modal-view class="grocery-view" hide-nav-bar="true" cache-view="false">
   <ion-header-bar class="bar bar-assertive">
     <h1 class="title">{{formName}}</h1>
@@ -32,11 +15,11 @@
 
             </div>
             <div class="item item-body bottom-content">
-              <button type="submit" class="button button-positive button-block" ng-click="addgrocerylist()" ng-disabled="grocery_form.$invalid" ng-show="formName === 'Create Grocery'">
-                Create Grocery
+              <button type="submit" class="button button-positive button-block" ng-click="addgrocerylist(grocery)" ng-disabled="grocery_form.$invalid" ng-show="formName === 'Create Grocery List'">
+                {{formName}}
               </button>
-              <button type="submit" class="button button-positive button-block" ng-click="updateGrocery(grocery)" ng-disabled="grocery_form.$invalid" ng-show="formName === 'Update Grocery'">
-                Update Grocery
+              <button type="submit" class="button button-positive button-block" ng-click="updateGrocery(grocery,$index)" ng-disabled="grocery_form.$invalid" ng-show="formName === 'Update Grocery List'">
+                {{formName}}
               </button>
             </div>
           </form>

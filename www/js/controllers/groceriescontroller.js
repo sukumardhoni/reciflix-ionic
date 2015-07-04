@@ -43,7 +43,6 @@ angular.module('recipesApp')
   };
 
   $scope.addgrocery = function () {
-    console.log('Add grocery is triggred : ' + JSON.stringify($scope.grocery));
     $ionicHistory.clearCache();
     this.grocery = '';
     $scope.formName = 'Create Grocery List';
@@ -124,7 +123,6 @@ angular.module('recipesApp')
   };
 
   $scope.$on('modal.hidden', function () {
-    console.log('Modal hidden function is triggred');
     angular.copy($scope.copyGName, $scope.grocery);
   });
 

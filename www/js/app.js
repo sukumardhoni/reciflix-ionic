@@ -10,6 +10,7 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage', '
       StatusBar.styleDefault();
     }
     $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
+    $rootScope.networkState = navigator.connection.type;
   });
 
   $ionicPlatform.registerBackButtonAction(function () {

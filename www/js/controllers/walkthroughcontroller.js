@@ -2,17 +2,16 @@ angular.module('recipesApp')
 
 
 .controller('walkthroughCtrl', function ($scope, $state, User, $ionicModal, $ionicLoading, $rootScope, Authentication, $localStorage, $http) {
-  //HardwareBackButtonManager.disable();
   $scope.authentication = Authentication;
   $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
   $scope.skip = function () {
-    console.log('Skip func. is called');
-    $scope.authentication = "";
-    //var Id = '1111';
-    /*$state.go('app.allCategories', {
-      userId: Id
-    });*/
-    $state.go('app.allCategories')
+    if ($rootScope.networkState === 'none') {
+      alert('This App needs internet, Please try after you connect to internet');
+    } else {
+      console.log('Skip func. is called');
+      $scope.authentication = "";
+      $state.go('app.allCategories')
+    }
   };
   $ionicModal.fromTemplateUrl('templates/login.html', {
     id: '1',
@@ -24,24 +23,27 @@ angular.module('recipesApp')
     $scope.oModal1 = modal;
     $rootScope.modal1 = modal;
     $scope.user = {};
-    //$scope.user.email = "t3@t3.com";
     $scope.Login = function () {
-      $ionicLoading.show({
-        templateUrl: "templates/loading.html",
-      });
-      User.Signin.create(this.user, function (res) {
-        if (res.type === false) {
-          $scope.errMsg = res.data;
-          $ionicLoading.hide();
-        } else {
-          $scope.authentication.user = res;
-          $localStorage.token = res.token;
-          $ionicLoading.hide();
-          $state.go('app.allCategories', {
-            userId: res._id
-          });
-        }
-      })
+      if ($rootScope.networkState === 'none') {
+        alert('This App needs internet, Please try after you connect to internet');
+      } else {
+        $ionicLoading.show({
+          templateUrl: "templates/loading.html",
+        });
+        User.Signin.create(this.user, function (res) {
+          if (res.type === false) {
+            $scope.errMsg = res.data;
+            $ionicLoading.hide();
+          } else {
+            $scope.authentication.user = res;
+            $localStorage.token = res.token;
+            $ionicLoading.hide();
+            $state.go('app.allCategories', {
+              userId: res._id
+            });
+          }
+        })
+      }
     };
 
     $scope.fbLogin = function () {
@@ -55,7 +57,6 @@ angular.module('recipesApp')
                 fields: 'id,name,email,first_name,last_name'
               },
               success: function (user) {
-                //console.log('After successfully login user details is : ' + JSON.stringify(user));
                 if (user.email) {
                   $scope.fbUser = {
                     firstName: user.first_name,
@@ -65,15 +66,12 @@ angular.module('recipesApp')
                     fb_id: user.id
                   };
                   $scope.fbUserProfileImageUrl = "http://graph.facebook.com/" + user.id + "/picture?width=270&height=270";
-                  console.log('URL for fb user profile : ' + $scope.fbUserProfileImageUrl);
                   User.Signup.create($scope.fbUser, function (res) {
                     if (res.type === 'error') {
                       $state.go('walkthrough');
                     } else if (res.type === false) {
                       if (res.user) {
-                        console.log(' User is Already exists : ' + JSON.stringify(res.user));
                         $scope.authentication.user = res.user;
-                        //$scope.authentication.fb_id = user.id;
                         $localStorage.token = res.token;
                         $state.go('app.allCategories', {
                           userId: res.user._id
@@ -81,14 +79,10 @@ angular.module('recipesApp')
                       }
                     } else {
                       $scope.authentication.user = res;
-                      //$scope.authentication.fb_id = user.id;
                       $state.go('app.allCategories', {
                         userId: res._id
                       });
                     }
-
-                    console.log('Window User is : ' + JSON.stringify($scope.authentication.user));
-
                   })
                 } else {
                   $scope.errMsg = 'This seems to be Facebook login error. We willl look into it and let you know';
@@ -97,13 +91,11 @@ angular.module('recipesApp')
                       $state.go('walkthrough');
                     })
                 }
-
               },
               error: function (error) {
                 alert('Facebook error: ' + error.error_description);
               }
             });
-
           } else {
             alert('Facebook login failed');
           }
@@ -164,6 +156,4 @@ angular.module('recipesApp')
     $scope.oModal3 = modal;
     $rootScope.modal3 = modal;
   });
-
-
 });

@@ -1,6 +1,6 @@
 angular.module('recipesApp')
 
-.controller('AppCtrl', function ($scope, SearchedRecipes, $stateParams, $ionicLoading, $timeout, Authentication, $state, $ionicPopup, User, $localStorage, $http) {
+.controller('AppCtrl', function ($scope, SearchedRecipes, $stateParams, $ionicLoading, $timeout, Authentication, $state, $ionicPopup, User, $localStorage, $http, $rootScope) {
   $scope.authentication = Authentication.user;
   $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
   if ($scope.authentication && ($scope.authentication.provider === 'fb')) {
@@ -17,7 +17,6 @@ angular.module('recipesApp')
         $scope.errMsg = res.data;
         $ionicLoading.hide();
       } else {
-        console.log('Signout msgs ; ' + JSON.stringify(res));
         Authentication.user = '';
         delete $localStorage.token;
         $ionicLoading.hide();
@@ -39,7 +38,6 @@ angular.module('recipesApp')
     }, function (res) {
       $ionicLoading.hide();
       $scope.recipes = res;
-      console.log('Recipes found on search query is : ' + JSON.stringify(res));
       pageId++;
     })
   }
@@ -93,15 +91,16 @@ angular.module('recipesApp')
   };
   $scope.sharePost = function () {
     window.plugins.socialsharing.share('Check this post here: ', null, null, null);
-    //window.plugins.socialsharing.share('Message and image', null, 'https://www.google.nl/images/srpr/logo4w.png', null);
-    //Message,Subject,Image,Link these are the four arguments in share
   };
 
   // A popup dialog
   $scope.playRecipeVideo = function (videoItem) {
+    console.log('playRecipeVideo ::::::::::::::::');
+    if ($rootScope.networkState !== 'wifi') {
+      alert('This Video will consume data your network carrier may charge you for mobile data');
+    }
     if (window.cordova) {
       YoutubeVideoPlayer.openVideo(videoItem.videoId);
-
       if (ionic.Platform.isAndroid()) {
         console.log('Android PLatform Mobile');
       } else if (ionic.Platform.isIos()) {
@@ -124,7 +123,6 @@ angular.module('recipesApp')
 
 
   $scope.shareFb = function () {
-    console.log('Share ReciFlix on Fb');
     window.plugins.socialsharing.shareViaFacebook('Message via Facebook', null /* img */ , 'http://www.reciflix.com' /* url */ , 'ReciFlix is a quick, convenient and easy way to search a recipe online and watch it with a click of a button and add it to your favourites to be able to access the same recipe anytime from any device conveniently.', function () {
       console.log('share ok')
     }, function (errormsg) {
@@ -132,19 +130,15 @@ angular.module('recipesApp')
     });
   }
   $scope.shareWhatsApp = function () {
-    console.log('Share ReciFlix on WhatsApp');
     window.plugins.socialsharing.shareViaWhatsApp('ReciFlix is a quick, convenient and easy way to search a recipe online and watch it with a click of a button and add it to your favourites to be able to access the same recipe anytime from any device conveniently.', null /* img */ , 'http://www.reciflix.com');
   }
   $scope.shareGPlus = function () {
-    console.log('Share ReciFlix on Google+');
     window.plugins.socialsharing.share('ReciFlix is a quick, convenient and easy way to search a recipe online and watch it with a click of a button and add it to your favourites to be able to access the same recipe anytime from any device conveniently.', null, 'http://www.reciflix.com');
   }
   $scope.shareTw = function () {
-    console.log('Share ReciFlix on Twitter');
     window.plugins.socialsharing.shareViaTwitter('ReciFlix is a quick, convenient and easy way to search a recipe online and watch it with a click of a button and add it to your favourites to be able to access the same recipe anytime from any device conveniently.', null /* img */ , 'http://www.reciflix.com');
   }
   $scope.shareEmail = function () {
-    console.log('Share ReciFlix on Email');
     window.plugins.socialsharing.shareViaEmail('ReciFlix is a quick, convenient and easy way to search a recipe online and watch it with a click of a button and add it to your favourites to be able to access the same recipe anytime from any device conveniently.', 'Browse and watch the best recipes online from any device', null, null, null, null);
   }
 

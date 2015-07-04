@@ -2,7 +2,7 @@ angular.module('recipesApp')
 
 .controller('grocerysCtrl', function ($scope, Grocery, $stateParams, $ionicLoading, $timeout, Authentication, $state, $ionicPopup, singleGrocery, $localStorage, $http, $ionicHistory, $ionicModal, $rootScope, $ionicListDelegate) {
   $scope.authentication = Authentication;
-
+  $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
   $scope.copyGName = {};
 
   $ionicModal.fromTemplateUrl('templates/groceryitemform.html', {

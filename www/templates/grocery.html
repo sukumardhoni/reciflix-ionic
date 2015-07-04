@@ -3,30 +3,17 @@
     padding-right: 60px !important;
   }
 </style>
-
 <ion-view ng-init="getgrocerylists()" cache-view="false">
   <ion-nav-title>
     <span style="color:white">Grocery</span>
   </ion-nav-title>
   <ion-content ng-hide="grocerylists.length === 0">
-    <!--<div class="list card"  ng-repeat="grocery in grocerylists" >
- <a  class="item" ui-sref="app.singlegrocery({groceryId:grocery._id})">
-    {{grocery.name}}
-  </a>
-    </div>-->
-
-
-
     <ion-list show-delete="triggerOn" scroll="true">
       <ion-item ng-repeat="grocery in grocerylists" class="item-remove-animate item-icon-right scroll-content" ui-sref="app.singlegrocery({groceryId:grocery._id})">
         <div class="row responsive">
           <div class="col"> <span> {{grocery.name}} </span>
-
           </div>
-
         </div>
-
-
         <ion-option-button class="button-calm" ng-click="grocerydelete($index)">
           Delete
         </ion-option-button>
@@ -35,9 +22,6 @@
         </ion-option-button>
       </ion-item>
     </ion-list>
-
-
-
   </ion-content>
   <ion-content ng-show="grocerylists.length === 0">
     <div class="list card">

@@ -1,7 +1,7 @@
 angular.module('recipesApp')
 
-//.constant('API_HOST', 'http://localhost:3000')
-.constant('API_HOST', 'http://qa.api.reciflix.com')
+.constant('API_HOST', 'http://localhost:3000')
+  //.constant('API_HOST', 'http://qa.api.reciflix.com')
 
 .factory('Categories', function ($resource, API_HOST) {
   return $resource(API_HOST + '/categories/page/:pageId', {
@@ -50,6 +50,11 @@ angular.module('recipesApp')
       create: {
         method: 'POST'
       }
+    }),
+    Signout: $resource(API_HOST + '/users/signout', {}, {
+      clear: {
+        method: 'POST'
+      }
     })
   }
 })
@@ -83,25 +88,25 @@ angular.module('recipesApp')
       isArray: true
     },
     'save': {
-          method: 'POST'
-        }
+      method: 'POST'
+    }
   });
 })
 
 .factory('singleGrocery', function ($resource, API_HOST) {
   return $resource(API_HOST + '/groceries/:groceryId', {
-  groceryId: '@groceryId'
+    groceryId: '@groceryId'
   }, {
     'query': {
       method: 'GET'
 
     },
-     'delete': {
-		method: 'DELETE'
+    'delete': {
+      method: 'DELETE'
     },
-      'update':{
-        method:'PUT'
-      }
+    'update': {
+      method: 'PUT'
+    }
   });
 })
 

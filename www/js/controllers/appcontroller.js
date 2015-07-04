@@ -1,6 +1,6 @@
 angular.module('recipesApp')
 
-.controller('AppCtrl', function ($scope, SearchedRecipes, $stateParams, $ionicLoading, $timeout, Authentication, $state, $ionicPopup) {
+.controller('AppCtrl', function ($scope, SearchedRecipes, $stateParams, $ionicLoading, $timeout, Authentication, $state, $ionicPopup, User, $localStorage, $http) {
   $scope.authentication = Authentication.user;
 
   if ($scope.authentication && ($scope.authentication.provider === 'fb')) {
@@ -11,13 +11,21 @@ angular.module('recipesApp')
 
   $scope.currentStateName = $stateParams.name;
   $scope.signout = function () {
-    $scope.authentication = '';
-    Authentication.user = '';
-    openFB.logout(
-      function (response) {
-        console.log('Successfully logout fb user');
-        $state.go('walkthrough');
-      })
+    $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
+    User.Signout.clear(function (res) {
+      if (res.type === false) {
+        $scope.errMsg = res.data;
+        $ionicLoading.hide();
+      } else {
+        $scope.authentication = "";
+        delete $localStorage.token;
+        $ionicLoading.hide();
+        openFB.logout(
+          function (response) {
+            $state.go('walkthrough');
+          })
+      }
+    })
   }
   if ($stateParams.searchQuery) {
     $ionicLoading.show({

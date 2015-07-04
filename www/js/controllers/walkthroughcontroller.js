@@ -20,7 +20,7 @@ angular.module('recipesApp')
     $scope.oModal1 = modal;
     $rootScope.modal1 = modal;
     $scope.user = {};
-    $scope.user.email = "t3@t3.com";
+    //$scope.user.email = "t3@t3.com";
     $scope.Login = function () {
       $ionicLoading.show({
         templateUrl: "templates/loading.html",
@@ -39,14 +39,6 @@ angular.module('recipesApp')
         }
       })
     };
-
-
-    /*
-        $scope.fbUserProfileImageUrl= function(){
-          console.log('deriving the fbuser profile image url...');
-          return "http://graph.facebook.com/"+$scope.bUser.id+"/picture?width=270&height=270";
-        }
-    */
 
     $scope.fbLogin = function () {
       console.log('FB login starting');
@@ -119,6 +111,7 @@ angular.module('recipesApp')
   $scope.closeModal = function (index) {
     if (index == 2) $scope.oModal2.hide();
     else if (index == 1) $scope.oModal1.hide();
+    else if (index == 3) $scope.oModal3.hide();
   };
   $scope.login = function () {
     $scope.oModal1.show();
@@ -156,4 +149,17 @@ angular.module('recipesApp')
     $scope.oModal2.show();
     $scope.oModal1.hide();
   };
+
+  $ionicModal.fromTemplateUrl('templates/forgot-password.html', {
+    id: '1',
+    scope: $scope,
+    backdropClickToClose: false,
+    focusFirstInput: true,
+    animation: 'mh-slide'
+  }).then(function (modal) {
+    $scope.oModal3 = modal;
+    $rootScope.modal3 = modal;
+  });
+
+
 });

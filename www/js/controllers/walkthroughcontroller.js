@@ -48,6 +48,9 @@ angular.module('recipesApp')
 
     $scope.fbLogin = function () {
       console.log('FB login starting');
+      $ionicLoading.show({
+        templateUrl: "templates/loading.html",
+      });
       openFB.login(
         function (response) {
           if (response.status === 'connected') {
@@ -57,6 +60,7 @@ angular.module('recipesApp')
                 fields: 'id,name,email,first_name,last_name'
               },
               success: function (user) {
+                //console.log(' User in FB user is : ' + JSON.stringify(user));
                 if (user.email) {
                   $scope.fbUser = {
                     firstName: user.first_name,
@@ -71,6 +75,7 @@ angular.module('recipesApp')
                       $state.go('walkthrough');
                     } else if (res.type === false) {
                       if (res.user) {
+                        $ionicLoading.hide();
                         //console.log(' User is Already exists : ' + JSON.stringify(res.user));
                         $scope.authentication.user = res.user;
                         $localStorage.token = res.user.token;
@@ -79,9 +84,10 @@ angular.module('recipesApp')
                         });
                       }
                     } else {
+                      $ionicLoading.hide();
                       $scope.authentication.user = res;
-                      //console.log(' User is FB user is : ' + JSON.stringify(res.user));
-                      $localStorage.token = res.user.token;
+                      //console.log(' User is FB user is : ' + JSON.stringify(res));
+                      $localStorage.token = res.token;
                       $state.go('app.allCategories', {
                         userId: res._id
                       });
@@ -89,6 +95,7 @@ angular.module('recipesApp')
                   })
                 } else {
                   $scope.errMsg = 'This seems to be Facebook login error. We willl look into it and let you know';
+                  $ionicLoading.hide();
                   openFB.logout(
                     function (response) {
                       $state.go('walkthrough');

@@ -71,14 +71,17 @@ angular.module('recipesApp')
                       $state.go('walkthrough');
                     } else if (res.type === false) {
                       if (res.user) {
+                        //console.log(' User is Already exists : ' + JSON.stringify(res.user));
                         $scope.authentication.user = res.user;
-                        $localStorage.token = res.token;
+                        $localStorage.token = res.user.token;
                         $state.go('app.allCategories', {
                           userId: res.user._id
                         });
                       }
                     } else {
                       $scope.authentication.user = res;
+                      //console.log(' User is FB user is : ' + JSON.stringify(res.user));
+                      $localStorage.token = res.user.token;
                       $state.go('app.allCategories', {
                         userId: res._id
                       });

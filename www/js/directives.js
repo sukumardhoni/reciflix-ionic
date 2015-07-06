@@ -17,7 +17,7 @@ angular.module('recipesApp')
     };
   })
 
-.directive('myFavoriteIcon', function ($sce, Authentication, UserFavorites, RecipesFavCount, $cordovaToast, $state) {
+.directive('myFavoriteIcon', function ($sce, Authentication, UserFavorites, RecipesFavCount, $cordovaToast, $state, $http, $localStorage) {
   return {
     restrict: 'A',
     scope: {
@@ -32,17 +32,19 @@ angular.module('recipesApp')
                   console.log("The toast was not shown due to " + error);
                 });*/
         if (Authentication.user) {
+          $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
+          //console.log('Localstorage token value is : ' + $localStorage.token)
           if (scope.favorite) {
             if (scope.emptyIcon) {
               scope.emptyIcon = false;
               Authentication.user.favorites.push(scope.favorite.videoId);
               var favRecipe = scope.favorite;
               favRecipe.favoritesCount = scope.favorite.favoritesCount + 1;
-              console.log('Fav count is: ' + favRecipe.favoritesCount);
+              //console.log('Fav count is: ' + favRecipe.favoritesCount);
               RecipesFavCount.update({
                 recipeId: favRecipe._id
               }, favRecipe, function (res) {
-                console.log('Recipe favorite cb');
+                //console.log('Recipe favorite cb');
               }, function (err) {
                 scope.emptyIcon = true;
               });
@@ -51,26 +53,26 @@ angular.module('recipesApp')
               var favRecipe = scope.favorite;
               Authentication.user.favorites.splice(Authentication.user.favorites.indexOf(scope.favorite.videoId), 1);
               favRecipe.favoritesCount = scope.favorite.favoritesCount - 1;
-              console.log('Fav count is: ' + favRecipe.favoritesCount);
+              //console.log('Fav count is: ' + favRecipe.favoritesCount);
               RecipesFavCount.update({
                 recipeId: favRecipe._id
               }, favRecipe, function (res) {
-                console.log('Recipe Unfavorite cb');
+                //console.log('Recipe Unfavorite cb');
               }, function (err) {
                 scope.emptyIcon = false;
               });
             }
             var user = {
-              firstName: Authentication.user.firstName,
-              lastName: Authentication.user.lastName,
-              favorites: scope.favorite.videoId,
-              provider: Authentication.user.provider
-            }
-            console.log('Details of updating User is :  ' + JSON.stringify(user));
+                firstName: Authentication.user.firstName,
+                lastName: Authentication.user.lastName,
+                favorites: scope.favorite.videoId,
+                provider: Authentication.user.provider
+              }
+              //console.log('Details of updating User is :  ' + JSON.stringify(user));
             UserFavorites.update({
               userId: Authentication.user._id
             }, user, function (res) {
-              console.log('Details User Update fav  Service cb ');
+              //console.log('Details User Update fav  Service cb ');
             }, function (err) {
               //scope.emptyIcon = true;
             });
@@ -78,7 +80,7 @@ angular.module('recipesApp')
             console.log('It is off!');
           }
         } else {
-          console.log('User is not logged in please login');
+          //console.log('User is not logged in please login');
           $state.go('app.userNotLoggedIn');
         }
       });
@@ -100,7 +102,7 @@ angular.module('recipesApp')
   };
 })
 
-.directive('myLikeIcon', function ($sce, Authentication, RecipesFavCount, $cordovaToast, UserFavorites, $state) {
+.directive('myLikeIcon', function ($sce, Authentication, RecipesFavCount, $cordovaToast, UserFavorites, $state, $http, $localStorage) {
   return {
     restrict: 'A',
     scope: {
@@ -114,6 +116,8 @@ angular.module('recipesApp')
           /*          $cordovaToast.show('Liked this Recipe', 'long', 'bottom').then(function (success) {}, function (error) {
                       console.log("The toast was not shown due to " + error);
                     });*/
+          $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
+          //console.log('Localstorage token value is : ' + $localStorage.token)
           if (scope.likes) {
             if (scope.emptyIcon) {
               scope.emptyIcon = false;
@@ -123,7 +127,7 @@ angular.module('recipesApp')
               RecipesFavCount.update({
                 recipeId: favRecipe._id
               }, favRecipe, function (res) {
-                console.log('Recipe Liked cb ');
+                //console.log('Recipe Liked cb ');
               }, function (err) {
                 scope.emptyIcon = true;
               });
@@ -135,30 +139,30 @@ angular.module('recipesApp')
               RecipesFavCount.update({
                 recipeId: favRecipe._id
               }, favRecipe, function (res) {
-                console.log('Recipe UnLike cb');
+                //console.log('Recipe UnLike cb');
               }, function (err) {
                 scope.emptyIcon = false;
               });
             }
             var user = {
-              firstName: Authentication.user.firstName,
-              lastName: Authentication.user.lastName,
-              likes: scope.likes.videoId,
-              provider: Authentication.user.provider
-            }
-            console.log('Details of updating User is :  ' + JSON.stringify(user));
+                firstName: Authentication.user.firstName,
+                lastName: Authentication.user.lastName,
+                likes: scope.likes.videoId,
+                provider: Authentication.user.provider
+              }
+              //console.log('Details of updating User is :  ' + JSON.stringify(user));
             UserFavorites.update({
               userId: Authentication.user._id
             }, user, function (res) {
-              console.log('Details User Update Likes Service cb ');
+              //console.log('Details User Update Likes Service cb ');
             }, function (err) {
               //scope.emptyIcon = true;
             });
           } else {
-            console.log('It is off!');
+            //console.log('It is off!');
           }
         } else {
-          console.log('User is not logged in please login');
+          //console.log('User is not logged in please login');
           $state.go('app.userNotLoggedIn');
         }
       });

@@ -91,7 +91,7 @@ var openFB = (function () {
    */
   function login(callback, options) {
 
-    console.log('Console at openFb.js login function');
+    //console.log('Console at openFb.js login function');
 
     var loginWindow,
       startTime,
@@ -120,7 +120,7 @@ var openFB = (function () {
 
     // Inappbrowser exit handler: Used when running in Cordova only
     function loginWindow_exitHandler() {
-      console.log('exit and remove listeners');
+      //console.log('exit and remove listeners');
       // Handle the situation where the user closes the login window manually before completing the login process
       deferredLogin.reject({
         error: 'user_cancelled',
@@ -130,7 +130,7 @@ var openFB = (function () {
       loginWindow.removeEventListener('loadstop', loginWindow_loadStartHandler);
       loginWindow.removeEventListener('exit', loginWindow_exitHandler);
       loginWindow = null;
-      console.log('done removing listeners');
+      //console.log('done removing listeners');
     }
 
     if (options && options.scope) {
@@ -151,7 +151,7 @@ var openFB = (function () {
 
 
 
-    console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  opening the login window  BEFORE: loginWindow ');
+    //console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  opening the login window  BEFORE: loginWindow ');
 
 
     loginWindow = window.open(FB_LOGIN_URL + '?client_id=' + fbAppId + '&redirect_uri=' + oauthRedirectURL +
@@ -159,7 +159,7 @@ var openFB = (function () {
 
 
 
-    console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  opening the login window  AFTER: loginWindow');
+    //console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  opening the login window  AFTER: loginWindow');
 
 
 
@@ -168,7 +168,7 @@ var openFB = (function () {
     if (runningInCordova) {
 
 
-      console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  opening the login window  INSIDE: runningInCordova');
+      //console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  opening the login window  INSIDE: runningInCordova');
 
 
 
@@ -229,7 +229,7 @@ var openFB = (function () {
     var logoutWindow;
     var token = tokenStore['fbtoken'];
 
-    console.log('in side logout function: currently stored token is : ' + token);
+    //console.log('in side logout function: currently stored token is : ' + token);
 
     /* Remove token. Will fail silently if does not exist */
     tokenStore.removeItem('fbtoken');
@@ -239,7 +239,7 @@ var openFB = (function () {
       if (runningInCordova) {
         setTimeout(function () {
           logoutWindow.close();
-          console.log('after logout function: currently stored token is : ' + tokenStore['fbtoken']);
+          //console.log('after logout function: currently stored token is : ' + tokenStore['fbtoken']);
         }, 700);
       }
     }

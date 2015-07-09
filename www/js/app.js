@@ -11,6 +11,15 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage', '
     }
     $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
     $rootScope.networkState = navigator.connection.type;
+
+    var deviceInfo = cordova.require("cordova/plugin/DeviceInformation");
+    deviceInfo.get(
+      function (result) {
+        //console.log("result = " + result);
+      },
+      function () {
+        //console.log("error");
+      });
   });
 
   $ionicPlatform.registerBackButtonAction(function () {
@@ -23,14 +32,18 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage', '
         if (res) {
           navigator.app.exitApp();
         } else {
-          console.log('You are not sure');
+          //console.log('You are not sure');
         }
       })
     } else {
-      console.log('Back button is triggred');
+      //console.log('Back button is triggred');
       navigator.app.backHistory();
     }
   }, 100);
+
+
+
+
 })
 
 .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {

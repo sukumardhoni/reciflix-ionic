@@ -32,16 +32,16 @@
 }
 
 div.dftHeight {
-  height: 110px;
-  -webkit-transition: height 1s;
-  transition: height 1s;
+  height: 108px;
+  #-webkit-transition: height 1s;
+  #transition: height 1s;
 }
 
 .fullHeight {
-  height: 300px;
-  -webkit-transition: height 1s;
-  transition: height 1s;
-  overflow: auto;
+  height: 100%;
+  #-webkit-transition: height 1s;
+  #transition: height 1s;
+  #overflow: auto;
 }
 
 .loading {

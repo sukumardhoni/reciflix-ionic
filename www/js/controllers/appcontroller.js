@@ -19,6 +19,10 @@ angular.module('recipesApp')
       } else {
         Authentication.user = '';
         delete $localStorage.token;
+        delete $localStorage.user;
+        $rootScope.$broadcast('loggedIn', {
+          'loggedIn': ''
+        });
         $ionicLoading.hide();
         openFB.logout(
           function (response) {
@@ -95,28 +99,28 @@ angular.module('recipesApp')
 
   // A popup dialog
   $scope.playRecipeVideo = function (videoItem) {
-    console.log('playRecipeVideo ::::::::::::::::');
+    //console.log('playRecipeVideo ::::::::::::::::');
     if ($rootScope.networkState !== 'wifi') {
       alert('This Video will consume data your network carrier may charge you for mobile data');
     }
     if (window.cordova) {
       YoutubeVideoPlayer.openVideo(videoItem.videoId);
       if (ionic.Platform.isAndroid()) {
-        console.log('Android PLatform Mobile');
+        //console.log('Android PLatform Mobile');
       } else if (ionic.Platform.isIos()) {
-        console.log('Ios PLatform Mobile');
+        //console.log('Ios PLatform Mobile');
       }
       var version = ionic.Platform.version();
-      console.log('PLatform of the current Version is : ' + version);
+      //console.log('PLatform of the current Version is : ' + version);
 
     } else {
-      console.log('Cordova not present suppose to play videoId : ' + videoItem.videoId);
+      //console.log('Cordova not present suppose to play videoId : ' + videoItem.videoId);
       var alertPopup = $ionicPopup.alert({
         title: videoItem.title,
         template: '<div class="rf-video-container"><iframe src="https://www.youtube.com/embed/' + videoItem.videoId + '" frameborder="0" height="400px" width="100%"></iframe></div>'
       });
       alertPopup.then(function (res) {
-        console.log('Vidoe display popup window is now closed: ' + videoItem.videoId);
+        //console.log('Vidoe display popup window is now closed: ' + videoItem.videoId);
       });
     }
   };

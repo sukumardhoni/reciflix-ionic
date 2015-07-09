@@ -146,12 +146,29 @@ angular.module('recipesApp')
 
   var runningInCordova1;
   document.addEventListener("deviceready", function () {
-    console.log('############ initializing the Env details, runningInCordova ');
+    //console.log('############ initializing the Env details, runningInCordova ');
     runningInCordova1 = true;
   }, function (err) {
-    console.log('############ initializing the Env details, runningInCordovaErrror happened:  ' + err);
+    //console.log('############ initializing the Env details, runningInCordovaErrror happened:  ' + err);
     runningInCordova1 = false;
   });
   return runningInCordova1;
 
+})
+
+
+
+
+
+.factory('AuthService', function ($rootScope, $localStorage) {
+  return {
+    checkLogin: function () {
+      var loggedIn = $localStorage.token;
+      //console.log('############ Token value :  ' + $localStorage.token);
+      $rootScope.$broadcast('loggedIn', {
+        'loggedIn': loggedIn
+      });
+      return loggedIn;
+    }
+  }
 })

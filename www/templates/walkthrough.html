@@ -7,15 +7,23 @@
     </div>
     <div class="bottom-content row">
       <div class="col col-center">
-        <button class="login button button-block button-stable" ng-click="login()">
-          Log In
+
+        <button class="login button button-block button-stable" ng-click="fbLogin()">
+          <i style="color: white; font-size: 32px;" class="ion ion-social-facebook">&nbsp;&nbsp;</i> connect with facebook</button>
+        <button class="login button button-block button-stable" ui-sref="app.myCalendarPlan({name:'About ReciFlix'})">
+          About Reciflix
         </button>
-        <button class="sign-up button button-block button-stable" ng-click="signup()">
-          Sign Up
-        </button>
-        <button class="login button button-stable" style="float:right" ng-click="skip()">
-          Skip For Now
-        </button>
+
+
+        <!--<button class="login button button-block button-stable" ng-click="login()">
+  Log In
+</button>-->
+        <!--<button class="sign-up button button-block button-stable" ng-click="signup()">
+  Sign Up
+</button>
+<button class="login button button-stable" style="float:right" ng-click="skip()">
+  Skip For Now
+</button>-->
       </div>
     </div>
   </ion-content>

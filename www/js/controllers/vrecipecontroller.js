@@ -1,6 +1,6 @@
 angular.module('recipesApp')
 
-.controller('allRecipesCtrl', function ($scope, $state, $stateParams, $ionicPopover, $timeout, $ionicLoading, RecipesByCategory, SingleRecipe, UserFavorites, Authentication, $http, $localStorage) {
+.controller('allRecipesCtrl', function ($scope, $stateParams, $timeout, $ionicLoading, RecipesByCategory, SingleRecipe, Authentication, $http, $localStorage) {
   $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
   var item = $stateParams.categorieName;
   $scope.singleRecipe = function () {

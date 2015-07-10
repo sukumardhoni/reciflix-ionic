@@ -1,14 +1,13 @@
 angular.module('recipesApp')
 
-.controller('AppCtrl', function ($scope, SearchedRecipes, $stateParams, $ionicLoading, $timeout, Authentication, $state, $ionicPopup, User, $localStorage, $http, $rootScope) {
+.controller('AppCtrl', function ($scope, SearchedRecipes, $stateParams, $ionicLoading, $timeout, Authentication, $state, $ionicPopup, User, $localStorage, $http, $rootScope, $ionicHistory) {
   $scope.authentication = Authentication.user;
   $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
-  if ($scope.authentication && ($scope.authentication.provider === 'fb')) {
-    $scope.fbUserProfileImageUrl = "http://graph.facebook.com/" + $scope.authentication.fb_id + "/picture?width=270&height=270";
+  if ($scope.authentication) {
+    $scope.fbUserProfileImageUrl = $localStorage.picture;
   } else {
     $scope.fbUserProfileImageUrl = "https://cdn0.iconfinder.com/data/icons/PRACTIKA/256/user.png";
   }
-
   $scope.currentStateName = $stateParams.name;
   $scope.signout = function () {
     $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
@@ -40,6 +39,7 @@ angular.module('recipesApp')
       pageId: pageId,
       searchQuery: $stateParams.searchQuery
     }, function (res) {
+      $ionicHistory.clearCache();
       $ionicLoading.hide();
       $scope.recipes = res;
       pageId++;
@@ -86,7 +86,6 @@ angular.module('recipesApp')
         cordova.plugins.email.open({
           to: '',
           cc: '',
-          // bcc:     ['john@doe.com', 'jane@doe.com'],
           subject: 'ReciFlixApp Testing',
           body: 'How are you? Nice greetings from ReciFlixApp'
         });
@@ -96,36 +95,22 @@ angular.module('recipesApp')
   $scope.sharePost = function () {
     window.plugins.socialsharing.share('Check this post here: ', null, null, null);
   };
-
-  // A popup dialog
   $scope.playRecipeVideo = function (videoItem) {
-    //console.log('playRecipeVideo ::::::::::::::::');
     if ($rootScope.networkState !== 'wifi') {
       alert('This Video will consume data your network carrier may charge you for mobile data');
     }
     if (window.cordova) {
       YoutubeVideoPlayer.openVideo(videoItem.videoId);
-      if (ionic.Platform.isAndroid()) {
-        //console.log('Android PLatform Mobile');
-      } else if (ionic.Platform.isIos()) {
-        //console.log('Ios PLatform Mobile');
-      }
+      if (ionic.Platform.isAndroid()) {} else if (ionic.Platform.isIos()) {}
       var version = ionic.Platform.version();
-      //console.log('PLatform of the current Version is : ' + version);
-
     } else {
-      //console.log('Cordova not present suppose to play videoId : ' + videoItem.videoId);
       var alertPopup = $ionicPopup.alert({
         title: videoItem.title,
         template: '<div class="rf-video-container"><iframe src="https://www.youtube.com/embed/' + videoItem.videoId + '" frameborder="0" height="400px" width="100%"></iframe></div>'
       });
-      alertPopup.then(function (res) {
-        //console.log('Vidoe display popup window is now closed: ' + videoItem.videoId);
-      });
+      alertPopup.then(function (res) {});
     }
   };
-
-
   $scope.shareFb = function () {
     window.plugins.socialsharing.shareViaFacebook('Message via Facebook', null /* img */ , 'http://www.reciflix.com' /* url */ , 'ReciFlix is a quick, convenient and easy way to search a recipe online and watch it with a click of a button and add it to your favourites to be able to access the same recipe anytime from any device conveniently.', function () {
       console.log('share ok')

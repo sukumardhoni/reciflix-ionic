@@ -11,14 +11,14 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage', '
     }
     $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
     $rootScope.networkState = navigator.connection.type;
-/*var deviceInfo = cordova.require("cordova/plugin/DeviceInformation");
-deviceInfo.get(
-  function (result) {
-    //console.log("result = " + result);
-  },
-  function () {
-    //console.log("error");
-  });*/
+    /*var deviceInfo = cordova.require("cordova/plugin/DeviceInformation");
+    deviceInfo.get(
+      function (result) {
+        //console.log("result = " + result);
+      },
+      function () {
+        //console.log("error");
+      });*/
   });
 
   $ionicPlatform.registerBackButtonAction(function () {
@@ -35,7 +35,6 @@ deviceInfo.get(
         }
       })
     } else {
-      //console.log('Back button is triggred');
       navigator.app.backHistory();
     }
   }, 100);
@@ -106,33 +105,29 @@ deviceInfo.get(
         }
       }
     })
-
-  .state('app.grocery', {
-    url: "/grocerys",
-    views: {
-      'menuContent': {
-        templateUrl: "templates/grocery.html",
-        controller: "grocerysCtrl"
+    .state('app.grocery', {
+      url: "/grocerys",
+      views: {
+        'menuContent': {
+          templateUrl: "templates/grocery.html",
+          controller: "grocerysCtrl"
+        }
       }
-    }
-  })
-
-  .state('app.singlegrocery', {
-    url: "/:groceryId",
-    views: {
-      'menuContent': {
-        templateUrl: "templates/singlegrocery.html",
-        controller: "grocerysCtrl"
+    })
+    .state('app.singlegrocery', {
+      url: "/:groceryId",
+      views: {
+        'menuContent': {
+          templateUrl: "templates/singlegrocery.html",
+          controller: "grocerysCtrl"
+        }
       }
-    }
-  })
-
-  .state('app.search', {
+    })
+    .state('app.search', {
       url: "/search",
       views: {
         'menuContent': {
-          templateUrl: "templates/search.html",
-          //controller: "AppCtrl"
+          templateUrl: "templates/search.html"
         }
       }
     })
@@ -145,35 +140,8 @@ deviceInfo.get(
         }
       }
     })
-    .state('app.featuredRecipes', {
-      url: "/featuredRecipes/:name",
-      views: {
-        'menuContent': {
-          templateUrl: "templates/newPage.html",
-          controller: "AppCtrl"
-        }
-      }
-    })
-    .state('app.groceryList', {
-      url: "/groceryList/:name",
-      views: {
-        'menuContent': {
-          templateUrl: "templates/newPage.html",
-          controller: "AppCtrl"
-        }
-      }
-    })
     .state('app.myCalendarPlan', {
       url: "/myCalendarPlan/:name",
-      views: {
-        'menuContent': {
-          templateUrl: "templates/newPage.html",
-          controller: "AppCtrl"
-        }
-      }
-    })
-    .state('app.settings', {
-      url: "/settings/:name",
       views: {
         'menuContent': {
           templateUrl: "templates/newPage.html",

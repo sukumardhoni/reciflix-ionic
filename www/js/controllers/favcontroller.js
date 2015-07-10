@@ -1,6 +1,6 @@
 angular.module('recipesApp')
 
-.controller('myFavoritesCtrl', function ($scope, $stateParams, Authentication, MyFavRecipes, $ionicLoading, $http, $localStorage) {
+.controller('myFavoritesCtrl', function ($scope, Authentication, MyFavRecipes, $ionicLoading, $http, $localStorage) {
   var pageId = 0;
   $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
   $scope.favoriteFunc = function () {

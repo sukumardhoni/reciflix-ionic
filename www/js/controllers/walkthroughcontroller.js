@@ -1,32 +1,24 @@
 angular.module('recipesApp')
 
-
-.controller('walkthroughCtrl', function ($scope, $state, User, $ionicModal, $ionicLoading, $rootScope, Authentication, $localStorage, $http, AuthService, $timeout, $ionicHistory) {
-
+.controller('walkthroughCtrl', function ($scope, $state, User, $ionicModal, $ionicLoading, $rootScope, Authentication, $localStorage, $http, AuthService, $timeout, $ionicHistory, $cordovaOauth) {
   $ionicHistory.clearCache();
   $timeout(function () {
     AuthService.checkLogin();
   }, 500);
-
   $scope.$on('loggedIn', function (event, message) {
     if (message.loggedIn) {
-      //console.log('LOGGED IN!');
       $scope.authentication.user = $localStorage.user;
       $state.go('app.allCategories')
-        //$scope.modal.hide();
     } else {
-      //console.log('NOT LOGGED IN!');
       $state.go('walkthrough')
     }
   });
-
   $scope.authentication = Authentication;
   $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
   $scope.skip = function () {
     if ($rootScope.networkState === 'none') {
       alert('This App needs internet, Please try after you connect to internet');
     } else {
-      //console.log('Skip func. is called');
       $scope.authentication = "";
       $state.go('app.allCategories')
     }
@@ -64,9 +56,7 @@ angular.module('recipesApp')
         })
       }
     };
-
     $scope.fbLogin = function () {
-      //console.log('FB login starting');
       $ionicLoading.show({
         templateUrl: "templates/loading.html",
       });
@@ -79,7 +69,6 @@ angular.module('recipesApp')
                 fields: 'id,name,email,first_name,last_name'
               },
               success: function (user) {
-                //console.log(' User in FB user is : ' + JSON.stringify(user));
                 if (user.email) {
                   $scope.fbUser = {
                     firstName: user.first_name,
@@ -88,12 +77,11 @@ angular.module('recipesApp')
                     provider: 'fb',
                     fb_id: user.id
                   };
-                  $scope.fbUserProfileImageUrl = "http://graph.facebook.com/" + user.id + "/picture?width=270&height=270";
+                  $localStorage.picture = "http://graph.facebook.com/" + user.id + "/picture?width=270&height=270";
                   User.Signup.create($scope.fbUser, function (res) {
                     if (res.type === false) {
                       if (res.user) {
                         $ionicLoading.hide();
-                        //console.log(' User is Already exists : ' + JSON.stringify(res.user));
                         $scope.authentication.user = res.user;
                         $localStorage.user = res.user;
                         $localStorage.token = res.user.token;
@@ -104,7 +92,6 @@ angular.module('recipesApp')
                     } else {
                       $ionicLoading.hide();
                       $scope.authentication.user = res;
-                      //console.log(' User is FB user is : ' + JSON.stringify(res));
                       $localStorage.token = res.token;
                       $localStorage.user = res;
                       $state.go('app.allCategories', {
@@ -127,6 +114,7 @@ angular.module('recipesApp')
             });
           } else {
             alert('Facebook login failed');
+            $ionicLoading.hide();
           }
         }, {
           scope: 'email,publish_actions'
@@ -142,7 +130,6 @@ angular.module('recipesApp')
     $scope.oModal1.show();
     $scope.oModal2.hide();
   };
-
   $ionicModal.fromTemplateUrl('templates/signup.html', {
     id: '1',
     scope: $scope,
@@ -175,7 +162,6 @@ angular.module('recipesApp')
     $scope.oModal2.show();
     $scope.oModal1.hide();
   };
-
   $ionicModal.fromTemplateUrl('templates/forgot-password.html', {
     id: '1',
     scope: $scope,
@@ -186,5 +172,57 @@ angular.module('recipesApp')
     $scope.oModal3 = modal;
     $rootScope.modal3 = modal;
   });
-
+  $scope.googleLogin = function () {
+    $ionicLoading.show({
+      templateUrl: "templates/loading.html",
+    });
+    $cordovaOauth.google("951951324496-fdusfp1vved02vvicdg0vet1pk50hc0f.apps.googleusercontent.com", ["https://www.googleapis.com/auth/urlshortener", 'https://www.googleapis.com/auth/userinfo.profile', "https://www.googleapis.com/auth/userinfo.email"]).then(function (result) {
+      $scope.accessToken = result.access_token;
+      $scope.getDataProfile();
+    }, function (error) {
+      console.log(error);
+    });
+  };
+  $scope.getDataProfile = function () {
+    var term = null;
+    $http({
+        method: "GET",
+        url: 'https://www.googleapis.com/oauth2/v1/userinfo?alt=json&access_token=' + $scope.accessToken,
+        data: term,
+        dataType: 'json',
+      })
+      .success(function (data) {
+        $scope.gUser = {
+          firstName: data.given_name,
+          lastName: data.family_name,
+          email: data.email,
+          provider: 'gmail'
+        };
+        $localStorage.picture = data.picture;
+        User.Signup.create($scope.gUser, function (res) {
+          if (res.type === false) {
+            if (res.user) {
+              $ionicLoading.hide();
+              $scope.authentication.user = res.user;
+              $localStorage.user = res.user;
+              $localStorage.token = res.user.token;
+              $state.go('app.allCategories', {
+                userId: res.user._id
+              });
+            }
+          } else {
+            $ionicLoading.hide();
+            $scope.authentication.user = res;
+            $localStorage.token = res.token;
+            $localStorage.user = res;
+            $state.go('app.allCategories', {
+              userId: res._id
+            });
+          }
+        })
+      })
+      .error(function (data, status) {
+        $scope.errMsg = 'This seems to be Google login error. We willl look into it and let you know';
+      });
+  };
 });

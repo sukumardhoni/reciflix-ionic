@@ -1,7 +1,5 @@
 <div class="card rf-card">
   <div class="item item-divider item-text-wrap rf-title row">
-    <!-- {{item.title}}
-    <i ng-class="item._id === selectedIndex ? 'ion ion-chevron-up' : 'ion ion-chevron-down'" style="color:Grey;font-size:30px;float:right" ng-click="changeClass(item)"></i>-->
     <div class="col col-90 col-top ">
       <span style="color:#FFF">{{item.title}}</span>
     </div>
@@ -13,10 +11,7 @@
     <div class="row">
       <div class="col-30">
         <img ng-src="{{item.images.dft}}" alt="Making Image" class="rf-image" ng-click="playRecipeVideo(item)">
-        <!--<div class="rf-play-icon" ui-sref="app.showRecipes({videoId:item.videoId})"></div>-->
-
         <div class="rf-play-icon"></div>
-
       </div>
       <div class="col col-70" style="padding-left:2px;">
         <div class="row" style="padding-bottom:10px">
@@ -35,20 +30,12 @@
             <span my-favorite-icon favorite=item></span>
           </div>
           <div class="col col-33" style="padding-top: 5px;font-size:20px;">
-
             <button class="button button-stable" ui-sref="app.slides({recipeId:item._id})" href="#/app/slides/553b6343939820f40da7237e">More</button>
 
           </div>
         </div>
       </div>
     </div>
-    <!--
-<div class="row">
-  <button class="button button-stable" ng-click="showOnPopup(item)">
-    OPEN A POPUP
-  </button>
-</div>-->
-
     <div class="row rf-description">
       <div ng-class="item._id === selectedIndex ? 'fullHeight' : 'dftHeight'">
         {{item.description}}

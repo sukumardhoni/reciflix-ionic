@@ -36,9 +36,6 @@ var openFB = (function () {
     // Used in the exit event handler to identify if the login has already been processed elsewhere (in the oauthCallback function)
     loginProcessed;
 
-  console.log(oauthRedirectURL);
-  console.log(logoutRedirectURL);
-
   document.addEventListener("deviceready", function () {
     runningInCordova = true;
   }, false);
@@ -90,13 +87,9 @@ var openFB = (function () {
    * @returns {*}
    */
   function login(callback, options) {
-
-    //console.log('Console at openFb.js login function');
-
     var loginWindow,
       startTime,
       scope = '';
-
     if (!fbAppId) {
       return callback({
         status: 'unknown',
@@ -120,17 +113,19 @@ var openFB = (function () {
 
     // Inappbrowser exit handler: Used when running in Cordova only
     function loginWindow_exitHandler() {
-      //console.log('exit and remove listeners');
-      // Handle the situation where the user closes the login window manually before completing the login process
       deferredLogin.reject({
         error: 'user_cancelled',
         error_description: 'User cancelled login process',
         error_reason: "user_cancelled"
+      }, function (error) {
+        console.log('Exit InApp Browser');
       });
+
+
       loginWindow.removeEventListener('loadstop', loginWindow_loadStartHandler);
       loginWindow.removeEventListener('exit', loginWindow_exitHandler);
       loginWindow = null;
-      //console.log('done removing listeners');
+
     }
 
     if (options && options.scope) {
@@ -145,42 +140,14 @@ var openFB = (function () {
     startTime = new Date().getTime();
 
     if (runningInCordova) {
-      //alert('runningInCordova');
       oauthRedirectURL = 'https://www.facebook.com/connect/login_success.html'
     }
-
-
-
-    //console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  opening the login window  BEFORE: loginWindow ');
-
-
     loginWindow = window.open(FB_LOGIN_URL + '?client_id=' + fbAppId + '&redirect_uri=' + oauthRedirectURL +
       '&response_type=token&scope=' + scope, '_blank', 'location=no,clearcache=yes');
-
-
-
-    //console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  opening the login window  AFTER: loginWindow');
-
-
-
-
-    // If the app is running in Cordova, listen to URL changes in the InAppBrowser until we get a URL with an access_token or an error
     if (runningInCordova) {
-
-
-      //console.log('XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX  opening the login window  INSIDE: runningInCordova');
-
-
-
-
-
-
       loginWindow.addEventListener('loadstart', loginWindow_loadStartHandler);
       loginWindow.addEventListener('exit', loginWindow_exitHandler);
     }
-    // Note: if the app is running in the browser the loginWindow dialog will call back by invoking the
-    // oauthCallback() function. See oauthcallback.html for details.
-
   }
 
   /**

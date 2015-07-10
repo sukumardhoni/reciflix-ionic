@@ -439,6 +439,17 @@ small.time {
   z-index: 1000;
 }
 
+.rf-play-icon1 {
+  background: url("../img/play1.png") no-repeat 0;
+  display: block;
+  height: 80px;
+  position: absolute;
+  left: 45%;
+  top: 80px;
+  width: 80px;
+  z-index: 1000;
+}
+
 .rf-card {
   margin-bottom: 5px;
   margin-left: 5px;

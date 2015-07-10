@@ -9,7 +9,8 @@
         RECIPE: {{recipe.title}}
       </div>
       <center>
-        <img ng-src="{{recipe.images.mq}}" height="180px" />
+        <img ng-src="{{recipe.images.mq}}" height="180px" ng-click="playRecipeVideo(recipe)" />
+        <div class="rf-play-icon1"></div>
       </center>
       <div class="row">
         <div class="col"><span my-like-icon likes=recipe></span>
@@ -21,12 +22,8 @@
         </div>
         <!--<div class="col"><i class="ion ion-play" style="color:#00CCA3;font-size:30px" ui-sref="app.showRecipes({videoId:recipe.videoId})"></i>
         </div>-->
-
         <div class="col"><i class="ion ion-play" style="color:#00CCA3;font-size:30px;padding-left:3px" ng-click="playRecipeVideo(recipe)"></i>
         </div>
-
-
-
       </div>
     </div>
     <div class="card">

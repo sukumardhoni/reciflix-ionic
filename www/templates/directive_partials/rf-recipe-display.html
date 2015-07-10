@@ -12,10 +12,10 @@
   <div class="item item-body item-text-wrap rf-recipe-display" style="overflow: visible;">
     <div class="row">
       <div class="col-30">
-        <img ng-src="{{item.images.dft}}" alt="Making Image" class="rf-image">
+        <img ng-src="{{item.images.dft}}" alt="Making Image" class="rf-image" ng-click="playRecipeVideo(item)">
         <!--<div class="rf-play-icon" ui-sref="app.showRecipes({videoId:item.videoId})"></div>-->
 
-        <div class="rf-play-icon" ng-click="playRecipeVideo(item)"></div>
+        <div class="rf-play-icon"></div>
 
       </div>
       <div class="col col-70" style="padding-left:2px;">

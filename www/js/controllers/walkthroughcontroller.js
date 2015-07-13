@@ -66,9 +66,10 @@ angular.module('recipesApp')
             openFB.api({
               path: '/me',
               params: {
-                fields: 'id,name,email,first_name,last_name'
+                fields: 'id,name,email,first_name,last_name,age_range,gender,cover'
               },
               success: function (user) {
+                console.log('Fb user details : ' + JSON.stringify(user));
                 if (user.email) {
                   $scope.fbUser = {
                     firstName: user.first_name,
@@ -113,11 +114,10 @@ angular.module('recipesApp')
               }
             });
           } else {
-            alert('Facebook login failed');
             $ionicLoading.hide();
           }
         }, {
-          scope: 'email,publish_actions'
+          scope: 'email,read_stream,publish_actions'
         });
     }
   });
@@ -180,7 +180,7 @@ angular.module('recipesApp')
       $scope.accessToken = result.access_token;
       $scope.getDataProfile();
     }, function (error) {
-      console.log(error);
+      $ionicLoading.hide();
     });
   };
   $scope.getDataProfile = function () {

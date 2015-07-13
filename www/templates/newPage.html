@@ -5,17 +5,26 @@
   <ion-content>
     <div class="card">
       <div class="item item-text-wrap" ng-show="currentStateName === 'About ReciFlix'">
-        ReciFlix is a quick, convenient and easy way to search a recipe online and watch it with a click of a button and add it to your favourites to be able to access the same recipe anytime from any device conveniently. Browse the categories or set preferences to see a featured recipe. You will be able to like or add to your favourites or share with friends and family all from one app with quick and easy steps.
+        ReciFlix is a quick, convenient and easy way to search a recipe online and instantly watch it.
+        <br>
+        <br> Add a recipe to your favourites to be able to access the same recipe anytime from any device conveniently.
+        <br>
+        <br> Browse the categories or set preferences to find a mactching recipe quickly. You will be able to like or add to your favourites or share with friends and family all from one app with quick and easy steps.
+
+        <br>
         <br/> Visit us at : <a href="http:\\www.reciflix.com" target="_blank"><strong>www.reciflix.com</strong></a>
       </div>
     </div>
     <div ng-hide="authentication" class="card">
       <div class="item item-text-wrap">
-        <div ui-sref="walkthrough" align="middle">
+        <div ui-sref="walkthrough" align="middle" href="#/">
+          <span style="font-size:30px">
           <i class="icon ion-log-in"></i>
-          <span class="menu-text" style="color:green">Connect with <i style="color: blue; font-size: 32px;" class="ion ion-social-facebook">&nbsp;&nbsp;&nbsp;&nbsp;</i> or
+          <span class="menu-text" style="color:green;font-size: 28px;">Connect with &nbsp;&nbsp;<i style="color: #1975FF; font-size: 32px;" class="ion ion-social-facebook">&nbsp;&nbsp;</i> or &nbsp;&nbsp;
 <i style="color: red; font-size: 32px;" class="ion ion-social-googleplus">&nbsp;&nbsp;</i></span>
+          </span>
         </div>
+
       </div>
     </div>
   </ion-content>

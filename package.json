@@ -31,6 +31,8 @@
     "org.apache.cordova.globalization",
     "org.apache.cordova.inappbrowser",
     "org.pushandplay.cordova.apprate",
-    "https://github.com/phonegap-build/PushPlugin.git"
+    "https://github.com/phonegap-build/PushPlugin.git",
+    "nl.x-services.plugins.socialsharing",
+    "com.ionic.keyboard"
   ]
 }

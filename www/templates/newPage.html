@@ -16,16 +16,14 @@
       </div>
     </div>
     <div ng-hide="authentication" class="card">
-      <div class="item item-text-wrap">
-        <div ui-sref="walkthrough" align="middle" href="#/">
-          <span style="font-size:30px">
-          <i class="icon ion-log-in"></i>
-          <span class="menu-text" style="color:green;font-size: 28px;">Connect with &nbsp;&nbsp;<i style="color: #1975FF; font-size: 32px;" class="ion ion-social-facebook">&nbsp;&nbsp;</i> or &nbsp;&nbsp;
-<i style="color: red; font-size: 32px;" class="ion ion-social-googleplus">&nbsp;&nbsp;</i></span>
-          </span>
-        </div>
 
-      </div>
+		<ion-item class="item-icon-left"  ui-sref="walkthrough">
+          <div>
+            <i class="icon ion-log-in"></i>
+            <h2 class="menu-text">Login or Create Account</h2>
+          </div>
+        </ion-item>
+
     </div>
   </ion-content>
   <rf-footer-display ng-show="authentication"></rf-footer-display>

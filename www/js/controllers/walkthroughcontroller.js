@@ -45,13 +45,7 @@ angular.module('recipesApp')
             $scope.errMsg = res.data;
             $ionicLoading.hide();
           } else {
-            $scope.authentication.user = res;
-            $localStorage.token = res.token;
-            $localStorage.user = res;
-            $ionicLoading.hide();
-            $state.go('app.allCategories', {
-              userId: res._id
-            });
+            $scope.reUsableCode(res);
           }
         })
       }
@@ -82,22 +76,10 @@ angular.module('recipesApp')
                   User.Signup.create($scope.fbUser, function (res) {
                     if (res.type === false) {
                       if (res.user) {
-                        $ionicLoading.hide();
-                        $scope.authentication.user = res.user;
-                        $localStorage.user = res.user;
-                        $localStorage.token = res.user.token;
-                        $state.go('app.allCategories', {
-                          userId: res.user._id
-                        });
+                        $scope.reUsableCode(res.user);
                       }
                     } else {
-                      $ionicLoading.hide();
-                      $scope.authentication.user = res;
-                      $localStorage.token = res.token;
-                      $localStorage.user = res;
-                      $state.go('app.allCategories', {
-                        userId: res._id
-                      });
+                      $scope.reUsableCode(res);
                     }
                   })
                 } else {
@@ -147,13 +129,7 @@ angular.module('recipesApp')
         if (res.type === false) {
           $scope.errMsg = res.data;
         } else {
-          $scope.authentication.user = res;
-          $localStorage.token = res.token;
-          $localStorage.user = res;
-          $ionicLoading.hide();
-          $state.go('app.allCategories', {
-            userId: res._id
-          });
+          $scope.reUsableCode(res);
         }
       })
     };
@@ -202,22 +178,10 @@ angular.module('recipesApp')
         User.Signup.create($scope.gUser, function (res) {
           if (res.type === false) {
             if (res.user) {
-              $ionicLoading.hide();
-              $scope.authentication.user = res.user;
-              $localStorage.user = res.user;
-              $localStorage.token = res.user.token;
-              $state.go('app.allCategories', {
-                userId: res.user._id
-              });
+              $scope.reUsableCode(res.user);
             }
           } else {
-            $ionicLoading.hide();
-            $scope.authentication.user = res;
-            $localStorage.token = res.token;
-            $localStorage.user = res;
-            $state.go('app.allCategories', {
-              userId: res._id
-            });
+            $scope.reUsableCode(res);
           }
         })
       })
@@ -225,4 +189,13 @@ angular.module('recipesApp')
         $scope.errMsg = 'This seems to be Google login error. We willl look into it and let you know';
       });
   };
+  $scope.reUsableCode = function (respUser) {
+    $ionicLoading.hide();
+    $scope.authentication.user = respUser;
+    $localStorage.user = respUser;
+    $localStorage.token = respUser.token;
+    $state.go('app.allCategories', {
+      userId: respUser._id
+    });
+  }
 });

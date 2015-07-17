@@ -19,6 +19,7 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage', '
       function () {
         //console.log("error");
       });*/
+    navigator.analytics.setTrackingId('UA-65211986-2');
   });
 
   $ionicPlatform.registerBackButtonAction(function () {

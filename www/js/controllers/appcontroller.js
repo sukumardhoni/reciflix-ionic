@@ -80,81 +80,46 @@ angular.module('recipesApp')
       $scope.$broadcast('scroll.infiniteScrollComplete');
     }, 100);
   };
-  $scope.sendMail = function () {
-    cordova.plugins.email.isAvailable(
-      function (isAvailable) {
-        cordova.plugins.email.open({
-          to: '',
-          cc: '',
-          subject: 'ReciFlix App',
-          body: 'How are you? Nice greetings from ReciFlixApp'
-        });
-      }
-    );
-  };
-
-
-$scope.playVideo=function(videoItem){
-if (window.cordova) {
-      		YoutubeVideoPlayer.openVideo(videoItem.videoId);
-		} else {
-      	var alertPopup = $ionicPopup.alert({
+  $scope.playVideo = function (videoItem) {
+    if (window.cordova) {
+      YoutubeVideoPlayer.openVideo(videoItem.videoId);
+    } else {
+      var alertPopup = $ionicPopup.alert({
         title: videoItem.title,
         template: '<div class="rf-video-container"><iframe src="https://www.youtube.com/embed/' + videoItem.videoId + '" frameborder="0" height="400px" width="100%"></iframe></div>'
       });
       alertPopup.then(function (res) {});
-		}
-};
+    }
+  };
   $scope.sharePost = function () {
     window.plugins.socialsharing.share('Check this post here: ', null, null, null);
   };
   $scope.playRecipeVideo = function (videoItem) {
-
     if ($rootScope.networkState !== 'wifi') {
-		//userWishToPlay = window.confirm("This Video will consume data, do you want to proceed?");
-		navigator.notification.confirm("This Video will consume data, do you want to proceed?", function(cbIndex){
-			if(cbIndex == 1){
-			//	navigator.notification.alert('Cancel play clicked');
-			}else if(cbIndex == 2){
-//				if (window.cordova) {
-//      		YoutubeVideoPlayer.openVideo(videoItem.videoId);
-//		} else {
-//      	var alertPopup = $ionicPopup.alert({
-//        title: videoItem.title,
-//        template: '<div class="rf-video-container"><iframe src="https://www.youtube.com/embed/' + videoItem.videoId + '" frameborder="0" height="400px" width="100%"></iframe></div>'
-//      });
-//      alertPopup.then(function (res) {});
-//		}
-				$scope.playVideo(videoItem);
-
-			}
-			},            // callback to invoke with index of button pressed
-    'Confirmation',           // title
-    ['Cancel','OK']);
-
-
-
-	}else{
-		$scope.playVideo(videoItem);
-	}
-
-
+      navigator.notification.confirm("This Video will consume data, do you want to proceed?", function (cbIndex) {
+          if (cbIndex == 1) {} else if (cbIndex == 2) {
+            $scope.playVideo(videoItem);
+          }
+        },
+        'Confirmation', ['Cancel', 'OK']);
+    } else {
+      $scope.playVideo(videoItem);
+    }
   };
   $scope.shareFb = function () {
-
-	  if (ionic.Platform.isAndroid()){
-    window.plugins.socialsharing.shareViaFacebook('Message via Facebook', null /* img */ , 'http://www.reciflix.com' /* url */ , 'ReciFlix is a quick, convenient and easy way to search a recipe online and watch it with a click of a button and add it to your favourites to be able to access the same recipe anytime from any device conveniently.', function () {
-      console.log('share ok')
-   }, function (errormsg) {
-	   alert(errormsg)
-    });
-	  }else if(ionic.Platform.isIOS()){
-	  window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('ReciFlix is a quick, convenient and easy way to search a recipe online and watch it with a click of a button and add it to your favourites to be able to access the same recipe anytime from any device conveniently.', 'http://www.reciflix.com/modules/core/img/brand/reciflix_64.png' /* img */ , 'http://www.reciflix.com' /* url */ , 'Use paste in the content area to get the prewritten message', function () {
-      console.log('share ok')
-    }, function (errormsg) {
-      alert(errormsg)
-    });
-	  }
+    if (ionic.Platform.isAndroid()) {
+      window.plugins.socialsharing.shareViaFacebook('Message via Facebook', null /* img */ , 'http://www.reciflix.com' /* url */ , 'ReciFlix is a quick, convenient and easy way to search a recipe online and watch it with a click of a button and add it to your favourites to be able to access the same recipe anytime from any device conveniently.', function () {
+        console.log('share ok')
+      }, function (errormsg) {
+        alert(errormsg)
+      });
+    } else if (ionic.Platform.isIOS()) {
+      window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('ReciFlix is a quick, convenient and easy way to search a recipe online and watch it with a click of a button and add it to your favourites to be able to access the same recipe anytime from any device conveniently.', 'http://www.reciflix.com/modules/core/img/brand/reciflix_64.png' /* img */ , 'http://www.reciflix.com' /* url */ , 'Use paste in the content area to get the prewritten message', function () {
+        console.log('share ok')
+      }, function (errormsg) {
+        alert(errormsg)
+      });
+    }
   }
   $scope.shareWhatsApp = function () {
     window.plugins.socialsharing.shareViaWhatsApp('ReciFlix is a quick, convenient and easy way to search a recipe online and watch it with a click of a button and add it to your favourites to be able to access the same recipe anytime from any device conveniently.', null /* img */ , 'http://www.reciflix.com');
@@ -168,5 +133,4 @@ if (window.cordova) {
   $scope.shareEmail = function () {
     window.plugins.socialsharing.shareViaEmail('ReciFlix is a quick, convenient and easy way to search a recipe online and watch it with a click of a button and add it to your favourites to be able to access the same recipe anytime from any device conveniently.', 'Browse and watch the best recipes online from any device', null, null, null, null);
   }
-
 });

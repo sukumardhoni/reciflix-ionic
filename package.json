@@ -20,19 +20,28 @@
     "shelljs": "^0.3.0"
   },
   "cordovaPlugins": [
-    "com.google.cordova.admob",
-    "com.google.playservices",
-    "com.rjfun.cordova.iad",
-    "com.synconset.imagepicker",
-    "https://github.com/katzer/cordova-plugin-email-composer.git",
-    "https://github.com/EddyVerbruggen/SocialSharing-PhoneGap-Plugin.git",
-    "org.apache.cordova.dialogs",
-    "org.apache.cordova.geolocation",
-    "org.apache.cordova.globalization",
     "org.apache.cordova.inappbrowser",
-    "org.pushandplay.cordova.apprate",
-    "https://github.com/phonegap-build/PushPlugin.git",
+    {
+      "locator": "https://github.com/Glitchbone/CordovaYoutubeVideoPlayer.git",
+      "id": "com.bunkerpalace.cordova.YoutubeVideoPlayer"
+    },
     "nl.x-services.plugins.socialsharing",
-    "com.ionic.keyboard"
+    "com.google.cordova.admob",
+    "com.rjfun.cordova.extension",
+    "com.google.playservices",
+    "org.apache.cordova.dialogs",
+    "com.ionic.keyboard",
+    {
+      "locator": "https://git-wip-us.apache.org/repos/asf/cordova-plugin-network-information.git",
+      "id": "cordova-plugin-network-information"
+    },
+    "com.cmackay.plugins.googleanalytics"
+  ],
+  "cordovaPlatforms": [
+    {
+      "platform": "android",
+      "version": "",
+      "locator": "android"
+    }
   ]
 }

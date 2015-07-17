@@ -1,21 +1,29 @@
-<ion-view ng-init="getsinglegrocery()" cache-view="false">
-  <ion-nav-title>
-    <span style="color:white"> {{singlegrocerys.name}}</span>
-  </ion-nav-title>
-  <ion-content ng-hide="singlegrocerys.items.length === 0">
-    <div class="list card" ng-repeat="item in singlegrocerys.items">
-      <a class="item" editable-text="item" onaftersave="updateItem($index,item)">
-     {{item}}
-  </a>
-    </div>
-  </ion-content>
-  <ion-content ng-show="singlegrocerys.items.length === 0">
-    <div class="list card">
-      There is no Items in this Grocery.Now you can create your Items in this Groceries here.
-    </div>
-  </ion-content>
-  <div class="float-button corner">
-    <a class="round-button " ng-click="addgroceryitem()"><i class="ion-plus-round"> </i></a>
-  </div>
-  <rf-footer-display></rf-footer-display>
-</ion-view>
+<style>
+  .tab-item.tab-item-active,
+  .tab-item.active,
+  .tab-item.activated {
+    opacity: 1;
+    background-color: #FF7043 !important;
+  }
+</style>
+
+
+
+
+
+
+<ion-tabs class=" tabs-default tabs-top" ng-hide="singlegrocerys.items.length === 0">
+
+  <ion-tab title="All" ui-sref="app.singlegrocery.all" style="font-size:200%">
+    <ion-nav-view name="tab-all"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="To Buy" ui-sref="app.singlegrocery.buy" style="font-size:200%">
+    <ion-nav-view name="tab-buy"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="Buyed" ui-sref="app.singlegrocery.buyed" style="font-size:200%">
+    <ion-nav-view name="tab-buyed"></ion-nav-view>
+  </ion-tab>
+
+</ion-tabs>

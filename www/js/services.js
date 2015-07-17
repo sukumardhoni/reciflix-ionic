@@ -1,7 +1,7 @@
 angular.module('recipesApp')
 
-//.constant('API_HOST', 'http://localhost:3000')
-.constant('API_HOST', 'http://qa.api.reciflix.com')
+.constant('API_HOST', 'http://localhost:3000')
+  //.constant('API_HOST', 'http://qa.api.reciflix.com')
 
 .factory('Categories', function ($resource, API_HOST) {
   return $resource(API_HOST + '/categories/page/:pageId', {
@@ -82,7 +82,7 @@ angular.module('recipesApp')
 })
 
 .factory('Grocery', function ($resource, API_HOST) {
-  return $resource(API_HOST + '/groceries', {}, {
+  return $resource(API_HOST + '/glist', {}, {
     'query': {
       method: 'GET',
       isArray: true
@@ -94,8 +94,8 @@ angular.module('recipesApp')
 })
 
 .factory('singleGrocery', function ($resource, API_HOST) {
-  return $resource(API_HOST + '/groceries/:groceryId', {
-    groceryId: '@groceryId'
+  return $resource(API_HOST + '/glist/:glistId', {
+    glistId: '@glistId'
   }, {
     'query': {
       method: 'GET'
@@ -106,6 +106,48 @@ angular.module('recipesApp')
     },
     'update': {
       method: 'PUT'
+    }
+  });
+})
+
+
+.factory('SingleGroceryItem', function ($resource, API_HOST) {
+  return $resource(API_HOST + '/glistitem/:glistIditem/item', {
+    glistIditem: '@glistIditem'
+  }, {
+    'query': {
+      method: 'GET',
+      isArray: true
+    },
+    'save': {
+      method: 'POST'
+    }
+  });
+})
+
+.factory('GroceryItemSingle', function ($resource, API_HOST) {
+  return $resource(API_HOST + '/glistitemsingle/:glistIditem/item/:itemId', {
+    glistIditem: '@glistIditem',
+    itemId: '@itemId'
+  }, {
+    'query': {
+      method: 'GET'
+    },
+    'update': {
+      method: 'PUT'
+    }
+  });
+})
+
+
+.factory('GroceryItemSingleByState', function ($resource, API_HOST) {
+  return $resource(API_HOST + '/glistitemstate/:glistIditem/item/:state', {
+    glistIditem: '@glistIditem',
+    state: '@state'
+  }, {
+    'query': {
+      method: 'GET',
+      isArray: true
     }
   });
 })

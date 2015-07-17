@@ -15,9 +15,9 @@
       </center>
     </div>
     <ion-list ng-hide="grocerylists.length === 0" show-delete="triggerOn" scroll="true">
-      <ion-item ng-repeat="grocery in grocerylists" class="item-remove-animate item-icon-right scroll-content itemBG" ui-sref="app.singlegrocery({groceryId:grocery._id})">
+      <ion-item ng-repeat="grocery in grocerylists" class="item-remove-animate item-icon-right scroll-content itemBG" ui-sref="app.singlegrocery({groceryId:grocery._id,groceryName:grocery.name})">
         <div class="row responsive">
-          <div class="col"> <span> {{grocery.name}} </span>
+          <div class="col"> <b> {{grocery.name}} </b>
           </div>
         </div>
         <ion-option-button class="button-calm" ng-click="grocerydelete($index)">

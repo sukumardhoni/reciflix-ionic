@@ -1,0 +1,62 @@
+<style>
+  .active-true {
+    text-decoration: line-through;
+    color: blue;
+  }
+
+  .active-flase {
+    text-decoration: none;
+  }
+
+  .editable-click {
+    border-style: hidden !important;
+  }
+</style>
+
+
+
+<ion-view ng-init="gettobuygrocery()" title="{{groceryName}}" cache-view="false">
+  <!--<ion-nav-title>
+    <span style="color:white"> {{singlegrocerys.name}}</span>
+  </ion-nav-title>-->
+  <ion-content class="padding">
+
+    <div class="list">
+
+      <form class="item item-input-inset" name="grocery_form" novalidate>
+        <label class="item-input-wrapper" focus-me>
+          <input type="text" placeholder="item name" ng-model="item.name" autofocus required>
+        </label>
+        <button class="button button-small button-positive" ng-click="createItems()" ng-disabled="grocery_form.$invalid">
+          create
+        </button>
+      </form>
+
+
+      <div class="card" ng-show="singlegrocerys.length === 0">
+        <div class="item item-text-wrap">
+          it has no items
+        </div>
+      </div>
+
+
+      <div class="row" ng-repeat="item in singlegrocerys" style="border-bottom:1px solid #9E9E9E;margin-bottom:10px;" ng-hide="singlegrocerys.length === 0">
+        <div class="col col-10 checkbox" style="border-right:1px solid #FFA000">
+          <input type="checkbox" ng-model="item.state" ng-click="checkboxcheckanother(item,$index)">
+        </div>
+
+        <div class="col col-90">
+          <a class="col col-90" editable-text="item.name" onaftersave="updateItem($index,item)" class="active-{{item.active}}">
+            <span class="active-{{item.state}}">{{item.name}}</span>
+          </a>
+        </div>
+      </div>
+
+
+    </div>
+
+
+
+  </ion-content>
+  <rf-footer-display></rf-footer-display>
+</ion-view>

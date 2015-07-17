@@ -115,10 +115,37 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage', '
       }
     })
     .state('app.singlegrocery', {
-      url: "/:groceryId",
+      url: "/:groceryId/:groceryName",
       views: {
         'menuContent': {
           templateUrl: "templates/singlegrocery.html",
+          controller: "grocerysCtrl"
+        }
+      }
+    })
+    .state('app.singlegrocery.all', {
+      url: "/all",
+      views: {
+        'tab-all': {
+          templateUrl: "templates/singlegroceryall.html",
+          controller: "grocerysCtrl"
+        }
+      }
+    })
+    .state('app.singlegrocery.buy', {
+      url: "/buy",
+      views: {
+        'tab-buy': {
+          templateUrl: "templates/singlegrocerybuy.html",
+          controller: "grocerysCtrl"
+        }
+      }
+    })
+    .state('app.singlegrocery.buyed', {
+      url: "/buyed",
+      views: {
+        'tab-buyed': {
+          templateUrl: "templates/singlegrocerybuyed.html",
           controller: "grocerysCtrl"
         }
       }

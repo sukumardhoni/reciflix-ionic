@@ -26,7 +26,6 @@
       "id": "com.bunkerpalace.cordova.YoutubeVideoPlayer"
     },
     "nl.x-services.plugins.socialsharing",
-    "com.google.cordova.admob",
     "com.rjfun.cordova.extension",
     "com.google.playservices",
     "org.apache.cordova.dialogs",
@@ -34,14 +33,18 @@
     {
       "locator": "https://git-wip-us.apache.org/repos/asf/cordova-plugin-network-information.git",
       "id": "cordova-plugin-network-information"
-    },
-    "com.cmackay.plugins.googleanalytics"
+    }
   ],
   "cordovaPlatforms": [
     {
       "platform": "android",
       "version": "",
       "locator": "android"
+    },
+    {
+      "platform": "ios",
+      "version": "",
+      "locator": "ios"
     }
   ]
 }

@@ -63,7 +63,7 @@ angular.module('recipesApp')
                 fields: 'id,name,email,first_name,last_name,age_range,gender,cover'
               },
               success: function (user) {
-                console.log('Fb user details : ' + JSON.stringify(user));
+                //console.log('Fb user details : ' + JSON.stringify(user));
                 if (user.email) {
                   $scope.fbUser = {
                     firstName: user.first_name,

@@ -108,13 +108,13 @@ angular.module('recipesApp')
   };
   $scope.shareFb = function () {
     if (ionic.Platform.isAndroid()) {
-      window.plugins.socialsharing.shareViaFacebook('Message via Facebook', null /* img */ , 'http://www.reciflix.com' /* url */ , 'ReciFlix is a quick, convenient and easy way to search a recipe online and watch it with a click of a button and add it to your favourites to be able to access the same recipe anytime from any device conveniently.', function () {
+      window.plugins.socialsharing.shareViaFacebook('Message via Facebook', null /* img */ , 'http://www.reciflix.com' /* url */ , 'ReciFlix App allows convenient way to search and watch a recipe video online. Users can add recipes to favorites to watch them later from anywhere.', function () {
         console.log('share ok')
       }, function (errormsg) {
         alert(errormsg)
       });
     } else if (ionic.Platform.isIOS()) {
-      window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('ReciFlix is a quick, convenient and easy way to search a recipe online and watch it with a click of a button and add it to your favourites to be able to access the same recipe anytime from any device conveniently.', 'http://www.reciflix.com/modules/core/img/brand/reciflix_64.png' /* img */ , 'http://www.reciflix.com' /* url */ , 'Use paste in the content area to get the prewritten message', function () {
+      window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('ReciFlix App allows convenient way to search and watch a recipe video online. Users can add recipes to favorites to watch them later from anywhere.', 'http://www.reciflix.com/modules/core/img/brand/reciflix_500.png' /* img */ , 'http://www.reciflix.com' /* url */ , 'Use paste in the content area to get the prewritten message', function () {
         console.log('share ok')
       }, function (errormsg) {
         alert(errormsg)
@@ -122,15 +122,15 @@ angular.module('recipesApp')
     }
   }
   $scope.shareWhatsApp = function () {
-    window.plugins.socialsharing.shareViaWhatsApp('ReciFlix is a quick, convenient and easy way to search a recipe online and watch it with a click of a button and add it to your favourites to be able to access the same recipe anytime from any device conveniently.', null /* img */ , 'http://www.reciflix.com');
+    window.plugins.socialsharing.shareViaWhatsApp('ReciFlix App allows convenient way to search and watch a recipe video online. Users can add recipes to favorites to watch them later from anywhere.', null /* img */ , 'http://www.reciflix.com');
   }
   $scope.shareGPlus = function () {
-    window.plugins.socialsharing.share('ReciFlix is a quick, convenient and easy way to search a recipe online and watch it with a click of a button and add it to your favourites to be able to access the same recipe anytime from any device conveniently.', null, 'http://www.reciflix.com');
+    window.plugins.socialsharing.share('ReciFlix App allows convenient way to search and watch a recipe video online. Users can add recipes to favorites to watch them later from anywhere.', null, 'http://www.reciflix.com');
   }
   $scope.shareTw = function () {
-    window.plugins.socialsharing.shareViaTwitter('ReciFlix is a quick, convenient and easy way to search a recipe online and watch it with a click of a button and add it to your favourites to be able to access the same recipe anytime from any device conveniently.', null /* img */ , 'http://www.reciflix.com');
+    window.plugins.socialsharing.shareViaTwitter('ReciFlix App allows convenient way to search and watch a recipe video online. Users can add recipes to favorites to watch them later from anywhere.', null /* img */ , 'http://www.reciflix.com');
   }
   $scope.shareEmail = function () {
-    window.plugins.socialsharing.shareViaEmail('ReciFlix is a quick, convenient and easy way to search a recipe online and watch it with a click of a button and add it to your favourites to be able to access the same recipe anytime from any device conveniently.', 'Browse and watch the best recipes online from any device', null, null, null, null);
+    window.plugins.socialsharing.shareViaEmail('ReciFlix App allows convenient way to search and watch a recipe video online. Users can add recipes to favorites to watch them later from anywhere.', 'Browse and watch the best recipes online from any device', null, null, null, null);
   }
 });

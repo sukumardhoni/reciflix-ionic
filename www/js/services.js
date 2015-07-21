@@ -1,7 +1,7 @@
 angular.module('recipesApp')
 
-//.constant('API_HOST', 'http://localhost:3000')
-.constant('API_HOST', 'http://qa.api.reciflix.com')
+.constant('API_HOST', 'http://192.168.0.100:3000')
+  //.constant('API_HOST', 'http://qa.api.reciflix.com')
 
 .factory('Categories', function ($resource, API_HOST) {
   return $resource(API_HOST + '/categories/page/:pageId', {
@@ -53,6 +53,18 @@ angular.module('recipesApp')
     }),
     Signout: $resource(API_HOST + '/users/signout', {}, {
       clear: {
+        method: 'POST'
+      }
+    }),
+    ForgotPassword: $resource(API_HOST + '/users/forgotPassword', {}, {
+      fetch: {
+        method: 'POST'
+      }
+    }),
+    ResetPassword: $resource(API_HOST + '/users/reset/:token', {
+      token: '@token'
+    }, {
+      set: {
         method: 'POST'
       }
     })

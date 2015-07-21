@@ -19,7 +19,7 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage', '
       function () {
         //console.log("error");
       });*/
-   // navigator.analytics.setTrackingId('UA-65211986-2');
+    // navigator.analytics.setTrackingId('UA-65211986-2');
   });
 
   $ionicPlatform.registerBackButtonAction(function () {
@@ -53,6 +53,11 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage', '
     .state('walkthrough', {
       url: "/",
       templateUrl: "templates/walkthrough.html",
+      controller: 'walkthroughCtrl'
+    })
+    .state('resetPassword', {
+      url: "/reset/:token",
+      templateUrl: "templates/resetPassword.html",
       controller: 'walkthroughCtrl'
     })
     .state('app', {

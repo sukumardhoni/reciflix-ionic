@@ -1,6 +1,6 @@
 angular.module('recipesApp')
 
-.controller('walkthroughCtrl', function ($scope, $state, User, $ionicModal, $ionicLoading, $rootScope, Authentication, $localStorage, $http, AuthService, $timeout, $ionicHistory, $cordovaOauth) {
+.controller('walkthroughCtrl', function ($scope, $state, User, $ionicModal, $ionicLoading, $rootScope, Authentication, $localStorage, $http, AuthService, $timeout, $ionicHistory, $cordovaOauth, $stateParams) {
   $ionicHistory.clearCache();
   $timeout(function () {
     AuthService.checkLogin();
@@ -198,4 +198,48 @@ angular.module('recipesApp')
       userId: respUser._id
     });
   }
+
+  $scope.recoverPassword = function (respUser) {
+    console.log('recoverPassword is called : ' + this.user.email);
+    $ionicLoading.show({
+      templateUrl: "templates/loading.html",
+    });
+    var useremail = {
+      email: this.user.email
+    }
+    this.user.email = '';
+    User.ForgotPassword.fetch(useremail, function (res) {
+      if (res.type === false) {
+        $scope.errMsg = res.data;
+        $ionicLoading.hide();
+      } else {
+        $ionicLoading.hide();
+        console.log('Response from SERVER side is recoverPassword PAssword : ' + JSON.stringify(res));
+        $state.go('resetPassword', {
+          token: res.token
+        });
+        $scope.oModal3.hide();
+      }
+    })
+  };
+
+  /*  $scope.resetPassword = function () {
+      console.log('resetPassword is called : ' + this.user);
+      $ionicLoading.show({
+        templateUrl: "templates/loading.html",
+      });
+      var userPasswords = this.user;
+      this.user = '';
+      console.log('Stateparams Token value : ' + $stateParams.token);
+      User.ResetPassword.set({
+        token: $stateParams.token
+      }, this.user, function (res) {
+        $ionicLoading.hide();
+        $scope.resetPwdMsg = 'Successfully Changed the Password. \n Now You can Login with new password.'
+        $timeout(function () {
+          $state.go('walkthrough');
+        }, 4500);
+        console.log('Response from SERVER side is RESET PAssword : ' + JSON.stringify(res));
+      });
+    };*/
 });

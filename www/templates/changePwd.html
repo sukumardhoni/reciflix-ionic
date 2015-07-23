@@ -1,0 +1,37 @@
+<ion-view cache-view="true">
+  <ion-nav-title>
+    <span style="color:white">Change Password</span>
+  </ion-nav-title>
+  <ion-content scroll="true">
+    <div class="row">
+      <div class="col col-center">
+        <div class="card login-container">
+          <form name="change_password_form" class="" novalidate>
+            <div class="item item-body">
+              <label class="item item-input" show-hide-container>
+                <input type="password" placeholder="Current Password" name="currentPassword" ng-model="authentication.currentPassword" required show-hide-input>
+              </label>
+            </div>
+            <div class="item item-body">
+              <label class="item item-input" show-hide-container>
+                <input type="password" placeholder="New Password" name="newPassword" ng-model="authentication.newPassword" required show-hide-input>
+              </label>
+            </div>
+            <div class="item item-body">
+              <label class="item item-input" show-hide-container>
+                <input type="password" placeholder="Verify Password" name="verifyPassword" ng-model="authentication.verifyPassword" required show-hide-input>
+              </label>
+            </div>
+            <div class="item item-body bottom-content">
+              <button type="submit" class="button button-positive button-block" ng-click="updatePassword(authentication)" ng-disabled="change_password_form.$invalid">
+                Update Password
+              </button>
+            </div>
+          </form>
+        </div>
+        <strong style="color:green;padding-left:20px;font-size:20px">{{sucessfullyUpdatedMsg}}</strong>
+        <strong style="color:red;padding-left:20px;font-size:20px">{{errUpdatedMsg}}</strong>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

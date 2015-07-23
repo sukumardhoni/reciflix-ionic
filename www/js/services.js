@@ -67,6 +67,16 @@ angular.module('recipesApp')
       set: {
         method: 'POST'
       }
+    }),
+    UpdatedProfile: $resource(API_HOST + '/users/updateProfile', {}, {
+      update: {
+        method: 'PUT'
+      }
+    }),
+    ChangePassword: $resource(API_HOST + '/users/changePassword', {}, {
+      update: {
+        method: 'POST'
+      }
     })
   }
 })

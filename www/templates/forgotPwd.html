@@ -1,6 +1,10 @@
 <ion-view class="forgot-password-view" hide-nav-bar="true">
+  <ion-header-bar class="bar bar-assertive">
+    <i class="ion-arrow-left-c" style="font-size:25px;color:#fff;padding-top:5px;padding-left:10px" ng-click="goBack()"></i>
+    <h1 class="title">Recover Password</h1>
+  </ion-header-bar>
   <ion-content scroll="false">
-    <div class="row">
+    <div class="row" ng-hide="sucessfullMsg">
       <div class="col col-center">
         <div class="card forgot-password-container">
           <form name="forgot_password_form" class="" novalidate>
@@ -16,20 +20,11 @@
             </div>
           </form>
         </div>
+
       </div>
+    </div>
+    <div style="margin-top: 10px;padding:5px 10px">
+      <strong style="color:green;font-size:20px">{{sucessfullMsg}}</strong>
     </div>
   </ion-content>
 </ion-view>
-<!--<ion-modal-view class="forgot-password-view" hide-nav-bar="true" cache-view="false">
-  <ion-header-bar class="bar bar-assertive">
-    <h1 class="title">Forgot Password</h1>
-    <button class="button button-icon ion-close" style="float:right" ng-click="closeModal(3)"></button>
-  </ion-header-bar>
-  <ion-content scroll="false">
-    <div class="card">
-      <div class="item item-text-wrap">
-        We are working on this feature. It will be available in next version.
-      </div>
-    </div>
-  </ion-content>
-</ion-modal-view>-->

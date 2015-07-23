@@ -1,0 +1,36 @@
+<ion-view cache-view="true">
+  <ion-nav-title>
+    <span style="color:white">Update Profile</span>
+  </ion-nav-title>
+  <ion-content scroll="true">
+    <div class="row">
+      <div class="col col-center">
+        <div class="card login-container">
+          <form name="edit_profile_form" class="" novalidate>
+            <div class="item item-body">
+              <label class="item item-input">
+                <input type="text" placeholder="First Name" name="firstName" ng-model="authentication.firstName" required>
+              </label>
+            </div>
+            <div class="item item-body">
+              <label class="item item-input">
+                <input type="text" placeholder="Last Name" name="lastName" ng-model="authentication.lastName" required>
+              </label>
+            </div>
+            <div class="item item-body">
+              <label class="item item-input">
+                <input type="email" placeholder="Email" name="email" ng-model="authentication.email" required>
+              </label>
+            </div>
+            <div class="item item-body bottom-content">
+              <button type="submit" class="button button-positive button-block" ng-click="updateProfile(authentication)" ng-disabled="edit_profile_form.$invalid">
+                Update Profile
+              </button>
+            </div>
+          </form>
+        </div>
+        <strong style="color:green;padding-left:20px;font-size:20px">{{sucessfullyUpdatedMsg}}</strong>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

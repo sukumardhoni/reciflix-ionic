@@ -14,12 +14,11 @@
   <ion-side-menu side="left" class="main-menu" expose-aside-when="large">
     <ion-content>
       <ion-list ng-show="authentication">
-        <ion-item class="heading-item item item-avatar" nav-clear menu-close ui-sref="app.profile">
-          <!--
-<img ng-src="https://s3.amazonaws.com/uifaces/faces/twitter/brynn/128.jpg" ng-show="authentication.provider === 'local'">-->
-          <img ng-src={{fbUserProfileImageUrl}}>
+        <ion-item class="heading-item item item-avatar item-icon-right" nav-clear menu-close ui-sref=".profile">
+          <img ng-src={{userProfileImageUrl}}>
           <h2 class="greeting">Hi {{authentication.firstName}}</h2>
           <p class="message">Welcome back</p>
+          <i class="icon ion-edit" style="font-size:30px"></i>
         </ion-item>
         <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.allCategories">
           <i class="icon icon-reciflix_icon"></i>
@@ -54,7 +53,7 @@
         <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.myCalendarPlan({name:'About ReciFlix'})">
           <h2 class="menu-text">About ReciFlix</h2>
         </ion-item>
-        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="walkthrough">
+        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="landing">
           <div>
             <i class="icon ion-log-in"></i>
             <h2 class="menu-text">Login or Create Account</h2>

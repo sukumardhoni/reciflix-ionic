@@ -1,0 +1,39 @@
+<ion-view cache-view="true">
+  <ion-nav-title>
+    <span style="color:white">View Profile</span>
+  </ion-nav-title>
+  <ion-content scroll="true">
+    <ion-item class="item-icon-right">
+      <i class="icon ion-edit" style="font-size:30px" ui-sref="app.editProfile"></i>
+    </ion-item>
+    <div class="row">
+      <div class="col col-center">
+        <div class="card login-container" ng-hide="showForm">
+          <div class="item item-body">
+            <label class="item item-input">
+              <span class="input-label">First Name :</span>
+              <span class="input-label">{{authentication.firstName}}</span>
+            </label>
+          </div>
+          <div class="item item-body">
+            <label class="item item-input">
+              <span class="input-label">Last Name :</span>
+              <span class="input-label">{{authentication.lastName}}</span>
+            </label>
+          </div>
+          <div class="item item-body">
+            <label class="item item-input">
+              <span class="input-label">Email :</span>
+              <span class="input-label">{{authentication.email}}</span>
+            </label>
+          </div>
+          <div class="item item-body bottom-content">
+            <button type="submit" class="button button-positive button-block" ui-sref="app.changePwd">
+              Change Password
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

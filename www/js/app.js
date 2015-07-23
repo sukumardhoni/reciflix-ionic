@@ -24,7 +24,7 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage', '
 
   $ionicPlatform.registerBackButtonAction(function () {
 
-    if ($state.includes('app.allCategories') || $state.includes('walkthrough')) {
+    if ($state.includes('app.allCategories') || $state.includes('landingCtrl')) {
       $ionicPopup.confirm({
         title: 'ReciFlix Warning',
         template: 'Are you sure you want to exit ReciFlix?'
@@ -40,9 +40,6 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage', '
     }
   }, 100);
 
-
-
-
 })
 
 .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
@@ -50,21 +47,55 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage', '
     appId: 1607966326154856
   });
   $stateProvider
-    .state('walkthrough', {
-      url: "/",
-      templateUrl: "templates/walkthrough.html",
-      controller: 'walkthroughCtrl'
+    .state('landing', {
+      url: "",
+      templateUrl: "templates/landing.html",
+      controller: 'landingCtrl'
     })
-    .state('resetPassword', {
-      url: "/reset/:token",
-      templateUrl: "templates/resetPassword.html",
-      controller: 'walkthroughCtrl'
+    .state('login', {
+      url: "/login",
+      templateUrl: "templates/login.html",
+      controller: 'landingCtrl'
+    })
+    .state('signup', {
+      url: "/signup",
+      templateUrl: "templates/signup.html",
+      controller: 'landingCtrl'
+    })
+    .state('forgotPwd', {
+      url: "/forgotPwd",
+      templateUrl: "templates/forgotPwd.html",
+      controller: 'landingCtrl'
     })
     .state('app', {
       url: "/app",
       abstract: true,
       templateUrl: "templates/side-menu.html",
       controller: 'AppCtrl'
+    })
+    .state('app.profile', {
+      url: "/profile",
+      views: {
+        'menuContent': {
+          templateUrl: "templates/viewProfile.html"
+        }
+      }
+    })
+    .state('app.editProfile', {
+      url: "/editProfile",
+      views: {
+        'menuContent': {
+          templateUrl: "templates/editProfile.html"
+        }
+      }
+    })
+    .state('app.changePwd', {
+      url: "/changePwd",
+      views: {
+        'menuContent': {
+          templateUrl: "templates/changePwd.html"
+        }
+      }
     })
     .state('app.allCategories', {
       url: "/allRecipes/:userId",
@@ -199,7 +230,7 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage', '
         }
       }
     })
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('');
   $ionicConfigProvider.navBar.alignTitle('center');
   $ionicConfigProvider.platform.android.backButton.previousTitleText('').icon('ion-android-arrow-back');
   $ionicConfigProvider.platform.ios.backButton.text('&nbsp;').icon('ion-android-arrow-back');

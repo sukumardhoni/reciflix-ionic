@@ -4,9 +4,11 @@ angular.module('recipesApp')
   $scope.authentication = Authentication.user;
   $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
   if ($scope.authentication) {
-    $scope.fbUserProfileImageUrl = $localStorage.picture;
+    if ($scope.authentication.provider !== 'local') {
+      $scope.userProfileImageUrl = $localStorage.picture;
+    }
   } else {
-    $scope.fbUserProfileImageUrl = "https://cdn0.iconfinder.com/data/icons/PRACTIKA/256/user.png";
+    $scope.userProfileImageUrl = "https://cdn0.iconfinder.com/data/icons/PRACTIKA/256/user.png";
   }
   $scope.currentStateName = $stateParams.name;
   $scope.signout = function () {
@@ -25,7 +27,7 @@ angular.module('recipesApp')
         $ionicLoading.hide();
         openFB.logout(
           function (response) {
-            $state.go('walkthrough');
+            $state.go('landing');
           })
       }
     })
@@ -133,4 +135,51 @@ angular.module('recipesApp')
   $scope.shareEmail = function () {
     window.plugins.socialsharing.shareViaEmail('ReciFlix App allows convenient way to search and watch a recipe video online. Users can add recipes to favorites to watch them later from anywhere.', 'Browse and watch the best recipes online from any device', null, null, null, null);
   }
+
+  $scope.updateProfile = function (updatedUser) {
+    $ionicLoading.show({
+      templateUrl: "templates/loading.html",
+    });
+    console.log('updateProfile func. is called' + JSON.stringify(updatedUser));
+    User.UpdatedProfile.update(updatedUser, function (res) {
+      $ionicLoading.hide();
+      $scope.sucessfullyUpdatedMsg = 'Successfully Updated Your Profile';
+      $scope.authentication = res;
+      $localStorage.user = res;
+      $localStorage.token = res.token;
+      $timeout(function () {
+        $state.go('app.allCategories', {
+          userId: res._id
+        });
+      }, 4500);
+      console.log('Response from SERVER side is Updated Profile : ' + JSON.stringify(res));
+    });
+  };
+
+  $scope.updatePassword = function (updatedPwd) {
+    $ionicLoading.show({
+      templateUrl: "templates/loading.html",
+    });
+    console.log('updatePassword func. is called' + JSON.stringify(updatedPwd));
+    User.ChangePassword.update(updatedPwd, function (res) {
+      $ionicLoading.hide();
+      $scope.sucessfullyUpdatedMsg = 'Successfully Updated Your Password';
+      $timeout(function () {
+        $state.go('app.allCategories', {
+          userId: res._id
+        });
+      }, 4500);
+      console.log('Response from SERVER side is Updated Profile : ' + JSON.stringify(res));
+    }, function (err) {
+      $ionicLoading.hide();
+      $scope.errUpdatedMsg = err.data.message;
+      console.log(' ERror Response from SERVER side is Updated Profile : ' + JSON.stringify(err));
+    });
+  };
+
+  $scope.editableForm = function () {
+    $scope.showForm = true;
+  };
+
+
 });

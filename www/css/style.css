@@ -511,3 +511,31 @@ small.time {
 .corner {
   padding-right: 60px !important;
 }
+
+input::-webkit-input-placeholder {
+  color: #9EC1F8;
+  padding-left: 10px;
+  padding-top: 5px;
+}
+
+input:-moz-placeholder {
+  /* Firefox 18- */
+
+  color: #9EC1F8;
+  padding-left: 10px;
+  padding-top: 5px;
+}
+
+input::-moz-placeholder {
+  /* Firefox 19+ */
+
+  color: #9EC1F8;
+  padding-left: 10px;
+  padding-top: 5px;
+}
+
+input:-ms-input-placeholder {
+  color: #9EC1F8;
+  padding-left: 10px;
+  padding-top: 5px;
+}

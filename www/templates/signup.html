@@ -1,9 +1,9 @@
-<ion-modal-view class="signup-view" hide-nav-bar="true" cache-view="false">
+<ion-view class="signup-view" hide-nav-bar="true" cache-view="false">
   <ion-header-bar class="bar bar-assertive">
+    <i class="ion-arrow-left-c" style="font-size:25px;color:#fff;padding-top:5px;padding-left:10px" ng-click="goBack()"></i>
     <h1 class="title">Create Account</h1>
-    <button class="button button-icon ion-close" style="float:right" ng-click="closeModal(2)"></button>
   </ion-header-bar>
-  <ion-content scroll="false">
+  <ion-content scroll="true">
     <div class="row">
       <div class="col col-center">
         <div class="card sign-up-container">
@@ -30,11 +30,25 @@
           </form>
         </div>
         <div class="alternative-actions">
-          <button class="log-in button button-small button-clear button-light" ng-click="oModal1.show() && oModal2.hide()">
+          <button class="log-in button button-small button-clear button-light" ui-sref="login">
             Log In
           </button>
+        </div>
+        <br>
+        <center><strong>{{errMsg}}</strong>
+        </center>
+        <center style="color:#e42012">&nbsp;&nbsp; or &nbsp;&nbsp;</center>
+        <center><strong style="color:#e42012;font-size:20px">Connect with</strong>
+        </center>
+        <div class="col-md-12 text-center">
+          <a href="#" class="undecorated-link" ng-click="fbLogin()">
+            <img src="img/buttons/facebook-4-64.png">
+          </a>
+          <a href="#" class="undecorated-link" ng-click="googleLogin()">
+            <img src="img/buttons/google-plus-4-64.png">
+          </a>
         </div>
       </div>
     </div>
   </ion-content>
-</ion-modal-view>
+</ion-view>

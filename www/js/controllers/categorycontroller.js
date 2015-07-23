@@ -3,10 +3,6 @@ angular.module('recipesApp')
 .controller('allCategoriesCtrl', function ($scope, Categories, $timeout, $rootScope, Authentication, $ionicLoading, $http, $localStorage, $ionicHistory) {
   $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
   $scope.userDetails = Authentication;
-  $scope.oModal1 = $rootScope.modal1;
-  $scope.oModal2 = $rootScope.modal2;
-  $scope.oModal1.hide();
-  $scope.oModal2.hide();
   var pageId = 0;
   $ionicLoading.show({
     templateUrl: "templates/loading.html",

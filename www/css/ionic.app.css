@@ -10808,7 +10808,7 @@ button.button-block,
 button.button-full,
 .button-full > button.button,
 input.button.button-block {
-  width: 100%;
+  width: 40%;
 }
 
 a.button {
@@ -12006,13 +12006,11 @@ ion-side-menu .heading-item .message {
 }
 
 .walkthrough-view .bottom-content .login.button {
-  #background-color: rgba(104, 159, 247, 0.35);
-  background-color: rgba(56, 126, 245, 0.35);
+  background-color: rgba(56, 126, 245, 0.7);
 }
 
 .walkthrough-view .bottom-content .sign-up.button {
-  #background-color: rgba(248, 248, 248, 0.2);
-  background-color: rgba(150, 160, 240, 0.2);
+  background-color: rgba(150, 160, 240, 0.7);
 }
 
 .login-view {

@@ -11983,7 +11983,7 @@ ion-side-menu .heading-item .message {
 }
 
 .walkthrough-view .top-content {
-  height: 30%;
+  height: 20%;
   text-align: center;
 }
 
@@ -12103,6 +12103,10 @@ ion-side-menu .heading-item .message {
 
 .login-view .alternative-actions .sign-up {
   float: right;
+}
+
+.login-view .alternative-actions .continue-as-guest {
+  float: left;
 }
 
 .signup-view {

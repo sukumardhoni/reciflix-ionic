@@ -68,6 +68,9 @@ angular.module('recipesApp')
     $scope.groceryName = $localStorage.groceryName;
     console.log('getsinglegrocery is calling');
 
+    console.log(' grocery single name' + $stateParams.groceryId);
+    console.log(' grocery single name' + $stateParams.groceryName);
+
     SingleGroceryItem.query({
       glistIditem: $stateParams.groceryId
     }, function (res) {
@@ -291,7 +294,7 @@ angular.module('recipesApp')
         'itemId': this.item._id
       }, singleupdategrocerys, function (result) {
         console.log('active function result true -----------' + JSON.stringify(result));
-        $scope.singlegrocerys.splice(index, 1);
+        $scope.singlegrocerysactive.splice(index, 1);
         //$scope.singlegrocerys.splice(index, 0, result);
         $ionicHistory.clearCache();
 
@@ -313,7 +316,7 @@ angular.module('recipesApp')
         'itemId': this.item._id
       }, singleupdategrocerys, function (result) {
         console.log('active function result false ---------------' + JSON.stringify(result));
-        $scope.singlegrocerys.splice(index, 1);
+        $scope.singlegrocerysdone.splice(index, 1);
         //$scope.singlegrocerys.splice(index, 0, result);
         $ionicHistory.clearCache();
 
@@ -372,5 +375,105 @@ angular.module('recipesApp')
     $ionicHistory.clearCache();
   };
 */
+
+
+
+  $scope.buttonStyle = "button-assertive";
+
+
+
+
+  $scope.allgrocery = function () {
+    console.log('calling all grocery ---------');
+
+    $localStorage.groceryName = $stateParams.groceryName;
+    console.log('getsinglegrocery is calling' + $scope.groceryName);
+    console.log(' grocery single name' + $stateParams.groceryName);
+
+    $scope.groceryName = $localStorage.groceryName;
+    $scope.buttonStyle = "button-assertive";
+    $scope.buttonStyle1 = "button-stable";
+    $scope.buttonStyle2 = "button-stable";
+
+    $scope.groceryall = true;
+    $scope.groceryactive = false;
+    $scope.grocerydone = false;
+
+
+    SingleGroceryItem.query({
+      glistIditem: $stateParams.groceryId
+    }, function (res) {
+      $scope.singlegrocerys = res;
+
+      console.log('items from grocerry ' + JSON.stringify(res));
+
+      $ionicHistory.clearCache()
+
+    });
+
+  };
+
+  $scope.activegrocery = function () {
+    console.log('calling active grocery ---------');
+
+    $scope.groceryName = $localStorage.groceryName;
+    console.log(' grocery single name' + $stateParams.groceryName);
+
+    $scope.buttonStyle = "button-stable";
+    $scope.buttonStyle1 = "button-assertive";
+    $scope.buttonStyle2 = "button-stable";
+
+    $scope.groceryactive = true;
+    $scope.groceryall = false;
+    $scope.grocerydone = false;
+
+
+    GroceryItemSingleByState.query({
+      glistIditem: $stateParams.groceryId,
+      state: false
+    }, function (res) {
+      $scope.singlegrocerysactive = res;
+
+      console.log('items from grocerry ' + JSON.stringify(res));
+
+      $ionicHistory.clearCache()
+
+    });
+
+
+  };
+
+  $scope.donegrocery = function () {
+    console.log('calling done grocery ---------');
+
+    $scope.groceryName = $localStorage.groceryName;
+    console.log(' grocery single name' + $stateParams.groceryName);
+
+    $scope.buttonStyle = "button-stable";
+    $scope.buttonStyle1 = "button-stable";
+    $scope.buttonStyle2 = "button-assertive";
+
+    $scope.grocerydone = true;
+    $scope.groceryactive = false;
+    $scope.groceryall = false;
+
+
+    GroceryItemSingleByState.query({
+      glistIditem: $stateParams.groceryId,
+
+      state: true
+    }, function (res) {
+      $scope.singlegrocerysdone = res;
+
+      console.log('items from grocerry ' + JSON.stringify(res));
+
+      $ionicHistory.clearCache()
+
+    });
+
+  };
+
+
+
 
 });

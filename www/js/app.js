@@ -151,7 +151,23 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage', '
         }
       }
     })
-    .state('app.singlegrocery', {
+
+
+  /*  ------------- new grocery---------------*/
+
+  .state('app.groceryone', {
+    url: "/:groceryId/:groceryName",
+    views: {
+      'menuContent': {
+        templateUrl: "templates/groceryone.html",
+        controller: "grocerysCtrl"
+      }
+    }
+  })
+
+  /*  ------------- old grocery ---------------*/
+
+  .state('app.singlegrocery', {
       url: "/:groceryId/:groceryName",
       views: {
         'menuContent': {

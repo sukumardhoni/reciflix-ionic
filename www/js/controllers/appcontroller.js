@@ -10,6 +10,14 @@ angular.module('recipesApp')
       $scope.userProfileImageUrl = "https://cdn0.iconfinder.com/data/icons/PRACTIKA/256/user.png";
     }
   }
+
+  cordova.getAppVersion.getVersionNumber(function (version) {
+    //alert(version);
+    console.log('appVersion details : ' + version);
+    $scope.appVersion = version;
+  });
+
+
   $scope.currentStateName = $stateParams.name;
   $scope.signout = function () {
     $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;

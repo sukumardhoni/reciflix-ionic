@@ -539,23 +539,26 @@ input:-ms-input-placeholder {
   padding-left: 10px;
   padding-top: 5px;
 }
-
 /*grocery styles*/
 
 .active-true {
-    text-decoration: line-through;
-    color: blue;
-  }
+  text-decoration: line-through;
+  color: blue;
+}
 
-  .active-flase {
-    text-decoration: none;
-  }
+.active-flase {
+  text-decoration: none;
+}
 
-  .editable-click {
-    border-style: hidden !important;
-  }
+.editable-click {
+  border-style: hidden !important;
+}
 
-  .item-style {
-    border-bottom: 1px solid #9E9E9E !important;
-    margin-bottom: 10px !important;
-  }
+.item-style {
+  border-bottom: 1px solid #9E9E9E !important;
+  margin-bottom: 10px !important;
+}
+
+.continueGuest {
+  margin: 0px 10px;
+}

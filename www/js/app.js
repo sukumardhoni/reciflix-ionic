@@ -10,7 +10,9 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage', '
       StatusBar.styleDefault();
     }
     $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
+    if (window.cordova) {
     $rootScope.networkState = navigator.connection.type;
+    }
     /*var deviceInfo = cordova.require("cordova/plugin/DeviceInformation");
     deviceInfo.get(
       function (result) {

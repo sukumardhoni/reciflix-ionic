@@ -4,11 +4,11 @@ angular.module('recipesApp')
   $scope.authentication = Authentication.user;
   $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
   if ($scope.authentication) {
-    if ($scope.authentication.provider !== 'local') {
+    if ($localStorage.picture) {
       $scope.userProfileImageUrl = $localStorage.picture;
+    } else {
+      $scope.userProfileImageUrl = "https://cdn0.iconfinder.com/data/icons/PRACTIKA/256/user.png";
     }
-  } else {
-    $scope.userProfileImageUrl = "https://cdn0.iconfinder.com/data/icons/PRACTIKA/256/user.png";
   }
   $scope.currentStateName = $stateParams.name;
   $scope.signout = function () {
@@ -21,6 +21,7 @@ angular.module('recipesApp')
         Authentication.user = '';
         delete $localStorage.token;
         delete $localStorage.user;
+        delete $localStorage.picture;
         $rootScope.$broadcast('loggedIn', {
           'loggedIn': ''
         });
@@ -180,6 +181,5 @@ angular.module('recipesApp')
   $scope.editableForm = function () {
     $scope.showForm = true;
   };
-
 
 });

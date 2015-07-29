@@ -18,8 +18,10 @@ angular.module('recipesApp')
     }, 500);
   };
   $scope.$on('loggedIn', function (event, message) {
+    console.log('LOcal Storage Token details : ' + message.loggedIn);
     if (message.loggedIn) {
       $scope.authentication.user = $localStorage.user;
+      console.log('LOcal Storage USer details : ' + JSON.stringify($localStorage.user));
       $state.go('app.allCategories')
     } else {
       $state.go('landing')

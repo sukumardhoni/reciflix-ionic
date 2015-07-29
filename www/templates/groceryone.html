@@ -1,71 +1,42 @@
-<ion-view ng-init="allgrocery()" title="{{groceryName}}" cache-view="false">
-
+<ion-view ng-init="getGroceryItems()" title="{{groceryName}}" cache-view="false">
   <ion-content>
     <div class="list">
-
       <form class="item item-input-inset" name="grocery_form" novalidate>
         <label class="item-input-wrapper" focus-me>
-          <input type="text" placeholder="item name" ng-model="item.name" autofocus required>
+          <input type="text" placeholder=" Create Item" ng-model="item.name" autofocus required>
         </label>
-        <button class="button button-small button-positive" ng-click="createItems()" ng-disabled="grocery_form.$invalid">
-          create
+        <button class="button button-small button-positive" ng-click="createItem()" ng-disabled="grocery_form.$invalid">
+          Create
         </button>
       </form>
-
-      <div class="item  button-bar">
-        <a class="button {{buttonStyle}}" ng-click="allgrocery()">All</a>
-        <a class="button {{buttonStyle1}}" ng-click="activegrocery()">Active</a>
-        <a class="button {{buttonStyle2}}" ng-click="donegrocery()">Done</a>
+      <div class="card" ng-hide="singlegrocerys.length === 0">
+        <ul id="filters">
+          <li>
+            <a ng-class="{selected: statusFilter.state === ''} " ng-click="allgrocery()">All</a>
+          </li>
+          <li>
+            <a ng-class="{selected: statusFilter.state === false}" ng-click="activegrocery()">Active</a>
+          </li>
+          <li>
+            <a ng-class="{selected: statusFilter.state === true}" ng-click="donegrocery()">Completed</a>
+          </li>
+        </ul>
       </div>
-
       <div class="card" ng-show="singlegrocerys.length === 0">
         <div class="item item-text-wrap">
-          it has no items
+          Items yet to be create.
         </div>
       </div>
-
-      <!-- --------------------------------------------->
-
-      <div class="row item-style" ng-repeat="item in singlegrocerys" ng-hide="singlegrocerys.length === 0" ng-show="groceryall">
-        <div class="col col-10 checkbox">
+      <div class="row item-style" ng-repeat="item in singlegrocerys | filter:statusFilter" ng-hide="singlegrocerys.length === 0">
+        <div class="col col-10 checkbox checkbox-calm">
           <input type="checkbox" ng-model="item.state" ng-click="checkboxcheck(item,$index)">
         </div>
-
         <div class="col col-90">
           <a class="col col-90" editable-text="item.name" onaftersave="updateItem($index,item)" class="active-{{item.active}}">
-            <span class="active-{{item.state}}">{{item.name}}</span>
+            <span class="active active-{{item.state}}">{{item.name}}</span>
           </a>
         </div>
       </div>
-
-      <!-- --------------------------------------------->
-
-      <div class="row item-style" ng-repeat="item in singlegrocerysactive" ng-hide="singlegrocerys.length === 0" ng-show="groceryactive">
-        <div class="col col-10 checkbox">
-          <input type="checkbox" ng-model="item.state" ng-click="checkboxcheckanother(item,$index)">
-        </div>
-
-        <div class="col col-90">
-          <a class="col col-90" editable-text="item.name" onaftersave="updateItem($index,item)" class="active-{{item.active}}">
-            <span class="active-{{item.state}}">{{item.name}}</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- --------------------------------------------->
-
-      <div class="row item-style" ng-repeat="item in singlegrocerysdone" ng-hide="singlegrocerys.length === 0" ng-show="grocerydone">
-        <div class="col col-10 checkbox">
-          <input type="checkbox" ng-model="item.state" ng-click="checkboxcheckanother(item,$index)">
-        </div>
-
-        <div class="col col-90">
-          <a class="col col-90" editable-text="item.name" onaftersave="updateItem($index,item)" class="active-{{item.active}}">
-            <span class="active-{{item.state}}">{{item.name}}</span>
-          </a>
-        </div>
-      </div>
-
     </div>
   </ion-content>
   <rf-footer-display></rf-footer-display>

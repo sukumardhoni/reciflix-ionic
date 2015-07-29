@@ -11,7 +11,7 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage', '
     }
     $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
     if (window.cordova) {
-    $rootScope.networkState = navigator.connection.type;
+      $rootScope.networkState = navigator.connection.type;
     }
     /*var deviceInfo = cordova.require("cordova/plugin/DeviceInformation");
     deviceInfo.get(
@@ -169,43 +169,43 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage', '
 
   /*  ------------- old grocery ---------------*/
 
-  .state('app.singlegrocery', {
-      url: "/:groceryId/:groceryName",
-      views: {
-        'menuContent': {
-          templateUrl: "templates/singlegrocery.html",
-          controller: "grocerysCtrl"
+  /*  .state('app.singlegrocery', {
+        url: "/:groceryId/:groceryName",
+        views: {
+          'menuContent': {
+            templateUrl: "templates/singlegrocery.html",
+            controller: "grocerysCtrl"
+          }
         }
-      }
-    })
-    .state('app.singlegrocery.all', {
-      url: "/all",
-      views: {
-        'tab-all': {
-          templateUrl: "templates/singlegroceryall.html",
-          controller: "grocerysCtrl"
+      })
+      .state('app.singlegrocery.all', {
+        url: "/all",
+        views: {
+          'tab-all': {
+            templateUrl: "templates/singlegroceryall.html",
+            controller: "grocerysCtrl"
+          }
         }
-      }
-    })
-    .state('app.singlegrocery.buy', {
-      url: "/buy",
-      views: {
-        'tab-buy': {
-          templateUrl: "templates/singlegrocerybuy.html",
-          controller: "grocerysCtrl"
+      })
+      .state('app.singlegrocery.buy', {
+        url: "/buy",
+        views: {
+          'tab-buy': {
+            templateUrl: "templates/singlegrocerybuy.html",
+            controller: "grocerysCtrl"
+          }
         }
-      }
-    })
-    .state('app.singlegrocery.buyed', {
-      url: "/buyed",
-      views: {
-        'tab-buyed': {
-          templateUrl: "templates/singlegrocerybuyed.html",
-          controller: "grocerysCtrl"
+      })
+      .state('app.singlegrocery.buyed', {
+        url: "/buyed",
+        views: {
+          'tab-buyed': {
+            templateUrl: "templates/singlegrocerybuyed.html",
+            controller: "grocerysCtrl"
+          }
         }
-      }
-    })
-    .state('app.search', {
+      })*/
+  .state('app.search', {
       url: "/search",
       views: {
         'menuContent': {

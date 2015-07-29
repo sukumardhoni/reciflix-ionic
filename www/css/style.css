@@ -541,9 +541,13 @@ input:-ms-input-placeholder {
 }
 /*grocery styles*/
 
+.active {
+  font-size: 23px;
+}
+
 .active-true {
   text-decoration: line-through;
-  color: blue;
+  color: lightgray;
 }
 
 .active-flase {
@@ -554,11 +558,55 @@ input:-ms-input-placeholder {
   border-style: hidden !important;
 }
 
+.editable-buttons {
+  vertical-align: top;
+  margin-left: -40px !important;
+}
+
 .item-style {
-  border-bottom: 1px solid #9E9E9E !important;
+  border-bottom: 1px solid #ECECEC !important;
   margin-bottom: 10px !important;
 }
 
 .continueGuest {
   margin: 0px 10px;
 }
+
+#filters {
+  padding: 0;
+  list-style: none;
+  right: 0;
+  left: 0;
+  margin-left: 70px;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+#filters li {
+  display: inline;
+}
+
+#filters li a {
+  color: inherit;
+  margin: 3px;
+  padding: 3px 7px;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 3px;
+}
+
+#filters li a.selected,
+#filters li a:hover {
+  border-color: rgba(175, 47, 47, 0.1);
+}
+
+#filters li a.selected {
+  border-color: rgba(175, 47, 47, 0.2);
+  background-color: #009688;
+  color: white;
+}
+
+14px 'Helvetica Neue',
+Helvetica,
+Arial,
+sans-serif

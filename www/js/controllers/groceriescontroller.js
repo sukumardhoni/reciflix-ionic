@@ -48,117 +48,72 @@ angular.module('recipesApp')
     $scope.oModal1.show();
   };
   $scope.getgrocerylists = function () {
-
     console.log('getgrocerylists is calling');
-
     Grocery.query({}, function (res) {
       $scope.grocerylists = res;
     });
   };
 
-  $scope.getGroceryName = function () {
-    if ($stateParams.groceryName) {
-      $localStorage.groceryName = $stateParams.groceryName;
-    }
-    //console.log(' grocery single name' + $stateParams.groceryId);
-  };
+  /*  $scope.getGroceryName = function () {
+      if ($stateParams.groceryName) {
+        $localStorage.groceryName = $stateParams.groceryName;
+      }
+      //console.log(' grocery single name' + $stateParams.groceryId);
+    };*/
 
-  $scope.getsinglegrocery = function () {
+  /*  $scope.getsinglegrocery = function () {
+      $scope.groceryName = $localStorage.groceryName;
+      console.log('getsinglegrocery is calling');
+      console.log(' grocery single name' + $stateParams.groceryId);
+      console.log(' grocery single name' + $stateParams.groceryName);
+      SingleGroceryItem.query({
+        glistIditem: $stateParams.groceryId
+      }, function (res) {
+        $scope.singlegrocerys = res;
+        console.log('items from grocerry ' + JSON.stringify(res));
+        $ionicHistory.clearCache()
+      });
+    };*/
 
-    $scope.groceryName = $localStorage.groceryName;
-    console.log('getsinglegrocery is calling');
+  /*  $scope.gettobuygrocery = function () {
+      $scope.groceryName = $localStorage.groceryName;
+      console.log('gettobuygrocery is calling ----------');
+      GroceryItemSingleByState.query({
+        glistIditem: $stateParams.groceryId,
+        state: false
+      }, function (res) {
+        $scope.singlegrocerys = res;
+        console.log('items from grocerry ' + JSON.stringify(res));
+        $ionicHistory.clearCache()
+      });
+    };
 
-    console.log(' grocery single name' + $stateParams.groceryId);
-    console.log(' grocery single name' + $stateParams.groceryName);
+    $scope.getbuyedgrocery = function () {
+      $scope.groceryName = $localStorage.groceryName;
+      console.log('getbuyedgrocery is calling ________');
+      GroceryItemSingleByState.query({
+        glistIditem: $stateParams.groceryId,
+        state: true
+      }, function (res) {
+        $scope.singlegrocerys = res;
+        console.log('items from grocerry ' + JSON.stringify(res));
+        $ionicHistory.clearCache()
+      });
+    };*/
 
-    SingleGroceryItem.query({
-      glistIditem: $stateParams.groceryId
-    }, function (res) {
-      $scope.singlegrocerys = res;
+  /*  $scope.grocerydelete = function (index) {
+      console.log('grocerydelete is calling');
+      console.log('grocerydelete is calling' + this.grocery._id);
+      singleGrocery.delete({
+        glistId: this.grocery._id
+      }, function (result) {
+        $scope.grocerylists.splice(index, 1);
+        $ionicHistory.clearCache();
+      });
+    };*/
 
-      console.log('items from grocerry ' + JSON.stringify(res));
-
-      $ionicHistory.clearCache()
-
-    });
-
-
-
-
-  };
-
-
-
-  $scope.gettobuygrocery = function () {
-
-    $scope.groceryName = $localStorage.groceryName;
-
-    console.log('gettobuygrocery is calling ----------');
-
-    GroceryItemSingleByState.query({
-      glistIditem: $stateParams.groceryId,
-      state: false
-    }, function (res) {
-      $scope.singlegrocerys = res;
-
-      console.log('items from grocerry ' + JSON.stringify(res));
-
-      $ionicHistory.clearCache()
-
-    });
-
-
-
-
-  };
-
-
-  $scope.getbuyedgrocery = function () {
-
-    $scope.groceryName = $localStorage.groceryName;
-
-    console.log('getbuyedgrocery is calling ________');
-
-    GroceryItemSingleByState.query({
-      glistIditem: $stateParams.groceryId,
-
-      state: true
-    }, function (res) {
-      $scope.singlegrocerys = res;
-
-      console.log('items from grocerry ' + JSON.stringify(res));
-
-      $ionicHistory.clearCache()
-
-    });
-
-
-
-
-  };
-
-
-
-
-
-  $scope.grocerydelete = function (index) {
-
-    console.log('grocerydelete is calling');
-    console.log('grocerydelete is calling' + this.grocery._id);
-
-    singleGrocery.delete({
-      glistId: this.grocery._id
-    }, function (result) {
-      $scope.grocerylists.splice(index, 1);
-      $ionicHistory.clearCache();
-    });
-  };
-
-
-  $scope.createItems = function () {
-
+  $scope.createItem = function () {
     console.log('creating item-----------' + $stateParams.groceryId);
-
     var groceryitems = {
       'name': this.item.name,
       'state': false,
@@ -169,28 +124,15 @@ angular.module('recipesApp')
     SingleGroceryItem.save({
       glistIditem: $stateParams.groceryId
     }, groceryitems, function (result) {
-
-      $scope.singlegrocerys.push({
+      $scope.singlegrocerys.unshift({
         name: result.name,
         state: result.state,
-
       });
-
       console.log("grocery items in sucess" + JSON.stringify(result));
-
-
     });
-
-
   };
 
-
-
-
   $scope.updateItem = function (index, value) {
-    //var updatedItem = this.item;
-    //var items = this.singlegrocerys.items;
-    //items.splice(index, 1, value);
     var singlegrocerys = {
       'name': this.item.name,
       'glistid': $stateParams.groceryId,
@@ -203,51 +145,36 @@ angular.module('recipesApp')
     }, singlegrocerys, function (result) {});
   };
 
-
-
-
   $scope.checkboxcheck = function (item, index) {
-
-    console.log('we are in active controller');
-
-    console.log('showing index' + index);
-
-
-    console.log('cheched---' + this.item.state);
-
+    //    console.log('we are in active controller');
+    //    console.log('showing index' + index);
+    //    console.log('cheched---' + this.item.state);
+    //    console.log('cheched item _ID---' + this.item._id);
     if (this.item.state) {
-
       var singleupdategrocerys = {
         'name': item.name,
         'state': true,
         'glistIditem': $stateParams.groceryId,
-        '_id': this.item._id
+        '_id': item._id
       };
-
       console.log("before singleupdategrocerys:" + JSON.stringify(singleupdategrocerys));
-
       GroceryItemSingle.update({
         'glistIditem': $stateParams.groceryId,
-        'itemId': this.item._id
+        'itemId': item._id
       }, singleupdategrocerys, function (result) {
         console.log('active function result true -----------' + JSON.stringify(result));
         $scope.singlegrocerys.splice(index, 1);
         $scope.singlegrocerys.splice(index, 0, result);
         //$ionicHistory.clearCache();
-
       });
-
     } else {
-
       var singleupdategrocerys = {
         'name': item.name,
         'state': false,
         'glistIditem': $stateParams.groceryId,
         '_id': this.item._id
       };
-
       console.log("before singleupdategrocerys:" + JSON.stringify(singleupdategrocerys));
-
       GroceryItemSingle.update({
         'glistIditem': $stateParams.groceryId,
         'itemId': this.item._id
@@ -256,83 +183,47 @@ angular.module('recipesApp')
         $scope.singlegrocerys.splice(index, 1);
         $scope.singlegrocerys.splice(index, 0, result);
         //$ionicHistory.clearCache();
-
       });
-
-
-
     }
-
-
   }
 
-
-
-
-  $scope.checkboxcheckanother = function (item, index) {
-
-    console.log('we are in active controller');
-
-    console.log('showing index' + index);
-
-
-    console.log('cheched---' + this.item.state);
-
-    if (this.item.state) {
-
-      var singleupdategrocerys = {
-        'name': item.name,
-        'state': true,
-        'glistIditem': $stateParams.groceryId,
-        '_id': this.item._id
-      };
-
-      console.log("before singleupdategrocerys:" + JSON.stringify(singleupdategrocerys));
-
-      GroceryItemSingle.update({
-        'glistIditem': $stateParams.groceryId,
-        'itemId': this.item._id
-      }, singleupdategrocerys, function (result) {
-        console.log('active function result true -----------' + JSON.stringify(result));
-        $scope.singlegrocerysactive.splice(index, 1);
-        //$scope.singlegrocerys.splice(index, 0, result);
-        $ionicHistory.clearCache();
-
-      });
-
-    } else {
-
-      var singleupdategrocerys = {
-        'name': item.name,
-        'state': false,
-        'glistIditem': $stateParams.groceryId,
-        '_id': this.item._id
-      };
-
-      console.log("before singleupdategrocerys:" + JSON.stringify(singleupdategrocerys));
-
-      GroceryItemSingle.update({
-        'glistIditem': $stateParams.groceryId,
-        'itemId': this.item._id
-      }, singleupdategrocerys, function (result) {
-        console.log('active function result false ---------------' + JSON.stringify(result));
-        $scope.singlegrocerysdone.splice(index, 1);
-        //$scope.singlegrocerys.splice(index, 0, result);
-        $ionicHistory.clearCache();
-
-      });
-
-
-
-    }
-
-
-  }
-
-
-
-
-
+  /*  $scope.checkboxcheckanother = function (item, index) {
+      console.log('showing index' + index);
+      console.log('cheched---' + this.item.state);
+      if (this.item.state) {
+        var singleupdategrocerys = {
+          'name': item.name,
+          'state': true,
+          'glistIditem': $stateParams.groceryId,
+          '_id': this.item._id
+        };
+        console.log("before singleupdategrocerys:" + JSON.stringify(singleupdategrocerys));
+        GroceryItemSingle.update({
+          'glistIditem': $stateParams.groceryId,
+          'itemId': this.item._id
+        }, singleupdategrocerys, function (result) {
+          console.log('active function result true -----------' + JSON.stringify(result));
+          $scope.singlegrocerysactive.splice(index, 1);
+          $ionicHistory.clearCache();
+        });
+      } else {
+        var singleupdategrocerys = {
+          'name': item.name,
+          'state': false,
+          'glistIditem': $stateParams.groceryId,
+          '_id': this.item._id
+        };
+        console.log("before singleupdategrocerys:" + JSON.stringify(singleupdategrocerys));
+        GroceryItemSingle.update({
+          'glistIditem': $stateParams.groceryId,
+          'itemId': this.item._id
+        }, singleupdategrocerys, function (result) {
+          console.log('active function result false ---------------' + JSON.stringify(result));
+          $scope.singlegrocerysdone.splice(index, 1);
+          $ionicHistory.clearCache();
+        });
+      }
+    }*/
 
   $scope.editgrocery = function (grocery) {
     $ionicListDelegate.closeOptionButtons();
@@ -367,113 +258,37 @@ angular.module('recipesApp')
     });
   }
 
-
-  /*$scope.goback = function () {
-
-    console.log('go to back sate');
-    $state.go('app.grocery');
-    $ionicHistory.clearCache();
-  };
-*/
-
-
-
-  $scope.buttonStyle = "button-assertive";
-
-
-
-
   $scope.allgrocery = function () {
-    console.log('calling all grocery ---------');
+    $scope.$emit('itemState', '');
+  };
 
-    $localStorage.groceryName = $stateParams.groceryName;
-    console.log('getsinglegrocery is calling' + $scope.groceryName);
-    console.log(' grocery single name' + $stateParams.groceryName);
+  $scope.activegrocery = function () {
+    $scope.$emit('itemState', false);
+  };
 
-    $scope.groceryName = $localStorage.groceryName;
-    $scope.buttonStyle = "button-assertive";
-    $scope.buttonStyle1 = "button-stable";
-    $scope.buttonStyle2 = "button-stable";
-
-    $scope.groceryall = true;
-    $scope.groceryactive = false;
-    $scope.grocerydone = false;
+  $scope.donegrocery = function () {
+    $scope.$emit('itemState', true);
+  };
 
 
+  $scope.$on('itemState', function (events, data) {
+    $scope.statusFilter = {
+      state: data
+    };
+  });
+
+
+  $scope.getGroceryItems = function () {
+    $scope.groceryName = $stateParams.groceryName;
     SingleGroceryItem.query({
       glistIditem: $stateParams.groceryId
     }, function (res) {
       $scope.singlegrocerys = res;
-
       console.log('items from grocerry ' + JSON.stringify(res));
-
       $ionicHistory.clearCache()
-
     });
-
+    $scope.$emit('itemState', '');
   };
-
-  $scope.activegrocery = function () {
-    console.log('calling active grocery ---------');
-
-    $scope.groceryName = $localStorage.groceryName;
-    console.log(' grocery single name' + $stateParams.groceryName);
-
-    $scope.buttonStyle = "button-stable";
-    $scope.buttonStyle1 = "button-assertive";
-    $scope.buttonStyle2 = "button-stable";
-
-    $scope.groceryactive = true;
-    $scope.groceryall = false;
-    $scope.grocerydone = false;
-
-
-    GroceryItemSingleByState.query({
-      glistIditem: $stateParams.groceryId,
-      state: false
-    }, function (res) {
-      $scope.singlegrocerysactive = res;
-
-      console.log('items from grocerry ' + JSON.stringify(res));
-
-      $ionicHistory.clearCache()
-
-    });
-
-
-  };
-
-  $scope.donegrocery = function () {
-    console.log('calling done grocery ---------');
-
-    $scope.groceryName = $localStorage.groceryName;
-    console.log(' grocery single name' + $stateParams.groceryName);
-
-    $scope.buttonStyle = "button-stable";
-    $scope.buttonStyle1 = "button-stable";
-    $scope.buttonStyle2 = "button-assertive";
-
-    $scope.grocerydone = true;
-    $scope.groceryactive = false;
-    $scope.groceryall = false;
-
-
-    GroceryItemSingleByState.query({
-      glistIditem: $stateParams.groceryId,
-
-      state: true
-    }, function (res) {
-      $scope.singlegrocerysdone = res;
-
-      console.log('items from grocerry ' + JSON.stringify(res));
-
-      $ionicHistory.clearCache()
-
-    });
-
-  };
-
-
 
 
 });

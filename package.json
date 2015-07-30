@@ -1,7 +1,7 @@
 {
   "name": "reciflix",
-  "version": "1.0.2",
-  "description": "reciflix App: An Ionic project",
+  "version": "1.1.2",
+  "description": "reciflix App: online recipe videos on your mobile",
   "dependencies": {
     "gulp": "^3.5.6",
     "gulp-sass": "^0.7.1",

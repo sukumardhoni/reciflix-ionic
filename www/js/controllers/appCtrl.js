@@ -11,12 +11,8 @@ angular.module('recipesApp')
     }
   }
 
-  cordova.getAppVersion.getVersionNumber(function (version) {
-    //alert(version);
-    console.log('appVersion details : ' + version);
-    $scope.appVersion = version;
-  });
 
+  $scope.appVersion = $rootScope.appVersion;
 
   $scope.currentStateName = $stateParams.name;
   $scope.signout = function () {

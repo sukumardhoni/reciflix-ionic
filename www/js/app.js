@@ -22,6 +22,14 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage', '
         //console.log("error");
       });*/
     // navigator.analytics.setTrackingId('UA-65211986-2');
+
+
+    cordova.getAppVersion.getVersionNumber(function (version) {
+      console.log('appVersion details : ' + version);
+      $rootScope.appVersion = version;
+    });
+
+
   });
 
   $ionicPlatform.registerBackButtonAction(function () {
@@ -117,21 +125,12 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage', '
         }
       }
     })
-    .state('app.slides', {
-      url: "/slides/:recipeId",
+    .state('app.singleRecipe', {
+      url: "/singleRecipe/:recipeId",
       views: {
         'menuContent': {
-          templateUrl: "templates/contentSlides.html",
+          templateUrl: "templates/singleRecipe.html",
           controller: "allRecipesCtrl"
-        }
-      }
-    })
-    .state('app.showRecipes', {
-      url: "/showRecipes/:videoId",
-      views: {
-        'menuContent': {
-          templateUrl: "templates/showRecipes.html",
-          controller: "showRecipesCtrl"
         }
       }
     })
@@ -149,63 +148,20 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage', '
       views: {
         'menuContent': {
           templateUrl: "templates/grocery.html",
-          controller: "grocerysCtrl"
+          controller: "groceryCtrl"
         }
       }
     })
-
-
-  /*  ------------- new grocery---------------*/
-
-  .state('app.groceryone', {
-    url: "/:groceryId/:groceryName",
-    views: {
-      'menuContent': {
-        templateUrl: "templates/groceryone.html",
-        controller: "grocerysCtrl"
+    .state('app.groceryItems', {
+      url: "/:groceryId/:groceryName",
+      views: {
+        'menuContent': {
+          templateUrl: "templates/groceryItems.html",
+          controller: "groceryCtrl"
+        }
       }
-    }
-  })
-
-  /*  ------------- old grocery ---------------*/
-
-  /*  .state('app.singlegrocery', {
-        url: "/:groceryId/:groceryName",
-        views: {
-          'menuContent': {
-            templateUrl: "templates/singlegrocery.html",
-            controller: "grocerysCtrl"
-          }
-        }
-      })
-      .state('app.singlegrocery.all', {
-        url: "/all",
-        views: {
-          'tab-all': {
-            templateUrl: "templates/singlegroceryall.html",
-            controller: "grocerysCtrl"
-          }
-        }
-      })
-      .state('app.singlegrocery.buy', {
-        url: "/buy",
-        views: {
-          'tab-buy': {
-            templateUrl: "templates/singlegrocerybuy.html",
-            controller: "grocerysCtrl"
-          }
-        }
-      })
-      .state('app.singlegrocery.buyed', {
-        url: "/buyed",
-        views: {
-          'tab-buyed': {
-            templateUrl: "templates/singlegrocerybuyed.html",
-            controller: "grocerysCtrl"
-          }
-        }
-      })*/
-  .state('app.search', {
+    })
+    .state('app.search', {
       url: "/search",
       views: {
         'menuContent': {
@@ -222,11 +178,11 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage', '
         }
       }
     })
-    .state('app.myCalendarPlan', {
-      url: "/myCalendarPlan/:name",
+    .state('app.aboutApp', {
+      url: "/aboutApp/:name",
       views: {
         'menuContent': {
-          templateUrl: "templates/newPage.html",
+          templateUrl: "templates/about.html",
           controller: "AppCtrl"
         }
       }

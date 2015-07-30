@@ -1,4 +1,4 @@
-<ion-view ng-init="getgrocerylists()" cache-view="false">
+<ion-view ng-init="getGroceryLists()" cache-view="false">
 
   <div ui-view="groceryContent"></div>
   <ion-nav-title>
@@ -17,23 +17,22 @@
       </center>
     </div>
     <ion-list ng-hide="grocerylists.length === 0" show-delete="triggerOn" scroll="true">
-      <!-- <ion-item ng-repeat="grocery in grocerylists" class="item-remove-animate item-icon-right scroll-content itemBG" ui-sref="app.singlegrocery({groceryId:grocery._id,groceryName:grocery.name})">-->
-      <ion-item ng-repeat="grocery in grocerylists" class="item-remove-animate item-icon-right scroll-content itemBG" ui-sref="app.groceryone({groceryId:grocery._id,groceryName:grocery.name})">
+      <ion-item ng-repeat="grocery in grocerylists" class="item-remove-animate item-icon-right scroll-content itemBG" ui-sref="app.groceryItems({groceryId:grocery._id,groceryName:grocery.name})">
         <div class="row responsive">
           <div class="col active"> <b> {{grocery.name}} </b>
           </div>
         </div>
-        <ion-option-button class="button-calm" ng-click="grocerydelete($index)">
-          Delete
-        </ion-option-button>
-        <ion-option-button class="button-assertive" ng-click="editgrocery(grocery)">
+        <ion-option-button class="button-calm" ng-click="editGrocery(grocery)">
           Edit
+        </ion-option-button>
+        <ion-option-button class="button-assertive" ng-click="deleteGrocery(grocery,$index)">
+          Delete
         </ion-option-button>
       </ion-item>
     </ion-list>
   </ion-content>
   <div class="float-button corner" ng-hide="grocerylists.length === 0">
-    <a class="round-button " ng-click="addgrocery()"><i class="ion-plus-round" style="color:white"> </i></a>
+    <a class="round-button " ng-click="showAddGroceryForm()"><i class="ion-plus-round" style="color:white"> </i></a>
   </div>
   <rf-footer-display></rf-footer-display>
 </ion-view>

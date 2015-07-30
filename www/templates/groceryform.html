@@ -1,7 +1,7 @@
 <ion-modal-view class="grocery-view" hide-nav-bar="true" cache-view="false">
   <ion-header-bar class="bar bar-assertive">
     <h1 class="title">{{formName}}</h1>
-    <button class="button button-icon ion-close" style="float:right" ng-click="closeModal(2)"></button>
+    <button class="button button-icon ion-close" style="float:right" ng-click="closeModal()"></button>
   </ion-header-bar>
   <ion-content scroll="false">
     <div class="row grocery_form">
@@ -15,7 +15,7 @@
 
             </div>
             <div class="item item-body bottom-content">
-              <button type="submit" class="button button-positive button-block" ng-click="addgrocerylist(grocery)" ng-disabled="grocery_form.$invalid" ng-show="formName === 'Create Grocery List'">
+              <button type="submit" class="button button-positive button-block" ng-click="addGroceryList(grocery)" ng-disabled="grocery_form.$invalid" ng-show="formName === 'Create Grocery List'">
                 {{formName}}
               </button>
               <button type="submit" class="button button-positive button-block" ng-click="updateGrocery(grocery,$index)" ng-disabled="grocery_form.$invalid" ng-show="formName === 'Update Grocery List'">

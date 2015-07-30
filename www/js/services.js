@@ -104,24 +104,15 @@ angular.module('recipesApp')
 })
 
 .factory('Grocery', function ($resource, API_HOST) {
-  return $resource(API_HOST + '/glist', {}, {
+  return $resource(API_HOST + '/gList/:gListId', {
+    gListId: '@gListId'
+  }, {
+    'save': {
+      method: 'POST'
+    },
     'query': {
       method: 'GET',
       isArray: true
-    },
-    'save': {
-      method: 'POST'
-    }
-  });
-})
-
-.factory('singleGrocery', function ($resource, API_HOST) {
-  return $resource(API_HOST + '/glist/:glistId', {
-    glistId: '@glistId'
-  }, {
-    'query': {
-      method: 'GET'
-
     },
     'delete': {
       method: 'DELETE'
@@ -133,9 +124,9 @@ angular.module('recipesApp')
 })
 
 
-.factory('SingleGroceryItem', function ($resource, API_HOST) {
-  return $resource(API_HOST + '/glistitem/:glistIditem/item', {
-    glistIditem: '@glistIditem'
+.factory('GroceryItem', function ($resource, API_HOST) {
+  return $resource(API_HOST + '/gListItems/:gListId/item', {
+    gListId: '@gListId'
   }, {
     'query': {
       method: 'GET',
@@ -148,8 +139,8 @@ angular.module('recipesApp')
 })
 
 .factory('GroceryItemSingle', function ($resource, API_HOST) {
-  return $resource(API_HOST + '/glistitemsingle/:glistIditem/item/:itemId', {
-    glistIditem: '@glistIditem',
+  return $resource(API_HOST + '/singleGListItem/:gListId/item/:itemId', {
+    gListId: '@gListId',
     itemId: '@itemId'
   }, {
     'query': {
@@ -157,19 +148,6 @@ angular.module('recipesApp')
     },
     'update': {
       method: 'PUT'
-    }
-  });
-})
-
-
-.factory('GroceryItemSingleByState', function ($resource, API_HOST) {
-  return $resource(API_HOST + '/glistitemstate/:glistIditem/item/:state', {
-    glistIditem: '@glistIditem',
-    state: '@state'
-  }, {
-    'query': {
-      method: 'GET',
-      isArray: true
     }
   });
 })

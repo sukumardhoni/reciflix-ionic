@@ -29,7 +29,7 @@
       </div>
       <div class="row item-style" ng-repeat="item in singlegrocerys | filter:statusFilter" ng-hide="singlegrocerys.length === 0">
         <div class="col col-10 checkbox checkbox-calm">
-          <input type="checkbox" ng-model="item.state" ng-click="checkboxcheck(item,$index)">
+          <input type="checkbox" ng-model="item.state" ng-click="checkBoxUpdateItemState(item,$index)">
         </div>
         <div class="col col-90">
           <a class="col col-90" editable-text="item.name" onaftersave="updateItem($index,item)" class="active-{{item.active}}">

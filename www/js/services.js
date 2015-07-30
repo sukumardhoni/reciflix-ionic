@@ -1,7 +1,7 @@
 angular.module('recipesApp')
 
 //.constant('API_HOST', 'http://192.168.0.100:3000')
-.constant('API_HOST', 'http://qa.api.reciflix.com')
+.constant('API_HOST', 'http://www.reciflix.com')
 
 .factory('Categories', function ($resource, API_HOST) {
   return $resource(API_HOST + '/categories/page/:pageId', {

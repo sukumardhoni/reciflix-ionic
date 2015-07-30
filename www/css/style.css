@@ -33,15 +33,18 @@
 
 div.dftHeight {
   height: 108px;
-  #-webkit-transition: height 1s;
-  #transition: height 1s;
 }
 
 .fullHeight {
   height: 100%;
-  #-webkit-transition: height 1s;
-  #transition: height 1s;
-  #overflow: auto;
+}
+
+div.dftHeightSingle {
+  height: 200px;
+}
+
+.fullHeightSingle {
+  height: 100%;
 }
 
 .loading {
@@ -542,7 +545,7 @@ input:-ms-input-placeholder {
 /*grocery styles*/
 
 .active {
-  font-size: 23px;
+  font-size: 16px;
 }
 
 .active-true {

@@ -29,7 +29,7 @@
         Recipe Description
         <i ng-class="recipe._id === selectedIndex ? 'ion ion-chevron-up' : 'ion ion-chevron-down'" style="color:Grey;font-size:30px;float:right" ng-click="changeClass(recipe)"></i>
       </div>
-      <div class="item item-text-wrap" ng-class="recipe._id === selectedIndex ? 'fullHeight' : 'dftHeight'">
+      <div class="item item-text-wrap" ng-class="recipe._id === selectedIndex ? 'fullHeightSingle' : 'dftHeightSingle'">
         {{recipe.description}}
       </div>
     </div>

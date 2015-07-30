@@ -4,7 +4,7 @@
   <ion-nav-title>
     <span style="color:white">Grocery Lists</span>
   </ion-nav-title>
-  <ion-content>
+  <ion-content scroll="true">
     <div class="">
       <img ng-src="img/grocery.jpg" height="180px" width="100%" />
     </div>
@@ -13,7 +13,7 @@
       <br>
       <br>
       <center>
-        <a class="round-button " ng-click="addgrocery()"><i class="ion-plus-round" style="color:white"> </i></a>
+        <a class="round-button " ng-click="showAddGroceryForm()"><i class="ion-plus-round" style="color:white"> </i></a>
       </center>
     </div>
     <ion-list ng-hide="grocerylists.length === 0" show-delete="triggerOn" scroll="true">

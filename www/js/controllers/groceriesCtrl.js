@@ -21,7 +21,7 @@ angular.module('recipesApp')
     this.grocery.name = '';
     Grocery.save(grocerylist, function (result) {
       $scope.grocerylists.unshift(result);
-      $scope.oModal2.hide();
+		$scope.closeModal();
     });
   };
   $scope.closeModal = function () {
@@ -57,18 +57,6 @@ angular.module('recipesApp')
       });
     });
   };
-
-  /*  $scope.updateItem = function (index, value) {
-      var updatedItem = {
-        'name': this.item.name,
-        'glistid': $stateParams.groceryId,
-        '_id': this.item._id
-      };
-      GroceryItemSingle.update({
-        'gListId': $stateParams.groceryId,
-        'itemId': this.item._id
-      }, updatedItem, function (result) {});
-    };*/
 
   $scope.checkBoxUpdateItemState = function (item, index) {
     if (item.state) {
@@ -130,7 +118,7 @@ angular.module('recipesApp')
     }, updatedGrocery, function (result) {
       $scope.grocerylists.splice(index, 1);
       $scope.grocerylists.splice(index, 0, result);
-      $scope.oModal2.hide();
+		$scope.closeModal();
       $ionicListDelegate.closeOptionButtons();
     });
   };
@@ -143,8 +131,10 @@ angular.module('recipesApp')
       $scope.grocerylists.splice(index, 1);
     }, function (err) {
       console.log('Error msg : ' + JSON.stringify(err));
-      navigator.notification.confirm(err.data.message + ', Are you sure want to delete this grocery ?', function (cbIndex) {
-          if (cbIndex == 1) {} else if (cbIndex == 2) {
+      navigator.notification.confirm(err.data.message + ', Do you still want to delete this grocery list?', function (cbIndex) {
+          if (cbIndex == 1) {
+		  	$ionicListDelegate.closeOptionButtons();
+		  } else if (cbIndex == 2) {
             Grocery.delete({
               gListId: grocery._id,
               userConfirm: 'Y'

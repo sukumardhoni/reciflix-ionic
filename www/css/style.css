@@ -550,7 +550,16 @@ input:-ms-input-placeholder {
 
 .active-true {
   text-decoration: line-through;
-  color: lightgray;
+  color: grey;
+}
+
+#grocery-items .active-true {
+  text-decoration: line-through;
+  color: green;
+}
+
+#grocery-items .active-true .item-name {
+  color: grey;
 }
 
 .active-flase {
@@ -609,7 +618,26 @@ input:-ms-input-placeholder {
   color: white;
 }
 
-14px 'Helvetica Neue',
-Helvetica,
-Arial,
-sans-serif
+#grocery-items .item-complex .item-content,
+.item-radio .item-content {
+  padding: 0px !important;
+}
+
+#grocery-items .checkbox {
+  padding: 7px 15px;
+}
+
+.checkbox-calm input:checked:before,
+.checkbox-calm input:checked + .checkbox-icon:before {
+  background: #DDD;
+  border-color: #CCC;
+}
+
+.checkbox-calm input:before,
+.checkbox-calm .checkbox-icon:before {
+  border-color: #CCC;
+}
+
+#grocery-lists .editable-buttons {
+  padding-top: 35px;
+}

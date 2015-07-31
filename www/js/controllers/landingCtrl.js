@@ -18,10 +18,8 @@ angular.module('recipesApp')
     }, 500);
   };
   $scope.$on('loggedIn', function (event, message) {
-    console.log('LOcal Storage Token details : ' + message.loggedIn);
     if (message.loggedIn) {
       $scope.authentication.user = $localStorage.user;
-      console.log('LOcal Storage USer details : ' + JSON.stringify($localStorage.user));
       $state.go('app.allCategories')
     } else {
       $state.go('landing')
@@ -38,7 +36,6 @@ angular.module('recipesApp')
   };
   $scope.user = {};
   $scope.signIn = function () {
-    console.log('signIn func. is triggred \n Form Details are : ' + JSON.stringify(this.user));
     if ($rootScope.networkState === 'none') {
       alert('This App needs internet, Please try after you connect to internet');
     } else {
@@ -177,7 +174,6 @@ angular.module('recipesApp')
 
 
   $scope.recoverPassword = function (respUser) {
-    console.log('recoverPassword is called : ' + this.user.email);
     $ionicLoading.show({
       templateUrl: "templates/loading.html",
     });
@@ -191,7 +187,6 @@ angular.module('recipesApp')
         $ionicLoading.hide();
       } else {
         $ionicLoading.hide();
-        console.log('Response from SERVER side is recoverPassword PAssword : ' + JSON.stringify(res));
         $scope.sucessfullMsg = res.message;
       }
     })

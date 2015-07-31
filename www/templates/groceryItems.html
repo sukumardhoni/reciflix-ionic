@@ -1,48 +1,50 @@
 <ion-view ng-init="getGroceryItems()" cache-view="false">
-	  <ion-nav-title>
+  <ion-nav-title>
     <span style="color:white">{{groceryName}}</span>
   </ion-nav-title>
   <ion-content has-header="true" scroll="true">
 
-      <form class="item item-input-inset" name="grocery_form" novalidate>
-        <label class="item-input-wrapper">
-          <input type="text" placeholder=" Create Item" ng-model="item.name"  required>
-        </label>
-        <button class="button button-small button-positive" ng-click="createItem()" ng-disabled="grocery_form.$invalid">
-          Create
-        </button>
-      </form>
-      <div class="card" ng-hide="singlegrocerys.length === 0">
-        <ul id="filters">
-          <li>
-            <a ng-class="{selected: statusFilter.state === ''} " ng-click="allgrocery()">All</a>
-          </li>
-          <li>
-            <a ng-class="{selected: statusFilter.state === false}" ng-click="activegrocery()">Active</a>
-          </li>
-          <li>
-            <a ng-class="{selected: statusFilter.state === true}" ng-click="donegrocery()">Completed</a>
-          </li>
-        </ul>
+    <form class="item item-input-inset" name="grocery_form" novalidate>
+      <label class="item-input-wrapper">
+        <input type="text" placeholder=" Create Item" ng-model="item.name" required>
+      </label>
+      <button class="button button-small button-positive" ng-click="createItem()" ng-disabled="grocery_form.$invalid">
+        Create
+      </button>
+    </form>
+    <div ng-hide="singlegrocerys.length === 0">
+      <ul id="filters">
+        <li>
+          <a ng-class="{selected: statusFilter.state === ''} " ng-click="allgrocery()">All</a>
+        </li>
+        <li>
+          <a ng-class="{selected: statusFilter.state === false}" ng-click="activegrocery()">Active</a>
+        </li>
+        <li>
+          <a ng-class="{selected: statusFilter.state === true}" ng-click="donegrocery()">Completed</a>
+        </li>
+      </ul>
+    </div>
+    <div class="card" ng-show="singlegrocerys.length === 0">
+      <div class="item item-text-wrap">
+        Items yet to be create.
       </div>
-      <div class="card" ng-show="singlegrocerys.length === 0">
-        <div class="item item-text-wrap">
-          Items yet to be create.
-        </div>
-      </div>
-    <div class="list">	  
-      <div class="row item-style" ng-repeat="item in singlegrocerys | filter:statusFilter" ng-hide="singlegrocerys.length === 0">
-        <div class="col col-10 checkbox checkbox-calm">
-          <input type="checkbox" ng-model="item.state" ng-click="checkBoxUpdateItemState(item,$index)">
-        </div>
-        <div class="col col-90">
-          <a class="col col-90" editable-text="item.name" onaftersave="updateItem($index,item)" class="active-{{item.active}}">
-            <span class="active active-{{item.state}}">{{item.name}}</span>
-          </a>
-        </div>
-      </div>
+    </div>
+    <div id="grocery-items">
+      <ion-list class="list" show-delete="triggerOn">
+        <ion-item ng-repeat="item in singlegrocerys | filter:statusFilter" ng-hide="singlegrocerys.length === 0">
+          <div class="checkbox checkbox-calm">
+            <input type="checkbox" style="float:left" ng-model="item.state" ng-click="checkBoxUpdateItemState(item,$index)">
+            <a class="" style="float:left;padding-left:10px;padding-top:5px" editable-text="item.name" onaftersave="updateItem($index,item)" class="active-{{item.active}}">
+              <span class="active active-{{item.state}}"><span class="item-name">{{item.name}}</span></span>
+            </a>
+          </div>
+          <ion-option-button ng-click="deleteGItem(item,$index)">
+            <i class="icon ion-close-circled" style="font-size:30px;color:#e42012"></i>
+          </ion-option-button>
+        </ion-item>
+      </ion-list>
     </div>
   </ion-content>
   <rf-footer-display></rf-footer-display>
 </ion-view>
-

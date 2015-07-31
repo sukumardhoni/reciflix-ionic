@@ -49,6 +49,7 @@ angular.module('recipesApp')
     GroceryItem.save({
       gListId: $stateParams.groceryId
     }, groceryItem, function (result) {
+      $ionicListDelegate.closeOptionButtons();
       $scope.singlegrocerys.unshift({
         _id: result._id,
         name: result.name,
@@ -118,18 +119,15 @@ angular.module('recipesApp')
   $scope.$on('modal.hidden', function () {
     angular.copy($scope.copyGName, $scope.grocery);
   });
+
   $scope.updateGrocery = function (grocery, index) {
     var updatedGrocery = {
       'name': grocery.name,
       'items': grocery.items
     };
     Grocery.update({
-      gListId: grocery._id
-    }, updatedGrocery, function (result) {
-      $scope.grocerylists.splice(index, 1);
-      $scope.grocerylists.splice(index, 0, result);
-      $scope.oModal2.hide();
-    });
+      gListId: this.grocery._id
+    }, updatedGrocery, function (result) {});
   };
 
   $scope.deleteGrocery = function (grocery, index) {
@@ -137,7 +135,6 @@ angular.module('recipesApp')
       gListId: grocery._id
     }, function (result) {
       $scope.grocerylists.splice(index, 1);
-      $scope.oModal2.hide();
     });
   };
 
@@ -161,7 +158,7 @@ angular.module('recipesApp')
   });
 
   $scope.getGroceryItems = function () {
-	$ionicHistory.clearCache();
+    $ionicHistory.clearCache();
     $scope.groceryName = $stateParams.groceryName;
     GroceryItem.query({
       gListId: $stateParams.groceryId
@@ -171,5 +168,16 @@ angular.module('recipesApp')
     });
     $scope.$emit('itemState', '');
   };
+
+  $scope.deleteGItem = function (itemVal, index) {
+    GroceryItemSingle.delete({
+      'gListId': $stateParams.groceryId,
+      'itemId': itemVal._id
+    }, function (result) {
+      $scope.singlegrocerys.splice(index, 1);
+    });
+  };
+
+
 
 });

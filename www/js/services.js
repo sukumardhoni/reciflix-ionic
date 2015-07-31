@@ -148,6 +148,9 @@ angular.module('recipesApp')
     },
     'update': {
       method: 'PUT'
+    },
+    'delete': {
+      method: 'DELETE'
     }
   });
 })

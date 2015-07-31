@@ -115,15 +115,11 @@ angular.module('recipesApp')
   };
   $scope.shareFb = function () {
     if (ionic.Platform.isAndroid()) {
-      window.plugins.socialsharing.shareViaFacebook('Message via Facebook', null /* img */ , 'http://www.reciflix.com' /* url */ , 'ReciFlix App allows convenient way to search and watch a recipe video online. Users can add recipes to favorites to watch them later from anywhere.', function () {
-        console.log('share ok')
-      }, function (errormsg) {
+      window.plugins.socialsharing.shareViaFacebook('Message via Facebook', null /* img */ , 'http://www.reciflix.com' /* url */ , 'ReciFlix App allows convenient way to search and watch a recipe video online. Users can add recipes to favorites to watch them later from anywhere.', function () {}, function (errormsg) {
         alert(errormsg)
       });
     } else if (ionic.Platform.isIOS()) {
-      window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('ReciFlix App allows convenient way to search and watch a recipe video online. Users can add recipes to favorites to watch them later from anywhere.', 'http://www.reciflix.com/modules/core/img/brand/reciflix_500.png' /* img */ , 'http://www.reciflix.com' /* url */ , 'Use paste in the content area to get the prewritten message', function () {
-        console.log('share ok')
-      }, function (errormsg) {
+      window.plugins.socialsharing.shareViaFacebookWithPasteMessageHint('ReciFlix App allows convenient way to search and watch a recipe video online. Users can add recipes to favorites to watch them later from anywhere.', 'http://www.reciflix.com/modules/core/img/brand/reciflix_500.png' /* img */ , 'http://www.reciflix.com' /* url */ , 'Use paste in the content area to get the prewritten message', function () {}, function (errormsg) {
         alert(errormsg)
       });
     }
@@ -145,7 +141,6 @@ angular.module('recipesApp')
     $ionicLoading.show({
       templateUrl: "templates/loading.html",
     });
-    console.log('updateProfile func. is called' + JSON.stringify(updatedUser));
     User.UpdatedProfile.update(updatedUser, function (res) {
       $ionicLoading.hide();
       $scope.sucessfullyUpdatedMsg = 'Successfully Updated Your Profile';
@@ -157,7 +152,6 @@ angular.module('recipesApp')
           userId: res._id
         });
       }, 4500);
-      console.log('Response from SERVER side is Updated Profile : ' + JSON.stringify(res));
     });
   };
 
@@ -165,7 +159,6 @@ angular.module('recipesApp')
     $ionicLoading.show({
       templateUrl: "templates/loading.html",
     });
-    console.log('updatePassword func. is called' + JSON.stringify(updatedPwd));
     User.ChangePassword.update(updatedPwd, function (res) {
       $ionicLoading.hide();
       $scope.sucessfullyUpdatedMsg = 'Successfully Updated Your Password';
@@ -174,11 +167,9 @@ angular.module('recipesApp')
           userId: res._id
         });
       }, 4500);
-      console.log('Response from SERVER side is Updated Profile : ' + JSON.stringify(res));
     }, function (err) {
       $ionicLoading.hide();
       $scope.errUpdatedMsg = err.data.message;
-      console.log(' ERror Response from SERVER side is Updated Profile : ' + JSON.stringify(err));
     });
   };
 

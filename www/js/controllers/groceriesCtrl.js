@@ -4,7 +4,7 @@ angular.module('recipesApp')
   $scope.authentication = Authentication;
   $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
   $scope.copyGName = {};
-  $ionicModal.fromTemplateUrl('templates/groceryForm.html', {
+  $ionicModal.fromTemplateUrl('templates/groceryform.html', {
     id: '1',
     scope: $scope,
     backdropClickToClose: false,
@@ -103,7 +103,7 @@ angular.module('recipesApp')
     $ionicListDelegate.closeOptionButtons();
     $scope.formName = 'Update Grocery List';
     $scope.copyGName = angular.copy(grocery);
-    $ionicModal.fromTemplateUrl('templates/groceryForm.html', {
+    $ionicModal.fromTemplateUrl('templates/groceryform.html', {
       id: '1',
       scope: $scope,
       backdropClickToClose: false,

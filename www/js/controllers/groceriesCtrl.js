@@ -161,6 +161,7 @@ angular.module('recipesApp')
   });
 
   $scope.getGroceryItems = function () {
+	$ionicHistory.clearCache();
     $scope.groceryName = $stateParams.groceryName;
     GroceryItem.query({
       gListId: $stateParams.groceryId

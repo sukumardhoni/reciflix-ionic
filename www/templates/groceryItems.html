@@ -1,9 +1,12 @@
-<ion-view ng-init="getGroceryItems()" title="{{groceryName}}" cache-view="false">
-  <ion-content scroll="true">
-    <div class="list">
+<ion-view ng-init="getGroceryItems()" cache-view="false">
+	  <ion-nav-title>
+    <span style="color:white">{{groceryName}}</span>
+  </ion-nav-title>
+  <ion-content has-header="true" scroll="true">
+
       <form class="item item-input-inset" name="grocery_form" novalidate>
-        <label class="item-input-wrapper" focus-me>
-          <input type="text" placeholder=" Create Item" ng-model="item.name" autofocus required>
+        <label class="item-input-wrapper">
+          <input type="text" placeholder=" Create Item" ng-model="item.name"  required>
         </label>
         <button class="button button-small button-positive" ng-click="createItem()" ng-disabled="grocery_form.$invalid">
           Create
@@ -27,6 +30,7 @@
           Items yet to be create.
         </div>
       </div>
+    <div class="list">	  
       <div class="row item-style" ng-repeat="item in singlegrocerys | filter:statusFilter" ng-hide="singlegrocerys.length === 0">
         <div class="col col-10 checkbox checkbox-calm">
           <input type="checkbox" ng-model="item.state" ng-click="checkBoxUpdateItemState(item,$index)">
@@ -41,3 +45,4 @@
   </ion-content>
   <rf-footer-display></rf-footer-display>
 </ion-view>
+

@@ -58,17 +58,17 @@ angular.module('recipesApp')
     });
   };
 
-  $scope.updateItem = function (index, value) {
-    var updatedItem = {
-      'name': this.item.name,
-      'glistid': $stateParams.groceryId,
-      '_id': this.item._id
-    };
-    GroceryItemSingle.update({
-      'gListId': $stateParams.groceryId,
-      'itemId': this.item._id
-    }, updatedItem, function (result) {});
-  };
+  /*  $scope.updateItem = function (index, value) {
+      var updatedItem = {
+        'name': this.item.name,
+        'glistid': $stateParams.groceryId,
+        '_id': this.item._id
+      };
+      GroceryItemSingle.update({
+        'gListId': $stateParams.groceryId,
+        'itemId': this.item._id
+      }, updatedItem, function (result) {});
+    };*/
 
   $scope.checkBoxUpdateItemState = function (item, index) {
     if (item.state) {
@@ -126,15 +126,34 @@ angular.module('recipesApp')
       'items': grocery.items
     };
     Grocery.update({
-      gListId: this.grocery._id
-    }, updatedGrocery, function (result) {});
+      gListId: grocery._id
+    }, updatedGrocery, function (result) {
+      $scope.grocerylists.splice(index, 1);
+      $scope.grocerylists.splice(index, 0, result);
+      $scope.oModal2.hide();
+      $ionicListDelegate.closeOptionButtons();
+    });
   };
 
   $scope.deleteGrocery = function (grocery, index) {
     Grocery.delete({
-      gListId: grocery._id
+      gListId: grocery._id,
+      userConfirm: 'N'
     }, function (result) {
       $scope.grocerylists.splice(index, 1);
+    }, function (err) {
+      console.log('Error msg : ' + JSON.stringify(err));
+      navigator.notification.confirm(err.data.message + ', Are you sure want to delete this grocery ?', function (cbIndex) {
+          if (cbIndex == 1) {} else if (cbIndex == 2) {
+            Grocery.delete({
+              gListId: grocery._id,
+              userConfirm: 'Y'
+            }, function (result) {
+              $scope.grocerylists.splice(index, 1);
+            });
+          }
+        },
+        'Confirmation', ['Cancel', 'OK']);
     });
   };
 
@@ -158,6 +177,7 @@ angular.module('recipesApp')
   });
 
   $scope.getGroceryItems = function () {
+    $ionicListDelegate.closeOptionButtons();
     $ionicHistory.clearCache();
     $scope.groceryName = $stateParams.groceryName;
     GroceryItem.query({

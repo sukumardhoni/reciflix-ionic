@@ -35,7 +35,7 @@
         <ion-item ng-repeat="item in singlegrocerys | filter:statusFilter" ng-hide="singlegrocerys.length === 0">
           <div class="checkbox checkbox-calm">
             <input type="checkbox" style="float:left" ng-model="item.state" ng-click="checkBoxUpdateItemState(item,$index)">
-            <a class="" style="float:left;padding-left:10px;padding-top:5px" editable-text="item.name" onaftersave="updateItem($index,item)" class="active-{{item.active}}">
+            <a class="" style="float:left;padding-left:10px;padding-top:5px" class="active-{{item.active}}">
               <span class="active active-{{item.state}}"><span class="item-name">{{item.name}}</span></span>
             </a>
           </div>

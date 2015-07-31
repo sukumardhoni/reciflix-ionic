@@ -18,18 +18,15 @@
     </div>
     <div id="grocery-lists">
       <ion-list ng-hide="grocerylists.length === 0" show-delete="triggerOn" scroll="true">
-        <ion-item ng-repeat="grocery in grocerylists" class="item-remove-animate item-icon-right scroll-content itemBG">
+        <ion-item ng-repeat="grocery in grocerylists" class="item-remove-animate item-icon-right scroll-content itemBG" ui-sref="app.groceryItems({groceryId:grocery._id,groceryName:grocery.name})">
           <div class="row responsive">
-            <div class="col active" editable-text="grocery.name" onaftersave="updateGrocery($index,grocery)"> <b> {{grocery.name}} </b>
+            <div class="col active"> <b> {{grocery.name}} </b>
             </div>
-            <i class="icon ion-chevron-right" style="font-size:30px" ui-sref="app.groceryItems({groceryId:grocery._id,groceryName:grocery.name})"></i>
+            <i class="icon ion-chevron-right" style="font-size:30px"></i>
           </div>
-          <!--
-
-
-<ion-option-button class="button-calm" ng-click="editGrocery(grocery)">
-  Edit
-</ion-option-button>-->
+          <ion-option-button ng-click="editGrocery(grocery)">
+            <i class="icon ion-edit" style="font-size:30px;color:#70B8FF"></i>
+          </ion-option-button>
           <ion-option-button ng-click="deleteGrocery(grocery,$index)">
             <i class="icon ion-close-circled" style="font-size:30px;color:#e42012"></i>
           </ion-option-button>

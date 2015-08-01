@@ -177,4 +177,17 @@ angular.module('recipesApp')
     $scope.showForm = true;
   };
 
+
+  $scope.reuseAlert = function (aMessage, aTitle, aBtnName, aCallBackFn) {
+    if (window.cordova) {
+      navigator.notification.alert(
+        aMessage, // message
+        aCallBackFn, // callback
+        aTitle, // title
+        aBtnName // buttonName
+      );
+    } else {
+      alert(aMessage);
+    }
+  };
 });

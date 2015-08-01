@@ -21,13 +21,13 @@ angular.module('recipesApp')
     this.grocery.name = '';
     Grocery.save(grocerylist, function (result) {
       $scope.grocerylists.unshift(result);
-		$scope.closeModal();
+      $scope.closeModal();
     });
   };
 
   $scope.closeModal = function () {
-    if($scope.grocery !== 'undefined'){
-      $scope.grocery='';
+    if ($scope.grocery !== 'undefined') {
+      $scope.grocery = '';
     };
     $scope.oModal2.hide();
   };
@@ -122,7 +122,7 @@ angular.module('recipesApp')
     }, updatedGrocery, function (result) {
       $scope.grocerylists.splice(index, 1);
       $scope.grocerylists.splice(index, 0, result);
-		$scope.closeModal();
+      $scope.closeModal();
       $ionicListDelegate.closeOptionButtons();
     });
   };
@@ -132,40 +132,39 @@ angular.module('recipesApp')
       gListId: grocery._id,
       userConfirm: 'N'
     }, function (result) {
-      $scope.grocerylists.splice(index, 1);
-    }, function (err) {
-      console.log('Error msg : ' + JSON.stringify(err));
-
-      if(window.cordova){
-
-      navigator.notification.confirm(err.data.message + ', Do you still want to delete this grocery list?', function (cbIndex) {
-          if (cbIndex == 1) {
-		  	$ionicListDelegate.closeOptionButtons();
-		  } else if (cbIndex == 2) {
+      if (result.type === false) {
+        $ionicLoading.hide();
+        if (window.cordova) {
+          navigator.notification.confirm(result.data + ', Do you still want to delete this grocery list?', function (cbIndex) {
+              if (cbIndex == 1) {
+                $ionicListDelegate.closeOptionButtons();
+              } else if (cbIndex == 2) {
+                Grocery.delete({
+                  gListId: grocery._id,
+                  userConfirm: 'Y'
+                }, function (result) {
+                  $scope.grocerylists.splice(index, 1);
+                });
+              }
+            },
+            'Confirmation', ['Cancel', 'OK']);
+        } else {
+          if (window.confirm(result.data + ', Do you still want to delete this grocery list?')) {
             Grocery.delete({
               gListId: grocery._id,
               userConfirm: 'Y'
             }, function (result) {
               $scope.grocerylists.splice(index, 1);
             });
+          } else {
+            $ionicListDelegate.closeOptionButtons();
           }
-        },
-        'Confirmation', ['Cancel', 'OK']);
-      }else{
-        if(window.confirm(err.data.message + ', Do you still want to delete this grocery list?')){
-            Grocery.delete({
-              gListId: grocery._id,
-              userConfirm: 'Y'
-            }, function (result) {
-              $scope.grocerylists.splice(index, 1);
-            });
-        }else{
-          	$ionicListDelegate.closeOptionButtons();
         }
+      } else {
+        $scope.grocerylists.splice(index, 1);
       }
     });
   };
-
   $scope.allgrocery = function () {
     $scope.$emit('itemState', '');
   };

@@ -1,7 +1,7 @@
 angular.module('recipesApp')
 
-//.constant('API_HOST', 'http://192.168.0.100:3000')
- .constant('API_HOST', 'http://www.reciflix.com')
+.constant('API_HOST', 'http://192.168.0.100:3000')
+  //.constant('API_HOST', 'http://www.reciflix.com')
 
 .factory('Categories', function ($resource, API_HOST) {
   return $resource(API_HOST + '/categories/page/:pageId', {
@@ -9,7 +9,8 @@ angular.module('recipesApp')
   }, {
     'query': {
       method: 'GET',
-      isArray: true
+      isArray: true,
+      timeout: 20000
     }
   });
 })
@@ -43,12 +44,14 @@ angular.module('recipesApp')
   return {
     Signup: $resource(API_HOST + '/users/signup', {}, {
       create: {
-        method: 'POST', timeout:30000
+        method: 'POST',
+        timeout: 30000
       }
     }),
     Signin: $resource(API_HOST + '/users/signin', {}, {
       create: {
-        method: 'POST', timeout:20000
+        method: 'POST',
+        timeout: 20000
       }
     }),
     Signout: $resource(API_HOST + '/users/signout', {}, {
@@ -92,8 +95,8 @@ angular.module('recipesApp')
 })
 
 .factory('MyFavRecipes', function ($resource, API_HOST) {
-  return $resource(API_HOST + '/myFavorites/:userId/:pageId', {
-    userId: '@userId',
+  return $resource(API_HOST + '/myFavorites/:uId/:pageId', {
+    uId: '@uId',
     pageId: '@pageId'
   }, {
     'query': {

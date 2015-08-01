@@ -9,11 +9,16 @@ angular.module('recipesApp')
   });
   Categories.query({
     pageId: pageId
-  }, function (res) {
+  }).$promise.then(function (res) {
     $scope.categories = res;
     $ionicLoading.hide();
     pageId++;
+  }).catch(function (err) {
+    console.log('Error happened : ' + JSON.stringify(err));
+    $ionicLoading.hide();
+    $scope.reuseAlert('Looks like there is an issue with your connectivity, Please check your network connection or Please try after sometime!', 'Connectivity Issue', 'Done', null);
   });
+
   $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
     viewData.enableBack = false;
     $ionicHistory.clearHistory();

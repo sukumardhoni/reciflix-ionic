@@ -11,7 +11,7 @@ angular.module('recipesApp')
       });
       MyFavRecipes.query({
         pageId: pageId,
-        userId: Authentication.user._id
+        uId: Authentication.user._id
       }, function (res) {
         $ionicLoading.hide();
         $scope.recipes = res;
@@ -27,7 +27,7 @@ angular.module('recipesApp')
       var onScroll = {};
       MyFavRecipes.query({
         pageId: pageId,
-        userId: Authentication.user._id
+        uId: Authentication.user._id
       }, function (res) {
         onScroll = res;
         pageId++;

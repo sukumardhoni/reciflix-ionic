@@ -641,3 +641,8 @@ input:-ms-input-placeholder {
 #grocery-lists .editable-buttons {
   padding-top: 35px;
 }
+
+.login-view .alternative-actions .continue-as-guest {
+  padding: 0 4px;
+  font-size: 13px;
+}

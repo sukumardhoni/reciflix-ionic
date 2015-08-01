@@ -1,8 +1,11 @@
 <ion-modal-view class="grocery-view" hide-nav-bar="true" cache-view="false">
   <ion-header-bar class="bar bar-assertive">
-    <h4 style="color:white;padding-left: 40px;">{{formName}}</h4>
-    <button class="button button-icon ion-close" style="float:right" ng-click="closeModal()"></button>
+    <div style="width:90%">
+      <h4 style="color:white;padding-left: 40px;">{{formName}}</h4>
+    </div>
+    <button class="button button-icon ion-close" ng-click="closeModal()"></button>
   </ion-header-bar>
+
   <ion-content scroll="false">
     <div class="row grocery_form">
       <div class="col col-center">

@@ -35,21 +35,39 @@ angular.module('recipesApp')
     }
   };
   $scope.user = {};
+
   $scope.signIn = function () {
     if ($rootScope.networkState === 'none') {
-      alert('This App needs internet, Please try after you connect to internet');
+      $scope.reuseAlert('This App needs internet, Please try after you connect to internet!','Internet Not Available','Done',null);
     } else {
       $ionicLoading.show({
         templateUrl: "templates/loading.html",
       });
-      User.Signin.create(this.user, function (res) {
+      User.Signin.create(this.user).$promise.then(function (res) {
         if (res.type === false) {
           $scope.errMsg = res.data;
           $ionicLoading.hide();
         } else {
           $scope.reUsableCode(res);
         }
-      })
+      }).catch(function(err){
+        console.log('Error happened: '+ JSON.stringify(err));
+         $ionicLoading.hide();
+        $scope.reuseAlert('Looks like there is an issue with your connectivity, Please try after sometime!','Connectivity Issue','Done',null);
+      });
+    }
+  };
+
+  $scope.reuseAlert=function(aMessage, aTitle, aBtnName, aCallBackFn){
+    if(window.cordova){
+      navigator.notification.alert(
+          aMessage,  // message
+          aCallBackFn,// callback
+          aTitle, // title
+          aBtnName// buttonName
+      );
+    }else{
+      alert(aMessage);
     }
   };
 

@@ -43,12 +43,12 @@ angular.module('recipesApp')
   return {
     Signup: $resource(API_HOST + '/users/signup', {}, {
       create: {
-        method: 'POST'
+        method: 'POST', timeout:30000
       }
     }),
     Signin: $resource(API_HOST + '/users/signin', {}, {
       create: {
-        method: 'POST'
+        method: 'POST', timeout:20000
       }
     }),
     Signout: $resource(API_HOST + '/users/signout', {}, {

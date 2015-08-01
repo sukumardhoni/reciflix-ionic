@@ -13,27 +13,18 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage', '
     if (window.cordova) {
       $rootScope.networkState = navigator.connection.type;
     }
-    /*var deviceInfo = cordova.require("cordova/plugin/DeviceInformation");
-    deviceInfo.get(
-      function (result) {
-        //console.log("result = " + result);
-      },
-      function () {
-        //console.log("error");
-      });*/
-    // navigator.analytics.setTrackingId('UA-65211986-2');
-
-
-    cordova.getAppVersion.getVersionNumber(function (version) {
-      console.log('appVersion details : ' + version);
-      $rootScope.appVersion = version;
-    });
-
+    if(window.cordova){
+      cordova.getAppVersion.getVersionNumber(function (version) {
+        console.log('appVersion details : ' + version);
+        $rootScope.appVersion = version;
+      });
+    }else{
+      $rootScope.appVersion = '9.9.9';//version available only when running in a device
+    }
 
   });
 
   $ionicPlatform.registerBackButtonAction(function () {
-
     if ($state.includes('app.allCategories') || $state.includes('landingCtrl')) {
       $ionicPopup.confirm({
         title: 'ReciFlix Warning',

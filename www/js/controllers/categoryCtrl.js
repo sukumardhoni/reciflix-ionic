@@ -1,6 +1,6 @@
 angular.module('recipesApp')
 
-.controller('allCategoriesCtrl', function ($scope, Categories, $timeout, $rootScope, Authentication, $ionicLoading, $http, $localStorage, $ionicHistory) {
+.controller('allCategoriesCtrl', function ($scope, Categories, $timeout, $rootScope, Authentication, $ionicLoading, $http, $localStorage, $ionicHistory, $state) {
   $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
   $scope.userDetails = Authentication;
   var pageId = 0;
@@ -41,4 +41,23 @@ angular.module('recipesApp')
       });
     }, 100);
   }
+
+
+  $scope.onSwipeLeft = function (category) {
+
+    console.log('onSwipeLeft fun. is called , cat details : ' + JSON.stringify(category));
+    $state.go('app.subCats', {
+      catId: category._id,
+      catName: category.displayName
+    });
+
+  }
+  $scope.onSwipeRight = function () {
+
+    console.log('onSwipeRight fun. is called');
+
+  }
+
+
+
 });

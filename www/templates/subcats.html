@@ -1,0 +1,23 @@
+<ion-view cache-view="true">
+  <ion-nav-title>
+    <span style="color:white">Sub Categories
+    </span>
+  </ion-nav-title>
+  <ion-content has-header="true" ng-init="subCats()">
+    <div class="card">
+      <div class="card">
+        <div class="card">
+          <div class="card" style="padding:5px">
+            <h3>Sub Categories Page is called</h3>
+            <h4>Category Name is :<span style="color:red"> {{catName}}</span></h4>
+            <h5>Sub Categories belongs to catId is :<span style="color:green">{{catId}}</span></h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    <ion-item ng-repeat="item in subcategories" class="rf-category-display">
+      <center class="catgyName" style="padding:10px">{{item.displayName}}</center>
+    </ion-item>
+  </ion-content>
+  <rf-footer-display></rf-footer-display>
+</ion-view>

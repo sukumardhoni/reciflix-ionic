@@ -20,7 +20,8 @@ angular.module('recipesApp')
   $scope.$on('loggedIn', function (event, message) {
     if (message.loggedIn) {
       $scope.authentication.user = $localStorage.user;
-      $state.go('app.allCategories')
+      //$state.go('app.allCategories')
+      $state.go('app.newCats')
     } else {
       $state.go('landing')
     }
@@ -31,14 +32,15 @@ angular.module('recipesApp')
       alert('This App needs internet, Please try after you connect to internet');
     } else {
       $scope.authentication = "";
-      $state.go('app.allCategories')
+      //$state.go('app.allCategories')
+      $state.go('app.newCats')
     }
   };
   $scope.user = {};
 
   $scope.signIn = function () {
     if ($rootScope.networkState === 'none') {
-      $scope.reuseAlert('This App needs internet, Please try after you connect to internet!','Internet Not Available','Done',null);
+      $scope.reuseAlert('This App needs internet, Please try after you connect to internet!', 'Internet Not Available', 'Done', null);
     } else {
       $ionicLoading.show({
         templateUrl: "templates/loading.html",
@@ -48,25 +50,26 @@ angular.module('recipesApp')
           $scope.errMsg = res.data;
           $ionicLoading.hide();
         } else {
+          console.log('User details : ' + JSON.stringify(res));
           $scope.reUsableCode(res);
         }
-      }).catch(function(err){
-        console.log('Error happened: '+ JSON.stringify(err));
-         $ionicLoading.hide();
-        $scope.reuseAlert('Looks like there is an issue with your connectivity, Please try after sometime!','Connectivity Issue','Done',null);
+      }).catch(function (err) {
+        console.log('Error happened: ' + JSON.stringify(err));
+        $ionicLoading.hide();
+        $scope.reuseAlert('Looks like there is an issue with your connectivity, Please try after sometime!', 'Connectivity Issue', 'Done', null);
       });
     }
   };
 
-  $scope.reuseAlert=function(aMessage, aTitle, aBtnName, aCallBackFn){
-    if(window.cordova){
+  $scope.reuseAlert = function (aMessage, aTitle, aBtnName, aCallBackFn) {
+    if (window.cordova) {
       navigator.notification.alert(
-          aMessage,  // message
-          aCallBackFn,// callback
-          aTitle, // title
-          aBtnName// buttonName
+        aMessage, // message
+        aCallBackFn, // callback
+        aTitle, // title
+        aBtnName // buttonName
       );
-    }else{
+    } else {
       alert(aMessage);
     }
   };
@@ -76,7 +79,10 @@ angular.module('recipesApp')
     $scope.authentication.user = respUser;
     $localStorage.user = respUser;
     $localStorage.token = respUser.token;
-    $state.go('app.allCategories', {
+    /* $state.go('app.allCategories', {
+       userId: respUser._id
+     });*/
+    $state.go('app.newCats', {
       userId: respUser._id
     });
   };

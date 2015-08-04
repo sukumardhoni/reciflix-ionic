@@ -13,13 +13,13 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage', '
     if (window.cordova) {
       $rootScope.networkState = navigator.connection.type;
     }
-    if(window.cordova){
+    if (window.cordova) {
       cordova.getAppVersion.getVersionNumber(function (version) {
         console.log('appVersion details : ' + version);
         $rootScope.appVersion = version;
       });
-    }else{
-      $rootScope.appVersion = '9.9.9';//version available only when running in a device
+    } else {
+      $rootScope.appVersion = '9.9.9'; //version available only when running in a device
     }
 
   });
@@ -104,6 +104,24 @@ angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage', '
         'menuContent': {
           templateUrl: "templates/allCategories.html",
           controller: "allCategoriesCtrl"
+        }
+      }
+    })
+    .state('app.newCats', {
+      url: "/allRecipes/:userId",
+      views: {
+        'menuContent': {
+          templateUrl: "templates/newCats.html",
+          controller: "allCategoriesCtrl"
+        }
+      }
+    })
+    .state('app.subCats', {
+      url: "/subCats/:catId/:catName",
+      views: {
+        'menuContent': {
+          templateUrl: "templates/subcats.html",
+          controller: "subCatsCtrl"
         }
       }
     })

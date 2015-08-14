@@ -4,15 +4,14 @@
     <div class="row">
       <div class="col col-center">
         <i class="ion ion-information-circled" style="color: rgba(56, 126, 245, 0.7); font-size: 30px; padding-top: 5px; float: right; padding-right: 5px;" ui-sref="app.aboutApp({name:'About ReciFlix'})"></i>
+        <i class="icon ion-android-download" style="color:#33CCFF;font-size: 30px; padding-top: 10px;padding-left: 10px;" ng-click="checkForUpdates()"></i>
       </div>
-
-
+    </div>
     </div>
     <div class="top-content row">
       <div class="col col-center">
         <img width="300px" ng-src="img/reciflix-logo_400.png">
       </div>
-
     </div>
     <div class="bottom-content row">
       <div class="col col-center">
@@ -22,16 +21,13 @@
         <button class="sign-up button button-block button-stable" ui-sref="signup">
           Sign Up
         </button>
-
         <div class="login-view">
           <div class="alternative-actions">
             <button class="sign-up continue-as-guest button button-small button-clear button-light" ng-click="guestUser()">
               Continue as Guest
             </button>
-
           </div>
         </div>
-
       </div>
     </div>
   </ion-content>

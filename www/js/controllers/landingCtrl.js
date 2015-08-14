@@ -1,6 +1,11 @@
 angular.module('recipesApp')
 
-.controller('landingCtrl', function ($scope, $state, User, $ionicLoading, $rootScope, Authentication, $localStorage, $http, AuthService, $timeout, $ionicHistory, $cordovaOauth, $stateParams) {
+.controller('landingCtrl', function ($scope, $state, User, $ionicLoading, $rootScope, Authentication, $localStorage, $http, AuthService, $timeout, $ionicHistory, $cordovaOauth, $stateParams, $ionicDeploy) {
+
+
+
+
+
 
   $scope.authentication = Authentication;
   $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
@@ -38,7 +43,7 @@ angular.module('recipesApp')
 
   $scope.signIn = function () {
     if ($rootScope.networkState === 'none') {
-      $scope.reuseAlert('This App needs internet, Please try after you connect to internet!','Internet Not Available','Done',null);
+      $scope.reuseAlert('This App needs internet, Please try after you connect to internet!', 'Internet Not Available', 'Done', null);
     } else {
       $ionicLoading.show({
         templateUrl: "templates/loading.html",
@@ -50,23 +55,23 @@ angular.module('recipesApp')
         } else {
           $scope.reUsableCode(res);
         }
-      }).catch(function(err){
-        console.log('Error happened: '+ JSON.stringify(err));
-         $ionicLoading.hide();
-        $scope.reuseAlert('Looks like there is an issue with your connectivity, Please try after sometime!','Connectivity Issue','Done',null);
+      }).catch(function (err) {
+        console.log('Error happened: ' + JSON.stringify(err));
+        $ionicLoading.hide();
+        $scope.reuseAlert('Looks like there is an issue with your connectivity, Please try after sometime!', 'Connectivity Issue', 'Done', null);
       });
     }
   };
 
-  $scope.reuseAlert=function(aMessage, aTitle, aBtnName, aCallBackFn){
-    if(window.cordova){
+  $scope.reuseAlert = function (aMessage, aTitle, aBtnName, aCallBackFn) {
+    if (window.cordova) {
       navigator.notification.alert(
-          aMessage,  // message
-          aCallBackFn,// callback
-          aTitle, // title
-          aBtnName// buttonName
+        aMessage, // message
+        aCallBackFn, // callback
+        aTitle, // title
+        aBtnName // buttonName
       );
-    }else{
+    } else {
       alert(aMessage);
     }
   };
@@ -209,5 +214,20 @@ angular.module('recipesApp')
       }
     })
   };
+
+
+
+  $scope.checkForUpdates = function () {
+    $ionicDeploy.check().then(function (hasUpdate) {
+      console.log('Ionic Deploy: Update available: ' + hasUpdate);
+      //$scope.hasUpdate = hasUpdate;
+    }, function (err) {
+      console.log('Ionic Deploy: Unable to check for updates', err);
+    });
+  }
+
+
+
+
 
 });

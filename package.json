@@ -35,18 +35,18 @@
     {
       "locator": "https://github.com/whiteoctober/cordova-plugin-app-version.git",
       "id": "uk.co.whiteoctober.cordova.appversion"
-    }
+    },
+    {
+      "locator": "https://github.com/apache/cordova-plugin-whitelist.git",
+      "id": "cordova-plugin-whitelist"
+    },
+    "ionic-plugin-deploy"
   ],
   "cordovaPlatforms": [
     {
       "platform": "android",
       "version": "",
       "locator": "android"
-    },
-    {
-      "platform": "ios",
-      "version": "",
-      "locator": "ios"
     }
   ]
 }

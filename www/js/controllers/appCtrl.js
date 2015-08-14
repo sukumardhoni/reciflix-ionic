@@ -1,6 +1,6 @@
 angular.module('recipesApp')
 
-.controller('AppCtrl', function ($scope, SearchedRecipes, $stateParams, $ionicLoading, $timeout, Authentication, $state, $ionicPopup, User, $localStorage, $http, $rootScope, $ionicHistory) {
+.controller('AppCtrl', function ($scope, SearchedRecipes, $stateParams, $ionicLoading, $timeout, Authentication, $state, $ionicPopup, User, $localStorage, $http, $rootScope, $ionicHistory, $ionicDeploy) {
   $scope.authentication = Authentication.user;
   $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
   if ($scope.authentication) {
@@ -190,4 +190,33 @@ angular.module('recipesApp')
       alert(aMessage);
     }
   };
+
+
+
+  $scope.checkForUpdates = function () {
+    $ionicDeploy.check().then(function (hasUpdate) {
+      console.log('Ionic Deploy: Update available: ' + hasUpdate);
+      if (hasUpdate) {
+        navigator.notification.confirm('You are in older version, Are you sure want to shift to latest version?', function (cbIndex) {
+            if (cbIndex == 1) {
+              console.log('Confirmation is cancelled');
+            } else if (cbIndex == 2) {
+              $ionicDeploy.update().then(function (res) {
+                console.log('Ionic Deploy: Update Success! ', res);
+              }, function (err) {
+                console.log('Ionic Deploy: Update error! ', err);
+              }, function (prog) {
+                console.log('Ionic Deploy: Progress... ', prog);
+                $scope.dwndlgInPgrss = prog;
+              });
+            }
+          },
+          'Confirmation', ['Cancel', 'OK']);
+      }
+    }, function (err) {
+      console.log('Ionic Deploy: Unable to check for updates', err);
+    });
+  }
+
+
 });

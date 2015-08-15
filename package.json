@@ -1,6 +1,6 @@
 {
   "name": "reciflix",
-  "version": "1.1.7",
+  "version": "1.1.9",
   "description": "reciflix App: online recipe videos on your mobile",
   "dependencies": {
     "gulp": "^3.5.6",

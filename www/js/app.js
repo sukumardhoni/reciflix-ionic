@@ -1,4 +1,4 @@
-angular.module('recipesApp', ['ionic', 'ngResource', 'ngCordova', 'ngStorage', 'xeditable'])
+angular.module('recipesApp', ['ionic','ionic.service.core','ionic.service.deploy', 'ngResource', 'ngCordova', 'ngStorage', 'xeditable'])
 
 .run(function ($ionicPlatform, $state, $rootScope, $ionicPopup, $http, $localStorage) {
   $rootScope.$state = $state;

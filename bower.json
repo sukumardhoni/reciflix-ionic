@@ -6,6 +6,8 @@
     "ngCordova": "latest",
     "angular-resource": "latest",
     "numeral": "1.5.3",
-    "angular-xeditable": "latest"
+    "angular-xeditable": "latest",
+    "ionic-service-core": "~0.1.10",
+    "ionic-service-deploy": "~0.1.3"
   }
 }

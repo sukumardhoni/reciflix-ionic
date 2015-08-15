@@ -1,6 +1,11 @@
 angular.module('recipesApp')
 
-.controller('landingCtrl', function ($scope, $state, User, $ionicLoading, $rootScope, Authentication, $localStorage, $http, AuthService, $timeout, $ionicHistory, $cordovaOauth, $stateParams) {
+.controller('landingCtrl', function ($scope, $state, User, $ionicLoading, $rootScope, Authentication, $localStorage, $http, AuthService, $timeout, $ionicHistory, $cordovaOauth, $stateParams, $ionicDeploy, $ionicPlatform) {
+
+
+
+
+
 
   $scope.authentication = Authentication;
   $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
@@ -20,8 +25,7 @@ angular.module('recipesApp')
   $scope.$on('loggedIn', function (event, message) {
     if (message.loggedIn) {
       $scope.authentication.user = $localStorage.user;
-      //$state.go('app.allCategories')
-      $state.go('app.newCats')
+      $state.go('app.allCategories')
     } else {
       $state.go('landing')
     }
@@ -32,8 +36,7 @@ angular.module('recipesApp')
       alert('This App needs internet, Please try after you connect to internet');
     } else {
       $scope.authentication = "";
-      //$state.go('app.allCategories')
-      $state.go('app.newCats')
+      $state.go('app.allCategories')
     }
   };
   $scope.user = {};
@@ -50,7 +53,6 @@ angular.module('recipesApp')
           $scope.errMsg = res.data;
           $ionicLoading.hide();
         } else {
-          console.log('User details : ' + JSON.stringify(res));
           $scope.reUsableCode(res);
         }
       }).catch(function (err) {
@@ -79,10 +81,7 @@ angular.module('recipesApp')
     $scope.authentication.user = respUser;
     $localStorage.user = respUser;
     $localStorage.token = respUser.token;
-    /* $state.go('app.allCategories', {
-       userId: respUser._id
-     });*/
-    $state.go('app.newCats', {
+    $state.go('app.allCategories', {
       userId: respUser._id
     });
   };
@@ -215,5 +214,58 @@ angular.module('recipesApp')
       }
     })
   };
+
+
+
+  $scope.getAppUpdates = function () {
+    $ionicDeploy.check().then(function (hasUpdate) {
+      console.log('Ionic Deploy: Update available: ' + hasUpdate);
+      if (hasUpdate) {
+        navigator.notification.confirm('There are updates available to your app, Do you want to proceed?', function (cbIndex) {
+            if (cbIndex == 1) {
+              console.log('Confirmation is cancelled');
+            } else if (cbIndex == 2) {
+              $ionicDeploy.update().then(function (res) {
+                console.log('Ionic Deploy: Update Success! ', res);
+                //$scope.updateDoneFlg = true;
+              }, function (err) {
+                console.log('Ionic Deploy: Update error! ', err);
+              }, function (prog) {
+                console.log('Ionic Deploy: Progress... ', prog);
+                $scope.dwndlgInPgrss = prog;
+              });
+            }
+          },
+          'Confirmation', ['Cancel', 'OK']);
+      } else {
+        navigator.notification.alert(
+          'Your app is already upto date!', // message
+          function () {
+            console.log('Done callback in alert');
+            $scope.updateDoneFlg = true;
+          }, // callback
+          'Already Latest', // title
+          'Done' // buttonName
+        );
+      }
+    }, function (err) {
+      console.log('Ionic Deploy: Unable to check for updates', err);
+    });
+  }
+
+  $scope.checkForNewUpdates = function () {
+    $ionicPlatform.ready(function () {
+      $ionicDeploy.check().then(function (hasUpdate) {
+        console.log('checkForNewUpdates: Update available: ' + hasUpdate);
+        if (hasUpdate) {
+          $scope.updateDoneFlg = false;
+        } else {
+          $scope.updateDoneFlg = true;
+        }
+      }, function (err) {
+        console.log('checkForNewUpdates :', err);
+      });
+    })
+  }
 
 });

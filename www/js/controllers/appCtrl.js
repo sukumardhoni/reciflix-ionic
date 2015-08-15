@@ -1,6 +1,6 @@
 angular.module('recipesApp')
 
-.controller('AppCtrl', function ($scope, SearchedRecipes, $stateParams, $ionicLoading, $timeout, Authentication, $state, $ionicPopup, User, $localStorage, $http, $rootScope, $ionicHistory) {
+.controller('AppCtrl', function ($scope, SearchedRecipes, $stateParams, $ionicLoading, $timeout, Authentication, $state, $ionicPopup, User, $localStorage, $http, $rootScope, $ionicHistory, $ionicDeploy, $ionicPlatform) {
   $scope.authentication = Authentication.user;
   $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
   if ($scope.authentication) {
@@ -10,7 +10,6 @@ angular.module('recipesApp')
       $scope.userProfileImageUrl = "https://cdn0.iconfinder.com/data/icons/PRACTIKA/256/user.png";
     }
   }
-
 
   $scope.appVersion = $rootScope.appVersion;
 
@@ -190,4 +189,63 @@ angular.module('recipesApp')
       alert(aMessage);
     }
   };
+
+
+
+  $scope.getAppUpdates = function () {
+    $ionicDeploy.check().then(function (hasUpdate) {
+      console.log('Ionic Deploy: Update available: ' + hasUpdate);
+      if (hasUpdate) {
+        navigator.notification.confirm('There are updates available to your app, Do you want to proceed?', function (cbIndex) {
+            if (cbIndex == 1) {
+              console.log('Confirmation is cancelled');
+            } else if (cbIndex == 2) {
+              $ionicDeploy.update().then(function (res) {
+                console.log('Ionic Deploy: Update Success! ', res);
+                //$scope.updateDoneFlg = true;
+              }, function (err) {
+                console.log('Ionic Deploy: Update error! ', err);
+              }, function (prog) {
+                console.log('Ionic Deploy: Progress... ', prog);
+                $scope.dwndlgInPgrss = prog;
+              });
+            }
+          },
+          'Confirmation', ['Cancel', 'OK']);
+      } else {
+        navigator.notification.alert(
+          'Your app is already upto date!', // message
+          function () {
+            console.log('Done callback in alert');
+            //$scope.updateDoneFlg = true;
+          }, // callback
+          'Already Latest', // title
+          'Done' // buttonName
+        );
+
+      }
+    }, function (err) {
+      console.log('Ionic Deploy: Unable to check for updates', err);
+    });
+  }
+
+
+
+
+  $scope.checkForNewUpdates = function () {
+    $ionicPlatform.ready(function () {
+      $ionicDeploy.check().then(function (hasUpdate) {
+        console.log('checkForNewUpdates: Update available: ' + hasUpdate);
+        if (hasUpdate) {
+          $scope.updateDoneFlg = false;
+        } else {
+          $scope.updateDoneFlg = true;
+        }
+      }, function (err) {
+        console.log('checkForNewUpdates :', err);
+      });
+    })
+  }
+
+
 });

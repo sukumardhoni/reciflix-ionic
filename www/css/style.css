@@ -646,3 +646,8 @@ input:-ms-input-placeholder {
   padding: 0 4px;
   font-size: 13px;
 }
+
+.item-content.activated {
+  border-color: #FFF !important;
+  background-color: #FFF !important;
+}

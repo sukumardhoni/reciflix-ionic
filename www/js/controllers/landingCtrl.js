@@ -1,11 +1,6 @@
 angular.module('recipesApp')
 
-.controller('landingCtrl', function ($scope, $state, User, $ionicLoading, $rootScope, Authentication, $localStorage, $http, AuthService, $timeout, $ionicHistory, $cordovaOauth, $stateParams, $ionicDeploy, $ionicPlatform) {
-
-
-
-
-
+.controller('landingCtrl', function ($scope, $state, User, $ionicLoading, $rootScope, Authentication, $localStorage, $http, $timeout, $ionicHistory, $cordovaOauth, $stateParams, $ionicDeploy, $ionicPlatform) {
 
   $scope.authentication = Authentication;
   $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
@@ -17,19 +12,32 @@ angular.module('recipesApp')
       $ionicHistory.goBack();
   };
   $ionicHistory.clearCache();
+
   if ($state.current.name === 'landing') {
-    $timeout(function () {
-      AuthService.checkLogin();
-    }, 500);
+    $ionicLoading.show({
+      templateUrl: "templates/loading.html",
+    });
+    User.Checking.fetch().$promise.then(function (res) {
+      if (res.type === false) {
+        $scope.errMsg = res.data;
+        $ionicLoading.hide();
+      } else {
+        $scope.populateUserLocally(res);
+      }
+    }).catch(function (err) {
+      console.log('Error happened: ' + JSON.stringify(err));
+      $ionicLoading.hide();
+      $scope.reuseAlert('Looks like there is an issue with your connectivity, Please try after sometime!', 'Connectivity Issue', 'Done', null);
+    })
   };
-  $scope.$on('loggedIn', function (event, message) {
-    if (message.loggedIn) {
-      $scope.authentication.user = $localStorage.user;
-      $state.go('app.allCategories')
-    } else {
-      $state.go('landing')
-    }
-  });
+  /*  $scope.$on('loggedIn', function (event, message) {
+      if (message.loggedIn) {
+        $scope.authentication.user = $localStorage.user;
+        $state.go('app.allCategories')
+      } else {
+        $state.go('landing')
+      }
+    });*/
 
   $scope.guestUser = function () {
     if ($rootScope.networkState === 'none') {
@@ -53,7 +61,7 @@ angular.module('recipesApp')
           $scope.errMsg = res.data;
           $ionicLoading.hide();
         } else {
-          $scope.reUsableCode(res);
+          $scope.populateUserLocally(res);
         }
       }).catch(function (err) {
         console.log('Error happened: ' + JSON.stringify(err));
@@ -76,7 +84,7 @@ angular.module('recipesApp')
     }
   };
 
-  $scope.reUsableCode = function (respUser) {
+  $scope.populateUserLocally = function (respUser) {
     $ionicLoading.hide();
     $scope.authentication.user = respUser;
     $localStorage.user = respUser;
@@ -95,7 +103,7 @@ angular.module('recipesApp')
         $scope.errMsg = res.data;
         $ionicLoading.hide();
       } else {
-        $scope.reUsableCode(res);
+        $scope.populateUserLocally(res);
       }
     })
   };
@@ -126,10 +134,10 @@ angular.module('recipesApp')
                 User.Signup.create($scope.fbUser, function (res) {
                   if (res.type === false) {
                     if (res.user) {
-                      $scope.reUsableCode(res.user);
+                      $scope.populateUserLocally(res.user);
                     }
                   } else {
-                    $scope.reUsableCode(res);
+                    $scope.populateUserLocally(res);
                   }
                 })
               } else {
@@ -183,10 +191,10 @@ angular.module('recipesApp')
         User.Signup.create($scope.gUser, function (res) {
           if (res.type === false) {
             if (res.user) {
-              $scope.reUsableCode(res.user);
+              $scope.populateUserLocally(res.user);
             }
           } else {
-            $scope.reUsableCode(res);
+            $scope.populateUserLocally(res);
           }
         })
       })
@@ -242,7 +250,7 @@ angular.module('recipesApp')
           'Your app is already upto date!', // message
           function () {
             console.log('Done callback in alert');
-            $scope.updateDoneFlg = true;
+            $scope.updateDoneFlg = false;
           }, // callback
           'Already Latest', // title
           'Done' // buttonName
@@ -258,9 +266,9 @@ angular.module('recipesApp')
       $ionicDeploy.check().then(function (hasUpdate) {
         console.log('checkForNewUpdates: Update available: ' + hasUpdate);
         if (hasUpdate) {
-          $scope.updateDoneFlg = false;
-        } else {
           $scope.updateDoneFlg = true;
+        } else {
+          $scope.updateDoneFlg = false;
         }
       }, function (err) {
         console.log('checkForNewUpdates :', err);

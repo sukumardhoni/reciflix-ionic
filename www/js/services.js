@@ -1,7 +1,7 @@
 angular.module('recipesApp')
 
-//.constant('API_HOST', 'http://192.168.0.100:3000')
-.constant('API_HOST', 'http://www.reciflix.com')
+.constant('API_HOST', 'http://192.168.0.100:3000')
+  //.constant('API_HOST', 'http://www.reciflix.com')
 
 .factory('Categories', function ($resource, API_HOST) {
   return $resource(API_HOST + '/categories/page/:pageId', {
@@ -91,6 +91,11 @@ angular.module('recipesApp')
     ChangePassword: $resource(API_HOST + '/users/changePassword', {}, {
       update: {
         method: 'POST'
+      }
+    }),
+    Checking: $resource(API_HOST + '/users/checking', {}, {
+      fetch: {
+        method: 'GET'
       }
     })
   }
@@ -203,7 +208,7 @@ angular.module('recipesApp')
  }
 ])
 
-.factory('AuthService', function ($rootScope, $localStorage) {
+/*.factory('AuthService', function ($rootScope, $localStorage) {
   return {
     checkLogin: function () {
       var loggedIn = $localStorage.token;
@@ -213,4 +218,4 @@ angular.module('recipesApp')
       return loggedIn;
     }
   }
-})
+})*/

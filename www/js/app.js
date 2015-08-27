@@ -1,6 +1,7 @@
-angular.module('recipesApp', ['ionic','ionic.service.core','ionic.service.deploy', 'ngResource', 'ngCordova', 'ngStorage', 'xeditable'])
+angular.module('recipesApp', ['ionic', 'ionic.service.core', 'ionic.service.deploy', 'ngResource', 'ngCordova', 'ngStorage', 'xeditable'])
 
-.run(function ($ionicPlatform, $state, $rootScope, $ionicPopup, $http, $localStorage) {
+.run(function ($ionicPlatform, $state, $rootScope, $ionicPopup, $http, $localStorage, $ionicLoading) {
+  $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
   $rootScope.$state = $state;
   $ionicPlatform.ready(function () {
     if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -9,7 +10,6 @@ angular.module('recipesApp', ['ionic','ionic.service.core','ionic.service.deploy
     if (window.StatusBar) {
       StatusBar.styleDefault();
     }
-    $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
     if (window.cordova) {
       $rootScope.networkState = navigator.connection.type;
     }
@@ -41,6 +41,19 @@ angular.module('recipesApp', ['ionic','ionic.service.core','ionic.service.deploy
     }
   }, 100);
 
+  $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+    if (toState.name == 'landing') {
+      $ionicLoading.show({
+        templateUrl: "templates/loading.html",
+      }); //this is a function you created to show the loading animation
+    }
+  });
+  $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+    if (toState.resolve) {
+      $ionicLoading.hide();
+    }
+  });
+
 })
 
 .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
@@ -51,12 +64,26 @@ angular.module('recipesApp', ['ionic','ionic.service.core','ionic.service.deploy
     .state('landing', {
       url: "",
       templateUrl: "templates/landing.html",
-      controller: 'landingCtrl'
+      controller: 'landingCtrl',
+      resolve: {
+        authorize: ['authorization',
+            function (authorization) {
+            return authorization.authorize();
+            }
+          ]
+      }
     })
     .state('login', {
       url: "/login",
       templateUrl: "templates/login.html",
-      controller: 'landingCtrl'
+      controller: 'landingCtrl',
+      resolve: {
+        authorize: ['authorization',
+            function (authorization) {
+            return authorization.authorize();
+            }
+          ]
+      }
     })
     .state('signup', {
       url: "/signup",

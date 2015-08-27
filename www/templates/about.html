@@ -2,11 +2,7 @@
   <ion-nav-title>
     <span style="color:white">{{currentStateName}}</span>
   </ion-nav-title>
-  <div class="bar bar-loading bar-balanced" ng-show="dwndlgInPgrss">
-    <i class="icon ion-android-download" style="color:#FFF;font-size: 30px" ng-hide="dwndlgInPgrss === 100"></i>
-    <i class="icon ion-android-cloud-done" style="color:#FFF;font-size: 30px" ng-show="dwndlgInPgrss === 100"></i> Downloading...:{{dwndlgInPgrss}}%
-  </div>
-  <ion-content ng-class="{'has-loading': dwndlgInPgrss}">
+  <ion-content>
     <div>
       <div align="middle"><img src="img/recipeImgs/reciflix_icon.png" width="40%" /> </div>
       <h4 align="center">Version : {{appVersion}}</h4>
@@ -19,7 +15,7 @@
           <strong>www.reciflix.com</strong>
         </a>
       </div>
-      <div class="card" ng-click="getAppUpdates()" ng-hide="updateDoneFlg">
+      <div class="card" ng-click="getAppUpdates()" ng-show="updateDoneFlg">
         <ion-item class="item-icon-left">
           <i class="icon ion-android-download" style="color:#33CCFF"></i>
           <h2 class="menu-text">Check for App Updates</h2>

@@ -13,40 +13,14 @@ angular.module('recipesApp')
   };
   $ionicHistory.clearCache();
 
-  if ($state.current.name === 'landing') {
-    $ionicLoading.show({
-      templateUrl: "templates/loading.html",
-    });
-    User.Checking.fetch().$promise.then(function (res) {
-      if (res.type === false) {
-        $scope.errMsg = res.data;
-        $ionicLoading.hide();
+  /*  $scope.guestUser = function () {
+      if ($rootScope.networkState === 'none') {
+        alert('This App needs internet, Please try after you connect to internet');
       } else {
-        $scope.populateUserLocally(res);
-      }
-    }).catch(function (err) {
-      console.log('Error happened: ' + JSON.stringify(err));
-      $ionicLoading.hide();
-      $scope.reuseAlert('Looks like there is an issue with your connectivity, Please try after sometime!', 'Connectivity Issue', 'Done', null);
-    })
-  };
-  /*  $scope.$on('loggedIn', function (event, message) {
-      if (message.loggedIn) {
-        $scope.authentication.user = $localStorage.user;
+        $scope.authentication = "";
         $state.go('app.allCategories')
-      } else {
-        $state.go('landing')
       }
-    });*/
-
-  $scope.guestUser = function () {
-    if ($rootScope.networkState === 'none') {
-      alert('This App needs internet, Please try after you connect to internet');
-    } else {
-      $scope.authentication = "";
-      $state.go('app.allCategories')
-    }
-  };
+    };*/
   $scope.user = {};
 
   $scope.signIn = function () {
@@ -223,8 +197,7 @@ angular.module('recipesApp')
     })
   };
 
-
-
+  //TODO this code is duplicated in both landingctrl nd appctrl.js to be migrated to a service for re-use purpose
   $scope.getAppUpdates = function () {
     $ionicDeploy.check().then(function (hasUpdate) {
       console.log('Ionic Deploy: Update available: ' + hasUpdate);
@@ -235,12 +208,16 @@ angular.module('recipesApp')
             } else if (cbIndex == 2) {
               $ionicDeploy.update().then(function (res) {
                 console.log('Ionic Deploy: Update Success! ', res);
-                //$scope.updateDoneFlg = true;
+                $ionicLoading.hide();
               }, function (err) {
                 console.log('Ionic Deploy: Update error! ', err);
               }, function (prog) {
                 console.log('Ionic Deploy: Progress... ', prog);
-                $scope.dwndlgInPgrss = prog;
+                $scope.updateProg = prog;
+                $ionicLoading.show({
+                  templateUrl: "templates/appUpdating.html",
+                  scope: $scope
+                });
               });
             }
           },
@@ -250,7 +227,7 @@ angular.module('recipesApp')
           'Your app is already upto date!', // message
           function () {
             console.log('Done callback in alert');
-            $scope.updateDoneFlg = false;
+            $scope.updateDoneFlg = hasUpdate;
           }, // callback
           'Already Latest', // title
           'Done' // buttonName
@@ -265,11 +242,7 @@ angular.module('recipesApp')
     $ionicPlatform.ready(function () {
       $ionicDeploy.check().then(function (hasUpdate) {
         console.log('checkForNewUpdates: Update available: ' + hasUpdate);
-        if (hasUpdate) {
-          $scope.updateDoneFlg = true;
-        } else {
-          $scope.updateDoneFlg = false;
-        }
+        $scope.updateDoneFlg = hasUpdate;
       }, function (err) {
         console.log('checkForNewUpdates :', err);
       });

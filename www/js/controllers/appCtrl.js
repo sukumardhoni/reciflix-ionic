@@ -1,6 +1,7 @@
 angular.module('recipesApp')
 
 .controller('AppCtrl', function ($scope, SearchedRecipes, $stateParams, $ionicLoading, $timeout, Authentication, $state, $ionicPopup, User, $localStorage, $http, $rootScope, $ionicHistory, $ionicDeploy, $ionicPlatform) {
+  Authentication.user = $localStorage.user;
   $scope.authentication = Authentication.user;
   $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
   if ($scope.authentication) {
@@ -191,7 +192,7 @@ angular.module('recipesApp')
   };
 
 
-
+  //TODO this code is duplicated in both landingctrl nd appctrl.js to be migrated to a service for re-use purpose
   $scope.getAppUpdates = function () {
     $ionicDeploy.check().then(function (hasUpdate) {
       console.log('Ionic Deploy: Update available: ' + hasUpdate);
@@ -202,12 +203,16 @@ angular.module('recipesApp')
             } else if (cbIndex == 2) {
               $ionicDeploy.update().then(function (res) {
                 console.log('Ionic Deploy: Update Success! ', res);
-                //$scope.updateDoneFlg = true;
+                $ionicLoading.hide();
               }, function (err) {
                 console.log('Ionic Deploy: Update error! ', err);
               }, function (prog) {
                 console.log('Ionic Deploy: Progress... ', prog);
-                $scope.dwndlgInPgrss = prog;
+                $scope.updateProg = prog;
+                $ionicLoading.show({
+                  templateUrl: "templates/appUpdating.html",
+                  scope: $scope
+                });
               });
             }
           },
@@ -217,30 +222,22 @@ angular.module('recipesApp')
           'Your app is already upto date!', // message
           function () {
             console.log('Done callback in alert');
-            //$scope.updateDoneFlg = true;
+            $scope.updateDoneFlg = hasUpdate;
           }, // callback
           'Already Latest', // title
           'Done' // buttonName
         );
-
       }
     }, function (err) {
       console.log('Ionic Deploy: Unable to check for updates', err);
     });
   }
 
-
-
-
   $scope.checkForNewUpdates = function () {
     $ionicPlatform.ready(function () {
       $ionicDeploy.check().then(function (hasUpdate) {
         console.log('checkForNewUpdates: Update available: ' + hasUpdate);
-        if (hasUpdate) {
-          $scope.updateDoneFlg = false;
-        } else {
-          $scope.updateDoneFlg = true;
-        }
+        $scope.updateDoneFlg = hasUpdate;
       }, function (err) {
         console.log('checkForNewUpdates :', err);
       });

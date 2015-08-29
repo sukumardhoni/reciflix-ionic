@@ -1,30 +1,28 @@
 angular.module('recipesApp')
 
-.factory('authorization', ['$rootScope', '$state', '$localStorage', 'User', function ($rootScope, $state, $localStorage, User) {
+.factory('authorization', ['$rootScope', '$state', '$localStorage', 'User', 'Authentication', function ($rootScope, $state, $localStorage, User, Authentication) {
     return {
       authorize: function () {
-        return
-        if ($localStorage.token) {
-          User.Checking.fetch().$promise.then(function (res) {
-            if (res.type === false) {
-              console.log('Error happened: ' + JSON.stringify(res.data));
-            } else {
-              $localStorage.user = res;
-              $localStorage.token = res.token;
-              $state.go('app.allCategories', {
-                userId: res._id
-              });
-            }
-          }).catch(function (err) {
-            console.log('Error happened: ' + JSON.stringify(err));
+        return User.Checking.fetch().$promise.then(function (res) {
+          if (res.type === false) {
+            console.log('Error happened: ' + JSON.stringify(res.data));
+          } else {
+            $localStorage.user = res;
+            $localStorage.token = res.token;
+            Authentication.user = res;
+            $state.go('app.allCategories', {
+              userId: res._id
+            });
+          }
+        }).catch(function (err) {
+          console.log('Error happened: ' + JSON.stringify(err));
+          if (err.status === 0)
             alert('Looks like there is a network connection issue.');
-          })
-        }
+        })
       }
     };
   }
 ])
-
 
 //.constant('API_HOST', 'http://192.168.0.100:3000')
 .constant('API_HOST', 'http://www.reciflix.com')

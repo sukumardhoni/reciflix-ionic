@@ -24,7 +24,7 @@ angular.module('recipesApp')
   $scope.user = {};
 
   $scope.signIn = function () {
-    if ($rootScope.networkState === 'none') {
+    if (($rootScope.networkState === 'none') && (navigator.connection.type === 'none')) {
       $scope.reuseAlert('This App needs internet, Please try after you connect to internet!', 'Internet Not Available', 'Done', null);
     } else {
       $ionicLoading.show({

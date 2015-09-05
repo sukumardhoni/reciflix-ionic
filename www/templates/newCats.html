@@ -7,15 +7,15 @@
     <div ng-repeat="item in categories" class="rf-category-display">
       <div ui-sref="app.subCats({catId: item._id,catName: item.displayName})">
         <div class="img-styles">
-          <img ng-src="http://reciflix.com/modules/recipes/img/cats-img/{{item.catId}}.png" width="100%" />
+          <img ng-src="http://www.reciflix.com/modules/recipes/img/cats-img/{{item.catId}}.png" width="100%" />
           <center class="catgyName">{{item.displayName}}</center>
         </div>
       </div>
     </div>
-    <div ng-show="categories.length === 0">
-      <center>
-        <h3>There are no Categories, Admin have to create on ReciFlix.com</h3>
-      </center>
+    <div class="card" ng-show="categories.length === 0">
+      <div class="item item-text-wrap">
+        There are no Categories currently, once Admin creates on the www.reciflix.com, you can see here.
+      </div>
     </div>
     <ion-infinite-scroll immediate-check="false" ng-if="!noMoreItemsAvailable" distance="5%" on-infinite="loadMore()"></ion-infinite-scroll>
   </ion-content>

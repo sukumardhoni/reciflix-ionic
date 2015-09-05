@@ -101,13 +101,17 @@ angular.module('recipesApp')
     window.plugins.socialsharing.share('Check this post here: ', null, null, null);
   };
   $scope.playRecipeVideo = function (videoItem) {
-    if ($rootScope.networkState !== 'wifi') {
-      navigator.notification.confirm("This Video will consume data, do you want to proceed?", function (cbIndex) {
-          if (cbIndex == 1) {} else if (cbIndex == 2) {
-            $scope.playVideo(videoItem);
-          }
-        },
-        'Confirmation', ['Cancel', 'OK']);
+    if (window.cordova) {
+      if ($rootScope.networkState !== 'wifi') {
+        navigator.notification.confirm("This Video will consume data, do you want to proceed?", function (cbIndex) {
+            if (cbIndex == 1) {} else if (cbIndex == 2) {
+              $scope.playVideo(videoItem);
+            }
+          },
+          'Confirmation', ['Cancel', 'OK']);
+      } else {
+        $scope.playVideo(videoItem);
+      }
     } else {
       $scope.playVideo(videoItem);
     }

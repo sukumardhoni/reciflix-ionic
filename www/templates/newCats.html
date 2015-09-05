@@ -1,21 +1,17 @@
 <ion-view cache-view="true">
-  <!--<ion-nav-view name="subCatsContent"></ion-nav-view>-->
   <ion-nav-title>
-    <span style="color:white">All Categories
+    <span style="color:white">New Categories
     </span>
   </ion-nav-title>
   <ion-content>
-    <ion-list>
-      <!--<ion-item ng-repeat="item in categories" class="item-remove-animate">-->
-      <ion-item ng-repeat="item in categories" class="rf-category-display">
-        <div ui-sref="app.categoriesVideos({categorieName:item.catId,catName:item.displayName})" on-swipe-left="onSwipeLeft(item)" on-swipe-right="onSwipeRight()">
-          <center>
-            <img ng-src="img/recipeImgs/{{item.imageName}}" height="180px" />
-          </center>
+    <div ng-repeat="item in categories" class="rf-category-display">
+      <div ui-sref="app.subCats({catId: item._id,catName: item.displayName})">
+        <div class="img-styles">
+          <img ng-src="http://192.168.0.100:3000/modules/recipes/img/cats-img/{{item.catId}}.png" width="100%" />
           <center class="catgyName">{{item.displayName}}</center>
         </div>
-      </ion-item>
-    </ion-list>
+      </div>
+    </div>
     <ion-infinite-scroll immediate-check="false" ng-if="!noMoreItemsAvailable" distance="5%" on-infinite="loadMore()"></ion-infinite-scroll>
   </ion-content>
   <rf-footer-display></rf-footer-display>

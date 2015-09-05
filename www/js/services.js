@@ -24,8 +24,8 @@ angular.module('recipesApp')
   }
 ])
 
-//.constant('API_HOST', 'http://192.168.0.100:3000')
-.constant('API_HOST', 'http://www.reciflix.com')
+.constant('API_HOST', 'http://192.168.0.100:3000')
+  //.constant('API_HOST', 'http://www.reciflix.com')
 
 .factory('Categories', function ($resource, API_HOST) {
   return $resource(API_HOST + '/categories/page/:pageId', {
@@ -39,14 +39,51 @@ angular.module('recipesApp')
   });
 })
 
-.factory('SubCats', function ($resource, API_HOST) {
-  return $resource(API_HOST + '/subCats/:catId', {
-    catId: '@catId'
+.factory('NewCategories', function ($resource, API_HOST) {
+  return $resource(API_HOST + '/newcats/page/:pageId/:activeFilter', {
+    pageId: '@pageId',
+    activeFilter: '@activeFilter'
   }, {
     'query': {
       method: 'GET',
       isArray: true,
       timeout: 20000
+    }
+  });
+})
+
+.factory('SubCats', function ($resource, API_HOST) {
+  return $resource(API_HOST + '/subCats/:catId/:pageId', {
+    catId: '@catId',
+    pageId: '@pageId'
+  }, {
+    'query': {
+      method: 'GET',
+      timeout: 20000
+    }
+  });
+})
+
+.factory('CatByRank', function ($resource, API_HOST) {
+  return $resource(API_HOST + '/newCatAndSubCats/:rank', {
+    rank: '@rank'
+  }, {
+    'query': {
+      method: 'GET',
+      timeout: 20000
+    }
+  });
+})
+
+
+.factory('RecipesBySubCat', function ($resource, API_HOST) {
+  return $resource(API_HOST + '/newrecipes/:subCatId/:pageId', {
+    subCatId: '@subCatId',
+    pageId: '@pageId'
+  }, {
+    'query': {
+      method: 'GET',
+      isArray: true
     }
   });
 })
@@ -235,15 +272,3 @@ angular.module('recipesApp')
     return _this._data;
  }
 ])
-
-/*.factory('AuthService', function ($rootScope, $localStorage) {
-  return {
-    checkLogin: function () {
-      var loggedIn = $localStorage.token;
-      $rootScope.$broadcast('loggedIn', {
-        'loggedIn': loggedIn
-      });
-      return loggedIn;
-    }
-  }
-})*/

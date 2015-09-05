@@ -4,7 +4,7 @@
       <span style="color:#FFF">{{item.title}}</span>
     </div>
     <div class="col col-10 col-bottom">
-      <i ng-class="item._id === selectedIndex ? 'ion ion-chevron-up' : 'ion ion-chevron-down'" style="color:Grey;font-size:30px;float:right" ng-click="changeClass(item)"></i>
+      <!-- <i ng-class="item._id === selectedIndex ? 'ion ion-chevron-up' : 'ion ion-chevron-down'" style="color:Grey;font-size:30px;float:right" ng-click="changeClass(item)"></i>-->
     </div>
   </div>
   <div class="item item-body item-text-wrap rf-recipe-display" style="overflow: visible;">
@@ -36,8 +36,10 @@
       </div>
     </div>
     <div class="row rf-description">
-      <div ng-class="item._id === selectedIndex ? 'fullHeight' : 'dftHeight'">
-        {{item.description}}
+      <!--
+<div ng-class="item._id === selectedIndex ? 'fullHeight' : 'dftHeight'">-->
+      <div>
+        <pre>{{item.description | cut:true:400:' ...'}}</pre>
       </div>
     </div>
   </div>

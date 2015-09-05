@@ -139,7 +139,7 @@ angular.module('recipesApp', ['ionic', 'ionic.service.core', 'ionic.service.depl
       views: {
         'menuContent': {
           templateUrl: "templates/newCats.html",
-          controller: "allCategoriesCtrl"
+          controller: "NewCategoriesCtrl"
         }
       }
     })
@@ -158,6 +158,15 @@ angular.module('recipesApp', ['ionic', 'ionic.service.core', 'ionic.service.depl
         'menuContent': {
           templateUrl: "templates/recipesUnderCategory.html",
           controller: "allRecipesCtrl"
+        }
+      }
+    })
+    .state('app.subCatVideos', {
+      url: "/subCatVideos/:subCatId/:subCatName",
+      views: {
+        'menuContent': {
+          templateUrl: "templates/recipesUnderCategory.html",
+          controller: "subCatRecipesCtrl"
         }
       }
     })

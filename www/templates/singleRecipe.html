@@ -4,14 +4,18 @@
     </span>
   </ion-nav-title>
   <ion-content has-header="true">
-    <div class="card">
-      <div class="item item-divider" style="text-align:center">
+    <div class="card rf-card">
+      <div class="item item-divider rf-title" style="text-align:center">
         RECIPE: {{recipe.title}}
       </div>
-      <center>
-        <img ng-src="{{recipe.images.mq}}" height="180px" ng-click="playRecipeVideo(recipe)" />
-        <div class="rf-play-icon1" ng-click="playRecipeVideo(recipe)"></div>
-      </center>
+      <div class="row">
+        <div class="col col-center">
+          <center>
+            <img ng-src="{{recipe.images.mq}}" height="180px" ng-click="playRecipeVideo(recipe)" />
+            <div class="rf-play-icon1" ng-click="playRecipeVideo(recipe)"></div>
+          </center>
+        </div>
+      </div>
       <div class="row">
         <div class="col"><span my-like-icon likes=recipe></span>
           <br>{{recipe.ytlikes + recipe.applikes | numeral}}</div>
@@ -24,13 +28,16 @@
         </div>
       </div>
     </div>
-    <div class="card">
+    <div class="card rf-card">
       <div class="item item-divider bar bar-calm">
         Recipe Description
-        <i ng-class="recipe._id === selectedIndex ? 'ion ion-chevron-up' : 'ion ion-chevron-down'" style="color:Grey;font-size:30px;float:right" ng-click="changeClass(recipe)"></i>
+        <!--<i ng-class="recipe._id === selectedIndex ? 'ion ion-chevron-up' : 'ion ion-chevron-down'" style="color:Grey;font-size:30px;float:right" ng-click="changeClass(recipe)"></i>-->
       </div>
-      <div class="item item-text-wrap" ng-class="recipe._id === selectedIndex ? 'fullHeightSingle' : 'dftHeightSingle'">
-        {{recipe.description}}
+      <!--
+      <div class="item item-text-wrap rf-description" ng-class="recipe._id === selectedIndex ? 'fullHeightSingle' : 'dftHeightSingle'">
+-->
+      <div class="item item-text-wrap rf-description">
+        <pre>{{recipe.description}}</pre>
       </div>
     </div>
   </ion-content>

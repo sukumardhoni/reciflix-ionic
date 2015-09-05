@@ -310,6 +310,13 @@ small.time {
 
 .catgyName {
   font-family: Source Sans Pro !important;
+  font-size: 27px;
+  color: #009988;
+  padding: 10px;
+}
+
+.newCatgyName {
+  font-family: Source Sans Pro !important;
   font-size: 14px;
   color: #009988;
   padding: 10px;
@@ -662,19 +669,17 @@ input:-ms-input-placeholder {
   padding: 0 4px;
   font-size: 13px;
 }
-
+}
 .item-content.activated {
   border-color: #FFF !important;
   background-color: #FFF !important;
 }
-
 .img-styles {
   border: 1px solid lightgray;
   float: left;
   width: 48%;
   margin: 1%;
 }
-
 .cat-header {
   border: 1px solid lightgray;
   background-color: bisque;

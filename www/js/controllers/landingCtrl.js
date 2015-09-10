@@ -12,15 +12,14 @@ angular.module('recipesApp')
       $ionicHistory.goBack();
   };
   $ionicHistory.clearCache();
-
-  /*  $scope.guestUser = function () {
-      if ($rootScope.networkState === 'none') {
-        alert('This App needs internet, Please try after you connect to internet');
-      } else {
-        $scope.authentication = "";
-        $state.go('app.allCategories')
-      }
-    };*/
+  $scope.guestUser = function () {
+    if ($rootScope.networkState === 'none') {
+      alert('This App needs internet, Please try after you connect to internet');
+    } else {
+      $scope.authentication = "";
+      $state.go('app.allCategories')
+    }
+  };
   $scope.user = {};
 
   $scope.signIn = function () {

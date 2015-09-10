@@ -1,6 +1,6 @@
 <ion-view cache-view="true">
   <ion-nav-title>
-    <span style="color:white">Sub Categories
+    <span style="color:white">{{subcategories.displayName}}
     </span>
   </ion-nav-title>
   <ion-content has-header="true" ng-init="subCats()">
@@ -24,13 +24,16 @@
       <div ui-sref="app.subCatVideos({subCatId:item.subCatId,subCatName:item.displayName})">
         <div class="img-styles">
           <img ng-src="http://www.reciflix.com/modules/recipes/img/subcats-img/{{item.subCatId}}.png" width="100%" />
-          <center class="catgyName">{{item.displayName}}</center>
+          <center class="newCatgyName">{{item.displayName}}</center>
         </div>
       </div>
     </div>
     <div class="card" ng-show="subcategories.subCats.length === 0">
       <div class="item item-text-wrap">
-        There are no Sub-Categories under this category.
+        There are no Sub-Categories under this category. Why don't you look into recipes under this category.
+        <center>
+          <a class="round-button" ui-sref="app.categoriesVideos({categorieName:subcategories.catId,catName:subcategories.displayName})"><i class="ion-android-restaurant" style="color:white"> </i></a>
+        </center>
       </div>
     </div>
   </ion-content>

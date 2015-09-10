@@ -1,11 +1,18 @@
 <ion-view cache-view="true">
   <ion-nav-title>
-    <span style="color:white">New Categories
+    <span style="color:white">All Categories
     </span>
   </ion-nav-title>
   <ion-content>
     <div ng-repeat="item in categories" class="rf-category-display">
-      <div ui-sref="app.subCats({catId: item._id,catName: item.displayName})">
+      <div ui-sref="app.subCats({catId: item.catId,catName: item.displayName})" ng-show="item.subCatsExist">
+        <div class="img-styles">
+          <img ng-src="http://www.reciflix.com/modules/recipes/img/cats-img/{{item.catId}}.png" width="100%" />
+          <center class="newCatgyName">{{item.displayName}}</center>
+        </div>
+      </div>
+      <!--<div ui-sref="app.categoriesVideos({categorieName:item.catId,catName:item.displayName})" ng-hide="item.subCatsExist">-->
+      <div ui-sref="app.subCatVideos({subCatId:item.catId,subCatName:item.displayName})" ng-hide="item.subCatsExist">
         <div class="img-styles">
           <img ng-src="http://www.reciflix.com/modules/recipes/img/cats-img/{{item.catId}}.png" width="100%" />
           <center class="newCatgyName">{{item.displayName}}</center>

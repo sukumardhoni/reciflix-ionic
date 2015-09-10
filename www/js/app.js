@@ -2,6 +2,18 @@ angular.module('recipesApp', ['ionic', 'ionic.service.core', 'ionic.service.depl
 
 .run(function ($ionicPlatform, $state, $rootScope, $ionicPopup, $http, $localStorage, $ionicLoading) {
   $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
+  console.log('Platform details : ' + JSON.stringify(ionic.Platform));
+  var platform = '';
+  if (ionic.Platform.isAndroid()) {
+    platform = 'Android'
+  } else if (ionic.Platform.isIOS()) {
+    platform = 'Ios'
+  }
+  console.log('Platform value is : ' + platform);
+
+  $http.defaults.headers.common['Device'] = 'Mobile,' + platform;
+  $http.defaults.headers.common['Email'] = $localStorage.user.email || 'guest';
+
   $rootScope.$state = $state;
   $ionicPlatform.ready(function () {
     if (window.cordova && window.cordova.plugins.Keyboard) {
@@ -144,7 +156,7 @@ angular.module('recipesApp', ['ionic', 'ionic.service.core', 'ionic.service.depl
       }
     })
     .state('app.subCats', {
-      url: "/subCats/:catId/:catName",
+      url: "/subCats/:catId",
       views: {
         'menuContent': {
           templateUrl: "templates/subcats.html",

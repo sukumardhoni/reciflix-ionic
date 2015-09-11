@@ -13,7 +13,8 @@ angular.module('recipesApp')
     });
     SubCats.query({
       catId: $stateParams.catId,
-      pageId: subCatsPageId
+      pageId: subCatsPageId,
+      activeFilter: 1 // get only active sub cats
     }).$promise.then(function (res) {
       $scope.subcategories = res;
       //console.log('Successfully fetched subcats with cat object: ' + JSON.stringify(res));
@@ -30,7 +31,8 @@ angular.module('recipesApp')
       var onScroll = {};
       SubCats.query({
         catId: $rootScope.rescatId,
-        pageId: subCatsPageId
+        pageId: subCatsPageId,
+        activeFilter: 1 // get only active sub cats
       }, function (res) {
         onScroll = res;
         //subCatsPageId++;
@@ -54,7 +56,8 @@ angular.module('recipesApp')
     console.log('Res cat id details : ' + $rootScope.rescatId);
     SubCats.query({
       catId: $rootScope.rescatId,
-      pageId: subCatsPageId
+      pageId: subCatsPageId,
+      activeFilter: 1 // get only active sub cats
     }).$promise.then(function (res) {
       $scope.subcategories = res;
       //subCatsPageId++;
@@ -76,7 +79,8 @@ angular.module('recipesApp')
       console.log('Res cat id details : ' + $rootScope.rescatId);
       SubCats.query({
         catId: $rootScope.rescatId,
-        pageId: subCatsPageId
+        pageId: subCatsPageId,
+        activeFilter: 1 // get only active sub cats
       }).$promise.then(function (res) {
         $scope.subcategories = res;
         //console.log('Successfully fetched subcats with cat object: ' + JSON.stringify(res));

@@ -24,8 +24,8 @@ angular.module('recipesApp')
   }
 ])
 
-.constant('API_HOST', 'http://192.168.0.100:3000')
-  //.constant('API_HOST', 'http://www.reciflix.com')
+//.constant('API_HOST', 'http://192.168.0.100:3000')
+.constant('API_HOST', 'http://www.reciflix.com')
 
 .factory('Categories', function ($resource, API_HOST) {
   return $resource(API_HOST + '/categories/page/:pageId', {
@@ -53,9 +53,10 @@ angular.module('recipesApp')
 })
 
 .factory('SubCats', function ($resource, API_HOST) {
-  return $resource(API_HOST + '/subCats/:catId/:pageId', {
+  return $resource(API_HOST + '/subCats/:catId/:pageId/:activeFilter', {
     catId: '@catId',
-    pageId: '@pageId'
+    pageId: '@pageId',
+    activeFilter: '@activeFilter'
   }, {
     'query': {
       method: 'GET',
@@ -101,7 +102,7 @@ angular.module('recipesApp')
 })
 
 .factory('SingleRecipe', function ($resource, API_HOST) {
-  return $resource(API_HOST + '/vRecipes/:recipeId', {
+  return $resource(API_HOST + '/nVRecipes/:recipeId', {
     recipeId: '@_id',
   }, {
     'update': {
@@ -242,7 +243,7 @@ angular.module('recipesApp')
 })
 
 .factory('SearchedRecipes', function ($resource, API_HOST) {
-  return $resource(API_HOST + '/searchedVRecipes/:searchQuery/:pageId', {
+  return $resource(API_HOST + '/searchedVRecipesByIndex/:searchQuery/:pageId', {
     searchQuery: '@searchQuery',
     pageId: '@pageId'
   }, {
@@ -278,34 +279,6 @@ angular.module('recipesApp')
   var cats = {};
   var catsArray = [];
   return {
-    /* getCatsMap: function () {
-      console.log('calling to get the catmap');
-      //check if the catsmap is empty
-      // if empty get one time all cats from rest and create a catmap
-      // if not empty then return catmap
-
-      //is a request needed?
-      if (JSON.stringify(cats) !== '{}') { //(Object.keys(cats).length !== 0) {
-        console.log('already catmap exists, so using');
-        console.log('Cat obj 1111111: ' + JSON.stringify(cats));
-        return cats;
-      } else {
-        console.log('calling to initialize the catmap');
-        var catObj;
-        for (var i = 1; i <= 10; i++) {
-          catObj = '0001' + i;
-          cats["rank" + i] = catObj;
-        }
-        console.log('Cat obj 2222222: ' + JSON.stringify(cats));
-        return cats;
-      }
-    },
-    getCategory: function (rank) {
-      var currentCats = this.getCatsMap();
-      console.log('Cat obj 333333: ' + JSON.stringify(currentCats));
-      console.log('Cat obj 444444: ' + currentCats["rank" + rank]);
-      return currentCats["rank" + rank];
-    },*/
     refreshCats: function (catsArr) {
       for (var i = 0; i < catsArr.length; i++) {
         catsArray.push(catsArr[i].catId);

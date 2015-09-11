@@ -12,7 +12,15 @@ angular.module('recipesApp', ['ionic', 'ionic.service.core', 'ionic.service.depl
   console.log('Platform value is : ' + platform);
 
   $http.defaults.headers.common['Device'] = 'Mobile,' + platform;
-  $http.defaults.headers.common['Email'] = $localStorage.user.email || 'guest';
+
+  var currentUser = $localStorage.user;
+
+  var userEmail = 'guest';
+  if (currentUser) {
+    userEmail = currentUser.email;
+  }
+
+  $http.defaults.headers.common['Email'] = userEmail;
 
   $rootScope.$state = $state;
   $ionicPlatform.ready(function () {

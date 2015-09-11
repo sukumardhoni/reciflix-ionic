@@ -56,17 +56,7 @@ angular.module('recipesApp')
     activeFilter: 1
   }).$promise.then(function (res) {
     $scope.categories = res;
-
-    /*var res3 = CatMap.getCategory(3);
-    var res4 = CatMap.getCategory(4);
-    console.log('REs3 val :' + res3);
-    console.log('REs4 val :' + res4);
-*/
-
     CatMap.refreshCats($scope.categories);
-
-
-
     $ionicLoading.hide();
     pageId++;
   }).catch(function (err) {
@@ -94,6 +84,7 @@ angular.module('recipesApp')
         }
         var oldCategories = $scope.categories;
         $scope.categories = oldCategories.concat(onScroll).unique();
+        CatMap.refreshCats($scope.categories);
         $scope.$broadcast('scroll.infiniteScrollComplete');
         $scope.$broadcast('scroll.resize');
       });

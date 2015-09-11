@@ -8,7 +8,7 @@
       <div class="col col-center" ng-click="onSwipeRight()" ng-hide="subcategories.rank === 1"><i class="ion-chevron-left subcat-chevron"> </i>
       </div>
       <div class="col col-center col-50">
-        <img ng-src="http://www.reciflix.com/modules/recipes/img/cats-img/{{subcategories.catId}}.png" width="100%" />
+        <img ng-src="http://www.reciflix.com/modules/recipes/img/v2/cats-img/{{subcategories.catId}}.jpg" width="100%" />
       </div>
       <div class="col col-center col-33">
         <center>{{subcategories.displayName}}</center>
@@ -23,7 +23,7 @@
     <div ng-repeat="item in subcategories.subCats" class="rf-category-display" ng-hide="subcategories.subCats.length === 0">
       <div ui-sref="app.subCatVideos({subCatId:item.subCatId,subCatName:item.displayName})">
         <div class="img-styles">
-          <img ng-src="http://www.reciflix.com/modules/recipes/img/subcats-img/{{item.subCatId}}.png" width="100%" />
+          <img ng-src="http://www.reciflix.com/modules/recipes/img/v2/subcats-img/{{item.subCatId}}.jpg" width="100%" />
           <center class="newCatgyName">{{item.displayName}}</center>
         </div>
       </div>

@@ -5,10 +5,8 @@
   </ion-nav-title>
   <ion-content>
     <div ng-hide="recipes.length == 0">
-      <div ng-repeat="items in recipes">
-        <div ng-repeat="item in items">
-          <rf-recipe-display></rf-recipe-display>
-        </div>
+      <div ng-repeat="item in recipes">
+        <rf-recipe-display></rf-recipe-display>
       </div>
       <ion-infinite-scroll immediate-check="false" ng-if="!noMoreItemsAvailable" distance="5%" on-infinite="searchQueryLoadMore()"></ion-infinite-scroll>
     </div>

@@ -135,8 +135,7 @@ div.dftHeightSingle {
   background-color: white;
   border-color: #FF6699 !important;
 }
-/*
-input[type="text"] {
+/*input[type="text"] {
   font-size: 20px;
 }
 
@@ -551,7 +550,6 @@ small.time {
 input::-webkit-input-placeholder {
   color: #9EC1F8;
   padding-left: 10px;
-  padding-top: 5px;
 }
 
 input:-moz-placeholder {
@@ -559,7 +557,6 @@ input:-moz-placeholder {
 
   color: #9EC1F8;
   padding-left: 10px;
-  padding-top: 5px;
 }
 
 input::-moz-placeholder {
@@ -567,13 +564,11 @@ input::-moz-placeholder {
 
   color: #9EC1F8;
   padding-left: 10px;
-  padding-top: 5px;
 }
 
 input:-ms-input-placeholder {
   color: #9EC1F8;
   padding-left: 10px;
-  padding-top: 5px;
 }
 /*grocery styles*/
 

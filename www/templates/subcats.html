@@ -30,7 +30,7 @@
     </div>
     <div class="card" ng-show="subcategories.subCats.length === 0">
       <div class="item item-text-wrap">
-        There are no Sub-Categories under this category. Why don't you look into recipes under this category.
+        There are no sub categories under this {{subcategories.displayName}}. Please click below to load recipes directly.
         <center>
           <a class="round-button" ui-sref="app.categoriesVideos({categorieName:subcategories.catId,catName:subcategories.displayName})"><i class="ion-android-restaurant" style="color:white"> </i></a>
         </center>

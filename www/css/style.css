@@ -135,7 +135,7 @@ div.dftHeightSingle {
   background-color: white;
   border-color: #FF6699 !important;
 }
-
+/*
 input[type="text"] {
   font-size: 20px;
 }
@@ -146,7 +146,7 @@ input[type="password"] {
 
 input[type="email"] {
   font-size: 20px;
-}
+}*/
 
 tick {
   list-style: none
@@ -413,6 +413,16 @@ small.time {
   font-size: 13px;
 }
 
+.profile-info {
+  color: green;
+  font-size: 14px;
+}
+
+.profile-info-label {
+  color: grey;
+  font-size: 15px;
+}
+
 .rf-recipe-display .ion-info {
   color: #444;
   font-size: 15px;
@@ -669,17 +679,19 @@ input:-ms-input-placeholder {
   padding: 0 4px;
   font-size: 13px;
 }
-}
+
 .item-content.activated {
   border-color: #FFF !important;
   background-color: #FFF !important;
 }
+
 .img-styles {
   border: 1px solid lightgray;
   float: left;
   width: 48%;
   margin: 1%;
 }
+
 .cat-header {
   border: 1px solid lightgray;
   background-color: bisque;

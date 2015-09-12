@@ -8,25 +8,56 @@
     </ion-item>
     <div class="row">
       <div class="col col-center">
-        <div class="card login-container" ng-hide="showForm">
-          <div class="item item-body">
-            <label class="item item-input">
-              <span class="input-label">First Name :</span>
-              <span class="input-label">{{authentication.firstName}}</span>
-            </label>
-          </div>
-          <div class="item item-body">
-            <label class="item item-input">
-              <span class="input-label">Last Name :</span>
-              <span class="input-label">{{authentication.lastName}}</span>
-            </label>
-          </div>
-          <div class="item item-body">
-            <label class="item item-input">
-              <span class="input-label">Email :</span>
-              <span class="input-label">{{authentication.email}}</span>
-            </label>
-          </div>
+        <div class="login-container" ng-hide="showForm">
+          <table>
+            <tr>
+              <td><span class="profile-info-label">First Name :</span>
+                <br><span class="profile-info">{{authentication.firstName}}</span>
+                <br>
+                <br>
+              </td>
+            </tr>
+
+            <tr>
+              <td><span class="profile-info-label">Last Name :</span>
+                <br><span class="profile-info">{{authentication.lastName}}</span>
+                <br>
+                <br>
+              </td>
+            </tr>
+            <tr>
+              <td><span class="profile-info-label">Email :</span>
+                <br><span class="profile-info">{{authentication.email}}</span>
+                <br>
+                <br>
+              </td>
+            </tr>
+          </table>
+
+
+
+
+
+
+
+          <!--<div class="item item-body">
+  <label class="item item-input">
+    <span class="input-label">First Name :</span>
+    <span class="input-label">{{authentication.firstName}}</span>
+  </label>
+</div>
+<div class="item item-body">
+  <label class="item item-input">
+    <span class="input-label">Last Name :</span>
+    <span class="input-label">{{authentication.lastName}}</span>
+  </label>
+</div>
+<div class="item item-body">
+  <label class="item item-input">
+    <span class="input-label">Email :</span>
+    <span class="">{{authentication.email}}</span>
+  </label>
+</div>-->
           <div class="item item-body bottom-content">
             <button type="submit" class="button button-positive button-block" ui-sref="app.changePwd">
               Change Password

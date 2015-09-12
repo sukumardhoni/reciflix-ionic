@@ -38,8 +38,12 @@ angular.module('recipesApp')
     $scope.oModal2.show();
   };
   $scope.getGroceryLists = function () {
+    $ionicLoading.show({
+      templateUrl: "templates/loading.html",
+    });
     Grocery.query({}, function (res) {
       $scope.grocerylists = res;
+      $ionicLoading.hide();
     });
   };
 
@@ -188,10 +192,14 @@ angular.module('recipesApp')
     $ionicListDelegate.closeOptionButtons();
     $ionicHistory.clearCache();
     $scope.groceryName = $stateParams.groceryName;
+    $ionicLoading.show({
+      templateUrl: "templates/loading.html",
+    });
     GroceryItem.query({
       gListId: $stateParams.groceryId
     }, function (res) {
       $scope.singlegrocerys = res;
+      $ionicLoading.hide();
       $ionicHistory.clearCache()
     });
     $scope.$emit('itemState', '');

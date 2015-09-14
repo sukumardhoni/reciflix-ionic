@@ -2,8 +2,8 @@ angular.module('recipesApp', ['ionic', 'ionic.service.core', 'ionic.service.depl
 
 .run(function ($ionicPlatform, $state, $rootScope, $ionicPopup, $http, $localStorage, $ionicLoading) {
   $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
-  console.log('Platform details : ' + JSON.stringify(ionic.Platform));
 
+  //generating a unique string to identify guest user by time of the first app initialization, this value will be stored in localstorage and retrieved in subsequent visits//TODO move to a service later
   function generateRFUID() {
     var dtStr = new Date().toLocaleString().toString();
     dtStr = dtStr.replace(/,/g, '');
@@ -13,7 +13,6 @@ angular.module('recipesApp', ['ionic', 'ionic.service.core', 'ionic.service.depl
     return dtStr;
   }
 
-
   var rfuid = $localStorage.RFUID;
   if (rfuid) {
 
@@ -22,17 +21,12 @@ angular.module('recipesApp', ['ionic', 'ionic.service.core', 'ionic.service.depl
     $localStorage.RFUID = rfuid;
   }
 
-
-
   var platform = '';
   if (ionic.Platform.isAndroid()) {
     platform = 'Android'
   } else if (ionic.Platform.isIOS()) {
     platform = 'Ios'
   }
-  console.log('Platform value is : ' + platform);
-
-
 
   $http.defaults.headers.common['Device'] = 'Mobile,' + platform;
 
@@ -43,10 +37,7 @@ angular.module('recipesApp', ['ionic', 'ionic.service.core', 'ionic.service.depl
     userEmail = currentUser.email;
   }
 
-  console.log('Platform  & rfuid valvalue is : ' + userEmail + ' ' + rfuid + ' ' + platform);
   $http.defaults.headers.common['Email'] = userEmail;
-
-
 
   $rootScope.$state = $state;
   $ionicPlatform.ready(function () {

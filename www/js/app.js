@@ -3,6 +3,27 @@ angular.module('recipesApp', ['ionic', 'ionic.service.core', 'ionic.service.depl
 .run(function ($ionicPlatform, $state, $rootScope, $ionicPopup, $http, $localStorage, $ionicLoading) {
   $http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;
   console.log('Platform details : ' + JSON.stringify(ionic.Platform));
+
+  function generateRFUID() {
+    var dtStr = new Date().toLocaleString().toString();
+    dtStr = dtStr.replace(/,/g, '');
+    dtStr = dtStr.replace(/\//g, '-');
+    dtStr = dtStr.replace(/ /g, '-');
+    dtStr = dtStr.replace(/:/g, '-');
+    return dtStr;
+  }
+
+
+  var rfuid = $localStorage.RFUID;
+  if (rfuid) {
+
+  } else {
+    rfuid = generateRFUID();
+    $localStorage.RFUID = rfuid;
+  }
+
+
+
   var platform = '';
   if (ionic.Platform.isAndroid()) {
     platform = 'Android'
@@ -11,16 +32,21 @@ angular.module('recipesApp', ['ionic', 'ionic.service.core', 'ionic.service.depl
   }
   console.log('Platform value is : ' + platform);
 
+
+
   $http.defaults.headers.common['Device'] = 'Mobile,' + platform;
 
   var currentUser = $localStorage.user;
 
-  var userEmail = 'guest';
+  var userEmail = 'guest-' + rfuid;
   if (currentUser) {
     userEmail = currentUser.email;
   }
 
+  console.log('Platform  & rfuid valvalue is : ' + userEmail + ' ' + rfuid + ' ' + platform);
   $http.defaults.headers.common['Email'] = userEmail;
+
+
 
   $rootScope.$state = $state;
   $ionicPlatform.ready(function () {

@@ -404,11 +404,11 @@ small.time {
 
 .subcat-chevron {
   font-size: 45px;
-  color: #66E0C2;
+  color: #FFF;
 }
 
 .cat-header .small-info {
-  color: green;
+  color: #FFF;
   font-size: 13px;
 }
 
@@ -689,5 +689,37 @@ input:-ms-input-placeholder {
 
 .cat-header {
   border: 1px solid lightgray;
-  background-color: bisque;
+  background: -webkit-linear-gradient(left top, #1A1A1A, #00CC99, #1A1A1A);
+  /* For Safari 5.1 to 6.0 */
+
+  background: -o-linear-gradient(bottom right, #1A1A1A, #00CC99, #1A1A1A);
+  /* For Opera 11.1 to 12.0 */
+
+  background: -moz-linear-gradient(bottom right, #1A1A1A, #00CC99, #1A1A1A);
+  /* For Firefox 3.6 to 15 */
+
+  background: linear-gradient(to bottom right, #1A1A1A, #00CC99, #1A1A1A);
+  /* Standard syntax (must be last) */
+}
+
+.button.button-icon.input-button {
+  position: absolute;
+  right: 60px;
+  top: 5px;
+  color: #bbb;
+}
+
+.img-thumbnail {
+  display: inline-block;
+  max-width: 100%;
+  height: auto;
+  padding: 4px;
+  line-height: 1.42857143;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  -webkit-transition: all .2s ease-in-out;
+  -o-transition: all .2s ease-in-out;
+  transition: all .2s ease-in-out;
+  box-shadow: 3px 3px rgba(0, 0, 0, .075);
 }

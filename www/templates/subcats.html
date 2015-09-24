@@ -5,10 +5,10 @@
   </ion-nav-title>
   <ion-content has-header="true" ng-init="subCats()">
     <div class="row cat-header" on-swipe-left="onSwipeLeft()" on-swipe-right="onSwipeRight()">
-      <div class="col col-center" ng-click="onSwipeRight()" ng-hide="subcategories.rank === 1"><i class="ion-chevron-left subcat-chevron"> </i>
+      <div class="col col-center" ng-click="onSwipeRight()"><i class="ion-chevron-left subcat-chevron"> </i>
       </div>
       <div class="col col-center col-50">
-        <img ng-src="http://www.reciflix.com/modules/recipes/img/v2/cats-img/{{subcategories.catId}}.jpg" width="100%" />
+        <img ng-src="http://www.reciflix.com/modules/recipes/img/v2/cats-img/{{subcategories.catId}}.jpg" width="100%" class="img-thumbnail" />
       </div>
       <div class="col col-center col-33">
         <center>{{subcategories.displayName}}</center>

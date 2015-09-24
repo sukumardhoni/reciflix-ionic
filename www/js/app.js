@@ -261,7 +261,7 @@ angular.module('recipesApp', ['ionic', 'ionic.service.core', 'ionic.service.depl
       }
     })
     .state('app.aboutApp', {
-      url: "/aboutApp/:name",
+      url: "/aboutApp",
       views: {
         'menuContent': {
           templateUrl: "templates/about.html",

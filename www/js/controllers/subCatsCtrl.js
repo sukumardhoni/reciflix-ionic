@@ -26,26 +26,26 @@ angular.module('recipesApp')
     });
   };
 
-  $scope.loadMoreSubCats = function () {
-    $timeout(function () {
-      var onScroll = {};
-      SubCats.query({
-        catId: $rootScope.rescatId,
-        pageId: subCatsPageId,
-        activeFilter: 1 // get only active sub cats
-      }, function (res) {
-        onScroll = res;
-        //subCatsPageId++;
-        if (res.length == 0) {
-          $scope.noMoreItemsAvailable = true;
-        }
-        var oldsubcategories = $scope.subcategories.subCats;
-        $scope.subcategories.subCats = oldsubcategories.concat(onScroll).unique();
-        $scope.$broadcast('scroll.infiniteScrollComplete');
-        $scope.$broadcast('scroll.resize');
-      });
-    }, 100);
-  }
+  /*  $scope.loadMoreSubCats = function () {
+      $timeout(function () {
+        var onScroll = {};
+        SubCats.query({
+          catId: $rootScope.rescatId,
+          pageId: subCatsPageId,
+          activeFilter: 1 // get only active sub cats
+        }, function (res) {
+          onScroll = res;
+          //subCatsPageId++;
+          if (res.length == 0) {
+            $scope.noMoreItemsAvailable = true;
+          }
+          var oldsubcategories = $scope.subcategories.subCats;
+          $scope.subcategories.subCats = oldsubcategories.concat(onScroll).unique();
+          $scope.$broadcast('scroll.infiniteScrollComplete');
+          $scope.$broadcast('scroll.resize');
+        });
+      }, 100);
+    }*/
 
 
   $scope.onSwipeLeft = function () {
@@ -74,47 +74,23 @@ angular.module('recipesApp')
     //subCatsPageId = 0;
     console.log('Swipe right function in subCatsCtrl :' + $scope.subcategories.rank);
     //Decreament Rank and fetch cat and subcats
-    if ($scope.subcategories.rank !== 1) {
-      $rootScope.rescatId = CatMap.getCatId(-1, $scope.subcategories.catId)
-      console.log('Res cat id details : ' + $rootScope.rescatId);
-      SubCats.query({
-        catId: $rootScope.rescatId,
-        pageId: subCatsPageId,
-        activeFilter: 1 // get only active sub cats
-      }).$promise.then(function (res) {
-        $scope.subcategories = res;
-        //console.log('Successfully fetched subcats with cat object: ' + JSON.stringify(res));
-        $ionicLoading.hide();
-      }).catch(function (err) {
-        console.log('Error happened : ' + JSON.stringify(err));
-        $ionicLoading.hide();
-        $scope.reuseAlert('Looks like there is an issue with your connectivity, Please check your network connection or Please try after sometime!', 'Connectivity Issue', 'Done', null);
-      });
-    }
+    //if ($scope.subcategories.rank !== 1) {
+    $rootScope.rescatId = CatMap.getCatId(-1, $scope.subcategories.catId)
+    console.log('Res cat id details : ' + $rootScope.rescatId);
+    SubCats.query({
+      catId: $rootScope.rescatId,
+      pageId: subCatsPageId,
+      activeFilter: 1 // get only active sub cats
+    }).$promise.then(function (res) {
+      $scope.subcategories = res;
+      //console.log('Successfully fetched subcats with cat object: ' + JSON.stringify(res));
+      $ionicLoading.hide();
+    }).catch(function (err) {
+      console.log('Error happened : ' + JSON.stringify(err));
+      $ionicLoading.hide();
+      $scope.reuseAlert('Looks like there is an issue with your connectivity, Please check your network connection or Please try after sometime!', 'Connectivity Issue', 'Done', null);
+    });
+    //}
   };
-
-
-  /*  $scope.loadMoreRecipes = function () {
-      console.log('Load more cipes is called')
-      $timeout(function () {
-        var onScroll = {};
-        RecipesByCategory.query({
-          pageId: recipesPageId,
-          CategoryName: $rootScope.rescatId
-        }, function (res) {
-          $scope.$broadcast('scroll.infiniteScrollComplete');
-          onScroll = res;
-          recipesPageId++;
-          if (res.length == 0) {
-            $scope.noMoreItemsAvailable = true;
-          }
-          var oldRecipes = $scope.subcategories.recipes;
-          $scope.subcategories.recipes = oldRecipes.concat(onScroll);
-          $scope.$broadcast('scroll.resize');
-        });
-      }, 1000);
-    }*/
-
-
 
 });

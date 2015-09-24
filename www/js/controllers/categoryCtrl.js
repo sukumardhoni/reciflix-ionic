@@ -69,7 +69,7 @@ angular.module('recipesApp')
     viewData.enableBack = false;
     $ionicHistory.clearHistory();
   });
-  $scope.loadMore = function () {
+  $scope.loadMoreNewCats = function () {
     $timeout(function () {
       var onScroll = {};
       //activeFilter 1= Active, 2=InActive, 3=All

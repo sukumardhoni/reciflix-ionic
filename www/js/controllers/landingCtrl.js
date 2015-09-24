@@ -198,6 +198,7 @@ angular.module('recipesApp')
 
   //TODO this code is duplicated in both landingctrl nd appctrl.js to be migrated to a service for re-use purpose
   $scope.getAppUpdates = function () {
+    $scope.updateDoneFlg = false;
     $ionicDeploy.check().then(function (hasUpdate) {
       console.log('Ionic Deploy: Update available: ' + hasUpdate);
       if (hasUpdate) {
@@ -244,6 +245,7 @@ angular.module('recipesApp')
         $scope.updateDoneFlg = hasUpdate;
       }, function (err) {
         console.log('checkForNewUpdates :', err);
+        alert('Ionic Deploy is failed');
       });
     })
   }

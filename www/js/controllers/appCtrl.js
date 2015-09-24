@@ -51,6 +51,7 @@ angular.module('recipesApp')
       pageId++;
     })
   }
+
   $scope.changeClass = function (recipe) {
     if ($scope.selectedIndex === recipe._id) {
       $scope.selectedIndex = true;

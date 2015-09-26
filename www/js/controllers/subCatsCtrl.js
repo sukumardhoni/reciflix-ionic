@@ -26,29 +26,8 @@ angular.module('recipesApp')
     });
   };
 
-  /*  $scope.loadMoreSubCats = function () {
-      $timeout(function () {
-        var onScroll = {};
-        SubCats.query({
-          catId: $rootScope.rescatId,
-          pageId: subCatsPageId,
-          activeFilter: 1 // get only active sub cats
-        }, function (res) {
-          onScroll = res;
-          //subCatsPageId++;
-          if (res.length == 0) {
-            $scope.noMoreItemsAvailable = true;
-          }
-          var oldsubcategories = $scope.subcategories.subCats;
-          $scope.subcategories.subCats = oldsubcategories.concat(onScroll).unique();
-          $scope.$broadcast('scroll.infiniteScrollComplete');
-          $scope.$broadcast('scroll.resize');
-        });
-      }, 100);
-    }*/
-
-
   $scope.onSwipeLeft = function () {
+    $scope.animateShow = false;
     //subCatsPageId = 0;
     console.log('Swipe left function in subCatsCtrl :' + $scope.subcategories.rank);
     //Increament Rank and fetch cat and subcats
@@ -71,6 +50,7 @@ angular.module('recipesApp')
   };
 
   $scope.onSwipeRight = function () {
+    $scope.animateShow = false;
     //subCatsPageId = 0;
     console.log('Swipe right function in subCatsCtrl :' + $scope.subcategories.rank);
     //Decreament Rank and fetch cat and subcats
@@ -93,4 +73,4 @@ angular.module('recipesApp')
     //}
   };
 
-});
+})

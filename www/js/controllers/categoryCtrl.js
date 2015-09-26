@@ -51,25 +51,29 @@ angular.module('recipesApp')
   $ionicLoading.show({
     templateUrl: "templates/loading.html",
   });
-  NewCategories.query({
-    pageId: pageId,
-    activeFilter: 1
-  }).$promise.then(function (res) {
-    $scope.categories = res;
-    CatMap.refreshCats($scope.categories);
-    $ionicLoading.hide();
-    pageId++;
-  }).catch(function (err) {
-    console.log('Error happened : ' + JSON.stringify(err));
-    $ionicLoading.hide();
-    $scope.reuseAlert('Looks like there is an issue with your connectivity, Please check your network connection or Please try after sometime!', 'Connectivity Issue', 'Done', null);
-  });
+  $scope.getNewCats = function () {
+    NewCategories.query({
+      pageId: pageId,
+      activeFilter: 1
+    }).$promise.then(function (res) {
+      $scope.categories = res;
+      CatMap.refreshCats($scope.categories);
+      $ionicLoading.hide();
+      pageId++;
+    }).catch(function (err) {
+      console.log('Error happened : ' + JSON.stringify(err));
+      $ionicLoading.hide();
+      $scope.reuseAlert('Looks like there is an issue with your connectivity, Please check your network connection or Please try after sometime!', 'Connectivity Issue', 'Done', null);
+    });
+  };
 
   $scope.$on('$ionicView.beforeEnter', function (event, viewData) {
     viewData.enableBack = false;
     $ionicHistory.clearHistory();
   });
   $scope.loadMoreNewCats = function () {
+    console.log('Console at load more new cats function');
+
     $timeout(function () {
       var onScroll = {};
       //activeFilter 1= Active, 2=InActive, 3=All
@@ -83,11 +87,14 @@ angular.module('recipesApp')
           $scope.noMoreItemsAvailable = true;
         }
         var oldCategories = $scope.categories;
-        $scope.categories = oldCategories.concat(onScroll).unique();
+        var concatArray = oldCategories.concat(onScroll);
+        $scope.categories = concatArray.filter(function (item, pos) {
+          return concatArray.indexOf(item) == pos
+        });
         CatMap.refreshCats($scope.categories);
         $scope.$broadcast('scroll.infiniteScrollComplete');
         $scope.$broadcast('scroll.resize');
       });
     }, 100);
   }
-});
+})

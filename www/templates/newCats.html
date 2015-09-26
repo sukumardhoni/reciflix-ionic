@@ -1,4 +1,4 @@
-<ion-view cache-view="true">
+<ion-view cache-view="true" ng-init="getNewCats()">
   <ion-nav-title>
     <span style="color:white">All Categories
     </span>
@@ -7,15 +7,16 @@
     <div ng-repeat="item in categories" class="rf-category-display">
       <div ui-sref="app.subCats({catId: item.catId,catName: item.displayName})" ng-show="item.subCatsExist">
         <div class="img-styles">
-          <img ng-src="http://www.reciflix.com/modules/recipes/img/v2/cats-img/{{item.catId}}.jpg" width="100%" />
-          <center class="newCatgyName">{{item.displayName}}</center>
+          <img ng-src="http://www.reciflix.com/modules/recipes/img/v2/cats-img/{{item.catId}}.jpg" class="cat-img" />
+          <div class="caption-box">{{item.displayName}}</div>
+
         </div>
       </div>
       <!--<div ui-sref="app.categoriesVideos({categorieName:item.catId,catName:item.displayName})" ng-hide="item.subCatsExist">-->
       <div ui-sref="app.subCatVideos({subCatId:item.catId,subCatName:item.displayName})" ng-hide="item.subCatsExist">
         <div class="img-styles">
-          <img ng-src="http://www.reciflix.com/modules/recipes/img/v2/cats-img/{{item.catId}}.jpg" width="100%" />
-          <center class="newCatgyName">{{item.displayName}}</center>
+          <img ng-src="http://www.reciflix.com/modules/recipes/img/v2/cats-img/{{item.catId}}.jpg" class="cat-img" />
+          <div class="caption-box">{{item.displayName}}</div>
         </div>
       </div>
     </div>
@@ -24,7 +25,7 @@
         There are no Categories currently, once Admin creates on the www.reciflix.com, you can see here.
       </div>
     </div>
-    <ion-infinite-scroll immediate-check="false" ng-if="!noMoreItemsAvailable" distance="5%" on-infinite="loadMoreNewCats()"></ion-infinite-scroll>
+    <ion-infinite-scroll ng-if="!noMoreItemsAvailable" distance="5%" on-infinite="loadMoreNewCats()"></ion-infinite-scroll>
   </ion-content>
   <rf-footer-display></rf-footer-display>
 </ion-view>

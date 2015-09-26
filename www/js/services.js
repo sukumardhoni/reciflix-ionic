@@ -284,12 +284,12 @@ angular.module('recipesApp')
         catsArray.push(catsArr[i].catId);
         cats[catsArr[i].catId] = i;
       }
-//      console.log('Cat Array Length : ' + catsArray.length);
- //      console.log('Cat Obj : ' + JSON.stringify(cats));
+      //      console.log('Cat Array Length : ' + catsArray.length);
+      //      console.log('Cat Obj : ' + JSON.stringify(cats));
     },
     getCatId: function (direction, catId) {
-//      console.log('Cat direction : ' + direction);
-//      console.log('Cat Obj catId : ' + catId);
+      //      console.log('Cat direction : ' + direction);
+      //      console.log('Cat Obj catId : ' + catId);
 
       if (catsArray[cats[catId] + direction] !== undefined) {
         //console.log('Console @ if part');

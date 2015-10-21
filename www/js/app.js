@@ -79,13 +79,21 @@ angular.module('recipesApp', ['ionic', 'ionic.service.core', 'ionic.service.depl
   }, 100);
 
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
+    console.log('State change start & state name is : ' + toState.name);
+    if (window.cordova) {
+      console.log('connection type is : ' + navigator.connection.type);
+    }
+
     if (toState.name == 'landing') {
+
       $ionicLoading.show({
         templateUrl: "templates/loading.html",
       }); //this is a function you created to show the loading animation
     }
   });
   $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
+
+      console.log('State change success & state name is : ' + toState.name);
     if (toState.resolve) {
       $ionicLoading.hide();
     }

@@ -59,7 +59,7 @@ angular.module('recipesApp')
       $scope.selectedIndex = recipe._id;
     }
   };
-  Array.prototype.unique = function () {
+/*  Array.prototype.unique = function () {
     var a = this.concat();
     for (var i = 0; i < a.length; ++i) {
       for (var j = i + 1; j < a.length; ++j) {
@@ -68,7 +68,7 @@ angular.module('recipesApp')
       }
     }
     return a;
-  }
+  }*/
   $scope.searchQueryLoadMore = function () {
     $timeout(function () {
       var onScroll = {};

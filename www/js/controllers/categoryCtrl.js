@@ -88,9 +88,10 @@ angular.module('recipesApp')
         }
         var oldCategories = $scope.categories;
         var concatArray = oldCategories.concat(onScroll);
-        $scope.categories = concatArray.filter(function (item, pos) {
-          return concatArray.indexOf(item) == pos
-        });
+        /* $scope.categories = concatArray.filter(function (item, pos) {
+           return concatArray.indexOf(item) == pos
+         });*/
+        $scope.categories = concatArray;
         CatMap.refreshCats($scope.categories);
         $scope.$broadcast('scroll.infiniteScrollComplete');
         $scope.$broadcast('scroll.resize');

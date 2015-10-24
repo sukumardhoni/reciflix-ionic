@@ -35,7 +35,7 @@ angular.module('recipesApp')
           $scope.noMoreItemsAvailable = true;
         }
         var oldCategories = $scope.categories;
-        $scope.categories = oldCategories.concat(onScroll).unique();
+        $scope.categories = oldCategories.concat(onScroll);
         $scope.$broadcast('scroll.infiniteScrollComplete');
         $scope.$broadcast('scroll.resize');
       });

@@ -68,7 +68,7 @@ angular.module('recipesApp')
       pageId: pageId,
       subCatId: $stateParams.subCatId
     }, function (res) {
-      $scope.recipes = res;
+      $scope.recipes = res.recipes;
       $ionicLoading.hide();
       pageId++;
     });

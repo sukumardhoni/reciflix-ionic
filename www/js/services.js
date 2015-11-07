@@ -24,7 +24,7 @@ angular.module('recipesApp')
   }
 ])
 
-//.constant('API_HOST', 'http://192.168.0.100:3000')
+//.constant('API_HOST', 'http://192.168.0.101:3000')
 .constant('API_HOST', 'http://www.reciflix.com')
 
 .factory('Categories', function ($resource, API_HOST) {
@@ -83,8 +83,7 @@ angular.module('recipesApp')
     pageId: '@pageId'
   }, {
     'query': {
-      method: 'GET',
-      isArray: true
+      method: 'GET'
     }
   });
 })

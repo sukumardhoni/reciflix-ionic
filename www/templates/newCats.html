@@ -15,7 +15,7 @@
         <!--<div class="img-scrim" style="height:10px;position:relative"></div>-->
       </div>
       <!--<div ui-sref="app.categoriesVideos({categorieName:item.catId,catName:item.displayName})" ng-hide="item.subCatsExist">-->
-      <div ui-sref="app.subCatVideos({subCatId:item.catId,subCatName:item.displayName})" ng-hide="item.subCatsExist">
+      <div ui-sref="app.categoriesVideos({categorieName:item.catId,catName:item.displayName})" ng-hide="item.subCatsExist">
         <div class="img-styles">
           <!--<img ng-src="http://www.reciflix.com/modules/recipes/img/v2/cats-img/{{item.catId}}.jpg" class="cat-img" />-->
           <img ng-src="https://s3.amazonaws.com/NewRF/{{item.imageName}}" class="cat-img">

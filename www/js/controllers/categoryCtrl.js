@@ -52,6 +52,7 @@ angular.module('recipesApp')
     templateUrl: "templates/loading.html",
   });
   $scope.getNewCats = function () {
+    console.log('Get new cats is called & pageID is : ' + pageId);
     NewCategories.query({
       pageId: pageId,
       activeFilter: 1

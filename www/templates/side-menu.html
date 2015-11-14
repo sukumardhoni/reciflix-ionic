@@ -24,7 +24,7 @@
           <i class="icon icon-reciflix_icon"></i>
           <h2 class="menu-text">All Categories</h2>
         </ion-item>
-        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.newCats" data-ng-show="authentication.roles.indexOf('admin') > -1">
+        <ion-item class="item-icon-left" nav-clear menu-close ui-sref="app.newCats" data-ng-show="authentication.roles.indexOf('admin') > -1 || authentication.roles.indexOf('superuser') > -1">
           <i class="icon icon-reciflix_icon"></i>
           <h2 class="menu-text">New Categories</h2>
         </ion-item>

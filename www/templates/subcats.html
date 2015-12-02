@@ -5,18 +5,18 @@
   </ion-nav-title>
   <ion-content has-header="true" ng-init="subCats()">
     <div class="row cat-header" on-swipe-left="onSwipeLeft()" on-swipe-right="onSwipeRight()">
-      <div class="col" ng-click="onSwipeRight()" style="background-color: rgba(0,0,0,0.5);"><i class="ion-chevron-left subcat-chevron" style="float: left;"> </i>
+      <div class="col" ng-click="onSwipeRight()" style="background-color: rgba(0,0,0,0.1);"><i class="ion-chevron-left subcat-chevron" style="float: left;"> </i>
       </div>
       <div class="col col-center col-50">
         <img ng-src="http://www.reciflix.com/modules/recipes/img/v2/cats-img/{{subcategories.catId}}.jpg" width="100%" class="img-thumbnail" />
       </div>
       <div class="col col-center col-33">
-        <center style="color:#FFF;font-size: 15px;">{{subcategories.recipeCount}} Recipes</center>
+        <center style="color:#FFF;font-size: 16px;font-weight:600">{{subcategories.recipeCount}} Recipes</center>
         <center><span class="small-info">in</span>
           <center><span class="small-info">{{subcategories.subCats.length}} Sub Categories</span>
           </center>
       </div>
-      <div class="col" ng-click="onSwipeLeft()" style="background-color: rgba(0,0,0,0.5);"><i class="ion-chevron-right subcat-chevron" style="float: right;"> </i>
+      <div class="col" ng-click="onSwipeLeft()" style="background-color: rgba(0,0,0,0.1);"><i class="ion-chevron-right subcat-chevron" style="float: right;"> </i>
       </div>
 
     </div>

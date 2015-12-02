@@ -78,12 +78,13 @@ angular.module('recipesApp')
 
 
 .factory('RecipesBySubCat', function ($resource, API_HOST) {
-  return $resource(API_HOST + '/newrecipes/:subCatId/:pageId', {
+  return $resource(API_HOST + '/newRecipesForSubCatId/:subCatId/:pageId', {
     subCatId: '@subCatId',
     pageId: '@pageId'
   }, {
     'query': {
-      method: 'GET'
+      method: 'GET',
+      timeout: 20000
     }
   });
 })

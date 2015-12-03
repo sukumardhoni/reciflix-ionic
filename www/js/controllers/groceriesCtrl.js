@@ -41,9 +41,13 @@ angular.module('recipesApp')
     $ionicLoading.show({
       templateUrl: "templates/loading.html",
     });
-    Grocery.query({}, function (res) {
+    Grocery.query({}).$promise.then(function (res) {
       $scope.grocerylists = res;
       $ionicLoading.hide();
+    }).catch(function (err) {
+      console.log('Error happened: ' + JSON.stringify(err));
+      $ionicLoading.hide();
+      $scope.reuseAlert('Looks like there is an issue with your connectivity, Please try after sometime!', 'Connectivity Issue', 'Done', null);
     });
   };
 

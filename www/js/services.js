@@ -10,14 +10,13 @@ angular.module('recipesApp')
             $localStorage.user = res;
             $localStorage.token = res.token;
             Authentication.user = res;
+
             $state.go('app.allCategories', {
               userId: res._id
             });
           }
         }).catch(function (err) {
           console.log('Error happened: ' + JSON.stringify(err));
-          if (err.status === 0)
-            alert('Looks like there is a network connection issue.');
         })
       }
     };
@@ -130,12 +129,14 @@ angular.module('recipesApp')
     }),
     Signout: $resource(API_HOST + '/users/signout', {}, {
       clear: {
-        method: 'POST'
+        method: 'POST',
+        timeout: 30000
       }
     }),
     ForgotPassword: $resource(API_HOST + '/users/forgotPassword', {}, {
       fetch: {
-        method: 'POST'
+        method: 'POST',
+        timeout: 30000
       }
     }),
     ResetPassword: $resource(API_HOST + '/users/reset/:token', {
@@ -147,12 +148,14 @@ angular.module('recipesApp')
     }),
     UpdatedProfile: $resource(API_HOST + '/users/updateProfile', {}, {
       update: {
-        method: 'PUT'
+        method: 'PUT',
+        timeout: 30000
       }
     }),
     ChangePassword: $resource(API_HOST + '/users/changePassword', {}, {
       update: {
-        method: 'POST'
+        method: 'POST',
+        timeout: 30000
       }
     }),
     Checking: $resource(API_HOST + '/users/checking', {}, {
@@ -172,7 +175,8 @@ angular.module('recipesApp')
     userId: '@_id'
   }, {
     'update': {
-      method: 'PUT'
+      method: 'PUT',
+      timeout: 20000
     }
   });
 })
@@ -199,7 +203,8 @@ angular.module('recipesApp')
     },
     'query': {
       method: 'GET',
-      isArray: true
+      isArray: true,
+      timeout: 20000
     },
     'delete': {
       method: 'DELETE'
@@ -217,7 +222,8 @@ angular.module('recipesApp')
   }, {
     'query': {
       method: 'GET',
-      isArray: true
+      isArray: true,
+      timeout: 20000
     },
     'save': {
       method: 'POST'
@@ -231,7 +237,8 @@ angular.module('recipesApp')
     itemId: '@itemId'
   }, {
     'query': {
-      method: 'GET'
+      method: 'GET',
+      timeout: 20000
     },
     'update': {
       method: 'PUT'
@@ -249,7 +256,8 @@ angular.module('recipesApp')
   }, {
     'query': {
       method: 'GET',
-      isArray: true
+      isArray: true,
+      timeout: 30000
     }
   });
 })
@@ -259,7 +267,8 @@ angular.module('recipesApp')
     recipeId: '@_id'
   }, {
     'update': {
-      method: 'PUT'
+      method: 'PUT',
+      timeout: 30000
     }
   });
 })

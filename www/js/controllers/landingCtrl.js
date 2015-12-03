@@ -21,6 +21,9 @@ angular.module('recipesApp')
     }
   };
   $scope.user = {};
+  $scope.networkIssue = function () {
+    return ($rootScope.networkState === 'none');
+  }
 
   $scope.signIn = function () {
     if (($rootScope.networkState === 'none') && (navigator.connection.type === 'none')) {
@@ -185,7 +188,7 @@ angular.module('recipesApp')
       email: this.user.email
     }
     this.user.email = '';
-    User.ForgotPassword.fetch(useremail, function (res) {
+    User.ForgotPassword.fetch(useremail).$promise.then(function (res) {
       if (res.type === false) {
         $scope.errMsg = res.data;
         $ionicLoading.hide();
@@ -193,7 +196,11 @@ angular.module('recipesApp')
         $ionicLoading.hide();
         $scope.sucessfullMsg = res.message;
       }
-    })
+    }).catch(function (err) {
+      console.log('Error happened: ' + JSON.stringify(err));
+      $ionicLoading.hide();
+      $scope.reuseAlert('Looks like there is an issue with your connectivity, Please try after sometime!', 'Connectivity Issue', 'Done', null);
+    });
   };
 
   //TODO this code is duplicated in both landingctrl nd appctrl.js to be migrated to a service for re-use purpose

@@ -59,16 +59,16 @@ angular.module('recipesApp')
       $scope.selectedIndex = recipe._id;
     }
   };
-/*  Array.prototype.unique = function () {
-    var a = this.concat();
-    for (var i = 0; i < a.length; ++i) {
-      for (var j = i + 1; j < a.length; ++j) {
-        if (a[i] === a[j])
-          a.splice(j--, 1);
+  /*  Array.prototype.unique = function () {
+      var a = this.concat();
+      for (var i = 0; i < a.length; ++i) {
+        for (var j = i + 1; j < a.length; ++j) {
+          if (a[i] === a[j])
+            a.splice(j--, 1);
+        }
       }
-    }
-    return a;
-  }*/
+      return a;
+    }*/
   $scope.searchQueryLoadMore = function () {
     $timeout(function () {
       var onScroll = {};
@@ -141,13 +141,15 @@ angular.module('recipesApp')
     window.plugins.socialsharing.shareViaEmail('ReciFlix App allows convenient way to search and watch a recipe video online. Users can add recipes to favorites to watch them later from anywhere.', 'Browse and watch the best recipes online from any device', null, null, null, null);
   }
 
+  $scope.sucessfullyUpdatedMsg = "";
+
   $scope.updateProfile = function (updatedUser) {
     $ionicLoading.show({
       templateUrl: "templates/loading.html",
     });
     User.UpdatedProfile.update(updatedUser, function (res) {
       $ionicLoading.hide();
-      $scope.sucessfullyUpdatedMsg = 'Successfully Updated Your Profile';
+      $scope.sucessfullyUpdatedMsg = 'Successfully Updated Your Profile, you will be now taken to Home screen';
       $scope.authentication = res;
       $localStorage.user = res;
       $localStorage.token = res.token;
@@ -155,7 +157,7 @@ angular.module('recipesApp')
         $state.go('app.allCategories', {
           userId: res._id
         });
-      }, 4500);
+      }, 5000);
     });
   };
 
@@ -165,12 +167,12 @@ angular.module('recipesApp')
     });
     User.ChangePassword.update(updatedPwd, function (res) {
       $ionicLoading.hide();
-      $scope.sucessfullyUpdatedMsg = 'Successfully Updated Your Password';
+      $scope.sucessfullyUpdatedMsg = 'Successfully Updated Your Password, you will be now taken to Home screen';
       $timeout(function () {
         $state.go('app.allCategories', {
           userId: res._id
         });
-      }, 4500);
+      }, 5000);
     }, function (err) {
       $ionicLoading.hide();
       $scope.errUpdatedMsg = err.data.message;

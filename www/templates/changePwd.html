@@ -5,7 +5,7 @@
   <ion-content scroll="true">
     <div class="row">
       <div class="col col-center">
-        <div class="card login-container">
+        <div class="card login-container" ng-hide="sucessfullyUpdatedMsg">
           <form name="change_password_form" class="" novalidate>
             <div class="item item-body">
               <label class="item item-input" show-hide-container>
@@ -29,8 +29,11 @@
             </div>
           </form>
         </div>
-        <strong style="color:green;padding-left:20px;font-size:20px">{{sucessfullyUpdatedMsg}}</strong>
-        <strong style="color:red;padding-left:20px;font-size:20px">{{errUpdatedMsg}}</strong>
+        <center>
+          <div class="smoothin" ng-show="sucessfullyUpdatedMsg"></div>
+          <strong style="color:green;font-size:20px">{{sucessfullyUpdatedMsg}}</strong>
+          <strong style="color:red;font-size:20px">{{errUpdatedMsg}}</strong>
+        </center>
       </div>
     </div>
   </ion-content>

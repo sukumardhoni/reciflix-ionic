@@ -20,11 +20,15 @@ angular.module('recipesApp')
     RecipesByCategory.query({
       pageId: pageId,
       CategoryName: $stateParams.categorieName
-    }, function (res) {
+    }).$promise.then(function (res) {
       $scope.recipes = res;
       $ionicLoading.hide();
       pageId++;
-    });
+    }).catch(function (err) {
+        console.log('Error happened: ' + JSON.stringify(err));
+        $ionicLoading.hide();
+        $scope.reuseAlert('Looks like there is an issue with your connectivity, Please try after sometime!', 'Connectivity Issue', 'Done', null);
+      });
   };
   $scope.loadMore = function () {
     $timeout(function () {
@@ -67,11 +71,15 @@ angular.module('recipesApp')
     RecipesBySubCat.query({
       pageId: pageId,
       subCatId: $stateParams.subCatId
-    }, function (res) {
+    }).$promise.then(function (res) {
       $scope.recipes = res.recipes;
       $ionicLoading.hide();
       pageId++;
-    });
+    }).catch(function (err) {
+        console.log('Error happened: ' + JSON.stringify(err));
+        $ionicLoading.hide();
+        $scope.reuseAlert('Looks like there is an issue with your connectivity, Please try after sometime!', 'Connectivity Issue', 'Done', null);
+      });
   };
   $scope.loadMore = function () {
     $timeout(function () {

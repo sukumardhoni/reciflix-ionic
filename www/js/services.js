@@ -95,7 +95,8 @@ angular.module('recipesApp')
   }, {
     'query': {
       method: 'GET',
-      isArray: true
+      isArray: true,
+      timeout: 20000
     }
   });
 })
@@ -289,24 +290,21 @@ angular.module('recipesApp')
   var catsArray = [];
   return {
     refreshCats: function (catsArr) {
+      catsArray = [];
+      cats = {};
       for (var i = 0; i < catsArr.length; i++) {
         catsArray.push(catsArr[i].catId);
         cats[catsArr[i].catId] = i;
       }
-      //      console.log('Cat Array Length : ' + catsArray.length);
-      //      console.log('Cat Obj : ' + JSON.stringify(cats));
     },
     getCatId: function (direction, catId) {
-      //      console.log('Cat direction : ' + direction);
-      //      console.log('Cat Obj catId : ' + catId);
-
-      if (catsArray[cats[catId] + direction] !== undefined) {
-        //console.log('Console @ if part');
-        return catsArray[cats[catId] + direction];
-      } else {
-        //console.log('Console @ else part');
-        return catsArray[catsArray.length + direction];
+      var indexOfCat = cats[catId] + direction;
+      if (indexOfCat >= catsArray.length) {
+        indexOfCat = 0;
+      } else if (indexOfCat < 0) {
+        indexOfCat = catsArray.length + indexOfCat;
       }
+      return catsArray[indexOfCat];
     }
   }
 })

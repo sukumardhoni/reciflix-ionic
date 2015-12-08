@@ -52,7 +52,7 @@ angular.module('recipesApp', ['ionic', 'ionic.service.core', 'ionic.service.depl
     }
     if (window.cordova) {
       cordova.getAppVersion.getVersionNumber(function (version) {
-        console.log('appVersion details : ' + version);
+        //console.log('appVersion details : ' + version);
         $rootScope.appVersion = version;
       });
     } else {
@@ -79,11 +79,7 @@ angular.module('recipesApp', ['ionic', 'ionic.service.core', 'ionic.service.depl
   }, 100);
 
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams, fromState, fromParams) {
-    console.log('State change start & state name is : ' + toState.name);
-    if (window.cordova) {
-      console.log('connection type is : ' + navigator.connection.type);
-    }
-
+    //console.log('State change start & state name is : ' + toState.name);
     if (toState.name == 'landing') {
 
       $ionicLoading.show({
@@ -93,7 +89,7 @@ angular.module('recipesApp', ['ionic', 'ionic.service.core', 'ionic.service.depl
   });
   $rootScope.$on('$stateChangeSuccess', function (event, toState, toParams, fromState, fromParams) {
 
-      console.log('State change success & state name is : ' + toState.name);
+    //console.log('State change success & state name is : ' + toState.name);
     if (toState.resolve) {
       $ionicLoading.hide();
     }
@@ -170,7 +166,7 @@ angular.module('recipesApp', ['ionic', 'ionic.service.core', 'ionic.service.depl
         }
       }
     })
-    .state('app.allCategories', {
+    /*.state('app.allCategories', {
       url: "/allRecipes/:userId",
       views: {
         'menuContent': {
@@ -178,8 +174,8 @@ angular.module('recipesApp', ['ionic', 'ionic.service.core', 'ionic.service.depl
           controller: "allCategoriesCtrl"
         }
       }
-    })
-    .state('app.newCats', {
+    })*/
+    .state('app.allCategories', {
       url: "/allRecipes/:userId",
       views: {
         'menuContent': {
@@ -243,7 +239,7 @@ angular.module('recipesApp', ['ionic', 'ionic.service.core', 'ionic.service.depl
       }
     })
     .state('app.groceryItems', {
-      url: "/:groceryId/:groceryName",
+      url: "/gItems/:groceryId/:groceryName",
       views: {
         'menuContent': {
           templateUrl: "templates/groceryItems.html",

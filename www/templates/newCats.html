@@ -7,14 +7,14 @@
     <div ng-repeat="item in categories" class="rf-category-display">
       <div ui-sref="app.subCats({catId: item.catId,catName: item.displayName})" ng-show="item.subCatsExist">
         <div class="img-styles">
-          <img ng-src="https://s3.amazonaws.com/NewRF/{{item.imageName}}" class="cat-img" />
+          <img ng-src="https://s3.amazonaws.com/NewRF/{{item.imageName}}" class="cat-img img-loader" />
           <center><span class="caption-box">{{item.displayName}}</span>
           </center>
         </div>
       </div>
       <div ui-sref="app.categoriesVideos({categorieName:item.catId,catName:item.displayName})" ng-hide="item.subCatsExist">
         <div class="img-styles">
-          <img ng-src="https://s3.amazonaws.com/NewRF/{{item.imageName}}" class="cat-img">
+          <img ng-src="https://s3.amazonaws.com/NewRF/{{item.imageName}}" class="cat-img img-loader">
           <center><span class="caption-box">{{item.displayName}}</span>
           </center>
         </div>
@@ -22,7 +22,7 @@
     </div>
     <div class="card" ng-show="categories.length === 0">
       <div class="item item-text-wrap">
-        There are no Categories currently, once Admin creates on the www.reciflix.com, you can see here.
+        Seems soething went wrong, no categories loaded from server. Please try again little later.
       </div>
     </div>
     <ion-infinite-scroll immediate-check="false" ng-if="!noMoreItemsAvailable" distance="5%" on-infinite="loadMoreNewCats()"></ion-infinite-scroll>

@@ -52,7 +52,7 @@ angular.module('recipesApp')
     templateUrl: "templates/loading.html",
   });
   $scope.getNewCats = function () {
-    console.log('Get new cats is called & pageID is : ' + pageId);
+    //console.log('Get new cats is called & pageID is : ' + pageId);
     NewCategories.query({
       pageId: pageId,
       activeFilter: 1
@@ -73,8 +73,7 @@ angular.module('recipesApp')
     $ionicHistory.clearHistory();
   });
   $scope.loadMoreNewCats = function () {
-    console.log('Console at load more new cats function');
-
+    //console.log('Console at load more new cats function');
     $timeout(function () {
       var onScroll = {};
       //activeFilter 1= Active, 2=InActive, 3=All
@@ -93,7 +92,8 @@ angular.module('recipesApp')
            return concatArray.indexOf(item) == pos
          });*/
         $scope.categories = concatArray;
-        CatMap.refreshCats($scope.categories);
+        //CatMap.refreshCats($scope.categories);
+        CatMap.refreshCats(concatArray);
         $scope.$broadcast('scroll.infiniteScrollComplete');
         $scope.$broadcast('scroll.resize');
       });

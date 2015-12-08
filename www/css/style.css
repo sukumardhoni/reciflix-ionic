@@ -701,7 +701,7 @@ input:-ms-input-placeholder {
   float: left;
   width: 48%;
   margin: 1%;
-  height: 90px;
+  height: 92px;
 }
 
 .cat-header {
@@ -737,6 +737,23 @@ input:-ms-input-placeholder {
   -o-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
   box-shadow: 5px 5px rgba(0, 0, 0, 0.3);
+}
+
+.img-loader{
+  background: #fff url('../img/spinner.GIF') no-repeat center !important;
+  background-position: center center;
+  height:90px !important;
+}
+
+.smoothin{
+  background: #fff url('../img/spinner.GIF') no-repeat center !important;
+  background-position: center center;
+/*
+  -webkit-transition: all .2s linear;
+  -o-transition: all .2s linear;
+  transition: all .2s linear;
+*/
+  height:36px;
 }
 
 

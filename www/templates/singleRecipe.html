@@ -10,13 +10,14 @@
       </div>
       <div class="row">
         <div class="col col-center">
-          <center>
-            <img ng-src="{{recipe.images.mq}}" height="180px" ng-click="playRecipeVideo(recipe)" />
-            <div class="rf-play-icon1" ng-click="playRecipeVideo(recipe)"></div>
-          </center>
+          <div class="yt-img">
+            <img ng-src="{{recipe.images.mq}}" ng-click="playRecipeVideo(recipe)" class="portrait-img" />
+            <img ng-src="{{recipe.images.hq}}" ng-click="playRecipeVideo(recipe)" class="landscape-img" />
+            <div class="rf-play-icon-single-recipe" ng-click="playRecipeVideo(recipe)"></div>
+          </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row icons-align">
         <div class="col"><span my-like-icon likes=recipe></span>
           <br>{{recipe.ytlikes + recipe.applikes | numeral}}</div>
         <div class="col"><i class="ion ion-eye" style="color:grey;font-size:30px"></i>

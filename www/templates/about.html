@@ -1,4 +1,4 @@
-<ion-view cache-view="true" ng-init="checkForNewUpdates()">
+<ion-view cache-view="true">
   <ion-nav-title>
     <span style="color:white">About ReciFlix</span>
   </ion-nav-title>
@@ -15,12 +15,12 @@
           <strong>www.reciflix.com</strong>
         </a>
       </div>
-      <div class="card" ng-click="getAppUpdates()" ng-show="updateDoneFlg">
+      <!--<div class="card" ng-click="getAppUpdates()" ng-show="updateDoneFlg">
         <ion-item class="item-icon-left">
           <i class="icon ion-android-download" style="color:#33CCFF"></i>
           <h2 class="menu-text">Check for App Updates</h2>
         </ion-item>
-      </div>
+      </div>-->
       <div ng-hide="authentication" class="card">
         <ion-item class="item-icon-left" ui-sref="landing">
           <div>

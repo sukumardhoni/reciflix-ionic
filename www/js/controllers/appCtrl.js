@@ -7,7 +7,7 @@ angular.module('recipesApp')
     if ($localStorage.picture) {
       $scope.userProfileImageUrl = $localStorage.picture;
     } else {
-      $scope.userProfileImageUrl = "https://cdn0.iconfinder.com/data/icons/PRACTIKA/256/user.png";
+      $scope.userProfileImageUrl = "../img/user.png";
     }
   }
 
@@ -199,56 +199,56 @@ angular.module('recipesApp')
 
 
   //TODO this code is duplicated in both landingctrl nd appctrl.js to be migrated to a service for re-use purpose
-/*  $scope.getAppUpdates = function () {
-    $ionicDeploy.check().then(function (hasUpdate) {
-      console.log('Ionic Deploy: Update available: ' + hasUpdate);
-      if (hasUpdate) {
-        navigator.notification.confirm('There are updates available to your app, Do you want to proceed?', function (cbIndex) {
-            if (cbIndex == 1) {
-              console.log('Confirmation is cancelled');
-            } else if (cbIndex == 2) {
-              $ionicDeploy.update().then(function (res) {
-                console.log('Ionic Deploy: Update Success! ', res);
-                $ionicLoading.hide();
-              }, function (err) {
-                console.log('Ionic Deploy: Update error! ', err);
-              }, function (prog) {
-                console.log('Ionic Deploy: Progress... ', prog);
-                $scope.updateProg = prog;
-                $ionicLoading.show({
-                  templateUrl: "templates/appUpdating.html",
-                  scope: $scope
-                });
-              });
-            }
-          },
-          'Confirmation', ['Cancel', 'OK']);
-      } else {
-        navigator.notification.alert(
-          'Your app is already upto date!', // message
-          function () {
-            console.log('Done callback in alert');
-            $scope.updateDoneFlg = hasUpdate;
-          }, // callback
-          'Already Latest', // title
-          'Done' // buttonName
-        );
-      }
-    }, function (err) {
-      console.log('Ionic Deploy: Unable to check for updates', err);
-    });
-  }
-
-  $scope.checkForNewUpdates = function () {
-    $ionicPlatform.ready(function () {
+  /*  $scope.getAppUpdates = function () {
       $ionicDeploy.check().then(function (hasUpdate) {
-        console.log('checkForNewUpdates: Update available: ' + hasUpdate);
-        $scope.updateDoneFlg = hasUpdate;
+        console.log('Ionic Deploy: Update available: ' + hasUpdate);
+        if (hasUpdate) {
+          navigator.notification.confirm('There are updates available to your app, Do you want to proceed?', function (cbIndex) {
+              if (cbIndex == 1) {
+                console.log('Confirmation is cancelled');
+              } else if (cbIndex == 2) {
+                $ionicDeploy.update().then(function (res) {
+                  console.log('Ionic Deploy: Update Success! ', res);
+                  $ionicLoading.hide();
+                }, function (err) {
+                  console.log('Ionic Deploy: Update error! ', err);
+                }, function (prog) {
+                  console.log('Ionic Deploy: Progress... ', prog);
+                  $scope.updateProg = prog;
+                  $ionicLoading.show({
+                    templateUrl: "templates/appUpdating.html",
+                    scope: $scope
+                  });
+                });
+              }
+            },
+            'Confirmation', ['Cancel', 'OK']);
+        } else {
+          navigator.notification.alert(
+            'Your app is already upto date!', // message
+            function () {
+              console.log('Done callback in alert');
+              $scope.updateDoneFlg = hasUpdate;
+            }, // callback
+            'Already Latest', // title
+            'Done' // buttonName
+          );
+        }
       }, function (err) {
-        console.log('checkForNewUpdates :', err);
+        console.log('Ionic Deploy: Unable to check for updates', err);
       });
-    })
-  }*/
+    }
+
+    $scope.checkForNewUpdates = function () {
+      $ionicPlatform.ready(function () {
+        $ionicDeploy.check().then(function (hasUpdate) {
+          console.log('checkForNewUpdates: Update available: ' + hasUpdate);
+          $scope.updateDoneFlg = hasUpdate;
+        }, function (err) {
+          console.log('checkForNewUpdates :', err);
+        });
+      })
+    }*/
 
 
 });

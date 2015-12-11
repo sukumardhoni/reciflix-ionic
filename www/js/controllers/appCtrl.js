@@ -7,7 +7,7 @@ angular.module('recipesApp')
     if ($localStorage.picture) {
       $scope.userProfileImageUrl = $localStorage.picture;
     } else {
-      $scope.userProfileImageUrl = "../img/user.png";
+      $scope.userProfileImageUrl = "../../img/user.png";
     }
   }
 

@@ -3,11 +3,11 @@
     <span style="color:white">{{subcategories.displayName}}
     </span>
   </ion-nav-title>
-  <ion-content has-header="true" ng-init="subCats()">
+  <ion-content has-header="true" ng-init="subCats()" id="sub-cats">
     <center>
       <div class="smoothin" ng-show="loading_subcats"></div>
     </center>
-    <div class="row cat-header" on-swipe-left="onSwipeLeft()" on-swipe-right="onSwipeRight()" id="sub-cats">
+    <div class="row cat-header" on-swipe-left="onSwipeLeft()" on-swipe-right="onSwipeRight()">
       <div class="col" ng-click="onSwipeRight()" style="background-color: rgba(0,0,0,0.1);"><i class="ion-chevron-left subcat-chevron" style="float: left;"> </i>
       </div>
       <div class="col col-center col-50">

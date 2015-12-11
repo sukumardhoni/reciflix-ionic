@@ -1,0 +1,347 @@
+/* iPad 3 & 4 */
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
+  .cat-img {
+    height: 100%;
+  }
+  .subcat-chevron {
+    padding-top: 80px;
+  }
+  .landscape-img {
+    display: block;
+  }
+  .portrait-img {
+    display: none;
+  }
+  .yt-img {
+    position: relative;
+    height: 360px !important;
+    width: 480px !important;
+    padding-left: 25% !important;
+  }
+  .rf-play-icon-single-recipe {
+    left: 100% !important;
+  }
+  .img-styles {
+    width: 460px;
+    height: 200px;
+  }
+  #sub-cats .img-loader {
+    background: #fff url('../img/spinner.GIF') no-repeat center !important;
+    background-position: center center;
+    height: 200px !important;
+  }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
+  .cat-img {
+    height: 100%;
+  }
+  .subcat-chevron {
+    padding-top: 70px;
+  }
+  #sub-cats .img-loader {
+    background: #fff url('../img/spinner.GIF') no-repeat center !important;
+    background-position: center center;
+    height: 185px;
+  }
+  .img-styles {
+    border: 1px solid lightgray;
+    float: left;
+    width: 345px !important;
+    margin: 1%;
+    margin-left: 3%;
+    height: 170px;
+    padding: 5px;
+  }
+  .caption-box {
+    font-family: sans-serif;
+    color: #fff;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 600;
+    background-color: rgba(0, 0, 0, 0.5);
+    text-shadow: 1px 1px 1px black;
+    border-radius: 5px;
+    padding: 4px;
+    bottom: 85px;
+    position: relative;
+  }
+  .landscape-img {
+    display: block;
+  }
+  .portrait-img {
+    display: none;
+  }
+  .yt-img {
+    position: relative;
+    height: 360px !important;
+    width: 480px !important;
+    padding-left: 15% !important;
+  }
+  .rf-play-icon-single-recipe {
+    left: 70% !important;
+  }
+}
+
+
+/* iPad 1 , 2 & mini */
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 1) {
+  .cat-img {
+    height: 100%;
+  }
+  .subcat-chevron {
+    padding-top: 80px;
+  }
+  .landscape-img {
+    display: block;
+  }
+  .portrait-img {
+    display: none;
+  }
+  .yt-img {
+    position: relative;
+    height: 360px !important;
+    width: 480px !important;
+    padding-left: 25% !important;
+  }
+  .rf-play-icon-single-recipe {
+    left: 100% !important;
+  }
+  .img-styles {
+    width: 460px;
+    height: 210px;
+  }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 1) {
+  .cat-img {
+    height: 100%;
+  }
+  .subcat-chevron {
+    padding-top: 70px;
+  }
+  #sub-cats .img-loader {
+    background: #fff url('../img/spinner.GIF') no-repeat center !important;
+    background-position: center center;
+    height: 185px;
+  }
+  .img-styles {
+    border: 1px solid lightgray;
+    float: left;
+    width: 345px !important;
+    margin: 1%;
+    margin-left: 3%;
+    height: 170px;
+    padding: 5px;
+  }
+  .caption-box {
+    font-family: sans-serif;
+    color: #fff;
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: 600;
+    background-color: rgba(0, 0, 0, 0.5);
+    text-shadow: 1px 1px 1px black;
+    border-radius: 5px;
+    padding: 4px;
+    bottom: 85px;
+    position: relative;
+  }
+  .landscape-img {
+    display: block;
+  }
+  .portrait-img {
+    display: none;
+  }
+  .yt-img {
+    position: relative;
+    height: 360px !important;
+    width: 480px !important;
+    padding-left: 15% !important;
+  }
+  .rf-play-icon-single-recipe {
+    left: 70% !important;
+  }
+}
+
+
+/* iPhones landscape */
+
+
+/* iPhone 6 plus & 6s plus*/
+
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (orientation: landscape) {
+  .cat-img {
+    height: 100%;
+  }
+  .rf-play-icon-single-recipe {
+    background: url("../img/play1.png") no-repeat 0;
+    display: block;
+    height: 32px;
+    position: absolute;
+    left: 70% !important;
+    top: 45%;
+    width: 32px;
+    z-index: 1000;
+  }
+  .subcat-chevron {
+    padding-top: 60px;
+  }
+  #sub-cats .img-styles {
+    width: 330px;
+  }
+  .img-styles {
+    width: 330px;
+    height: 160px;
+  }
+  .landscape-img {
+    display: block;
+  }
+  .portrait-img {
+    display: none;
+  }
+  .yt-img {
+    position: relative;
+    height: 360px;
+    width: 480px;
+    padding-left: 15% !important;
+  }
+  /* iPhone 6 & 6s */
+  @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation: landscape) {
+    #sub-cats .img-styles {
+      width: 300px;
+    }
+    .img-styles {
+      width: 300px;
+      height: 150px;
+    }
+    .rf-play-icon-single-recipe {
+      left: 70% !important;
+    }
+    /* iPhone 5 & 5s */
+    @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (orientation: landscape) {
+      #sub-cats .img-styles {
+        width: 255px;
+      }
+      .img-styles {
+        width: 255px;
+        height: 145px;
+      }
+      .landscape-img {
+        display: none;
+      }
+      .portrait-img {
+        display: block;
+      }
+      .rf-play-icon-single-recipe {
+        left: 70% !important;
+        top: 40% !important;
+      }
+      .yt-img {
+        position: relative;
+        height: 180px !important;
+        width: 320px !important;
+        padding-left: 15% !important;
+      }
+      /* iPhone 2G , 3G , 4 & 4s */
+      @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: landscape) {
+        #sub-cats .img-styles {
+          width: 215px;
+        }
+        .img-styles {
+          width: 215px;
+          height: 120px;
+        }
+        .landscape-img {
+          display: none;
+        }
+        .portrait-img {
+          display: block;
+        }
+        .rf-play-icon-single-recipe {
+          left: 67% !important;
+          top: 40% !important;
+        }
+      }
+    }
+  }
+}
+
+
+/* iPhones portrait */
+
+
+/* iPhone 6 plus & 6s plus*/
+
+
+/*@media all and (orientation:portrait) {
+  .landscape-img {
+    display: none;
+  }
+  .portrait-img {
+    display: block;
+  }
+}*/
+
+@media screen and (device-aspect-ratio: 375/667) {
+  .landscape-img {
+    display: none;
+  }
+  .portrait-img {
+    display: block;
+  }
+}
+
+@media screen and (device-aspect-ratio: 40/71) {
+  .landscape-img {
+    display: none;
+  }
+  .portrait-img {
+    display: block;
+  }
+}
+
+@media screen and (device-aspect-ratio: 2/3) {
+  .landscape-img {
+    display: none;
+  }
+  .portrait-img {
+    display: block;
+  }
+}
+
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (orientation: portrait) {
+  .img-loader {
+    background: #fff url('../img/spinner.GIF') no-repeat center !important;
+    background-position: center center;
+    height: 90px !important;
+  }
+  .landscape-img {
+    display: none !important;
+  }
+  .portrait-img {
+    display: block !important;
+  }
+  left: 67% !important;
+  top: 40% !important;
+  /* iPhone 6 & 6s */
+  @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (orientation: portrait) {
+    /* iPhone 5 & 5s */
+    @media only screen and (min-device-width: 320px) and (max-device-width: 568px) and (orientation: portrait) {
+      /* iPhone 2G , 3G , 4 & 4s */
+      @media only screen and (min-device-width: 320px) and (max-device-width: 480px) and (orientation: portrait) {
+        .landscape-img {
+          display: none;
+        }
+        .sample-img {
+          display: none;
+        }
+        .portrait-img {
+          display: block;
+        }
+      }
+    }
+  }
+}

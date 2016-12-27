@@ -1,16 +1,17 @@
 /*Custom Icons*/
 
 @font-face {
-  font-family: 'reciflix_icons';
-  src: url('fonts/reciflix_icons.eot?9fu3b3');
-  src: url('fonts/reciflix_icons.eot?#iefix9fu3b3') format('embedded-opentype'), url('fonts/reciflix_icons.ttf?9fu3b3') format('truetype'), url('fonts/reciflix_icons.woff?9fu3b3') format('woff'), url('fonts/reciflix_icons.svg?9fu3b3#reciflix_icons') format('svg');
+  font-family: 'icomoon';
+  src: url('fonts/icomoon.eot?na83x0');
+  src: url('fonts/icomoon.eot?na83x0#iefix') format('embedded-opentype'), url('fonts/icomoon.ttf?na83x0') format('truetype'), url('fonts/icomoon.woff?na83x0') format('woff'), url('fonts/icomoon.svg?na83x0#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
 
 [class^="icon-"],
 [class*=" icon-"] {
-  font-family: 'reciflix_icons';
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'icomoon' !important;
   speak: none;
   font-style: normal;
   font-weight: normal;
@@ -23,11 +24,11 @@
 }
 
 .icon-reciflix_icon:before {
-  content: "\e601";
+  content: "\e900";
 }
 
 .icon-my_fav_icon:before {
-  content: "\e600";
+  content: "\e901";
 }
 
 div.dftHeight {

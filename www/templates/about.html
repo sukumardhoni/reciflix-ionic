@@ -1,35 +1,35 @@
 <ion-view cache-view="true">
-  <ion-nav-title>
-    <span style="color:white">About ReciFlix</span>
-  </ion-nav-title>
-  <ion-content>
-    <div>
-      <div align="middle"><img src="img/recipeImgs/reciflix_icon.png" width="40%" /> </div>
-      <h4 align="center">Version : {{appVersion}}</h4>
-      <div class="item item-text-wrap">
-        <p>ReciFlix is a convenient way to find a video recipe online and watch it anytime from any device.</p>
-        <p>Browse through the categories or search with keywords to find a recipe video quickly.</p>
-        <p>Like, Favorite or Share with friends, all from one app.</p>
-        Visit us at :
-        <a href="#" onclick="window.open('http://www.reciflix.com', '_system', 'location=yes'); return false;">
-          <strong>www.reciflix.com</strong>
-        </a>
-      </div>
-      <!--<div class="card" ng-click="getAppUpdates()" ng-show="updateDoneFlg">
+	<ion-nav-title>
+		<span style="color:white">About ReciFlix</span>
+	</ion-nav-title>
+	<ion-content>
+		<div>
+			<div align="middle"><img src="img/recipeImgs/reciflix_icon.png" width="40%" /> </div>
+			<h4 align="center">Version : {{appVersion}}</h4>
+			<div class="item item-text-wrap">
+				<p>ReciFlix is a convenient way to find a video recipe online and watch it anytime from any device.</p>
+				<p>Browse through the categories or search with keywords to find a recipe video quickly.</p>
+				<p>Like, Favorite or Share with friends, all from one app.</p>
+				Visit us at :
+				<a href="#" onclick="window.open('http://www.reciflix.com', '_system', 'location=yes'); return false;">
+					<strong>www.reciflix.com</strong>
+				</a>
+			</div>
+			<!--<div class="card" ng-click="getAppUpdates()" ng-show="updateDoneFlg">
         <ion-item class="item-icon-left">
           <i class="icon ion-android-download" style="color:#33CCFF"></i>
           <h2 class="menu-text">Check for App Updates</h2>
         </ion-item>
       </div>-->
-      <div ng-hide="authentication" class="card">
-        <ion-item class="item-icon-left" ui-sref="landing">
-          <div>
-            <i class="icon ion-log-in" style="color:#00CC99"></i>
-            <h2 class="menu-text">Log In or Sign Up</h2>
-          </div>
-        </ion-item>
-      </div>
-    </div>
-  </ion-content>
-  <rf-footer-display ng-show="authentication"></rf-footer-display>
+			<div ng-hide="authentication" class="card">
+				<ion-item class="item-icon-left" ui-sref="landing">
+					<div>
+						<i class="icon ion-log-in" style="color:#00CC99"></i>
+						<h2 class="menu-text">Log In or Sign Up</h2>
+					</div>
+				</ion-item>
+			</div>
+		</div>
+	</ion-content>
+	<rf-footer-display ng-show="authentication"></rf-footer-display>
 </ion-view>

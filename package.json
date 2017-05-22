@@ -20,27 +20,18 @@
     "shelljs": "^0.3.0"
   },
   "cordovaPlugins": [
-    "org.apache.cordova.inappbrowser",
     {
       "locator": "https://github.com/Glitchbone/CordovaYoutubeVideoPlayer.git",
       "id": "com.bunkerpalace.cordova.YoutubeVideoPlayer"
     },
-    "nl.x-services.plugins.socialsharing",
-    "org.apache.cordova.dialogs",
-    "com.ionic.keyboard",
-    {
-      "locator": "https://git-wip-us.apache.org/repos/asf/cordova-plugin-network-information.git",
-      "id": "cordova-plugin-network-information"
-    },
-    {
-      "locator": "https://github.com/whiteoctober/cordova-plugin-app-version.git",
-      "id": "uk.co.whiteoctober.cordova.appversion"
-    },
     "ionic-plugin-deploy",
-    {
-      "locator": "https://github.com/apache/cordova-plugin-whitelist.git",
-      "id": "cordova-plugin-whitelist"
-    }
+    "cordova-plugin-dialogs",
+    "cordova-plugin-inappbrowser",
+    "cordova-plugin-appversion",
+    "cordova-plugin-network-information",
+    "cordova-plugin-whitelist",
+    "cordova-plugin-x-socialsharing",
+    "cordova-plugin-native-keyboard"
   ],
   "cordovaPlatforms": [
     {

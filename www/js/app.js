@@ -1,4 +1,4 @@
-angular.module('recipesApp', ['ionic', 'ionic.service.core', 'ionic.service.deploy', 'ngResource', 'ngCordova', 'ngStorage', 'xeditable'])
+angular.module('recipesApp', ['ionic', 'ionic.native', 'ionic.service.core', 'ionic.service.deploy', 'ngResource', 'ngCordova', 'ngStorage', 'xeditable'])
 
 	.run(function ($ionicPlatform, $state, $rootScope, $ionicPopup, $http, $localStorage, $ionicLoading) {
 		$http.defaults.headers.common['Authorization'] = 'Basic ' + $localStorage.token;

@@ -31,7 +31,8 @@
     "cordova-plugin-network-information",
     "cordova-plugin-whitelist",
     "cordova-plugin-x-socialsharing",
-    "cordova-plugin-native-keyboard"
+    "cordova-plugin-native-keyboard",
+    "cordova-plugin-googleplus"
   ],
   "cordovaPlatforms": [
     {

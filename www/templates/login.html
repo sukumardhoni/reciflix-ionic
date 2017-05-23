@@ -1,51 +1,51 @@
 <ion-view class="login-view" hide-nav-bar="true" cache-view="false">
-  <ion-header-bar class="bar bar-assertive">
-    <i class="ion-arrow-left-c" style="font-size:25px;color:#fff;padding-top:5px;padding-left:10px" ng-click="goBack()"></i>
-    <h1 class="title">Log In Screen</h1>
-  </ion-header-bar>
-  <ion-content scroll="true">
-    <div class="row">
-      <div class="col col-center">
-        <div class="card login-container">
-          <form name="login_form" class="" novalidate ng-cloak autocomplete="off" cache-view="false">
-            <div class="item item-body">
-              <label class="item item-input">
+	<ion-header-bar class="bar bar-assertive">
+		<i class="ion-arrow-left-c" style="font-size:25px;color:#fff;padding-top:5px;padding-left:10px" ng-click="goBack()"></i>
+		<h1 class="title">Log In Screen</h1>
+	</ion-header-bar>
+	<ion-content scroll="true">
+		<div class="row">
+			<div class="col col-center">
+				<div class="card login-container">
+					<form name="login_form" class="" novalidate ng-cloak autocomplete="off" cache-view="false">
+						<div class="item item-body">
+							<label class="item item-input">
                 <input type="email" placeholder="Email" name="user_email" ng-model="user.email" required style="padding-right:0px">
               </label>
-              <label class="item item-input" show-hide-container>
+							<label class="item item-input" show-hide-container>
                 <input type="password" placeholder="Password" name="user_password" ng-model="user.password" required show-hide-input>
               </label>
-            </div>
-            <div class="item item-body bottom-content">
-              <button type="submit" class="button button-positive button-block" ng-click="signIn()" ng-disabled="(login_form.user_email.$invalid || login_form.user_password.$invalid)">
+						</div>
+						<div class="item item-body bottom-content">
+							<button type="submit" class="button button-positive button-block" ng-click="signIn()" ng-disabled="(login_form.user_email.$invalid || login_form.user_password.$invalid)">
                 Log In
               </button>
-            </div>
-          </form>
-        </div>
-        <div class="alternative-actions">
-          <button class="forgot-password button button-small button-clear button-light" ui-sref="forgotPwd">
+						</div>
+					</form>
+				</div>
+				<div class="alternative-actions">
+					<button class="forgot-password button button-small button-clear button-light" ui-sref="forgotPwd">
             Forgot Password?
           </button>
-          <button class="sign-up button button-small button-clear button-light" ui-sref="signup">
+					<button class="sign-up button button-small button-clear button-light" ui-sref="signup">
             Sign Up
           </button>
-        </div>
-        <center><strong>{{errMsg}}</strong>
-        </center>
-        <br>
-        <center style="color:#e42012">&nbsp;&nbsp; or &nbsp;&nbsp;</center>
-        <center><strong style="color:#e42012;font-size:20px">Connect with</strong>
-        </center>
-        <div class="col-md-12 text-center">
-          <a href="#" class="undecorated-link" ng-click="fbLogin()">
-            <img src="img/buttons/facebook-4-64.png">
-          </a>
-          <a href="#" class="undecorated-link" ng-click="googleLogin()">
-            <img src="img/buttons/google-plus-4-64.png">
-          </a>
-        </div>
-      </div>
-    </div>
-  </ion-content>
+				</div>
+				<center><strong>{{errMsg}}</strong>
+				</center>
+				<br>
+				<center style="color:#e42012">&nbsp;&nbsp; or &nbsp;&nbsp;</center>
+				<center><strong style="color:#e42012;font-size:20px">Connect with</strong>
+				</center>
+				<div class="col-md-12 text-center">
+					<a href="#" class="undecorated-link" ng-click="fbLogin()">
+						<img src="img/buttons/facebook-4-64.png">
+					</a>
+					<a href="#" class="undecorated-link" ng-click="googleAuth()">
+						<img src="img/buttons/google-plus-4-64.png">
+					</a>
+				</div>
+			</div>
+		</div>
+	</ion-content>
 </ion-view>
